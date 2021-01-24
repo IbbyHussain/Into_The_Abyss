@@ -1,0 +1,164 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/HUD.h"
+#include "C_PlayerHUD2.generated.h"
+
+class UC_WeaponWheel;
+class UC_CrossBowBoltTracker;
+
+UCLASS()
+class MYPROJECT_API AC_PlayerHUD2 : public AHUD
+{
+	GENERATED_BODY()
+
+	AC_PlayerHUD2();
+
+public:
+
+	// General
+
+	virtual void DrawHUD() override;
+
+	virtual void BeginPlay() override;
+
+	void HideAllElements();
+
+	void ShowAllElements();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UC_HUDWidget2* HUDWidget;
+
+	class UC_UW_EKeyHint* EKeyHintWidget;
+
+	//class UC_MiniMap* MiniMapWidget;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<UUserWidget> WidgetClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<UUserWidget> EKeyHintWidgetClass;
+
+	//UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Widgets")
+	//TSubclassOf<UUserWidget> MiniMapWidgetClass;
+
+	UFUNCTION(BlueprintCallable, Category = "Widgets")
+	void AddEKeyHintToViewport();
+
+	UFUNCTION(BlueprintCallable, Category = "Widgets")
+	void MakeEKeyHintVisible();
+
+	UFUNCTION(BlueprintCallable, Category = "Widgets")
+	void MakeEKeyHintInVisible();
+
+	UFUNCTION(BlueprintCallable, Category = "Widgets")
+	void EKeyHintInVisible();
+
+	UFUNCTION(BlueprintCallable, Category = "Widgets")
+	void PlayExitAreaAnimationHUD();
+
+	UFUNCTION()
+	void PlayBreathBarFadeInAnimationHUD();
+
+	UFUNCTION()
+	void PlayBreathBarFadeOutAnimationHUD();
+
+	UFUNCTION()
+	void HUDBreathBarVisible();
+
+	UFUNCTION()
+	void HUDBreathBarInVisible();
+
+	FString SetEKeyHintText(FString HUDKeyword);
+
+	//WeaponWheel
+
+	UC_WeaponWheel* WeaponWheelWidget;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<UC_WeaponWheel> WeaponWheelWidgetClass;
+
+	void AddWeaponWheelToViewport();
+
+	void MakeWeaponWheelVisible();
+
+	void MakeWeaponWheelInVisible();
+
+	//Input Modes
+
+	APlayerController* PlayerController;
+
+	void SetInputModeGameAndUI();
+
+	void SetInputModeGameOnly();
+
+	//MiniMap
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_MiniMap> MiniMapWidgetClass;
+
+	UPROPERTY(BlueprintReadWrite)
+	class UC_MiniMap* MiniMapWidget;
+
+	//Crossbow bolt tracker
+
+	void UpdateCrossbowBoltTracker(UC_CrossBowBoltTracker* CrossBowBoltTrackerWidget, int32 NumOfBolts);
+
+	bool bFadeOut;
+
+	//AI Health and Name
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_AIHealthBar> AIHealthWidgetClass;
+
+	class UC_AIHealthBar* AIHealthBarWidget;
+
+	void SetAIName(FString AIName);
+
+	void SetAIHealth(float AIHealth);
+
+	void MakeAIHealthBarVisible();
+
+	void MakeAIHealthBarInVisible();
+
+	// Pickup widgets
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_PickupWidget> PickupWidgetClass;
+
+	class UC_PickupWidget* PickupWidget;
+
+	void CreatePickupWidget();
+
+	void PlayPickupWidgetFadeOut();
+
+	void DestroyPickupWidget();
+
+	void DisplayHealthImage();
+
+	void DisplayStaminaImage();
+
+	void DisplayManaImage();
+
+	FTimerHandle PickupWidgetHandle;
+
+	FTimerHandle DestroyPickupWidgetHandle;
+
+	void ClearPickupTimer();
+
+	bool bFading;
+
+	// AI Trading
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_AITradeWindow> AITradeWidgetClass;
+
+	class UC_AITradeWindow* AITradeWidget;
+
+	void CreateTradingWindow(TSubclassOf<class UC_AITradeWindow> AITradeWindowWidgetClass);
+
+	void DestroyTradingWindow(TSubclassOf<class UC_AITradeWindow> AITradeWindowWidgetClass);
+
+	void UpdateCurrency();
+};
