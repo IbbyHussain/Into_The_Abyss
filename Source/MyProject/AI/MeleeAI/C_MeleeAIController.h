@@ -1,0 +1,57 @@
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "AIController.h"
+#include "C_MeleeAIController.generated.h"
+
+UENUM(Blueprintable)
+enum class EAIStates : uint8
+{
+	HOLDING,
+	ATTACKING,
+	RECOVERING
+};
+
+
+UCLASS()
+class MYPROJECT_API AC_MeleeAIController : public AAIController
+{
+	GENERATED_BODY()
+
+private:
+	AC_MeleeAIController(FObjectInitializer const& ObjectInitializer = FObjectInitializer::Get());
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
+	class UBehaviorTreeComponent* BehaviorTreeComponent;
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
+	class UBehaviorTree* BehaviorTree;
+
+	class UBlackboardComponent* BlackBoard;
+
+	class AC_MeleeAI* MeleeAI;
+
+protected:
+
+public:
+
+	UPROPERTY(EditAnywhere, Category = "ENUM")
+	EAIStates AIStatesController;
+
+	virtual void BeginPlay() override;
+
+	void OnPossess(APawn* const CPawn) override;
+
+	class UBlackboardComponent* GetBlackBoard() const;
+
+	// The target the AI will focus on (rotate to face)
+	AActor* CurrentTarget;
+
+	void PawnBasicAttack();
+
+	// changes enum state
+	UFUNCTION(BlueprintCallable)
+	void AIAttack();
+	
+};
