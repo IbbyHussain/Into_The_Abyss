@@ -10,4 +10,8 @@ namespace BB_MeleeAIKeys
 	TCHAR const* const MinorTargetLocation = TEXT("BPMinorTargetLocation");
 
 	TCHAR const* const AIStates = TEXT("BPAIStates");
+
+	TCHAR const* const PlayerLocation = TEXT("BPPlayerLocation");
+
+	TCHAR const* const AILocation = TEXT("BPAILocation");
 }

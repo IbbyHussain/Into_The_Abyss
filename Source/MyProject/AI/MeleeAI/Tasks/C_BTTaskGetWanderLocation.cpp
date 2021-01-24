@@ -21,7 +21,7 @@ EBTNodeResult::Type UC_BTTaskGetWanderLocation::ExecuteTask(UBehaviorTreeCompone
 	FNavLocation Location;
 	UNavigationSystemV1* const NavigationSystem = UNavigationSystemV1::GetCurrent(GetWorld());
 
-	NavigationSystem->GetRandomPointInNavigableRadius(AIController->GetBlackBoard()->GetValueAsVector(OriginLocation.SelectedKeyName), 200.0f, Location, nullptr);
+	NavigationSystem->GetRandomPointInNavigableRadius(AIController->GetBlackBoard()->GetValueAsVector(OriginLocation.SelectedKeyName), 400.0f, Location, nullptr);
 
 	AIController->GetBlackBoard()->SetValueAsVector(TargetLocation.SelectedKeyName, Location.Location);
 
