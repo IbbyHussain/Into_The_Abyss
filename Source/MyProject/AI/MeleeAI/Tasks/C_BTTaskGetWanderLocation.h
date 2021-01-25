@@ -6,9 +6,6 @@
 #include "BehaviorTree/Tasks/BTTask_BlackboardBase.h"
 #include "C_BTTaskGetWanderLocation.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class MYPROJECT_API UC_BTTaskGetWanderLocation : public UBTTask_BlackboardBase
 {
