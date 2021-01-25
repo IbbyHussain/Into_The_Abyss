@@ -32,14 +32,11 @@ EBTNodeResult::Type UC_BTTaskGetWanderLocation::ExecuteTask(UBehaviorTreeCompone
 	UNavigationSystemV1* const NavigationSystem = UNavigationSystemV1::GetCurrent(GetWorld());
 
 	// Gets a random point in a navigable radius
-	NavigationSystem->GetRandomPointInNavigableRadius(AIController->GetBlackBoard()->GetValueAsVector(OriginLocation.SelectedKeyName), 400.0f, Location, nullptr);
+	NavigationSystem->GetRandomPointInNavigableRadius(AIController->GetBlackBoard()->GetValueAsVector(OriginLocation.SelectedKeyName), 350.0f, Location, nullptr);
 
 	// Get the distance from the original location to target location
 	FVector dist = OriginalLocation - Location.Location;
 	float Distance = dist.Size();
-
-	// DRAW A DEBUG BOX AT THE RANDOM POINT
-	DrawDebugBox(GetWorld(), Location.Location, FVector(50.0f), FColor::Black, false, 4.0f);
 
 	UE_LOG(LogTemp, Log, TEXT("Distance was: %f"), Distance);
 
