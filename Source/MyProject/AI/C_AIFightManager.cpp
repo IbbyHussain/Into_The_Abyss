@@ -83,3 +83,13 @@ AC_MeleeAI* AC_AIFightManager::GradeByLocation()
 
 	return nullptr;
 }
+
+AC_MeleeAI* AC_AIFightManager::GradeByAttackFrequency()
+{
+	for (auto x : AIArray)
+	{
+
+	}
+
+	return nullptr;
+}

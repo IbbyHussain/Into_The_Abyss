@@ -38,7 +38,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void RecalculateGrade();
 
-	// A behaviour condition based on the AI's location to the player. If behind lower grade and if infront higher score.
+	// A behaviour condition based on the AI's location to the player. If behind lower grade and if infront higher grade.
 	UFUNCTION(BlueprintCallable)
 	AC_MeleeAI* GradeByLocation();
+
+	// A behaviour condition based on the AI's time since they last attacked. If they dont attack their grade increases.
+	UFUNCTION(BlueprintCallable)
+	AC_MeleeAI* GradeByAttackFrequency();
 };
