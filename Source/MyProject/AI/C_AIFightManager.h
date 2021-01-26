@@ -27,7 +27,7 @@ public:
 	TMap<class AC_MeleeAI*, float> AIMap;
 
 	UFUNCTION(BlueprintCallable)
-	void GenerateMapElements();
+	AC_MeleeAI* GenerateMapElements();
 
 	UFUNCTION(BlueprintCallable)
 	void ResetAIGrade(AC_MeleeAI* MeleeAI);

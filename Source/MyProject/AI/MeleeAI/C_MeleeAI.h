@@ -29,6 +29,9 @@ public:
 
 	void StartMeleeTimer();
 
+	UFUNCTION(BlueprintCallable)
+	void ResetMeleeTimer();
+
 	bool bShouldTimerRun;
 
 	float AITime;

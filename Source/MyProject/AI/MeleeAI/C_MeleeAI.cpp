@@ -43,12 +43,20 @@ void AC_MeleeAI::StartMeleeTimer()
 		AITime = AITime + GetWorld()->GetDeltaSeconds();
 
 		
-		UE_LOG(LogTemp, Warning, TEXT("started: %f"), AITime);
+		//UE_LOG(LogTemp, Warning, TEXT("started: %f"), AITime);
 	}
 	
 	else
 	{
 		AITime = 0.0f;
-		UE_LOG(LogTemp, Warning, TEXT("stopped: %f"), AITime);
+		//UE_LOG(LogTemp, Warning, TEXT("stopped: %f"), AITime);
+	}
+}
+
+void AC_MeleeAI::ResetMeleeTimer()
+{
+	if(bShouldTimerRun)
+	{
+		AITime = 0.0f;
 	}
 }

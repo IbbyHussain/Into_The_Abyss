@@ -24,14 +24,17 @@ void AC_AIFightManager::BeginPlay()
 }
 
 // At the start of the game 
-void AC_AIFightManager::GenerateMapElements()
+AC_MeleeAI* AC_AIFightManager::GenerateMapElements()
 {
+	// returning a value in the map will cancel out of the loop therefroe only populating map by one value
 	// For all melee AI
 	for (auto i : AIArray)
 	{
 		// Add them to the map, with a random grade (grade determines the priority of if they can attack)
 		AIMap.Add(i, UKismetMathLibrary::RandomFloatInRange(1.0f, 5.0f));
 	}
+
+	return nullptr;
 }
 
 void AC_AIFightManager::ResetAIGrade(AC_MeleeAI* MeleeAI)
@@ -73,8 +76,6 @@ AC_MeleeAI* AC_AIFightManager::GradeByLocation()
 
 		// Add both values multiplied to the map. This will be AI's grade
 		AIMap.Add(i, Foundi * NormilisedValue);
-
-		return i;
 	}
 
 	return nullptr;
@@ -84,6 +85,39 @@ AC_MeleeAI* AC_AIFightManager::GradeByAttackFrequency()
 {
 	for (auto x : AIArray)
 	{
+		if(x->AITime > 9.0f)
+		{
+			if (x->AITime > 24.0f)
+			{
+				x->AITime = 24.0f;
+			}
+
+			UE_LOG(LogTemp, Warning, TEXT("Time was: %f"), x->AITime);
+
+			float Time = x->AITime / 2.0f;
+
+			int IntTime = int(Time);
+
+			UE_LOG(LogTemp, Warning, TEXT("INT Time was: %d"), IntTime);
+
+			float Foundz = *(AIMap.Find(x));
+			UE_LOG(LogTemp, Warning, TEXT("Found Value BEFORE for loop was: %f"), Foundz);
+
+			for (int i = 0; i < IntTime; i++)
+			{
+				float FoundY = *(AIMap.Find(x));
+				AIMap.Add(x, FoundY + 0.5);
+				UE_LOG(LogTemp, Warning, TEXT("LOOP RUN"));
+			}
+
+			float Foundx = *(AIMap.Find(x));
+			UE_LOG(LogTemp, Warning, TEXT("Found Value AFTER for loop was: %f"), Foundx);
+		}
+
+		float FoundZ = *(AIMap.Find(x));
+		AIMap.Add(x, FoundZ - 0.5f);
+
+		UE_LOG(LogTemp, Warning, TEXT("Time was not greater than 9 seconds: %f"), x->AITime);
 
 	}
 
