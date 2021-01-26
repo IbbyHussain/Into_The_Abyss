@@ -16,6 +16,8 @@ private:
 
 	virtual void BeginPlay() override;
 
+	virtual void Tick(float DeltaTime) override;
+
 protected:
 
 public:
@@ -25,13 +27,9 @@ public:
 
 	void BasicAttack();
 
-	// Times used to calculate grade based on time since last attack
+	void StartMeleeTimer();
 
-	// Time of first Attack
-	float TimeOfFirstAttack;
+	bool bShouldTimerRun;
 
-	// Time of second attack
-	float TimeOfSecondAttack;
-
-	
+	float AITime;
 };

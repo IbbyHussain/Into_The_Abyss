@@ -17,7 +17,5 @@ public:
 	EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& Owner, uint8* NodeMemory);
 
 private:
-
-	bool bChooseA;
 	
 };
