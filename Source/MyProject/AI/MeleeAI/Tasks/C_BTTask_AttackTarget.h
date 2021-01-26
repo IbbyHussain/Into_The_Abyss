@@ -15,5 +15,9 @@ class MYPROJECT_API UC_BTTask_AttackTarget : public UBTTask_BlackboardBase
 public:
 
 	EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& Owner, uint8* NodeMemory);
+
+private:
+
+	bool bChooseA;
 	
 };

@@ -25,5 +25,13 @@ public:
 
 	void BasicAttack();
 
+	// Times used to calculate grade based on time since last attack
+
+	// Time of first Attack
+	float TimeOfFirstAttack;
+
+	// Time of second attack
+	float TimeOfSecondAttack;
+
 	
 };

@@ -68,18 +68,14 @@ AC_MeleeAI* AC_AIFightManager::GradeByLocation()
 		// Normilise value (makes it easier to work with)
 		float NormilisedValue = UKismetMathLibrary::NormalizeToRange(AIDotProduct, -1.0f, 1.0f) + 0.5f;
 
-		// Dereference pointer to get value at ptr location
+		// Dereference pointer to get value in map
 		float Foundi = *(AIMap.Find(i));
 
-		// Multiply both values and add to map, this value will be added to AI's grade
+		// Add both values multiplied to the map. This will be AI's grade
 		AIMap.Add(i, Foundi * NormilisedValue);
-
-		UE_LOG(LogTemp, Error, TEXT("Valid"));
 
 		return i;
 	}
-
-	UE_LOG(LogTemp, Error, TEXT("NONE"));
 
 	return nullptr;
 }

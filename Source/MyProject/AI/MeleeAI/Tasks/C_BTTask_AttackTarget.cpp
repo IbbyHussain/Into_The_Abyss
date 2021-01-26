@@ -6,6 +6,8 @@ UC_BTTask_AttackTarget::UC_BTTask_AttackTarget(FObjectInitializer const& ObjectI
 {
 	// Set the nodes name
 	NodeName = TEXT("Attack Target");
+
+	bChooseA = true;
 }
 
 EBTNodeResult::Type UC_BTTask_AttackTarget::ExecuteTask(UBehaviorTreeComponent& Owner, uint8* NodeMemory)
@@ -14,6 +16,20 @@ EBTNodeResult::Type UC_BTTask_AttackTarget::ExecuteTask(UBehaviorTreeComponent& 
 
 	// Calls attack function
 	AIController->PawnBasicAttack();
+
+	if(bChooseA)
+	{
+		bChooseA = false;
+
+		UE_LOG(LogTemp, Error, TEXT("First Attack!!!"));
+	}
+
+	else
+	{
+		bChooseA = true;
+
+		UE_LOG(LogTemp, Error, TEXT("Second Attack!!!"));
+	}
 
 	// Finish Task with success
 	FinishLatentTask(Owner, EBTNodeResult::Succeeded);
