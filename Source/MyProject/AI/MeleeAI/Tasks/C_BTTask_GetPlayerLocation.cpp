@@ -20,6 +20,8 @@ UC_BTTask_GetPlayerLocation::UC_BTTask_GetPlayerLocation(FObjectInitializer cons
 
 EBTNodeResult::Type UC_BTTask_GetPlayerLocation::ExecuteTask(UBehaviorTreeComponent& Owner, uint8* NodeMemory)
 {
+
+	// NEW GET PLAYER LOC, ITS DEPRECATED 
 	auto const AIController = Cast<AC_MeleeAIController>(Owner.GetAIOwner());
 
 	AC_PlayerCharacter* PlayerCharacter = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));

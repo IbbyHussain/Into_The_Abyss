@@ -85,7 +85,8 @@ AC_MeleeAI* AC_AIFightManager::GradeByAttackFrequency()
 {
 	for (auto x : AIArray)
 	{
-		if(x->AITime > 9.0f)
+		// May need to remove this condition to make more random 
+		/*if(x->AITime > 9.0f)
 		{
 			if (x->AITime > 24.0f)
 			{
@@ -115,9 +116,33 @@ AC_MeleeAI* AC_AIFightManager::GradeByAttackFrequency()
 		}
 
 		float FoundZ = *(AIMap.Find(x));
-		AIMap.Add(x, FoundZ - 0.5f);
+		AIMap.Add(x, FoundZ - 0.5f);*/
 
-		UE_LOG(LogTemp, Warning, TEXT("Time was not greater than 9 seconds: %f"), x->AITime);
+		if (x->AITime > 24.0f)
+		{
+			x->AITime = 24.0f;
+		}
+
+		UE_LOG(LogTemp, Warning, TEXT("Time was: %f"), x->AITime);
+
+		float Time = x->AITime / 2.0f;
+
+		int IntTime = int(Time);
+
+		UE_LOG(LogTemp, Warning, TEXT("INT Time was: %d"), IntTime);
+
+		float Foundz = *(AIMap.Find(x));
+		UE_LOG(LogTemp, Warning, TEXT("Found Value BEFORE for loop was: %f"), Foundz);
+
+		for (int i = 0; i < IntTime; i++)
+		{
+			float FoundY = *(AIMap.Find(x));
+			AIMap.Add(x, FoundY + 0.2);
+			UE_LOG(LogTemp, Warning, TEXT("LOOP RUN"));
+		}
+
+		float Foundx = *(AIMap.Find(x));
+		UE_LOG(LogTemp, Warning, TEXT("Found Value AFTER for loop was: %f"), Foundx);
 
 	}
 
