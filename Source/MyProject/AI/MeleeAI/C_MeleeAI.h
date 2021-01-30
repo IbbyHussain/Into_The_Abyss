@@ -20,10 +20,13 @@ protected:
 
 	AC_MeleeAI();
 
+	UPROPERTY(EditDefaultsOnly, Category = "Basic Attacks")
+	TArray<UAnimMontage*> AttackMontageArray;
+
 public:
 
-	UPROPERTY(EditDefaultsOnly, Category = "Melee AI")
-	UAnimMontage* BasicAttackMontage;
+	//UPROPERTY(EditDefaultsOnly, Category = "Melee AI")
+	//UAnimMontage* BasicAttackMontage;
 
 	void BasicAttack();
 

@@ -33,7 +33,9 @@ void AC_MeleeAI::BeginPlay()
 
 void AC_MeleeAI::BasicAttack()
 {
-	PlayAnimMontage(BasicAttackMontage, 1.0f);
+	// Plays a random attack animation
+	int a = FMath::RandRange(0, 1);
+	PlayAnimMontage(AttackMontageArray[a], 1.0f);
 }
 
 void AC_MeleeAI::StartMeleeTimer()
