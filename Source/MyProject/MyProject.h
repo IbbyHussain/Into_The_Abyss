@@ -14,7 +14,9 @@
 
 #define COLLISION_MELEEDETECTION			    ECC_GameTraceChannel6
 #define COLLISION_INTERACTDETECTION             ECC_GameTraceChannel7
-#define COLLISION_CROSSBOWBOLTDETECTION         ECC_GameTraceChannel8
 
+#define COLLISION_CROSSBOWBOLTDETECTION         ECC_GameTraceChannel8
 #define COLLISION_COPPERBOLTDETECTION           ECC_GameTraceChannel9
+
+#define COLLISION_AIMELEEDETECTION           ECC_GameTraceChannel10
 

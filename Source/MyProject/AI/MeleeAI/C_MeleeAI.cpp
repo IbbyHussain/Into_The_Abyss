@@ -3,6 +3,13 @@
 
 #include "C_MeleeAI.h"
 #include "Engine/World.h"
+#include "MyProject/Weapons/MeleeWeapons/C_BaseSkeletalMeleeWeapon.h"
+#include "MyProject/MyProject.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/GameplayStatics.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
+#include "MyProject/C_PlayerCharacter.h"
+
 
 AC_MeleeAI::AC_MeleeAI()
 {
@@ -12,13 +19,15 @@ AC_MeleeAI::AC_MeleeAI()
 	TypeOfAI = ETypeOfAI::SAVAGE;
 
 	bShouldTimerRun = false;
+
+	WeaponHiltSocket = ("WeaponHiltSocket");
+
+	WeaponTipSocket = ("WeaponTipSocket");
 }
 
 void AC_MeleeAI::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	//UE_LOG(LogTemp, Warning, TEXT("Melee AI is ticking"));
 
 	StartMeleeTimer();
 }
@@ -36,6 +45,49 @@ void AC_MeleeAI::BasicAttack()
 	// Plays a random attack animation
 	int a = FMath::RandRange(0, 1);
 	PlayAnimMontage(AttackMontageArray[a], 1.0f);
+}
+
+void AC_MeleeAI::MeleeAIDamage(USkeletalMeshComponent* SKMesh, float Damage)
+{
+	AC_BaseSkeletalMeleeWeapon* WeaponPTR = Cast<AC_BaseSkeletalMeleeWeapon>(Weapon);
+
+	if(WeaponPTR)
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("WEAPON PTR WAS VALID"));
+
+		// Get the start and end location of the sphere trace (two sockets that are the length of the sword)
+		FVector StartLocation = WeaponPTR->MeshComp->GetSocketLocation(WeaponTipSocket); // make mesh in skeletal mesh paraent public then get socket location.
+		FVector EndLocation = WeaponPTR->MeshComp->GetSocketLocation(WeaponHiltSocket);
+
+		FHitResult HitResult;
+
+		TArray<AActor*> ActorsIgnored;
+		ActorsIgnored = { this };
+
+		// Convert the collision type to standard collision channel
+		ETraceTypeQuery Trace6 = UEngineTypes::ConvertToTraceType(ECollisionChannel::COLLISION_AIMELEEDETECTION);
+
+		bool bHits = UKismetSystemLibrary::SphereTraceSingle(SKMesh, StartLocation, EndLocation, 15.0f, Trace6, false, ActorsIgnored, EDrawDebugTrace::ForDuration, HitResult, true, FLinearColor::Red, FLinearColor::Green);
+
+		AC_PlayerCharacter* PlayerCharacterPTR = Cast<AC_PlayerCharacter>(HitResult.GetActor());
+
+		if (bHits && PlayerCharacterPTR)
+		{
+			// doesnt work
+			UGameplayStatics::ApplyDamage(PlayerCharacterPTR, 10.0f, UGameplayStatics::GetPlayerController(GetWorld(), 0), this, nullptr);
+
+			// doesnt work
+			ApplyDamage(PlayerCharacterPTR, 10.0f);
+
+			//UGameplayStatics::ApplyDamage(HitResult.GetActor(), 0.1, this->GetController(), this, NULL);
+			//PlayerCharacterPTR->Health -= 1.0f;
+			UE_LOG(LogTemp, Warning, TEXT("Hit Player"));
+
+			// check for player death
+		}
+	}
+
+	//UE_LOG(LogTemp, Warning, TEXT("WEAPON PTR WAS not VALID"));
 }
 
 void AC_MeleeAI::StartMeleeTimer()

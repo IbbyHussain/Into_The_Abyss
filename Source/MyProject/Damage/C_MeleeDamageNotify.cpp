@@ -9,6 +9,7 @@ void UC_MeleeDamageNotify::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSe
 {
 
 }
+
 void UC_MeleeDamageNotify::NotifyTick(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float FrameDeltaTime)
 {
 	class AC_PlayerCharacter* Character = Cast <AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(MeshComp, 0));
@@ -19,6 +20,7 @@ void UC_MeleeDamageNotify::NotifyTick(USkeletalMeshComponent* MeshComp, UAnimSeq
 		Character->MeleeAttackDamage(MeshComp, Damage, DamageOverTime);
 	}
 }
+
 void UC_MeleeDamageNotify::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
 {
 	class AC_PlayerCharacter* Character = Cast <AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(MeshComp, 0));

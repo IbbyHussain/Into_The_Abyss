@@ -37,7 +37,7 @@ struct FBackpack
 {
 	GENERATED_BODY()
 
-		FName BackSocket;
+	FName BackSocket;
 
 	class AC_SkeletalMeshActor* SKMesh;
 
@@ -115,6 +115,8 @@ public:
 
 	virtual void BeginPlay() override;
 
+	AActor* Weapon;
+
 protected:
 	virtual void ChangeAIColour();
 
@@ -124,9 +126,10 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Materials")
 	FClothingColourMaterial ClothingColourMaterial;
 
-private:
 	UPROPERTY(EditAnywhere, Category = "Melee")
 	FMelee Melee;
+
+private:
 
 	UPROPERTY(EditAnywhere, Category = "Melee")
 	FBackpack Backpack;

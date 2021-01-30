@@ -34,7 +34,8 @@ void AC_BaseCustomisedAI::BeginPlay()
 AActor* AC_BaseCustomisedAI::SpawnWeapon(TSubclassOf<AActor> WeaponClass, TSubclassOf<AActor> SickleClass)
 {
 	//Spawns a random weapon (random weapon logic is in bp)
-	AActor* Weapon = SpawnItem(Melee.RHSocket, Melee.MeleeWeapon, false, WeaponClass);
+
+	Weapon = SpawnItem(Melee.RHSocket, Melee.MeleeWeapon, false, WeaponClass);
 
 	// If the random weapon is a Sickle will adjust its location and attach to a different socket due to its size 
 	if (Weapon->GetClass() == SickleClass)
@@ -64,7 +65,7 @@ AActor* AC_BaseCustomisedAI::SpawnWeapon(TSubclassOf<AActor> WeaponClass, TSubcl
 AActor* AC_BaseCustomisedAI::SpawnTwoHandedWeapon(TSubclassOf<AActor> WeaponClass, TSubclassOf<AActor> SwordClass)
 {
 	//Spawns a random weapon (random weapon logic is in bp)
-	AActor* Weapon = SpawnItem(Melee.TwoHandedSocket, Melee.MeleeWeapon, false, WeaponClass);
+	Weapon = SpawnItem(Melee.TwoHandedSocket, Melee.MeleeWeapon, false, WeaponClass);
 
 	// If the random weapon is a sword will adjust its location and attach to a different socket due to its size 
 	if (Weapon->GetClass() == SwordClass)

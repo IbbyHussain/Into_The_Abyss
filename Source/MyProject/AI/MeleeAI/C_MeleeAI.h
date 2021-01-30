@@ -30,6 +30,12 @@ public:
 
 	void BasicAttack();
 
+	void MeleeAIDamage(USkeletalMeshComponent* SKMesh, float Damage);
+
+	FName WeaponHiltSocket;
+
+	FName WeaponTipSocket;
+
 	void StartMeleeTimer();
 
 	UFUNCTION(BlueprintCallable)
