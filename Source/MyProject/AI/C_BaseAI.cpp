@@ -352,7 +352,7 @@ void AC_BaseAI::UpdateCapsule()
 
 	else
 	{
-		MeshLocation = GetMesh()->GetSocketLocation(HipsSocket) + FVector(0.0f, 0.0f, 90.0f);
+		MeshLocation = GetMesh()->GetSocketLocation(HipsSocket) + FVector(0.0f, 0.0f, 100.0f);
 	}
 }
 
@@ -370,13 +370,13 @@ void AC_BaseAI::CalculateMeshLocation()
 
 	if(Hit)
 	{
-		CapsuleLocation =  HitResult.Location + FVector(0.0f, 0.0f, 90.0f);
+		CapsuleLocation =  HitResult.Location + FVector(0.0f, 0.0f, 100.0f);
 		MeshLocation = FMath::VInterpTo(MeshLocation, CapsuleLocation, UGameplayStatics::GetWorldDeltaSeconds(GetWorld()), 5.0f);
 	}
 
 	else
 	{
-		CapsuleLocation = GetMesh()->GetSocketLocation(HipsSocket) + FVector(0.0f, 0.0f, 90.0f);
+		CapsuleLocation = GetMesh()->GetSocketLocation(HipsSocket) + FVector(0.0f, 0.0f, 100.0f);
 	}
 }
 
