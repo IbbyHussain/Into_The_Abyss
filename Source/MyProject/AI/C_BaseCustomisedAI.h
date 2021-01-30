@@ -115,12 +115,8 @@ public:
 
 	virtual void BeginPlay() override;
 
-private:
-	UPROPERTY(EditAnywhere, Category = "Melee")
-	FMelee Melee;
-
-	UPROPERTY(EditAnywhere, Category = "Melee")
-	FBackpack Backpack;
+protected:
+	virtual void ChangeAIColour();
 
 	UPROPERTY(EditAnywhere, Category = "Materials")
 	FSkinColourMaterial SkinColourMaterial;
@@ -128,5 +124,10 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Materials")
 	FClothingColourMaterial ClothingColourMaterial;
 
-	void ChangeAIColour();
+private:
+	UPROPERTY(EditAnywhere, Category = "Melee")
+	FMelee Melee;
+
+	UPROPERTY(EditAnywhere, Category = "Melee")
+	FBackpack Backpack;
 };
