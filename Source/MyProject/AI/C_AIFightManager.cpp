@@ -123,26 +123,26 @@ AC_MeleeAI* AC_AIFightManager::GradeByAttackFrequency()
 			x->AITime = 24.0f;
 		}
 
-		UE_LOG(LogTemp, Warning, TEXT("Time was: %f"), x->AITime);
+		//UE_LOG(LogTemp, Warning, TEXT("Time was: %f"), x->AITime);
 
 		float Time = x->AITime / 2.0f;
 
 		int IntTime = int(Time);
 
-		UE_LOG(LogTemp, Warning, TEXT("INT Time was: %d"), IntTime);
+		//UE_LOG(LogTemp, Warning, TEXT("INT Time was: %d"), IntTime);
 
 		float Foundz = *(AIMap.Find(x));
-		UE_LOG(LogTemp, Warning, TEXT("Found Value BEFORE for loop was: %f"), Foundz);
+		//UE_LOG(LogTemp, Warning, TEXT("Found Value BEFORE for loop was: %f"), Foundz);
 
 		for (int i = 0; i < IntTime; i++)
 		{
 			float FoundY = *(AIMap.Find(x));
 			AIMap.Add(x, FoundY + 0.2);
-			UE_LOG(LogTemp, Warning, TEXT("LOOP RUN"));
+			//UE_LOG(LogTemp, Warning, TEXT("LOOP RUN"));
 		}
 
 		float Foundx = *(AIMap.Find(x));
-		UE_LOG(LogTemp, Warning, TEXT("Found Value AFTER for loop was: %f"), Foundx);
+		//UE_LOG(LogTemp, Warning, TEXT("Found Value AFTER for loop was: %f"), Foundx);
 
 	}
 

@@ -461,7 +461,7 @@ void AC_BaseAI::CheckForAIDeath()
 		bShowEKeyHint = false;
 
 		// Stops Behavior tree Logic
-		auto const AIController = Cast<AC_BaseAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
+		auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
 		UBrainComponent* LocalComp =  AIController->GetBrainComponent();
 		LocalComp->StopLogic(FString("Death"));
 
@@ -657,7 +657,7 @@ void AC_BaseAI::BecomeBlind(UAnimMontage* MontageToPlay, float TimeUntilRecover)
 	GetCharacterMovement()->StopMovementImmediately();
 	GetCharacterMovement()->DisableMovement();
 
-	auto const AIController = Cast<AC_BaseAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
+	auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
 	UBrainComponent* LocalComp = AIController->GetBrainComponent();
 	LocalComp->PauseLogic(FString("Blind"));
 
@@ -676,7 +676,7 @@ void AC_BaseAI::RemoveBlindness(UAnimMontage* MontageToStop)
 	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);
 	StopAnimMontage(MontageToStop);
 
-	auto const AIController = Cast<AC_BaseAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
+	auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
 	UBrainComponent* LocalComp = AIController->GetBrainComponent();
 	LocalComp->ResumeLogic("Blind");
 
@@ -690,7 +690,7 @@ void AC_BaseAI::ApplyDamage(AActor* DamagedActor, float AmountOfDamage)
 {
 	//AC_PlayerCharacter* PlayerCharacter = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 
-	auto const AIController = Cast<AC_BaseAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
+	auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
 
 	if(PlayerCharacter->SS.bIsBlocking)
 	{
