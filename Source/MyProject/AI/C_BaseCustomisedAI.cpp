@@ -60,6 +60,32 @@ AActor* AC_BaseCustomisedAI::SpawnWeapon(TSubclassOf<AActor> WeaponClass, TSubcl
 	return Weapon;
 }
 
+// Spawns a two handed weapon
+AActor* AC_BaseCustomisedAI::SpawnTwoHandedWeapon(TSubclassOf<AActor> WeaponClass, TSubclassOf<AActor> SwordClass)
+{
+	//Spawns a random weapon (random weapon logic is in bp)
+	AActor* Weapon = SpawnItem(Melee.TwoHandedSocket, Melee.MeleeWeapon, false, WeaponClass);
+
+	// If the random weapon is a sword will adjust its location and attach to a different socket due to its size 
+	if (Weapon->GetClass() == SwordClass)
+	{
+		Weapon->SetActorTransform(GetMesh()->GetSocketTransform(Melee.TwoHandedSwordSocket));
+		Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, Melee.TwoHandedSwordSocket);
+
+		return Weapon;
+	}
+
+	// If the random weapon is a not a sword will attach it to the default socket
+	else
+	{
+		Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, Melee.TwoHandedSocket);
+
+		return Weapon;
+	}
+
+	return Weapon;
+}
+
 AActor* AC_BaseCustomisedAI::SpawnBackpack(TSubclassOf<AC_SkeletalMeshActor> BackpackClass)
 {
 	// Only if a class is selected will one spawn allows nothing to spawn as well

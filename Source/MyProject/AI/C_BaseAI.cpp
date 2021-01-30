@@ -519,6 +519,14 @@ void AC_BaseAI::BecomeFrozen()
 	{
 		bIsFrozen = true;
 
+		// Pause the AI Behaviour tree
+		auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
+		UBrainComponent* LocalComp = AIController->GetBrainComponent();
+		LocalComp->PauseLogic(FString("Frozen"));
+
+		// Clear focus so no longer rotates to face player
+		AIController->ClearFocus(EAIFocusPriority::Gameplay);
+
 		//Set materials to frozen material
 		for (int i = 0; i < GetMesh()->GetMaterials().Num(); i++)
 		{
@@ -552,6 +560,12 @@ void AC_BaseAI::BecomeUnFrozen()
 	bIsFrozen = false;
 
 	bPlayFrozenPose = true;
+
+	auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
+	UBrainComponent* LocalComp = AIController->GetBrainComponent();
+	LocalComp->ResumeLogic(FString("Frozen"));
+
+	//AIController->SetFocsu
 
 	//Set materials to their defaults
 	GetMesh()->SetMaterial(0, Material0);

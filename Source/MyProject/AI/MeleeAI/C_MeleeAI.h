@@ -10,8 +10,6 @@ class MYPROJECT_API AC_MeleeAI : public AC_BaseCustomisedAI
 {
 	GENERATED_BODY()
 
-	AC_MeleeAI();
-
 private:
 
 	virtual void BeginPlay() override;
@@ -19,6 +17,8 @@ private:
 	virtual void Tick(float DeltaTime) override;
 
 protected:
+
+	AC_MeleeAI();
 
 public:
 

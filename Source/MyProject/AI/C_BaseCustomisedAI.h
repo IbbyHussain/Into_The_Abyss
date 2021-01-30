@@ -9,11 +9,15 @@ struct FMelee
 {
 	GENERATED_BODY()
 
-		class AC_BaseSkeletalMeleeWeapon* MeleeWeapon;
+	class AC_BaseSkeletalMeleeWeapon* MeleeWeapon;
 
 	FName RHSocket;
 
 	FName SickleSocket;
+
+	FName TwoHandedSocket;
+
+	FName TwoHandedSwordSocket;
 
 	//Constructor
 	FMelee()
@@ -21,6 +25,10 @@ struct FMelee
 		RHSocket = ("RightHandSocket");
 
 		SickleSocket = ("SickleSocket");
+
+		TwoHandedSocket = ("TwoHandedSocket");
+
+		TwoHandedSwordSocket = ("TwoHandedSocketSword");
 	}
 };
 
@@ -70,8 +78,8 @@ struct FClothingColourMaterial
 {
 	GENERATED_BODY()
 
-		UPROPERTY(EditDefaultsOnly, Category = "Materials")
-		TArray<UMaterialInterface*> ClothingMaterialInterfaceArray;
+	UPROPERTY(EditDefaultsOnly, Category = "Materials")
+	TArray<UMaterialInterface*> ClothingMaterialInterfaceArray;
 
 	TArray<UMaterialInstanceDynamic*> ClothingMaterialArray;
 
@@ -98,6 +106,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	AActor* SpawnWeapon(TSubclassOf<AActor> WeaponClass, TSubclassOf<AActor> SickleClass);
+
+	UFUNCTION(BlueprintCallable)
+	AActor* SpawnTwoHandedWeapon(TSubclassOf<AActor> WeaponClass, TSubclassOf<AActor> SwordClass);
 
 	UFUNCTION(BlueprintCallable)
 	AActor* SpawnBackpack(TSubclassOf<AC_SkeletalMeshActor> BackpackClass);
