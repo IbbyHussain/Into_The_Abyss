@@ -101,6 +101,10 @@ AActor* AC_BaseCustomisedAI::SpawnBackpack(TSubclassOf<AC_SkeletalMeshActor> Bac
 
 void AC_BaseCustomisedAI::ChangeAIColour()
 {
+	/*ChangeColours(true, SkinColourMaterial.SkinMaterialArray, 2, 0);
+	ChangeColours(true, ClothingColourMaterial.ClothingMaterialArray, 2, 1);
+	ChangeColours(true, ClothingColourMaterial.ClothingMaterialArray, 2, 2);*/
+
 	// Old way use for NEA
 	/*int a = FMath::RandRange(0, 2);
 	int b = FMath::RandRange(0, 2);
