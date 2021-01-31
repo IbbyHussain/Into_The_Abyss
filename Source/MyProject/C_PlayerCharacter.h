@@ -553,10 +553,10 @@ public:
 	void ShouldSpawnFlareBoltIndicator();
 
 	UFUNCTION(BlueprintCallable)
-	void SaveGameTEST();
+	void SavePlayerLocation();
 
 	UFUNCTION(BlueprintCallable)
-	void LoadSaveGameTEST();
+	void LoadPlayerLocation();
 
 	UFUNCTION(BlueprintCallable)
 	void ResetBolts();

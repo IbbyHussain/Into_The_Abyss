@@ -58,6 +58,12 @@ void AC_Checkpoint::Interact_Implementation()
 		RemoveKeyHint_Implementation();
 		bShowEKeyHintCheckPoint = false;
 		bCanInteract = false;
+
+		if(PlayerCharacter)
+		{
+			PlayerCharacter->SavePlayerLocation();
+		}
+		// Save player loc here 
 	}
 }
 

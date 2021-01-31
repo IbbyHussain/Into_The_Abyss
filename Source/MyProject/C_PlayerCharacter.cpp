@@ -248,6 +248,8 @@ void AC_PlayerCharacter::BeginPlay()
 
 	LoadNumberOfSouls();
 
+	LoadPlayerLocation();
+
 	//Sets the values of the crouch timeline
 	if (FCrouchCurve)
 	{
@@ -3135,7 +3137,7 @@ void AC_PlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 
 }
 
-void AC_PlayerCharacter::SaveGameTEST()
+void AC_PlayerCharacter::SavePlayerLocation()
 {
 	if (UC_BaseSaveGame* SaveGameInstance = Cast<UC_BaseSaveGame>(UGameplayStatics::CreateSaveGameObject(UC_BaseSaveGame::StaticClass())))
 	{
@@ -3143,24 +3145,21 @@ void AC_PlayerCharacter::SaveGameTEST()
 		SaveGameInstance->PlayerLocation = GetActorLocation();
 
 		// Save the data immediately.
-		if (UGameplayStatics::SaveGameToSlot(SaveGameInstance, SaveGameInstance->SaveSlotName, 0))
+		if (UGameplayStatics::SaveGameToSlot(SaveGameInstance, "LOC", 0))
 		{
 			UE_LOG(LogTemp, Log, TEXT("Save Succeeded"));
-
-			UE_LOG(LogTemp, Warning, TEXT("SAVED: %d"),SaveGameInstance->Currency);
 		}
 	}
 }
 
-void AC_PlayerCharacter::LoadSaveGameTEST()
+void AC_PlayerCharacter::LoadPlayerLocation()
 {
-	if (UC_BaseSaveGame* LoadedGame = Cast<UC_BaseSaveGame>(UGameplayStatics::LoadGameFromSlot(TEXT("TestSaveSlot"), 0)))
+	if (UC_BaseSaveGame* LoadedGame = Cast<UC_BaseSaveGame>(UGameplayStatics::LoadGameFromSlot(TEXT("LOC"), 0)))
 	{
 		SetActorLocation(LoadedGame->PlayerLocation);
 
 		// The operation was successful, so LoadedGame now contains the data we saved earlier.
 		UE_LOG(LogTemp, Warning, TEXT("LOADED: %s"), *LoadedGame->PlayerLocation.ToString());
-		UE_LOG(LogTemp, Warning, TEXT("LOADED: %d"), LoadedGame->Currency);
 	}
 }
 
