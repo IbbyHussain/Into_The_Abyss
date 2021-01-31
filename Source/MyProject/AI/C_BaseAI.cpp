@@ -699,7 +699,7 @@ void AC_BaseAI::RemoveBlindness(UAnimMontage* MontageToStop)
 	UE_LOG(LogTemp, Log, TEXT("Remove Blind"));
 }
 
-// Apply damage to player class
+// Apply damage to player class DEPRECATED 
 void AC_BaseAI::ApplyDamage(AActor* DamagedActor, float AmountOfDamage)
 {
 	//AC_PlayerCharacter* PlayerCharacter = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));

@@ -2852,7 +2852,7 @@ void AC_PlayerCharacter::Yaw(float val)
 	}
 }
 
-// Interact 
+// INTERACT
 
 // CLEAN UP REQUIRED
 void AC_PlayerCharacter::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -2938,6 +2938,23 @@ void AC_PlayerCharacter::Interact()
 void AC_PlayerCharacter::BroadcastCanTrade()
 {
 	CanTrade.Broadcast(1);
+}
+
+// DAMAGE
+
+void AC_PlayerCharacter::ApplyDamageToPlayer(float DamageAmount)
+{
+	// If Player is blocking take 50% less damage
+	if(SS.bIsBlocking)
+	{
+		Health -= DamageAmount / 2.0f;
+		BlockImpact();
+	}
+
+	else
+	{
+		Health -= DamageAmount;
+	}
 }
 
 // GENERAL

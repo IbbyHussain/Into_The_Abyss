@@ -595,6 +595,11 @@ public:
 	UFUNCTION()
 	void StopSprint();
 
+	// Damage
+
+	// Used in AI classes
+	void ApplyDamageToPlayer(float DamageAmount);
+
 private:
 
 	//Idle

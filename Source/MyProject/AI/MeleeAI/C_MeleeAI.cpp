@@ -73,17 +73,10 @@ void AC_MeleeAI::MeleeAIDamage(USkeletalMeshComponent* SKMesh, float Damage)
 
 		if (bHits && PlayerCharacterPTR)
 		{
-			// doesnt work
-			UGameplayStatics::ApplyDamage(PlayerCharacterPTR, 10.0f, UGameplayStatics::GetPlayerController(GetWorld(), 0), this, nullptr);
+			
+			PlayerCharacterPTR->ApplyDamageToPlayer(10.0f);
 
-			// doesnt work
-			ApplyDamage(PlayerCharacterPTR, 10.0f);
-
-			//UGameplayStatics::ApplyDamage(HitResult.GetActor(), 0.1, this->GetController(), this, NULL);
-			//PlayerCharacterPTR->Health -= 1.0f;
 			UE_LOG(LogTemp, Warning, TEXT("Hit Player"));
-
-			// check for player death
 		}
 	}
 
