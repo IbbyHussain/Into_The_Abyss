@@ -606,6 +606,10 @@ public:
 
 	void PlayerDeath();
 
+	FTimerHandle DeathWidgetHandle;
+
+	void ShowDeathWidget();
+
 	//UPROPERTY(VisibleDefaultsOnly, BlueprintReadWrite, Category = "Damage")
 	//bool bHasPlayerDied;
 

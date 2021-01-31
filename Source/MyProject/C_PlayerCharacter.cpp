@@ -2982,7 +2982,7 @@ void AC_PlayerCharacter::TakeDamage()
 
 void AC_PlayerCharacter::CheckForPlayerDeath()
 {
-	if(Health == 0.0f)
+	if(Health <= 0.0f)
 	{
 		PlayerDeath();
 	}
@@ -2997,6 +2997,17 @@ void AC_PlayerCharacter::PlayerDeath()
 	PlayAnimMontage(PlayerDeathMontage, 1.0f);
 
 	// create play death screen
+	AC_PlayerHUD2* PlayerHUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
+	PlayerHUD->CreatePlayerDeathWidget();
+
+	//GetWorldTimerManager().SetTimer(DeathWidgetHandle, this, &AC_PlayerCharacter::ShowDeathWidget, 0.5f, false);
+}
+
+void AC_PlayerCharacter::ShowDeathWidget()
+{
+	
+
+	GetWorldTimerManager().ClearAllTimersForObject(this);
 }
 
 // GENERAL

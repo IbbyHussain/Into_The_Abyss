@@ -10,6 +10,7 @@
 #include "MyProject/UI/C_AIHealthBar.h"
 #include "MyProject/UI/C_PickupWidget.h"
 #include "MyProject/UI/C_AITradeWindow.h"
+#include "MyProject/UI/C_PlayerDeathWidget.h"
 #include "TimerManager.h"
 
 //CONSTRUCTOR 
@@ -359,6 +360,35 @@ void AC_PlayerHUD2::DisplayDamageImage()
 	if(PickupWidget)
 	{
 		PickupWidget->DisplayDamage();
+	}
+}
+
+// Player Death
+
+void AC_PlayerHUD2::CreatePlayerDeathWidget()
+{
+	// A widget is only created if the pickup widget handle is not active
+
+	if (PlayerDeathWidgetClass)
+	{
+		// Creates widget
+		PlayerDeathWidget = CreateWidget<UC_PlayerDeathWidget>(GetWorld(),PlayerDeathWidgetClass);
+		if (PlayerDeathWidget)
+		{
+			// renders widget
+			PlayerDeathWidget->AddToViewport();
+		}
+	}
+}
+
+void AC_PlayerHUD2::DestroyPlayerDeathWidget()
+{
+	if (PlayerDeathWidgetClass)
+	{
+		if (PlayerDeathWidget)
+		{
+			PlayerDeathWidget->RemoveFromParent();
+		}
 	}
 }
 

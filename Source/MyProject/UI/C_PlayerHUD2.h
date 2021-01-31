@@ -151,6 +151,17 @@ public:
 
 	bool bFading;
 
+	// Player Death
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_PlayerDeathWidget> PlayerDeathWidgetClass;
+
+	class UC_PlayerDeathWidget* PlayerDeathWidget;
+
+	void CreatePlayerDeathWidget();
+
+	void DestroyPlayerDeathWidget();
+
 	// AI Trading
 
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
