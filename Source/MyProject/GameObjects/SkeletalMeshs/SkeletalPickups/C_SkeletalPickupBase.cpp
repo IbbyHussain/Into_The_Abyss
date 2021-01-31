@@ -24,7 +24,7 @@ void AC_SkeletalPickupBase::OnInteract(float& Stat, float Amount)
 		// clears and restarts timer so that only one fade in and fade out animation are played.
 		if(PlayerHUD)
 		{
-			PlayerHUD->ClearPickupTimer();
+			PlayerHUD->ClearPickupTimer(0.25f);
 		}
 
 		UGameplayStatics::PlaySoundAtLocation(GetWorld(), PickupSound, GetActorLocation(), 1.0f);
@@ -46,7 +46,7 @@ void AC_SkeletalPickupBase::OnInteractBasic()
 		// clears and restarts timer so that only one fade in and fade out animation are played.
 		if (PlayerHUD)
 		{
-			PlayerHUD->ClearPickupTimer();
+			PlayerHUD->ClearPickupTimer(0.25f);
 		}
 
 		UGameplayStatics::PlaySoundAtLocation(GetWorld(), PickupSound, GetActorLocation(), 1.0f);
@@ -61,7 +61,7 @@ void AC_SkeletalPickupBase::DisplayInteractImage()
 {
 	if(PlayerHUD)
 	{
-		PlayerHUD->CreatePickupWidget();
+		PlayerHUD->CreatePickupWidget(0.25f);
 	}
 }
 

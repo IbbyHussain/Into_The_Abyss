@@ -129,7 +129,7 @@ public:
 
 	class UC_PickupWidget* PickupWidget;
 
-	void CreatePickupWidget();
+	void CreatePickupWidget(float Time);
 
 	void PlayPickupWidgetFadeOut();
 
@@ -147,7 +147,7 @@ public:
 
 	FTimerHandle DestroyPickupWidgetHandle;
 
-	void ClearPickupTimer();
+	void ClearPickupTimer(float Time);
 
 	bool bFading;
 

@@ -2957,25 +2957,46 @@ void AC_PlayerCharacter::ApplyDamageToPlayer(float DamageAmount)
 	{
 		Health -= DamageAmount;
 	}
+
+	CheckForPlayerDeath();
 }
 
 void AC_PlayerCharacter::TakeDamage()
 {
-	AC_PlayerHUD2* PlayerHUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
-
-	if (PlayerHUD)
+	if(Health != 0.0f)
 	{
-		// clears and restarts timer so that only one fade in and fade out animation are played.
-		PlayerHUD->ClearPickupTimer();
+		AC_PlayerHUD2* PlayerHUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
 
-		PlayerHUD->CreatePickupWidget();
-		PlayerHUD->DisplayDamageImage();
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), PlayerHitSound, GetActorLocation());
+
+		if (PlayerHUD)
+		{
+			// clears and restarts timer so that only one fade in and fade out animation are played.
+			PlayerHUD->ClearPickupTimer(0.5f);
+
+			PlayerHUD->CreatePickupWidget(0.5f);
+			PlayerHUD->DisplayDamageImage();
+		}
+	}
+}
+
+void AC_PlayerCharacter::CheckForPlayerDeath()
+{
+	if(Health == 0.0f)
+	{
+		PlayerDeath();
 	}
 }
 
 void AC_PlayerCharacter::PlayerDeath()
 {
+	bLockCamera = true;
 
+	DisablePlayerInput();
+
+	PlayAnimMontage(PlayerDeathMontage, 1.0f);
+
+	// create play death screen
 }
 
 // GENERAL

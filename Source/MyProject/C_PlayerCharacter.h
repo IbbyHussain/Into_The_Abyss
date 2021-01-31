@@ -602,7 +602,18 @@ public:
 
 	void TakeDamage();
 
+	void CheckForPlayerDeath();
+
 	void PlayerDeath();
+
+	//UPROPERTY(VisibleDefaultsOnly, BlueprintReadWrite, Category = "Damage")
+	//bool bHasPlayerDied;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Damage")
+	UAnimMontage* PlayerDeathMontage;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Damage")
+	USoundBase* PlayerHitSound;
 
 private:
 

@@ -258,7 +258,7 @@ void AC_PlayerHUD2::MakeAIHealthBarInVisible()
 
 // Pickup widgets
 
-void AC_PlayerHUD2::CreatePickupWidget()
+void AC_PlayerHUD2::CreatePickupWidget(float Time)
 {
 	// A widget is only created if the pickup widget handle is not active
 	if (!(GetWorldTimerManager().IsTimerActive(PickupWidgetHandle)))
@@ -276,7 +276,7 @@ void AC_PlayerHUD2::CreatePickupWidget()
 				//UE_LOG(LogTemp, Log, TEXT("Play Fade In"));
 
 				// Sets timer to play fade out (after fade in has finished)
-				GetWorldTimerManager().SetTimer(PickupWidgetHandle, this, &AC_PlayerHUD2::PlayPickupWidgetFadeOut, 0.25f, false);
+				GetWorldTimerManager().SetTimer(PickupWidgetHandle, this, &AC_PlayerHUD2::PlayPickupWidgetFadeOut, Time, false);
 				//UE_LOG(LogTemp, Log, TEXT("Start Fade out Timer"));
 			}
 		}
@@ -284,7 +284,7 @@ void AC_PlayerHUD2::CreatePickupWidget()
 }
 
 // Used if player overlaps multiple pickups (stops multiple fade in animations from playing and them not being destroyed after)
-void AC_PlayerHUD2::ClearPickupTimer()
+void AC_PlayerHUD2::ClearPickupTimer(float Time)
 {
 	// If player overlaps with anothe rpickup while pickup is fading out will not play any more animations or display pickup widgets
 	if(GetWorldTimerManager().IsTimerActive(PickupWidgetHandle) || GetWorldTimerManager().IsTimerActive(DestroyPickupWidgetHandle))
@@ -293,7 +293,7 @@ void AC_PlayerHUD2::ClearPickupTimer()
 		//but then starts again so afer will play fade out animation. Called when the player interacts with a pickup
 		GetWorldTimerManager().ClearTimer(PickupWidgetHandle);
 
-		GetWorldTimerManager().SetTimer(PickupWidgetHandle, this, &AC_PlayerHUD2::PlayPickupWidgetFadeOut, 0.25f, false);
+		GetWorldTimerManager().SetTimer(PickupWidgetHandle, this, &AC_PlayerHUD2::PlayPickupWidgetFadeOut, Time, false);
 	}
 }
 
