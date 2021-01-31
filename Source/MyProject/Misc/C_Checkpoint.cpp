@@ -6,6 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Components/BoxComponent.h"
 #include "MyProject/UI/C_PlayerHUD2.h"
+#include "Kismet/GameplayStatics.h"
 
 AC_Checkpoint::AC_Checkpoint()
 {
@@ -58,6 +59,10 @@ void AC_Checkpoint::Interact_Implementation()
 		RemoveKeyHint_Implementation();
 		bShowEKeyHintCheckPoint = false;
 		bCanInteract = false;
+
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), FireParticle, GetActorLocation(), FRotator::ZeroRotator);
+
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), BonfireSound, GetActorLocation(), 1.0f);
 
 		if(PlayerCharacter)
 		{

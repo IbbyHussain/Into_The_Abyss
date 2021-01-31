@@ -27,6 +27,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "CheckPoint")
 	USoundBase* BonfireSound;
 
+	UPROPERTY(EditDefaultsOnly, Category = "CheckPoint")
+	UParticleSystem* FireParticle;
+
 	// INTERACT
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
