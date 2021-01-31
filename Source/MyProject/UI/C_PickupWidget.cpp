@@ -40,6 +40,12 @@ void UC_PickupWidget::DisplayMana()
 	SetPickupImage(PickupImageArray[2]);
 }
 
+void UC_PickupWidget::DisplayDamage()
+{
+	PickupImage->SetBrushTintColor(FLinearColor::Red);
+	PickupImage->SetColorAndOpacity(FLinearColor(1,1,1,0.25));
+}
+
 void UC_PickupWidget::FadeOut()
 {
 	PlayAnimation(FadeOutAnimation, 0.0f, 1, EUMGSequencePlayMode::Forward, 1.0f); //: Access violation executing location 

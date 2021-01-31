@@ -23,6 +23,8 @@ AC_MeleeAI::AC_MeleeAI()
 	WeaponHiltSocket = ("WeaponHiltSocket");
 
 	WeaponTipSocket = ("WeaponTipSocket");
+
+	bCanAttack = true;
 }
 
 void AC_MeleeAI::Tick(float DeltaTime)
@@ -71,12 +73,10 @@ void AC_MeleeAI::MeleeAIDamage(USkeletalMeshComponent* SKMesh, float Damage)
 
 		AC_PlayerCharacter* PlayerCharacterPTR = Cast<AC_PlayerCharacter>(HitResult.GetActor());
 
-		if (bHits && PlayerCharacterPTR)
+		if (bHits && PlayerCharacterPTR && bCanAttack)
 		{
-			
-			PlayerCharacterPTR->ApplyDamageToPlayer(10.0f);
-
-			UE_LOG(LogTemp, Warning, TEXT("Hit Player"));
+			PlayerCharacterPTR->ApplyDamageToPlayer(Damage);
+			bCanAttack = false;
 		}
 	}
 

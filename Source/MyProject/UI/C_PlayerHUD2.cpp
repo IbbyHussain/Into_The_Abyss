@@ -273,11 +273,11 @@ void AC_PlayerHUD2::CreatePickupWidget()
 				PickupWidget->AddToViewport();
 				PickupWidget->FadeIn();
 
-				UE_LOG(LogTemp, Log, TEXT("Play Fade In"));
+				//UE_LOG(LogTemp, Log, TEXT("Play Fade In"));
 
 				// Sets timer to play fade out (after fade in has finished)
 				GetWorldTimerManager().SetTimer(PickupWidgetHandle, this, &AC_PlayerHUD2::PlayPickupWidgetFadeOut, 0.25f, false);
-				UE_LOG(LogTemp, Log, TEXT("Start Fade out Timer"));
+				//UE_LOG(LogTemp, Log, TEXT("Start Fade out Timer"));
 			}
 		}
 	}
@@ -305,7 +305,7 @@ void AC_PlayerHUD2::DestroyPickupWidget()
 		if (PickupWidget)
 		{
 			PickupWidget->RemoveFromParent();
-			UE_LOG(LogTemp, Log, TEXT("Destroyed Widget"));
+			//UE_LOG(LogTemp, Log, TEXT("Destroyed Widget"));
 		}
 	}
 }
@@ -320,11 +320,11 @@ void AC_PlayerHUD2::PlayPickupWidgetFadeOut()
 			bFading = true;
 			// play fade out animation
 			PickupWidget->FadeOut();
-			UE_LOG(LogTemp, Log, TEXT("Play Fade Out"));
+			//UE_LOG(LogTemp, Log, TEXT("Play Fade Out"));
 
 			// After fade out animation has finished destroy it from screen.
 			GetWorldTimerManager().SetTimer(DestroyPickupWidgetHandle, this, &AC_PlayerHUD2::DestroyPickupWidget, 0.15f, false);
-			UE_LOG(LogTemp, Log, TEXT("Start Destroy Timer"));
+			//UE_LOG(LogTemp, Log, TEXT("Start Destroy Timer"));
 		}
 	}
 }
@@ -350,6 +350,15 @@ void AC_PlayerHUD2::DisplayManaImage()
 	if (PickupWidget)
 	{
 		PickupWidget->DisplayMana();
+	}
+}
+
+// Used when player takes damage
+void AC_PlayerHUD2::DisplayDamageImage()
+{
+	if(PickupWidget)
+	{
+		PickupWidget->DisplayDamage();
 	}
 }
 

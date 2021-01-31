@@ -22,6 +22,9 @@ public:
 
 	void DisplayMana();
 
+	// Used for when player takes damage rather than pickup
+	void DisplayDamage();
+
 	void FadeOut();
 
 	void FadeIn();

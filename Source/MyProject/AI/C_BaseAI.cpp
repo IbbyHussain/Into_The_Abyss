@@ -699,25 +699,6 @@ void AC_BaseAI::RemoveBlindness(UAnimMontage* MontageToStop)
 	UE_LOG(LogTemp, Log, TEXT("Remove Blind"));
 }
 
-// Apply damage to player class DEPRECATED 
-void AC_BaseAI::ApplyDamage(AActor* DamagedActor, float AmountOfDamage)
-{
-	//AC_PlayerCharacter* PlayerCharacter = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-
-	auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
-
-	if(PlayerCharacter->SS.bIsBlocking)
-	{
-		UGameplayStatics::ApplyDamage(DamagedActor, AmountOfDamage / 2.0f, AIController, this, NULL);
-		PlayerCharacter->BlockImpact();
-	}
-
-	else
-	{
-		UGameplayStatics::ApplyDamage(DamagedActor, AmountOfDamage, AIController, this, NULL);
-	}
-}
-
 // Damage over time for this class
 void AC_BaseAI::StartDamageOverTime(float DamageAmount, float DamageTick, float Time)
 {

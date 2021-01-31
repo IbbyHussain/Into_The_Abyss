@@ -22,7 +22,7 @@ void AC_SkeletalPickupBase::OnInteract(float& Stat, float Amount)
 	if(bDespawn)
 	{
 		// clears and restarts timer so that only one fade in and fade out animation are played.
-		if(PlayerHUD )
+		if(PlayerHUD)
 		{
 			PlayerHUD->ClearPickupTimer();
 		}

@@ -7,16 +7,21 @@
 
 void UC_MeleeAIDamageNotify::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration)
 {
-
+	BaseMeleeAI = Cast<AC_MeleeAI>(MeshComp->GetAnimInstance()->TryGetPawnOwner());
 }
 
 void UC_MeleeAIDamageNotify::NotifyTick(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float FrameDeltaTime)
 {
-	AC_MeleeAI* BaseMeleeAI = Cast<AC_MeleeAI>(MeshComp->GetAnimInstance()->TryGetPawnOwner());
-
 	if(BaseMeleeAI)
 	{
+		BaseMeleeAI->MeleeAIDamage(MeshComp, Damage);
+	}
+}
 
-		BaseMeleeAI->MeleeAIDamage(MeshComp, 10.0f);
+void UC_MeleeAIDamageNotify::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
+{
+	if(BaseMeleeAI)
+	{
+		BaseMeleeAI->bCanAttack = true;
 	}
 }

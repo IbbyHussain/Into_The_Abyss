@@ -600,6 +600,10 @@ public:
 	// Used in AI classes
 	void ApplyDamageToPlayer(float DamageAmount);
 
+	void TakeDamage();
+
+	void PlayerDeath();
+
 private:
 
 	//Idle

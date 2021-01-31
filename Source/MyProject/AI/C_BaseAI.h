@@ -210,9 +210,6 @@ public:
 
 	FTimerDelegate TimerDel;
 
-	// Used to apply damage to other entities
-	void ApplyDamage(AActor* DamagedActor,float AmountOfDamage);
-
 	// Apply damage to AI
 	void StartDamageOverTime(float DamageAmount, float DamageTick, float Time);
 

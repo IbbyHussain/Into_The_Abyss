@@ -141,6 +141,8 @@ public:
 
 	void DisplayManaImage();
 
+	void DisplayDamageImage();
+
 	FTimerHandle PickupWidgetHandle;
 
 	FTimerHandle DestroyPickupWidgetHandle;

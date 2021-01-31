@@ -2944,6 +2944,8 @@ void AC_PlayerCharacter::BroadcastCanTrade()
 
 void AC_PlayerCharacter::ApplyDamageToPlayer(float DamageAmount)
 {
+	TakeDamage();
+
 	// If Player is blocking take 50% less damage
 	if(SS.bIsBlocking)
 	{
@@ -2955,6 +2957,25 @@ void AC_PlayerCharacter::ApplyDamageToPlayer(float DamageAmount)
 	{
 		Health -= DamageAmount;
 	}
+}
+
+void AC_PlayerCharacter::TakeDamage()
+{
+	AC_PlayerHUD2* PlayerHUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
+
+	if (PlayerHUD)
+	{
+		// clears and restarts timer so that only one fade in and fade out animation are played.
+		PlayerHUD->ClearPickupTimer();
+
+		PlayerHUD->CreatePickupWidget();
+		PlayerHUD->DisplayDamageImage();
+	}
+}
+
+void AC_PlayerCharacter::PlayerDeath()
+{
+
 }
 
 // GENERAL
