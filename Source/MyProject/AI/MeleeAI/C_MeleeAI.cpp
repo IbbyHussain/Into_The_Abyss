@@ -75,6 +75,7 @@ void AC_MeleeAI::MeleeAIDamage(USkeletalMeshComponent* SKMesh, float Damage)
 
 		if (bHits && PlayerCharacterPTR && bCanAttack)
 		{
+			//UE_LOG(LogTemp, Error, TEXT("Hit player"))
 			PlayerCharacterPTR->ApplyDamageToPlayer(Damage);
 			bCanAttack = false;
 		}

@@ -40,7 +40,6 @@ AActor* AC_BaseCustomisedAI::SpawnWeapon(TSubclassOf<AActor> WeaponClass, TSubcl
 	// If the random weapon is a Sickle will adjust its location and attach to a different socket due to its size 
 	if (Weapon->GetClass() == SickleClass)
 	{
-		UE_LOG(LogTemp, Log, TEXT("Sickle"));
 
 		Weapon->SetActorTransform(GetMesh()->GetSocketTransform(Melee.SickleSocket));
 		Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, Melee.SickleSocket);
@@ -51,7 +50,6 @@ AActor* AC_BaseCustomisedAI::SpawnWeapon(TSubclassOf<AActor> WeaponClass, TSubcl
 	// If the random weapon is a not a sickle will attach it to the default socket
 	else
 	{
-		UE_LOG(LogTemp, Log, TEXT("Other"));
 
 		Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, Melee.RHSocket);
 
