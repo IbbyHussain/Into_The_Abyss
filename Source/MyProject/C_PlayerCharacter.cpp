@@ -1917,7 +1917,7 @@ void AC_PlayerCharacter::Rag(USkeletalMeshComponent* SKMesh)
 void AC_PlayerCharacter::ResetAttackVar()
 {
 	// Find efficent way to cast to AI
-	/*if(GetWorld()) // Causes crash in editor
+	if(GetWorld()) // Causes crash in editor
 	{
 		for (TActorIterator<AC_BaseAI> It(GetWorld(), AC_BaseAI::StaticClass()); It; ++It)
 		{
@@ -1928,7 +1928,7 @@ void AC_PlayerCharacter::ResetAttackVar()
 				SS.AI->bCanBeAttacked = true;
 			}
 		}
-	}*/
+	}
 }
 
 void AC_PlayerCharacter::SelectAttackAnimation()
