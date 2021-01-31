@@ -606,18 +606,22 @@ public:
 
 	void PlayerDeath();
 
-	FTimerHandle DeathWidgetHandle;
+	void Respawn();
 
-	void ShowDeathWidget();
+	// Var used to control if player can exeute any key input
+	bool bHasDied;
 
-	//UPROPERTY(VisibleDefaultsOnly, BlueprintReadWrite, Category = "Damage")
-	//bool bHasPlayerDied;
+	FTimerHandle RestartLevelHandle;
+
+	void EnableRespawn();
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Damage")
 	UAnimMontage* PlayerDeathMontage;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Damage")
 	USoundBase* PlayerHitSound;
+	
+
 
 private:
 

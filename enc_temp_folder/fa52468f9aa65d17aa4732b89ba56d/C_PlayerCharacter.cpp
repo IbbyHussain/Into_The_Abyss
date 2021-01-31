@@ -3016,13 +3016,12 @@ void AC_PlayerCharacter::EnableRespawn()
 
 void AC_PlayerCharacter::Respawn()
 {
-	// ensures that this input is only executed once player has died
 	if(bHasDied)
 	{
-		// Restarts current level and resets stats
+		UE_LOG(LogTemp, Log, TEXT("Respawn"));
+
 		UGameplayStatics::OpenLevel(this, FName(*GetWorld()->GetName()), false);
 
-		// ensures input is disabled again
 		bHasDied = false;
 	}
 }
