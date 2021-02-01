@@ -9,6 +9,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "MyProject/C_PlayerCharacter.h"
+#include "MyProject/AI/C_AIFightManager.h"
 
 
 AC_MeleeAI::AC_MeleeAI()
@@ -107,4 +108,11 @@ void AC_MeleeAI::ResetMeleeTimer()
 	{
 		AITime = 0.0f;
 	}
+}
+
+void AC_MeleeAI::OnDeath()
+{
+	Super::OnDeath();
+
+	FightManager->DestroyManager();
 }

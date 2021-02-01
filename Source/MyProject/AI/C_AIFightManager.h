@@ -45,4 +45,6 @@ public:
 	// A behaviour condition based on the AI's time since they last attacked. If they dont attack their grade increases.
 	UFUNCTION(BlueprintCallable)
 	AC_MeleeAI* GradeByAttackFrequency();
+
+	void DestroyManager();
 };

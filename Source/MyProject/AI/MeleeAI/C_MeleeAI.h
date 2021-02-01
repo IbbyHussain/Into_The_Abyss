@@ -16,6 +16,8 @@ private:
 
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void OnDeath() override;
+
 protected:
 
 	AC_MeleeAI();
@@ -27,6 +29,9 @@ public:
 
 	//UPROPERTY(EditDefaultsOnly, Category = "Melee AI")
 	//UAnimMontage* BasicAttackMontage;
+
+	UPROPERTY(EditInstanceOnly, Category = "Melee AI")
+	class AC_AIFightManager* FightManager;
 
 	void BasicAttack();
 

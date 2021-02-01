@@ -271,6 +271,9 @@ protected:
 
 	bool bCanTalkAI;
 
+	// Used for ai that need to do something unique on death
+	virtual void OnDeath();
+
 private:
 
 	//The destructible mesh that will be used when the character becomes frozen.

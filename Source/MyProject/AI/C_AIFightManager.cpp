@@ -148,3 +148,10 @@ AC_MeleeAI* AC_AIFightManager::GradeByAttackFrequency()
 
 	return nullptr;
 }
+
+void AC_AIFightManager::DestroyManager()
+{
+	UE_LOG(LogTemp, Error, TEXT("Destroy Manager in ai fight manager"));
+
+	// Should destroy manager logic here
+}

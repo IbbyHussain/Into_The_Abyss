@@ -457,6 +457,8 @@ void AC_BaseAI::CheckForAIDeath()
 	{
 		StopDamage();
 
+		OnDeath();
+
 		bCanTalkAI = false;
 		bShowEKeyHint = false;
 
@@ -491,6 +493,11 @@ void AC_BaseAI::CheckForAIDeath()
 			Shatter();
 		}
 	}
+}
+
+void AC_BaseAI::OnDeath()
+{
+	UE_LOG(LogTemp, Error, TEXT("AI Died, ON DEATH"));
 }
 
 // Default Death
