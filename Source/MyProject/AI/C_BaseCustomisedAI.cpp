@@ -6,7 +6,7 @@
 
 AC_BaseCustomisedAI::AC_BaseCustomisedAI()
 {
-
+	
 }
 
 void AC_BaseCustomisedAI::BeginPlay()
@@ -28,6 +28,12 @@ void AC_BaseCustomisedAI::BeginPlay()
 	ClothingColourMaterial.ClothingMaterialArray = { ClothingColourMaterial.DynamicRedColour, ClothingColourMaterial.DynamicGreenColour, ClothingColourMaterial.DynamicBlueColour };
 
 	ChangeAIColour();
+
+	// Add the assigned materials to a new array
+	for (int i = 0; i < GetMesh()->GetMaterials().Num(); i++) 
+	{
+		CustomisedMaterials.Add(GetMesh()->GetMaterials()[i]);
+	}
 }
 
 // AI Customisation 
@@ -96,6 +102,17 @@ AActor* AC_BaseCustomisedAI::SpawnBackpack(TSubclassOf<AC_SkeletalMeshActor> Bac
 	}
 
 	return NULL;
+}
+
+void AC_BaseCustomisedAI::ResetMaterials()
+{
+	Super::ResetMaterials();
+
+	// Reset Materials to default
+	for (int i = 0; i < GetMesh()->GetMaterials().Num(); i++)
+	{
+		GetMesh()->SetMaterial(i, CustomisedMaterials[i]);
+	}
 }
 
 void AC_BaseCustomisedAI::ChangeAIColour()

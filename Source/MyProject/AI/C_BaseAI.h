@@ -283,6 +283,9 @@ protected:
 	// Used for ai that need to do something unique on death
 	virtual void OnDeath();
 
+	// Materials, use for customised AI 
+	virtual void ResetMaterials();
+
 private:
 
 	//The destructible mesh that will be used when the character becomes frozen.
@@ -345,6 +348,8 @@ private:
 	FName SnapShotName;
 
 	//Materials 
+
+	TArray<UMaterialInterface*> DefaultMaterials;
 
 	//Material used when frozen
 	UPROPERTY(EditDefaultsOnly, Category = "Player Abilities|Ability 4|Materials")

@@ -162,6 +162,17 @@ void AC_BaseAI::BeginPlay()
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Ignore);
 	BoxComp->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Ignore); // causes ability 2 to not work, but causes two blind bolts aoe / explosive aoe
 	BoxComp->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Ignore);
+
+	// Add the assigned materials to a new array
+	for(int i = 0; i < GetMesh()->GetMaterials().Num(); i++) // Need to get the materials that have been assigned
+	{
+		DefaultMaterials.Add(GetMesh()->GetMaterials()[i]);
+	}
+	
+	for(auto x : DefaultMaterials)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("AI IS: %s, there are: %d materials"), *this->GetName(), DefaultMaterials.Num());
+	}
 }
 
 void AC_BaseAI::Tick(float DeltaTime)
@@ -522,6 +533,15 @@ void AC_BaseAI::Death()
 	}
 }
 
+void AC_BaseAI::ResetMaterials()
+{
+	// Reset Materials to default
+	for (int i = 0; i < GetMesh()->GetMaterials().Num(); i++)
+	{
+		GetMesh()->SetMaterial(i, DefaultMaterials[i]);
+	}
+}
+
 void AC_BaseAI::BecomeFrozen()
 {
 	if(bCanRagdoll)
@@ -574,16 +594,16 @@ void AC_BaseAI::BecomeUnFrozen()
 	UBrainComponent* LocalComp = AIController->GetBrainComponent();
 	LocalComp->ResumeLogic(FString("Frozen"));
 
-	//AIController->SetFocsu
-
-	//Set materials to their defaults
-	GetMesh()->SetMaterial(0, Material0);
+	//Set materials to their defaults old way 
+	/*GetMesh()->SetMaterial(0, Material0);
 	GetMesh()->SetMaterial(1, Material1);
 	GetMesh()->SetMaterial(2, Material2);
 	GetMesh()->SetMaterial(3, Material3);
 	GetMesh()->SetMaterial(4, Material4);
 	GetMesh()->SetMaterial(5, Material5);
-	GetMesh()->SetMaterial(6, Material5);
+	GetMesh()->SetMaterial(6, Material6);*/
+
+	ResetMaterials();
 
 	//Resume anim graph and ai behaviour tree
 	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);

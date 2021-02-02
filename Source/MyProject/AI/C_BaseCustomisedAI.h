@@ -117,6 +117,11 @@ public:
 
 	AActor* Weapon;
 
+	virtual void ResetMaterials() override;
+
+	// The materials assigned to the mesh after customisation
+	TArray<UMaterialInterface*> CustomisedMaterials;
+
 protected:
 	virtual void ChangeAIColour();
 
