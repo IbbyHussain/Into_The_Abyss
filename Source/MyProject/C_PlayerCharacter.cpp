@@ -2075,7 +2075,7 @@ void AC_PlayerCharacter::StaggerAI(USkeletalMeshComponent* SKMesh)
 
 	SS.AI = Cast<AC_BaseAI>(HitResult.GetActor());
 
-	if (bHits && SS.AI && SS.AI->bCanBeAttacked) //Access violation reading location
+	if (bHits && SS.AI && SS.AI->bCanBeAttacked && SS.AI->bCanBeShieldBashed) //Access violation reading location
 	{
 		SS.AI->bCanBeAttacked = false;
 
@@ -2084,6 +2084,7 @@ void AC_PlayerCharacter::StaggerAI(USkeletalMeshComponent* SKMesh)
 		if (SS.AI && HitResult.GetActor() == SS.AI)
 		{
 			SS.AI->CheckForAIDeath();
+			SS.AI->Staggered();
 			SS.AI->BecomeBlind(SS.AI->StaggeredAnimation, 2.0f);
 		}
 	}

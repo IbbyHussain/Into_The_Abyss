@@ -38,7 +38,7 @@ EBTNodeResult::Type UC_BTTaskGetWanderLocation::ExecuteTask(UBehaviorTreeCompone
 	FVector dist = OriginalLocation - Location.Location;
 	float Distance = dist.Size();
 
-	UE_LOG(LogTemp, Log, TEXT("Distance was: %f"), Distance);
+	//UE_LOG(LogTemp, Log, TEXT("Distance was: %f"), Distance);
 
 	if(Distance > 300.0f)
 	{

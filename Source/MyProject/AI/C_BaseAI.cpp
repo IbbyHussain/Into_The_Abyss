@@ -62,6 +62,8 @@ AC_BaseAI::AC_BaseAI()
 
 	bCanBeAttacked = true;
 
+	bCanBeShieldBashed = true;
+
 	bShowEKeyHint = true;
 
 	bCanTalkAI = true;
@@ -704,6 +706,19 @@ void AC_BaseAI::RemoveBlindness(UAnimMontage* MontageToStop)
 	GetWorldTimerManager().ClearTimer(BlindnessHandle);
 
 	UE_LOG(LogTemp, Log, TEXT("Remove Blind"));
+}
+
+// Provides immunity to AI, so that they cannot be continuously shield bashed
+void AC_BaseAI::Staggered()
+{
+	bCanBeShieldBashed = false;
+	GetWorldTimerManager().SetTimer(StaggeredHandle, this, &AC_BaseAI::RecoverFromStagger, 10.0f, false);
+}
+
+void AC_BaseAI::RecoverFromStagger()
+{
+	bCanBeShieldBashed = true;
+	GetWorldTimerManager().ClearTimer(StaggeredHandle);
 }
 
 // Damage over time for this class

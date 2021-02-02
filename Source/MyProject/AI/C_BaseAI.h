@@ -186,6 +186,9 @@ public:
 	// used for a do once to make sure if the line trace hits does not hit again.
 	bool bCanBeAttacked;
 
+	// Used for immunity to shield bash 
+	bool bCanBeShieldBashed;
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
@@ -246,6 +249,12 @@ public:
 	void PlayBoltHitMontage();
 
 	bool bCanRagdoll;
+
+	void Staggered();
+
+	FTimerHandle StaggeredHandle;
+
+	void RecoverFromStagger();
 
 protected:
 	// Used in the blueprint of this class
