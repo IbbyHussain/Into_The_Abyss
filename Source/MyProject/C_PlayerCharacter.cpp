@@ -1905,7 +1905,7 @@ void AC_PlayerCharacter::Rag(USkeletalMeshComponent* SKMesh)
 	{
 		SS.AI->bCanBeAttacked = false;
 
-		UGameplayStatics::ApplyDamage(Hit.GetActor(), 0.1f, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+		UGameplayStatics::ApplyDamage(Hit.GetActor(), 0.35f, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
 
 		if (SS.AI && Hit.GetActor() == SS.AI)
 		{
