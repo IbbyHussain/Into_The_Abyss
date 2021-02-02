@@ -9,16 +9,21 @@ UCLASS()
 class MYPROJECT_API AC_AIFightManager : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
-	AC_AIFightManager();
+
+private:
+
+	int32 NumOfDeadAI;
+
+	int32 MaxAIInArray;
+
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:
+	// Sets default values for this actor's properties
+	AC_AIFightManager();
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "AI")
 	TArray<class AC_MeleeAI*> AIArray;

@@ -21,6 +21,10 @@ AC_AIFightManager::AC_AIFightManager()
 void AC_AIFightManager::BeginPlay()
 {
 	Super::BeginPlay();
+
+	MaxAIInArray = AIArray.Num();
+
+	NumOfDeadAI = 1;
 }
 
 // At the start of the game 
@@ -151,7 +155,32 @@ AC_MeleeAI* AC_AIFightManager::GradeByAttackFrequency()
 
 void AC_AIFightManager::DestroyManager()
 {
-	UE_LOG(LogTemp, Error, TEXT("Destroy Manager in ai fight manager"));
 
-	// Should destroy manager logic here
+	// As item index starts at -1 numofdeadAI must start at 1
+	// Stores the ID of the AI that has died then removes that AI from array after loop finishes.
+	int32 ItemIndex = -1;
+	for (int32 Index = 0; Index < AIArray.Num(); Index++)
+	{
+		if(AIArray[Index]->bHasDied)
+		{
+			NumOfDeadAI++;
+			ItemIndex = Index;
+			break;
+		}
+	}
+
+	if(AIArray.IsValidIndex(ItemIndex))
+	{
+		AIArray.RemoveAt(ItemIndex);
+	}
+
+	//UE_LOG(LogTemp, Error, TEXT("NUMOFDEADAI ==: %d"), NumOfDeadAI);
+
+	// If all AI are dead destroy this manager
+	if(MaxAIInArray == NumOfDeadAI)
+	{
+		//UE_LOG(LogTemp, Error, TEXT("ALL AI ARE DEAD"));
+
+		Destroy();
+	}
 }
