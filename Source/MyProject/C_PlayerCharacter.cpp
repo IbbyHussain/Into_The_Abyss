@@ -62,6 +62,8 @@
 #include "MyProject/Components/C_CameraComponent.h"
 
 #include "Components/AudioComponent.h"
+
+#include "AI/EnglishEnemies/C_PeasantAI.h"
 //#include "MyProject/Misc/C_Checkpoint.h"
 
 //Constructor
@@ -1907,7 +1909,12 @@ void AC_PlayerCharacter::Rag(USkeletalMeshComponent* SKMesh)
 
 		if (SS.AI && Hit.GetActor() == SS.AI)
 		{
-			SS.AI->ApplyRagdoll();
+			// Only Peasant AI can be ragdolled.
+			AC_PeasantAI* PeasantAI = Cast<AC_PeasantAI>(SS.AI);
+			if(SS.AI == PeasantAI)
+			{
+				SS.AI->ApplyRagdoll();
+			}
 
 			SS.AI->CheckForAIDeath();
 		}

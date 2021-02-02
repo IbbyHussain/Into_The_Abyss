@@ -7,6 +7,8 @@
 #include"MyProject/AI/MeleeAI/C_MeleeAIBlackBoardKeys.h"
 #include "Runtime/NavigationSystem/Public/NavigationSystem.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "MyProject/C_PlayerCharacter.h"
 
 #include "DrawDebugHelpers.h"
 
