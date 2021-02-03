@@ -14,4 +14,6 @@ namespace BB_MeleeAIKeys
 	TCHAR const* const PlayerLocation = TEXT("BPPlayerLocation");
 
 	TCHAR const* const AILocation = TEXT("BPAILocation");
+
+
 }

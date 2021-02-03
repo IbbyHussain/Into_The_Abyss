@@ -4,9 +4,10 @@
 #include "C_BTTask_FindRandomLocation.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Runtime/NavigationSystem/Public/NavigationSystem.h"
-#include "MyProject/AI/C_BaseAIController.h"
 #include"BehaviorTree/Blackboard/BlackboardKeyType_Vector.h"
-#include "MyProject/AI/C_BaseAIBlackBoardKeys.h"
+#include "MyProject/AI/MeleeAI/C_MeleeAIBlackBoardKeys.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
+#include "AIController.h"
 
 UC_BTTask_FindRandomLocation::UC_BTTask_FindRandomLocation(FObjectInitializer const& ObjectInitializer)
 {
@@ -19,7 +20,7 @@ UC_BTTask_FindRandomLocation::UC_BTTask_FindRandomLocation(FObjectInitializer co
 EBTNodeResult::Type UC_BTTask_FindRandomLocation::ExecuteTask(UBehaviorTreeComponent& Owner, uint8* NodeMemory)
 {
 	// Get AI Controller and BaseAI
-	auto const AIController = Cast<AC_BaseAIController>(Owner.GetAIOwner());
+	auto const AIController = Cast<AAIController>(Owner.GetAIOwner());
 	auto const BaseAI = AIController->GetPawn();
 
 	// Get AI location to use as the start position
@@ -31,7 +32,7 @@ EBTNodeResult::Type UC_BTTask_FindRandomLocation::ExecuteTask(UBehaviorTreeCompo
 	if(NavigationSystem->GetRandomPointInNavigableRadius(StartLocation, SearchRadius, Location, nullptr))
 	{
 		// Set the BlackBoards value so that its updated in the BehaviorTree
-		AIController->GetBlackBoard()->SetValueAsVector(bb_keys::TargetLocation, Location.Location);
+		UAIBlueprintHelperLibrary::GetBlackboard(BaseAI)->SetValueAsVector(BB_MeleeAIKeys::TargetLocation, Location.Location);
 	}
 
 	// Finish Task with success
