@@ -23,6 +23,9 @@ AC_MeleeAIController::AC_MeleeAIController(FObjectInitializer const& ObjectIniti
 	// Creates behaviour tree and black board component
 	BehaviorTreeComponent = ObjectInitializer.CreateDefaultSubobject<UBehaviorTreeComponent>(this, TEXT("MeleeBehaviorTreeComp"));
 	BlackBoard = ObjectInitializer.CreateDefaultSubobject<UBlackboardComponent>(this, TEXT("MeleeBlackBoardComp"));
+
+	// AI Perception, assigning team id
+	SetGenericTeamId(FGenericTeamId(5));
 }
 
 void AC_MeleeAIController::BeginPlay()
@@ -68,4 +71,17 @@ void AC_MeleeAIController::AIAttack()
 {
 	uint8 Attacking = (uint8)EAIStates::ATTACKING;
 	GetBlackBoard()->SetValueAsEnum(BB_MeleeAIKeys::AIStates, Attacking);
+}
+
+ETeamAttitude::Type AC_MeleeAIController::GetTeamAttitudeTowards(const AActor& Other) const
+{
+	if (const APawn* OtherPawn = Cast<APawn>(&Other)) {
+
+		if (const IGenericTeamAgentInterface* TeamAgent = Cast<IGenericTeamAgentInterface>(OtherPawn->GetController()))
+		{
+			return Super::GetTeamAttitudeTowards(*OtherPawn->GetController());
+		}
+	}
+
+	return ETeamAttitude::Neutral;
 }

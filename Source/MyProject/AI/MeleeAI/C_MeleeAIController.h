@@ -53,5 +53,10 @@ public:
 	// changes enum state
 	UFUNCTION(BlueprintCallable)
 	void AIAttack();
+
+	// AI Perception
+
+	// Override this function 
+	ETeamAttitude::Type GetTeamAttitudeTowards(const AActor& Other) const override;
 	
 };

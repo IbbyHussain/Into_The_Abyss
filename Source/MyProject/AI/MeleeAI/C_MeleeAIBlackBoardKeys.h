@@ -15,5 +15,5 @@ namespace BB_MeleeAIKeys
 
 	TCHAR const* const AILocation = TEXT("BPAILocation");
 
-
+	TCHAR const* const RandomLocation = TEXT("BPRandomLocation");
 }

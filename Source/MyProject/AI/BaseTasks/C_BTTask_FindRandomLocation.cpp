@@ -9,6 +9,8 @@
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "AIController.h"
 
+#include "DrawDebugHelpers.h"
+
 UC_BTTask_FindRandomLocation::UC_BTTask_FindRandomLocation(FObjectInitializer const& ObjectInitializer)
 {
 	// Set the nodes name
@@ -29,11 +31,14 @@ EBTNodeResult::Type UC_BTTask_FindRandomLocation::ExecuteTask(UBehaviorTreeCompo
 
 	// Get the Navigation System and generate a random location within the Nav Mesh
 	UNavigationSystemV1* const NavigationSystem = UNavigationSystemV1::GetCurrent(GetWorld());
-	if(NavigationSystem->GetRandomPointInNavigableRadius(StartLocation, SearchRadius, Location, nullptr))
-	{
+	NavigationSystem->GetRandomPointInNavigableRadius(StartLocation, SearchRadius, Location, nullptr);
+	
 		// Set the BlackBoards value so that its updated in the BehaviorTree
-		UAIBlueprintHelperLibrary::GetBlackboard(BaseAI)->SetValueAsVector(BB_MeleeAIKeys::TargetLocation, Location.Location);
-	}
+	UAIBlueprintHelperLibrary::GetBlackboard(BaseAI)->SetValueAsVector(BB_MeleeAIKeys::RandomLocation, Location.Location);
+
+		// DRAW A DEBUG SPHERE AT LOCATION IF GREATER THAN 50 UNITS AWAY
+	DrawDebugSphere(GetWorld(), Location.Location, 35.0f, 5, FColor::Yellow, false, 4.0f);
+	
 
 	// Finish Task with success
 	FinishLatentTask(Owner, EBTNodeResult::Succeeded);
