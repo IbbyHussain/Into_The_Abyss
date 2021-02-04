@@ -52,6 +52,4 @@ public:
 	AC_MeleeAI* GradeByAttackFrequency();
 
 	void DestroyManager();
-
-	bool bShouldStartNextAttack;
 };
