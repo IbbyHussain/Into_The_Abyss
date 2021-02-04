@@ -20,26 +20,26 @@ public:
 
 	virtual void BeginPlay() override;
 
-// SPECIAL ATTACK
+	// SPECIAL ATTACK
 
-	// BECOME ENRAGED
+		// BECOME ENRAGED
 
 	UFUNCTION(BlueprintCallable)
-	void BecomeEnraged();
+		void BecomeEnraged();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Special Attack")
-	USoundBase* EnragedSound;
+		USoundBase* EnragedSound;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Special Attack")
-	UAnimMontage* EnragedMontage;
+		UAnimMontage* EnragedMontage;
 
 	// JUMP START 
 
 	UFUNCTION(BlueprintCallable)
-	void JumpStart();
+		void JumpStart();
 
 	UPROPERTY(EditAnywhere, Category = "Special Attack")
-	UCurveFloat* FJumpCurve;
+		UCurveFloat* FJumpCurve;
 
 	// The timeline component
 	UTimelineComponent* JumpStartTimeline;
@@ -50,10 +50,9 @@ public:
 
 	// The function to be binded to interp (update)
 	UFUNCTION()
-	void JumpStartTimelineFloatReturn(float Value);
+		void JumpStartTimelineFloatReturn(float Value);
 
 	// The function to be binded to finish
 	UFUNCTION()
-	void OnJumpStartTimelineFinished();
-
+		void OnJumpStartTimelineFinished();
 };
