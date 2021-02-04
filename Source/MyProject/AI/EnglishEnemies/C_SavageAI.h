@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "MyProject/AI/MeleeAI/C_MeleeAI.h"
+#include "Components/TimelineComponent.h"
 #include "C_SavageAI.generated.h"
 
 UCLASS()
@@ -16,4 +17,43 @@ class MYPROJECT_API AC_SavageAI : public AC_MeleeAI
 public:
 
 	virtual void ChangeAIColour() override;
+
+	virtual void BeginPlay() override;
+
+// SPECIAL ATTACK
+
+	// BECOME ENRAGED
+
+	UFUNCTION(BlueprintCallable)
+	void BecomeEnraged();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Special Attack")
+	USoundBase* EnragedSound;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Special Attack")
+	UAnimMontage* EnragedMontage;
+
+	// JUMP START 
+
+	UFUNCTION(BlueprintCallable)
+	void JumpStart();
+
+	UPROPERTY(EditAnywhere, Category = "Special Attack")
+	UCurveFloat* FJumpCurve;
+
+	// The timeline component
+	UTimelineComponent* JumpStartTimeline;
+
+	// delegates for the timeline (update and finish)
+	FOnTimelineFloat JumpStartInterpFunction{};
+	FOnTimelineEvent JumpStartTimelineFinished{};
+
+	// The function to be binded to interp (update)
+	UFUNCTION()
+	void JumpStartTimelineFloatReturn(float Value);
+
+	// The function to be binded to finish
+	UFUNCTION()
+	void OnJumpStartTimelineFinished();
+
 };
