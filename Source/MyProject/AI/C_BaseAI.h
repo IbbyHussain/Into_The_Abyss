@@ -256,6 +256,10 @@ public:
 
 	void RecoverFromStagger();
 
+	// Used in Notfiy state
+	UFUNCTION(BlueprintCallable)
+	void UpdateCapsuleForAnimations();
+
 protected:
 	// Used in the blueprint of this class
 	UFUNCTION(BlueprintCallable)

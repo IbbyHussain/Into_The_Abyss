@@ -830,3 +830,13 @@ void AC_BaseAI::PlayBoltHitMontage()
 	PlayAnimMontage(BoltHitMontage, 1.0f);
 	UGameplayStatics::PlaySoundAtLocation(GetWorld(), HitGrunt, GetActorLocation());
 }
+
+void AC_BaseAI::UpdateCapsuleForAnimations()
+{
+	MeshLocation = GetMesh()->GetSocketLocation(HipsSocket) + FVector(0.0f, 0.0f, 20.0f);
+	GetCapsuleComponent()->SetWorldLocation(MeshLocation);
+	//FVector MeshLoc = GetMesh()->GetComponentLocation();
+
+
+	//GetCapsuleComponent()->SetWorldLocation(MeshLoc);
+}

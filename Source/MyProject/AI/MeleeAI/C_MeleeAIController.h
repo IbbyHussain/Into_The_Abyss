@@ -36,7 +36,7 @@ protected:
 
 public:
 
-	UPROPERTY(EditAnywhere, Category = "ENUM")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ENUM")
 	EAIStates AIStatesController;
 
 	virtual void BeginPlay() override;
