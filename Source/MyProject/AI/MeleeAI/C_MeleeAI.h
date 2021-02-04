@@ -30,7 +30,7 @@ public:
 	//UPROPERTY(EditDefaultsOnly, Category = "Melee AI")
 	//UAnimMontage* BasicAttackMontage;
 
-	UPROPERTY(EditInstanceOnly, Category = "Melee AI")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Melee AI")
 	class AC_AIFightManager* FightManager;
 
 	void BasicAttack();
