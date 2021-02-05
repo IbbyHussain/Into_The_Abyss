@@ -16,4 +16,6 @@ class MYPROJECT_API AC_SavageAI : public AC_MeleeAI
 public:
 
 	virtual void ChangeAIColour() override;
+
+	virtual void BeginPlay();
 };
