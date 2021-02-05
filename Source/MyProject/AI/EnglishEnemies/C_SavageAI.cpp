@@ -37,8 +37,8 @@ void AC_SavageAI::ChangeAIColour()
 
 void AC_SavageAI::BecomeEnraged()
 {
-	GetMovementComponent()->StopMovementImmediately();
-	GetMovementComponent()->StopActiveMovement();
+	GetCharacterMovement()->StopMovementImmediately();
+	GetCharacterMovement()->DisableMovement();
 
 	PlayAnimMontage(EnragedMontage, 1.0f);
 	UGameplayStatics::PlaySoundAtLocation(GetWorld(), EnragedSound, GetActorLocation());
