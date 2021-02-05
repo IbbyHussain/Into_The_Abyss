@@ -13,5 +13,11 @@ UCLASS()
 class MYPROJECT_API UC_BTTask_Savage_Jump : public UBTTask_BlackboardBase
 {
 	GENERATED_BODY()
+
+	UC_BTTask_Savage_Jump(FObjectInitializer const& ObjectInitializer);
+
+public:
+
+	EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& Owner, uint8* NodeMemory);
 	
 };
