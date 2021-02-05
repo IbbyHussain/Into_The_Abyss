@@ -2,6 +2,8 @@
 #include "C_SavageAI.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "MyProject/C_PlayerCharacter.h"
+#include "MyProject/GameObjects/C_StaticMeshActor.h"
 
 AC_SavageAI::AC_SavageAI()
 {
@@ -54,7 +56,16 @@ void AC_SavageAI::JumpStartTimelineFloatReturn(float Value)
 
 void AC_SavageAI::OnJumpStartTimelineFinished()
 {
-	// spawn at player location then play landed anim with aoe damage
+	// fade out savage AI
+	SpawnSavageIndicator(); // tempory call
+}
+
+void AC_SavageAI::SpawnSavageIndicator()
+{
+	AC_PlayerCharacter* Player = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+	FVector PlayerLocation = Player->GetActorLocation();
+	FActorSpawnParameters SpawnParams;
+	SavageIndicator = GetWorld()->SpawnActor<AC_StaticMeshActor>(SavageIndicatorClass, FVector(PlayerLocation.X, PlayerLocation.Y, PlayerLocation.Z - 90.0f), FRotator::ZeroRotator, SpawnParams);
 }
 
 void AC_SavageAI::JumpStart()

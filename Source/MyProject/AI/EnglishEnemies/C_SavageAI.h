@@ -33,6 +33,15 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Special Attack")
 	UAnimMontage* EnragedMontage;
 
+	// SPAWN INDICATOR
+
+	class AC_StaticMeshActor* SavageIndicator;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Special Attack")
+	TSubclassOf<class AC_StaticMeshActor> SavageIndicatorClass;
+
+	void SpawnSavageIndicator();
+
 	// JUMP START 
 
 	UFUNCTION(BlueprintCallable)
