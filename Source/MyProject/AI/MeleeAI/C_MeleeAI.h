@@ -12,8 +12,6 @@ class MYPROJECT_API AC_MeleeAI : public AC_BaseCustomisedAI
 
 private:
 
-	virtual void BeginPlay() override;
-
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void OnDeath() override;
@@ -26,6 +24,8 @@ protected:
 	TArray<UAnimMontage*> AttackMontageArray;
 
 public:
+
+	virtual void BeginPlay() override;
 
 	//UPROPERTY(EditDefaultsOnly, Category = "Melee AI")
 	//UAnimMontage* BasicAttackMontage;
