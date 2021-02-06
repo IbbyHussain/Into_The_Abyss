@@ -42,7 +42,15 @@ public:
 
 	void SpawnSavageIndicator();
 
-	// JUMP START 
+	// JUMP START
+
+	UPROPERTY(EditDefaultsOnly, Category = "Special Attack")
+	UAnimMontage* JumpStartMontage;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Special Attack")
+	UAnimMontage* JumpLoopMontage;
+
+	void PlayJumpStartAnim();
 
 	UFUNCTION(BlueprintCallable)
 	void JumpStart();
@@ -90,9 +98,14 @@ public:
 	void OnLandTimelineFinished();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Special Attack")
+	UAnimMontage* LandLoopMontage;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Special Attack")
 	UAnimMontage* LandMontage;
 
 	FTimerHandle ResetMovementHandle;
 
 	void ResetMovement();
+
+	bool bCanSpecialAttackDamagePlayer;
 };

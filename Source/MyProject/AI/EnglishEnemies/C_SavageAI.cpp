@@ -4,6 +4,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "MyProject/C_PlayerCharacter.h"
 #include "MyProject/GameObjects/C_StaticMeshActor.h"
+#include "DrawDebugHelpers.h"
+#include "MyProject/MyProject.h"
 
 AC_SavageAI::AC_SavageAI()
 {
@@ -14,6 +16,8 @@ AC_SavageAI::AC_SavageAI()
 	LandTimeline = CreateDefaultSubobject<UTimelineComponent>(TEXT("LandTimeline"));
 	LandInterpFunction.BindUFunction(this, FName("LandTimelineFloatReturn"));
 	LandTimelineFinished.BindUFunction(this, FName("OnLandTimelineFinished"));
+
+	bCanSpecialAttackDamagePlayer = true;
 }
 
 void AC_SavageAI::BeginPlay()
@@ -54,6 +58,14 @@ void AC_SavageAI::BecomeEnraged()
 
 	PlayAnimMontage(EnragedMontage, 1.0f);
 	UGameplayStatics::PlaySoundAtLocation(GetWorld(), EnragedSound, GetActorLocation());
+
+	FTimerHandle JumpHandle;
+	GetWorldTimerManager().SetTimer(JumpHandle, this, &AC_SavageAI::PlayJumpStartAnim, 1.5f, false);
+}
+
+void AC_SavageAI::PlayJumpStartAnim()
+{
+	PlayAnimMontage(JumpStartMontage, 1.0f);
 }
 
 void AC_SavageAI::JumpStartTimelineFloatReturn(float Value)
@@ -90,6 +102,15 @@ void AC_SavageAI::SpawnSavageIndicator()
 void AC_SavageAI::JumpStart()
 {
 	JumpStartTimeline->PlayFromStart();
+	PlayAnimMontage(JumpLoopMontage, 1.0f);
+}
+
+void AC_SavageAI::Land()
+{
+	LandTimeline->PlayFromStart();
+	SetActorHiddenInGame(false);
+	Weapon->SetActorHiddenInGame(false);
+	PlayAnimMontage(LandLoopMontage, 1.0f);
 }
 
 void AC_SavageAI::LandTimelineFloatReturn(float Value)
@@ -107,18 +128,41 @@ void AC_SavageAI::OnLandTimelineFinished()
 	GetCharacterMovement()->StopMovementImmediately();
 	GetCharacterMovement()->DisableMovement();
 
+	FCollisionQueryParams CollisionParams;
+	TArray<FHitResult> OutHits;
+
+	FVector ActorLocation = GetActorLocation();
+
+	// Creates a sphere
+	FCollisionShape MyColSphere = FCollisionShape::MakeSphere(350.0f);
+
+	// Debug
+	DrawDebugSphere(GetWorld(), ActorLocation, MyColSphere.GetSphereRadius(), 20, FColor::Green, true);
+
+	// A sweep trace that will hit anything within the sphere
+	bool bHit = GetWorld()->SweepMultiByChannel(OutHits, ActorLocation, ActorLocation, FQuat::Identity, COLLISION_AIMELEEDETECTION, MyColSphere, CollisionParams);
+
+	if (bHit)
+	{
+		for (auto& Hit : OutHits)
+		{
+			AC_PlayerCharacter* PlayerCharacterPTR = Cast<AC_PlayerCharacter>(Hit.Actor);
+
+			UE_LOG(LogTemp, Error, TEXT("HIT Hit: %s"), *Hit.GetActor()->GetName());
+
+			if (Hit.GetActor() == PlayerCharacterPTR && bCanSpecialAttackDamagePlayer)
+			{
+				bCanSpecialAttackDamagePlayer = false;
+				PlayerCharacterPTR->ApplyDamageToPlayer(35.0f);
+			}
+		}
+	}
+
 	GetWorldTimerManager().SetTimer(ResetMovementHandle, this, &AC_SavageAI::ResetMovement, 1.5f, false);
 }
 
 void AC_SavageAI::ResetMovement()
 {
 	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);
-}
-
-void AC_SavageAI::Land()
-{
-	//LandTimeline->PlayFromStart();
-	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);
-	SetActorHiddenInGame(false);
-	Weapon->SetActorHiddenInGame(false);
+	bCanSpecialAttackDamagePlayer = true;
 }
