@@ -58,5 +58,7 @@ public:
 
 	// Override this function 
 	ETeamAttitude::Type GetTeamAttitudeTowards(const AActor& Other) const override;
+
+	bool bInSpecialAttack;
 	
 };

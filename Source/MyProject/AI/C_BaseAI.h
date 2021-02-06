@@ -292,6 +292,8 @@ protected:
 
 private:
 
+	TArray<UMaterialInterface*> DefaultMaterials;
+
 	//The destructible mesh that will be used when the character becomes frozen.
 	UPROPERTY(EditDefaultsOnly, Category = "Player Abilities|Ability 4")
 	class UDestructibleComponent* DestructibleMeshComp;
@@ -352,8 +354,6 @@ private:
 	FName SnapShotName;
 
 	//Materials 
-
-	TArray<UMaterialInterface*> DefaultMaterials;
 
 	//Material used when frozen
 	UPROPERTY(EditDefaultsOnly, Category = "Player Abilities|Ability 4|Materials")

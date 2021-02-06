@@ -8,10 +8,12 @@
 AC_SavageAI::AC_SavageAI()
 {
 	JumpStartTimeline = CreateDefaultSubobject<UTimelineComponent>(TEXT("JumpStartTimeline"));
-
-	// Here is where we bind our delegates to our functions via function names
 	JumpStartInterpFunction.BindUFunction(this, FName("JumpStartTimelineFloatReturn"));
 	JumpStartTimelineFinished.BindUFunction(this, FName("OnJumpStartTimelineFinished"));
+
+	LandTimeline = CreateDefaultSubobject<UTimelineComponent>(TEXT("LandTimeline"));
+	LandInterpFunction.BindUFunction(this, FName("LandTimelineFloatReturn"));
+	LandTimelineFinished.BindUFunction(this, FName("OnLandTimelineFinished"));
 }
 
 void AC_SavageAI::BeginPlay()
@@ -25,6 +27,14 @@ void AC_SavageAI::BeginPlay()
 		JumpStartTimeline->AddInterpFloat(FJumpCurve, JumpStartInterpFunction, FName("Alpha"));
 		JumpStartTimeline->SetTimelineFinishedFunc(JumpStartTimelineFinished);
 		JumpStartTimeline->SetLooping(false);
+	}
+
+	if (FLandCurve)
+	{
+		// Now we set the functions and some values.
+		LandTimeline->AddInterpFloat(FLandCurve, LandInterpFunction, FName("Bravo"));
+		LandTimeline->SetTimelineFinishedFunc(LandTimelineFinished);
+		LandTimeline->SetLooping(false);
 	}
 }
 
@@ -56,8 +66,17 @@ void AC_SavageAI::JumpStartTimelineFloatReturn(float Value)
 
 void AC_SavageAI::OnJumpStartTimelineFinished()
 {
-	// fade out savage AI
-	SpawnSavageIndicator(); // tempory call
+	AC_PlayerCharacter* Player = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+
+	// Hides weapon and AI mesh
+	SetActorHiddenInGame(true);
+	Weapon->SetActorHiddenInGame(true);
+	SpawnSavageIndicator();
+
+	// Moves the savage AI above the player character
+	SetActorLocation(FVector(Player->GetActorLocation().X, Player->GetActorLocation().Y, GetActorLocation().Z));
+
+	GetWorldTimerManager().SetTimer(LandHandle, this, &AC_SavageAI::Land, 4.0f, false);
 }
 
 void AC_SavageAI::SpawnSavageIndicator()
@@ -71,4 +90,35 @@ void AC_SavageAI::SpawnSavageIndicator()
 void AC_SavageAI::JumpStart()
 {
 	JumpStartTimeline->PlayFromStart();
+}
+
+void AC_SavageAI::LandTimelineFloatReturn(float Value)
+{
+	float X = GetActorLocation().X;
+	float Y = GetActorLocation().Y;
+	float Z = GetActorLocation().Z;
+	SetActorLocation(FVector(X, Y, (FMath::Lerp(Z, Z - 10.0f, Value))));
+}
+
+void AC_SavageAI::OnLandTimelineFinished()
+{
+	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);
+	PlayAnimMontage(LandMontage, 1.0f);
+	GetCharacterMovement()->StopMovementImmediately();
+	GetCharacterMovement()->DisableMovement();
+
+	GetWorldTimerManager().SetTimer(ResetMovementHandle, this, &AC_SavageAI::ResetMovement, 1.5f, false);
+}
+
+void AC_SavageAI::ResetMovement()
+{
+	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);
+}
+
+void AC_SavageAI::Land()
+{
+	//LandTimeline->PlayFromStart();
+	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);
+	SetActorHiddenInGame(false);
+	Weapon->SetActorHiddenInGame(false);
 }

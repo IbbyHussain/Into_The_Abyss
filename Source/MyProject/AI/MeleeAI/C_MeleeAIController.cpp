@@ -69,6 +69,11 @@ void AC_MeleeAIController::PawnBasicAttack()
 
 void AC_MeleeAIController::AIAttack()
 {
+	/*if(!bInSpecialAttack)
+	{
+		
+	}*/
+
 	uint8 Attacking = (uint8)EAIStates::ATTACKING;
 	GetBlackBoard()->SetValueAsEnum(BB_MeleeAIKeys::AIStates, Attacking);
 }

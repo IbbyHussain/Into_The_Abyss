@@ -64,4 +64,35 @@ public:
 	// The function to be binded to finish
 	UFUNCTION()
 	void OnJumpStartTimelineFinished();
+
+	// LAND
+
+	void Land();
+
+	FTimerHandle LandHandle;
+
+	UPROPERTY(EditAnywhere, Category = "Special Attack")
+	UCurveFloat* FLandCurve;
+
+	// The timeline component
+	UTimelineComponent* LandTimeline;
+
+	// delegates for the timeline (update and finish)
+	FOnTimelineFloat LandInterpFunction{};
+	FOnTimelineEvent LandTimelineFinished{};
+
+	// The function to be binded to interp (update)
+	UFUNCTION()
+	void LandTimelineFloatReturn(float Value);
+
+	// The function to be binded to finish
+	UFUNCTION()
+	void OnLandTimelineFinished();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Special Attack")
+	UAnimMontage* LandMontage;
+
+	FTimerHandle ResetMovementHandle;
+
+	void ResetMovement();
 };
