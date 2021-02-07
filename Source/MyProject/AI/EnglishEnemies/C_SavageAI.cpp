@@ -88,7 +88,7 @@ void AC_SavageAI::OnJumpStartTimelineFinished()
 	// Moves the savage AI above the player character
 	SetActorLocation(FVector(Player->GetActorLocation().X, Player->GetActorLocation().Y, GetActorLocation().Z));
 
-	GetWorldTimerManager().SetTimer(LandHandle, this, &AC_SavageAI::Land, 4.0f, false);
+	GetWorldTimerManager().SetTimer(LandHandle, this, &AC_SavageAI::Land, 6.0f, false);
 }
 
 void AC_SavageAI::SpawnSavageIndicator()
@@ -125,6 +125,15 @@ void AC_SavageAI::OnLandTimelineFinished()
 {
 	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);
 	PlayAnimMontage(LandMontage, 1.0f);
+
+	// Spawns shockwave particle
+	FTransform ParticleTransform;
+	ParticleTransform.SetScale3D(FVector(1.25f));
+	ParticleTransform.SetLocation(FVector(GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z - 90.0f));
+	ParticleTransform.SetRotation(FRotator(0.0f, 0.0f, 0.0f).Quaternion());
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ShockWave, ParticleTransform);
+
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), LandSound, GetActorLocation());
 	GetCharacterMovement()->StopMovementImmediately();
 	GetCharacterMovement()->DisableMovement();
 
@@ -134,7 +143,7 @@ void AC_SavageAI::OnLandTimelineFinished()
 	FVector ActorLocation = GetActorLocation();
 
 	// Creates a sphere
-	FCollisionShape MyColSphere = FCollisionShape::MakeSphere(350.0f);
+	FCollisionShape MyColSphere = FCollisionShape::MakeSphere(500.0f);
 
 	// Debug
 	DrawDebugSphere(GetWorld(), ActorLocation, MyColSphere.GetSphereRadius(), 20, FColor::Green, true);
@@ -154,6 +163,10 @@ void AC_SavageAI::OnLandTimelineFinished()
 			{
 				bCanSpecialAttackDamagePlayer = false;
 				PlayerCharacterPTR->ApplyDamageToPlayer(35.0f);
+
+				// Play Camera shake if caught in damage field
+				APlayerController* PlayerController = Cast<APlayerController>(UGameplayStatics::GetPlayerController(this, 0));
+				PlayerController->ClientPlayCameraShake(ShockWaveCameraShake);
 			}
 		}
 	}

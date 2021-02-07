@@ -79,6 +79,15 @@ public:
 
 	FTimerHandle LandHandle;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Special Attack")
+	USoundBase* LandSound;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Special Attack")
+	UParticleSystem* ShockWave;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Special Attack")
+	TSubclassOf<UCameraShake> ShockWaveCameraShake;
+
 	UPROPERTY(EditAnywhere, Category = "Special Attack")
 	UCurveFloat* FLandCurve;
 
