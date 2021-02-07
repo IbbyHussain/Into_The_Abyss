@@ -103,7 +103,7 @@ void AC_MeleeAIController::DisableSpecialAttack()
 
 	UE_LOG(LogTemp, Error, TEXT("Special Attack Disabled"));
 
-	GetWorldTimerManager().SetTimer(SpecialAttackHandle, this, &AC_MeleeAIController::EnableSpecialAttack, 15.0f);
+	GetWorldTimerManager().SetTimer(SpecialAttackHandle, this, &AC_MeleeAIController::EnableSpecialAttack, 25.0f);
 }
 
 void AC_MeleeAIController::EnableSpecialAttack()
