@@ -18,4 +18,6 @@ namespace BB_MeleeAIKeys
 	TCHAR const* const RandomLocation = TEXT("BPRandomLocation");
 
 	TCHAR const* const AIHealth = TEXT("BPAIHealth");
+
+	TCHAR const* const CanUseSpecialAttack = TEXT("BPCanuseSpecialAttack");
 }

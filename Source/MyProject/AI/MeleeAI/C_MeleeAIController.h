@@ -60,5 +60,17 @@ public:
 	ETeamAttitude::Type GetTeamAttitudeTowards(const AActor& Other) const override;
 
 	bool bInSpecialAttack;
+
+	// Special Attacks
+
+	void DisableSpecialAttack();
+
+	void EnableSpecialAttack();
+
+	FTimerHandle SpecialAttackHandle;
+
+	bool bDoOnce;
+
+	virtual void Tick(float DeltaTime) override;
 	
 };

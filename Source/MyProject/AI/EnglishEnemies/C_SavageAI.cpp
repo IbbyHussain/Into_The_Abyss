@@ -6,6 +6,10 @@
 #include "MyProject/GameObjects/C_StaticMeshActor.h"
 #include "DrawDebugHelpers.h"
 #include "MyProject/MyProject.h"
+#include "MyProject/AI/MeleeAI/C_MeleeAIController.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
+#include "MyProject/Components/C_HealthComponent.h"
+
 
 AC_SavageAI::AC_SavageAI()
 {
@@ -157,8 +161,6 @@ void AC_SavageAI::OnLandTimelineFinished()
 		{
 			AC_PlayerCharacter* PlayerCharacterPTR = Cast<AC_PlayerCharacter>(Hit.Actor);
 
-			UE_LOG(LogTemp, Error, TEXT("HIT Hit: %s"), *Hit.GetActor()->GetName());
-
 			if (Hit.GetActor() == PlayerCharacterPTR && bCanSpecialAttackDamagePlayer)
 			{
 				bCanSpecialAttackDamagePlayer = false;
@@ -169,6 +171,13 @@ void AC_SavageAI::OnLandTimelineFinished()
 				PlayerController->ClientPlayCameraShake(ShockWaveCameraShake);
 			}
 		}
+	}
+
+	// Special Attack cooldown
+	auto const AIController = Cast<AC_MeleeAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
+	if (AIControllerClass && AIController)
+	{
+		AIController->DisableSpecialAttack();
 	}
 
 	GetWorldTimerManager().SetTimer(ResetMovementHandle, this, &AC_SavageAI::ResetMovement, 1.5f, false);

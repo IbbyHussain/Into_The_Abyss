@@ -33,6 +33,6 @@ void UC_BTService_GetAIHealth::TickNode(UBehaviorTreeComponent& OwnerComp, uint8
     {
         CurrentBlackboard->SetValueAsFloat(Health.SelectedKeyName, BaseAI->HealthComp->Health);
 
-        UE_LOG(LogTemp, Error, TEXT("Health is: %f"), BaseAI->HealthComp->Health);
+       // UE_LOG(LogTemp, Error, TEXT("Health is: %f"), BaseAI->HealthComp->Health);
     }
 }
