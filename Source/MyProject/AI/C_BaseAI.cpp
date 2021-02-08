@@ -508,7 +508,7 @@ void AC_BaseAI::CheckForAIDeath()
 		{
 			// Tells ABP to play death animation
 			bHasDied = true;
-			GetWorldTimerManager().SetTimer(DeathHandle, this, &AC_BaseAI::Death, 3.2f, false);
+			GetWorldTimerManager().SetTimer(DeathHandle, this, &AC_BaseAI::Death, 3.0f, false);
 
 			TypeOfDeath = ETypeOfDeath::DEFAULTDEATH;
 		}
@@ -517,6 +517,9 @@ void AC_BaseAI::CheckForAIDeath()
 		else if (GetMesh()->IsSimulatingPhysics())
 		{
 			BoxComp->DestroyComponent();
+			GetMesh()->SetAnimationMode(EAnimationMode::AnimationCustomMode);
+			//bHasDied = false;
+			//bIsSimulatingPhysics = true;
 			GetWorldTimerManager().ClearTimer(DeathHandle);
 		}
 
@@ -541,6 +544,9 @@ void AC_BaseAI::Death()
 	if(bCanRagdoll)
 	{
 		GetMesh()->SetSimulatePhysics(true);
+		GetMesh()->SetAnimationMode(EAnimationMode::AnimationCustomMode);
+		//bHasDied = false;
+		//bIsSimulatingPhysics = true;
 		bInRagdoll = true;
 	}
 
