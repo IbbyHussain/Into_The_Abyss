@@ -314,6 +314,13 @@ void AC_BaseAI::EnableRagdoll()
 		GetMesh()->SetSimulatePhysics(true);
 		bIsSimulatingPhysics = true;
 		GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_None);
+
+		// STOP the AI Behaviour tree
+		auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
+		UBrainComponent* LocalComp = AIController->GetBrainComponent();
+		LocalComp->StopLogic(FString("Ragdoll"));
+
+		UE_LOG(LogTemp, Error, TEXT("STOP LOGIC"));
 	}
 }
 
@@ -337,6 +344,8 @@ void AC_BaseAI::DisableRagdoll()
 		bInRagdoll = false;
 		bStopRagdoll = true;
 		GetWorldTimerManager().SetTimer(RagdollCooldownHandle, this, &AC_BaseAI::RagdollCooldown, 6.0f, false);
+
+		GetWorldTimerManager().SetTimer(EnableMovementHandle, this, &AC_BaseAI::EnableMovement, 2.0f, false);
 
 		bCanTalkAI = true;
 		bShowEKeyHint = true;
@@ -423,12 +432,12 @@ void AC_BaseAI::UpdateStandingMontage()
 {
 	if(bIsFacingUpwards)
 	{
-		UE_LOG(LogTemp, Log, TEXT("Standing Up from Back"));
+		//UE_LOG(LogTemp, Log, TEXT("Standing Up from Back"));
 	}
 
 	else
 	{
-		UE_LOG(LogTemp, Log, TEXT("Standing Up from Stomach"));
+		//UE_LOG(LogTemp, Log, TEXT("Standing Up from Stomach"));
 	}
 
 	StandUpMontage = bIsFacingUpwards ? StandUpFromBackMontage : StandUpFromStomachMontage;
@@ -453,6 +462,13 @@ void AC_BaseAI::EnableMovement()
 {
 	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);
 	GetMesh()->GetAnimInstance()->Montage_Stop(0.25, StandUpMontage);
+
+	// RESTART the AI Behaviour tree
+	auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
+	UBrainComponent* LocalComp = AIController->GetBrainComponent();
+	LocalComp->RestartLogic();
+
+	UE_LOG(LogTemp, Error, TEXT("RESTART LOGIC"));
 }
 
 void AC_BaseAI::ApplyDamage2()

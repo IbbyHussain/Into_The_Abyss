@@ -340,6 +340,8 @@ private:
 
 	FTimerHandle DisableRagdollHandle;
 
+	FTimerHandle EnableMovementHandle;
+
 	bool CalculateFacingDirectionC();
 
 	void UpdateStandingOrientation();

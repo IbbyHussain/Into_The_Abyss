@@ -10,6 +10,7 @@
 #include "MyProject/AI/MeleeAI/C_MeleeAIBlackBoardKeys.h"
 #include "TimerManager.h"
 #include "MyProject/Components/C_HealthComponent.h"
+#include "MyProject/AI/EnglishEnemies/C_SavageAI.h"
 
 AC_MeleeAIController::AC_MeleeAIController(FObjectInitializer const& ObjectInitializer)
 {
@@ -40,6 +41,8 @@ void AC_MeleeAIController::BeginPlay()
 	// gets a reference to the class that this controller controls.
 	MeleeAI = Cast<AC_MeleeAI>(GetPawn());
 
+	SavageAI = Cast<AC_SavageAI>(MeleeAI);
+
 	// By default current target will be player character 
 	CurrentTarget = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
 
@@ -57,7 +60,8 @@ void AC_MeleeAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (MeleeAI->HealthComp->Health <= 0.3 && bDoOnce)
+	// Only savage AI can perform melee special attacks
+	if (SavageAI && SavageAI->HealthComp->Health <= 0.3 && bDoOnce)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Special Attack enabled INIT"));
 		GetBlackBoard()->SetValueAsBool(BB_MeleeAIKeys::CanUseSpecialAttack, true);
@@ -108,7 +112,7 @@ void AC_MeleeAIController::DisableSpecialAttack()
 
 void AC_MeleeAIController::EnableSpecialAttack()
 {
-	if(MeleeAI->HealthComp->Health <= 0.3f)
+	if(SavageAI && SavageAI->HealthComp->Health <= 0.3f)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Special Attack enabled"));
 		GetBlackBoard()->SetValueAsBool(BB_MeleeAIKeys::CanUseSpecialAttack, true);

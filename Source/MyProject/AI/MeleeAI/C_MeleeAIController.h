@@ -72,5 +72,7 @@ public:
 	bool bDoOnce;
 
 	virtual void Tick(float DeltaTime) override;
+
+	class AC_SavageAI* SavageAI;
 	
 };
