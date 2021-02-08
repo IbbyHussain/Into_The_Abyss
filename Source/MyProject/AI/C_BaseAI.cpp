@@ -315,6 +315,8 @@ void AC_BaseAI::EnableRagdoll()
 		bIsSimulatingPhysics = true;
 		GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_None);
 
+		GetCapsuleComponent()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
+
 		// STOP the AI Behaviour tree
 		auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
 		UBrainComponent* LocalComp = AIController->GetBrainComponent();
@@ -462,6 +464,8 @@ void AC_BaseAI::EnableMovement()
 {
 	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);
 	GetMesh()->GetAnimInstance()->Montage_Stop(0.25, StandUpMontage);
+
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Block);
 
 	// RESTART the AI Behaviour tree
 	auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
