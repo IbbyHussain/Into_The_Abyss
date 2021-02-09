@@ -216,6 +216,8 @@ void AC_BaseAI::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Othe
 
 			CheckForAIDeath();
 
+			PlayHitGrunt();
+
 			if (!bIsRagdollTimerActive)
 			{
 				StartRagdollTimer();
@@ -484,6 +486,11 @@ void AC_BaseAI::ApplyDamage2()
 	TypeOfDeath = ETypeOfDeath::ABILITY2DEATH;
 }
 
+void AC_BaseAI::PlayHitGrunt()
+{
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), HitGrunt, GetActorLocation());
+}
+
 void AC_BaseAI::CheckForAIDeath()
 {
 	if (HealthComp->Health <= 0.0f && !bHasDied)
@@ -502,6 +509,7 @@ void AC_BaseAI::CheckForAIDeath()
 		UBrainComponent* LocalComp =  AIController->GetBrainComponent();
 		LocalComp->StopLogic(FString("Death"));
 
+
 		//Stops the AI from removing physics ( Doesnt execute RemoveRagdoll() ) This also ensures no animations are played
 		GetWorldTimerManager().ClearAllTimersForObject(this);
 
@@ -511,6 +519,7 @@ void AC_BaseAI::CheckForAIDeath()
 			// Tells ABP to play death animation
 			bHasDied = true;
 			GetWorldTimerManager().SetTimer(DeathHandle, this, &AC_BaseAI::Death, 3.0f, false);
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), DeathSound, GetActorLocation());
 
 			TypeOfDeath = ETypeOfDeath::DEFAULTDEATH;
 		}
@@ -520,8 +529,6 @@ void AC_BaseAI::CheckForAIDeath()
 		{
 			BoxComp->DestroyComponent();
 			GetMesh()->SetAnimationMode(EAnimationMode::AnimationCustomMode);
-			//bHasDied = false;
-			//bIsSimulatingPhysics = true;
 			GetWorldTimerManager().ClearTimer(DeathHandle);
 		}
 

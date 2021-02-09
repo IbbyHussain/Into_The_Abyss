@@ -264,6 +264,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void UpdateCapsuleForAnimations();
 
+	void PlayHitGrunt();
+
 protected:
 	// Used in the blueprint of this class
 	UFUNCTION(BlueprintCallable)
@@ -416,6 +418,9 @@ private:
 	// Melee damage
 
 	void MeleeAttackDamage(USkeletalMeshComponent* SKMesh);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Death")
+	USoundBase* DeathSound;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Player Abilities|Ability1")
 	UParticleSystem* FireParticleEffect;

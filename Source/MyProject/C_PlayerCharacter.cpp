@@ -1872,7 +1872,7 @@ void AC_PlayerCharacter::MeleeAttackDamage(USkeletalMeshComponent* SKMesh, float
 		SS.AI->bCanBeAttacked = false;
 
 		UGameplayStatics::ApplyDamage(HitResult.GetActor(), Damage, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
-
+		SS.AI->PlayHitGrunt();
 		SS.AI->CheckForAIDeath();
 
 		// If true will aplly dmg over time
@@ -1914,6 +1914,7 @@ void AC_PlayerCharacter::Rag(USkeletalMeshComponent* SKMesh)
 			if(SS.AI == PeasantAI)
 			{
 				SS.AI->ApplyRagdoll();
+				SS.AI->PlayHitGrunt();
 			}
 
 			SS.AI->CheckForAIDeath();
@@ -2087,6 +2088,7 @@ void AC_PlayerCharacter::StaggerAI(USkeletalMeshComponent* SKMesh)
 		SS.AI->bCanBeAttacked = false;
 
 		UGameplayStatics::ApplyDamage(HitResult.GetActor(), 0.05f, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+		SS.AI->PlayHitGrunt();
 
 		if (SS.AI && HitResult.GetActor() == SS.AI)
 		{

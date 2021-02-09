@@ -65,21 +65,25 @@ AC_MeleeAI* AC_AIFightManager::GradeByLocation()
 {
 	for (auto i : AIArray)
 	{
-		// Get the and player AI forward vector
-		FVector AIForwardVector = i->GetActorForwardVector();
-		FVector PlayerForwardVector = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)->GetActorForwardVector();
+		if(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))
+		{
+			// Get the and player AI forward vector
+			FVector AIForwardVector = i->GetActorForwardVector();
+			FVector PlayerForwardVector = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)->GetActorForwardVector();
 
-		// Dot between those vectors so that we can evaluate if an AI is more infront of the player compared to another AI
-		float  AIDotProduct = AIForwardVector.DotProduct(AIForwardVector, PlayerForwardVector) * -1.0f;
+			// Dot between those vectors so that we can evaluate if an AI is more infront of the player compared to another AI
+			float  AIDotProduct = AIForwardVector.DotProduct(AIForwardVector, PlayerForwardVector) * -1.0f;
 
-		// Normilise value (makes it easier to work with)
-		float NormilisedValue = UKismetMathLibrary::NormalizeToRange(AIDotProduct, -1.0f, 1.0f) + 0.5f;
+			// Normilise value (makes it easier to work with)
+			float NormilisedValue = UKismetMathLibrary::NormalizeToRange(AIDotProduct, -1.0f, 1.0f) + 0.5f;
 
-		// Dereference pointer to get value in map
-		float Foundi = *(AIMap.Find(i));
+			// Dereference pointer to get value in map
+			float Foundi = *(AIMap.Find(i));
 
-		// Add both values multiplied to the map. This will be AI's grade
-		AIMap.Add(i, Foundi * NormilisedValue);
+			// Add both values multiplied to the map. This will be AI's grade
+			AIMap.Add(i, Foundi * NormilisedValue);
+		}
+		return nullptr;
 	}
 
 	return nullptr;
