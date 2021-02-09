@@ -730,6 +730,9 @@ void AC_BaseAI::BecomeBlind(UAnimMontage* MontageToPlay, float TimeUntilRecover)
 	UBrainComponent* LocalComp = AIController->GetBrainComponent();
 	LocalComp->PauseLogic(FString("Blind"));
 
+	// Clear focus so no longer rotates to face player
+	AIController->ClearFocus(EAIFocusPriority::Gameplay);
+
 	// Plays animation
 	PlayAnimMontage(MontageToPlay, 1.0f);
 
