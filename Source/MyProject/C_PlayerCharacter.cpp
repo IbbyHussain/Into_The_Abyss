@@ -1810,12 +1810,12 @@ void AC_PlayerCharacter::RemoveSS()
 
 void AC_PlayerCharacter::SetMeleeCamera()
 {
-	CameraComp->SetRelativeLocation(FVector(-10, 2.522787, 20.0));
+	CameraComp->SetRelativeLocation(FVector(-10, -6, 20)); // x = 2.522787
 }
 
 void AC_PlayerCharacter::ResetMeleeCamera()
 {
-	CameraComp->SetRelativeLocation(FVector(-0.05581, -9.500242, 16.054478));
+	CameraComp->SetRelativeLocation(FVector(-0.070761, -9.610645, 16.054478));
 }
 
 // Combo Attacks
