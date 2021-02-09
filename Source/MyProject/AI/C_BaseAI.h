@@ -91,6 +91,10 @@ public:
 
 	void Death();
 
+	FTimerHandle DespawnHandle;
+
+	void Despawn();
+
 	UPROPERTY(EditDefaultsOnly, Category = "Death")
 	UAnimMontage* DeathAnimation;
 

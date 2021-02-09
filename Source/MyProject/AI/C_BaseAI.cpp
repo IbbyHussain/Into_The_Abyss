@@ -528,7 +528,14 @@ void AC_BaseAI::CheckForAIDeath()
 		{
 			Shatter();
 		}
+
+		GetWorldTimerManager().SetTimer(DespawnHandle, this, &AC_BaseAI::Despawn, 10.0f, false);
 	}
+}
+
+void AC_BaseAI::Despawn()
+{
+	DestroyThis();
 }
 
 void AC_BaseAI::OnDeath()
@@ -545,8 +552,6 @@ void AC_BaseAI::Death()
 	{
 		GetMesh()->SetSimulatePhysics(true);
 		GetMesh()->SetAnimationMode(EAnimationMode::AnimationCustomMode);
-		//bHasDied = false;
-		//bIsSimulatingPhysics = true;
 		bInRagdoll = true;
 	}
 
@@ -644,7 +649,7 @@ void AC_BaseAI::BecomeUnFrozen()
 
 void AC_BaseAI::Shatter()
 {
-	UE_LOG(LogTemp, Log, TEXT("SHATTER"));
+	//UE_LOG(LogTemp, Log, TEXT("SHATTER"));
 
 	DestroyAIItems();
 
@@ -679,6 +684,8 @@ void AC_BaseAI::Shatter()
 void AC_BaseAI::DestroyThis()
 {
 	GetWorldTimerManager().ClearTimer(DestroyHandle);
+
+	DestroyAIItems();
 
 	Destroy();
 }
