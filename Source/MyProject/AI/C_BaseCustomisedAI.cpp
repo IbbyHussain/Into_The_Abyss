@@ -34,6 +34,8 @@ void AC_BaseCustomisedAI::BeginPlay()
 	{
 		CustomisedMaterials.Add(GetMesh()->GetMaterials()[i]);
 	}
+
+
 }
 
 // AI Customisation 
@@ -130,4 +132,56 @@ void AC_BaseCustomisedAI::ChangeAIColour()
 	GetMesh()->SetMaterial(1, ClothingColourMaterial.ClothingMaterialArray[a]);
 	GetMesh()->SetMaterial(2, ClothingColourMaterial.ClothingMaterialArray[b]);*/
 
+}
+
+void AC_BaseCustomisedAI::GetDefaultWeaponMaterials()
+{
+	AC_BaseSkeletalMeleeWeapon* AIWeapon = Cast<AC_BaseSkeletalMeleeWeapon>(Weapon);
+
+	if(AIWeapon)
+	{
+		for (int i = 0; i < AIWeapon->MeshComp->GetMaterials().Num(); i++) // Need to get the materials that have been assigned
+		{
+			DefaultWeaponMaterials.Add(AIWeapon->MeshComp->GetMaterials()[i]);
+		}
+	}
+}
+
+void AC_BaseCustomisedAI::BecomeFrozen()
+{
+	Super::BecomeFrozen();
+
+	WeaponBecomeFrozen();
+}
+
+void AC_BaseCustomisedAI::BecomeUnFrozen()
+{
+	Super::BecomeUnFrozen();
+
+	WeaponBecomeUnFrozen();
+}
+
+void AC_BaseCustomisedAI::WeaponBecomeFrozen()
+{
+	AC_BaseSkeletalMeleeWeapon* AIWeapon = Cast<AC_BaseSkeletalMeleeWeapon>(Weapon);
+
+	for (int i = 0; i < AIWeapon->MeshComp->GetMaterials().Num(); i++)
+	{
+		AIWeapon->MeshComp->SetMaterial(i, FrozenMaterial);
+	}
+}
+
+void AC_BaseCustomisedAI::WeaponBecomeUnFrozen()
+{
+	AC_BaseSkeletalMeleeWeapon* AIWeapon = Cast<AC_BaseSkeletalMeleeWeapon>(Weapon);
+
+	for (int i = 0; i < AIWeapon->MeshComp->GetMaterials().Num(); i++)
+	{
+		AIWeapon->MeshComp->SetMaterial(i, DefaultWeaponMaterials[i]);
+	}
+}
+
+void AC_BaseCustomisedAI::BackpackBecomeFrozen()
+{
+	
 }

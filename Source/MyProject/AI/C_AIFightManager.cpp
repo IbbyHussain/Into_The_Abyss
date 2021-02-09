@@ -158,10 +158,11 @@ void AC_AIFightManager::DestroyManager()
 
 	// As item index starts at -1 numofdeadAI must start at 1
 	// Stores the ID of the AI that has died then removes that AI from array after loop finishes.
+
 	int32 ItemIndex = -1;
 	for (int32 Index = 0; Index < AIArray.Num(); Index++)
 	{
-		if(AIArray[Index]->bHasDied)
+		if (AIArray[Index]->bHasDied)
 		{
 			NumOfDeadAI++;
 			ItemIndex = Index;
@@ -169,7 +170,7 @@ void AC_AIFightManager::DestroyManager()
 		}
 	}
 
-	if(AIArray.IsValidIndex(ItemIndex))
+	if (AIArray.IsValidIndex(ItemIndex))
 	{
 		AIArray.RemoveAt(ItemIndex);
 	}
@@ -177,10 +178,11 @@ void AC_AIFightManager::DestroyManager()
 	//UE_LOG(LogTemp, Error, TEXT("NUMOFDEADAI ==: %d"), NumOfDeadAI);
 
 	// If all AI are dead destroy this manager
-	if(MaxAIInArray == NumOfDeadAI)
+	if (MaxAIInArray == NumOfDeadAI)
 	{
 		//UE_LOG(LogTemp, Error, TEXT("ALL AI ARE DEAD"));
 
 		Destroy();
 	}
+	
 }

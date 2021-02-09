@@ -134,8 +134,24 @@ protected:
 	// The materials assigned to the mesh after customisation
 	TArray<UMaterialInterface*> CustomisedMaterials;
 
+	UFUNCTION(BlueprintCallable)
+	void GetDefaultWeaponMaterials();
+
+	virtual void BecomeFrozen() override;
+
+	virtual void BecomeUnFrozen() override;
+
 private:
 
 	UPROPERTY(EditAnywhere, Category = "Melee")
 	FBackpack Backpack;
+
+	void WeaponBecomeFrozen();
+
+	void WeaponBecomeUnFrozen();
+
+	TArray<UMaterialInterface*> DefaultWeaponMaterials;
+
+	void BackpackBecomeFrozen();
+
 };

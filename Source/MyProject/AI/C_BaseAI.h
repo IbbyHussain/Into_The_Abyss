@@ -173,9 +173,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void EnableMovement();
 
-	void BecomeFrozen();
+	// Virtual frozne functions so that if a Base_Customised AI becomes frozen their accessories can also become frozen
 
-	void BecomeUnFrozen();
+	virtual void BecomeFrozen();
+
+	virtual void BecomeUnFrozen();
 
 	// Used in abp
 	UPROPERTY(BlueprintReadOnly, Category = "Base AI Variables")
@@ -288,7 +290,12 @@ protected:
 	virtual void OnDeath();
 
 	// Materials, use for customised AI 
+
 	virtual void ResetMaterials();
+
+	//Material used when frozen
+	UPROPERTY(EditDefaultsOnly, Category = "Player Abilities|Ability 4|Materials")
+	UMaterialInterface* FrozenMaterial;
 
 private:
 
@@ -356,10 +363,6 @@ private:
 	FName SnapShotName;
 
 	//Materials 
-
-	//Material used when frozen
-	UPROPERTY(EditDefaultsOnly, Category = "Player Abilities|Ability 4|Materials")
-	UMaterialInterface* FrozenMaterial;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Player Abilities|Ability 4|Materials")
 	UMaterialInstance* Material0;
