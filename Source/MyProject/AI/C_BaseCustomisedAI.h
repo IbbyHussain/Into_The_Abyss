@@ -3,13 +3,17 @@
 #include "MyProject/AI/C_BaseAI.h"
 #include "C_BaseCustomisedAI.generated.h"
 
+
+class AC_SkeletalMeshActor;
+class AC_BaseSkeletalMeleeWeapon;
+
 // Melee Struct
 USTRUCT(BlueprintType)
 struct FMelee
 {
 	GENERATED_BODY()
 
-	class AC_BaseSkeletalMeleeWeapon* MeleeWeapon;
+	AC_BaseSkeletalMeleeWeapon* MeleeWeapon;
 
 	FName RHSocket;
 
@@ -39,7 +43,7 @@ struct FBackpack
 
 	FName BackSocket;
 
-	class AC_SkeletalMeshActor* SKMesh;
+	AC_SkeletalMeshActor* SKMesh;
 
 	TArray<AC_SkeletalMeshActor*> SKMeshArray;
 
@@ -55,8 +59,8 @@ struct FSkinColourMaterial
 {
 	GENERATED_BODY()
 
-		UPROPERTY(EditDefaultsOnly, Category = "Materials")
-		TArray<UMaterialInterface*> SkinMaterialInterfaceArray;
+	UPROPERTY(EditDefaultsOnly, Category = "Materials")
+	TArray<UMaterialInterface*> SkinMaterialInterfaceArray;
 
 	TArray<UMaterialInstanceDynamic*> SkinMaterialArray;
 
@@ -119,6 +123,8 @@ public:
 
 	virtual void ResetMaterials() override;
 
+	AActor* BackpackPTR;
+
 protected:
 	virtual void ChangeAIColour();
 
@@ -137,6 +143,9 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void GetDefaultWeaponMaterials();
 
+	UFUNCTION(BlueprintCallable)
+	void GetDefaultBackpackMaterials();
+
 	virtual void BecomeFrozen() override;
 
 	virtual void BecomeUnFrozen() override;
@@ -154,4 +163,7 @@ private:
 
 	void BackpackBecomeFrozen();
 
+	void BackpackBecomeUnFrozen();
+
+	TArray<UMaterialInterface*> DefaultBackpackMaterials;
 };

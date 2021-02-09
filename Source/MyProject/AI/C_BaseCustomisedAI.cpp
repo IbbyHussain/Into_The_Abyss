@@ -98,7 +98,7 @@ AActor* AC_BaseCustomisedAI::SpawnBackpack(TSubclassOf<AC_SkeletalMeshActor> Bac
 	// Only if a class is selected will one spawn allows nothing to spawn as well
 	if (BackpackClass)
 	{
-		AActor* BackpackPTR = SpawnItem(Backpack.BackSocket, Backpack.SKMesh, true, BackpackClass);
+		BackpackPTR = SpawnItem(Backpack.BackSocket, Backpack.SKMesh, true, BackpackClass);
 
 		return BackpackPTR;
 	}
@@ -147,11 +147,26 @@ void AC_BaseCustomisedAI::GetDefaultWeaponMaterials()
 	}
 }
 
+void AC_BaseCustomisedAI::GetDefaultBackpackMaterials()
+{
+	AC_SkeletalMeshActor* AIBackpack = Cast<AC_SkeletalMeshActor>(BackpackPTR);
+
+	if (AIBackpack)
+	{
+		for (int i = 0; i < AIBackpack->MeshComp->GetMaterials().Num(); i++) // Need to get the materials that have been assigned
+		{
+			DefaultBackpackMaterials.Add(AIBackpack->MeshComp->GetMaterials()[i]);
+		}
+	}
+}
+
 void AC_BaseCustomisedAI::BecomeFrozen()
 {
 	Super::BecomeFrozen();
 
 	WeaponBecomeFrozen();
+
+	BackpackBecomeFrozen();
 }
 
 void AC_BaseCustomisedAI::BecomeUnFrozen()
@@ -159,6 +174,8 @@ void AC_BaseCustomisedAI::BecomeUnFrozen()
 	Super::BecomeUnFrozen();
 
 	WeaponBecomeUnFrozen();
+
+	BackpackBecomeUnFrozen();
 }
 
 void AC_BaseCustomisedAI::WeaponBecomeFrozen()
@@ -183,5 +200,26 @@ void AC_BaseCustomisedAI::WeaponBecomeUnFrozen()
 
 void AC_BaseCustomisedAI::BackpackBecomeFrozen()
 {
-	
+	AC_SkeletalMeshActor* AIBackpack = Cast<AC_SkeletalMeshActor>(BackpackPTR);
+
+	if (AIBackpack)
+	{
+		for (int i = 0; i < AIBackpack->MeshComp->GetMaterials().Num(); i++) 
+		{
+			AIBackpack->MeshComp->SetMaterial(i, FrozenMaterial);
+		}
+	}
+}
+
+void AC_BaseCustomisedAI::BackpackBecomeUnFrozen()
+{
+	AC_SkeletalMeshActor* AIBackpack = Cast<AC_SkeletalMeshActor>(BackpackPTR);
+
+	if (AIBackpack)
+	{
+		for (int i = 0; i < AIBackpack->MeshComp->GetMaterials().Num(); i++) 
+		{
+			AIBackpack->MeshComp->SetMaterial(i, DefaultBackpackMaterials[i]);
+		}
+	}
 }
