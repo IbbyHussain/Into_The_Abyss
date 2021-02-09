@@ -490,6 +490,8 @@ void AC_BaseAI::CheckForAIDeath()
 	{
 		StopDamage();
 
+		GetCapsuleComponent()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECR_Overlap);
+
 		OnDeath();
 
 		bCanTalkAI = false;
@@ -529,15 +531,11 @@ void AC_BaseAI::CheckForAIDeath()
 			Shatter();
 		}
 
-		GetWorldTimerManager().SetTimer(DespawnHandle, this, &AC_BaseAI::Despawn, 10.0f, false);
+		GetWorldTimerManager().SetTimer(DespawnHandle, this, &AC_BaseAI::DestroyThis, 15.0f, false);
 	}
 }
 
-void AC_BaseAI::Despawn()
-{
-	DestroyThis();
-}
-
+// Used to destroy fight manager for melee AI
 void AC_BaseAI::OnDeath()
 {
 	UE_LOG(LogTemp, Error, TEXT("AI Died, ON DEATH"));
