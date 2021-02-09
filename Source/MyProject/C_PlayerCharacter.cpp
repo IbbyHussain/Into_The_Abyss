@@ -1810,7 +1810,7 @@ void AC_PlayerCharacter::RemoveSS()
 
 void AC_PlayerCharacter::SetMeleeCamera()
 {
-	CameraComp->SetRelativeLocation(FVector(-10, -6, 20)); // x = 2.522787
+	CameraComp->SetRelativeLocation(FVector(-10, -15, 20)); // x = 2.522787
 }
 
 void AC_PlayerCharacter::ResetMeleeCamera()
