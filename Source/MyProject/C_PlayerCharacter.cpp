@@ -1414,7 +1414,7 @@ TArray<FHitResult> AC_PlayerCharacter::Ability1Damage()
 	//Fires line trace from camera 
 	FVector CameraLocation = CameraComp->GetComponentLocation();
 
-	FVector EndLocation = CameraLocation + (CameraComp->GetComponentRotation().Vector() * 2000.0f);
+	FVector EndLocation = CameraLocation + (CameraComp->GetComponentRotation().Vector() * 500.0f);
 
 	FCollisionQueryParams CollisionParams;
 	CollisionParams.AddIgnoredActor(this);
