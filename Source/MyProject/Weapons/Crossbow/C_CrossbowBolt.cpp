@@ -128,10 +128,8 @@ void AC_Crossbowbolt::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor
 
 				StopBolt();
 
-				// The amount of damage is determined in player class where the bolt is fired.
 				UGameplayStatics::ApplyDamage(AI, BoltDamage, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
 					
-
 				AI->CheckForAIDeath();
 
 				AttachToComponent(AI->GetMesh(), FAttachmentTransformRules::KeepWorldTransform, SweepResult.BoneName);

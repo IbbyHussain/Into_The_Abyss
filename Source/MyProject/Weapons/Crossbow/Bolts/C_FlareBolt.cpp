@@ -113,6 +113,9 @@ void AC_FlareBolt::Fire()
 void AC_FlareBolt::DestroyComponents()
 {
 	// Removes the particle effect, the AfterIndicator is destroyed in its BP
-	BoltHitParticleComp->DestroyComponent();
+	if(BoltHitParticleComp)
+	{
+		BoltHitParticleComp->DestroyComponent();
+	}
 	Destroy();
 }

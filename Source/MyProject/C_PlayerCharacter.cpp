@@ -2232,12 +2232,6 @@ void AC_PlayerCharacter::FireCrossbow()
 					{
 						Crossbow.CrossbowObject->Crossbowbolt->BoltDamage *= 2.0f;
 					}
-
-					// if hidden do extra dmg
-					if(!bIsHidden)
-					{
-						Crossbow.CrossbowObject->Crossbowbolt->BoltDamage *= 2.0f;
-					}
 				}
 			}
 
@@ -2344,62 +2338,14 @@ void AC_PlayerCharacter::AddCircleBoltIndicator()
 			FlareBoltIndicator->SetActorHiddenInGame(true);
 		}
 
-		//FlareBoltIndicatorCheck(); // Access violation executing location
-		if (IsValid(FlareBoltIndicator) && !(FlareBoltIndicator->IsHidden()) && FlareBoltIndicator->MeshComp)
-		{
-			// Left Trace
-			FVector StartLocation = FlareBoltIndicator->MeshComp->GetSocketLocation("LeftSocket");
-			FRotator Rot = StartLocation.Rotation();
-			FVector EndLocation = StartLocation + ((UKismetMathLibrary::GetUpVector(Rot) * -1.0f) * 15.0f);
-
-			// Right Trace
-			FVector RightStartLocation = FlareBoltIndicator->MeshComp->GetSocketLocation("RightSocket");
-			FRotator RightRot = RightStartLocation.Rotation();
-			FVector RightEndLocation = RightStartLocation + ((UKismetMathLibrary::GetUpVector(RightRot) * -1.0f) * 15.0f);
-
-			// Up Trace
-			FVector UpStartLocation = FlareBoltIndicator->MeshComp->GetSocketLocation("UpSocket");
-			FRotator UpRot = UpStartLocation.Rotation();
-			FVector UpEndLocation = UpStartLocation + ((UKismetMathLibrary::GetUpVector(UpRot) * -1.0f) * 15.0f);
-
-			// Down Trace
-			FVector DownStartLocation = FlareBoltIndicator->MeshComp->GetSocketLocation("DownSocket");
-			FRotator DownRot = DownStartLocation.Rotation();
-			FVector DownEndLocation = DownStartLocation + ((UKismetMathLibrary::GetUpVector(DownRot) * -1.0f) * 15.0f);
-
-			FHitResult Hit;
-			FCollisionQueryParams CollisionParams;
-			CollisionParams.AddIgnoredActor(this);
-
-			bool bb1 = GetWorld()->LineTraceSingleByChannel(Hit, StartLocation, EndLocation, COLLISION_CROSSBOWBOLTDETECTION, CollisionParams);
-			bool bb2 = GetWorld()->LineTraceSingleByChannel(Hit, RightStartLocation, RightEndLocation, COLLISION_CROSSBOWBOLTDETECTION, CollisionParams);
-			bool bb3 = GetWorld()->LineTraceSingleByChannel(Hit, UpStartLocation, UpEndLocation, COLLISION_CROSSBOWBOLTDETECTION, CollisionParams);
-			bool bb4 = GetWorld()->LineTraceSingleByChannel(Hit, DownStartLocation, DownEndLocation, COLLISION_CROSSBOWBOLTDETECTION, CollisionParams);
-
-			DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, false, 1.0f);
-			DrawDebugLine(GetWorld(), RightStartLocation, RightEndLocation, FColor::Green, false, 1.0f);
-			DrawDebugLine(GetWorld(), UpStartLocation, UpEndLocation, FColor::Blue, false, 1.0f);
-			DrawDebugLine(GetWorld(), DownStartLocation, DownEndLocation, FColor::Yellow, false, 1.0f);
-
-
-			if ((bb1 && bb2 && bb3) || (bb1 && bb2 && bb4) || (bb1 && bb3 && bb4) || (bb2 && bb3 && bb4))
-			{
-				FlareBoltIndicator->SetActorHiddenInGame(false);
-			}
-
-			else
-			{
-				FlareBoltIndicator->SetActorHiddenInGame(true);
-			}
-
-		}
+		FlareBoltIndicatorCheck(); // Access violation executing location
 	}
 }
 
 void AC_PlayerCharacter::FlareBoltIndicatorCheck()
 {
 	// Allows flare bolt indicator to tunr invisible if it is above ground.
-	if(IsValid(FlareBoltIndicator) && !(FlareBoltIndicator->IsHidden()) && FlareBoltIndicator->MeshComp)
+	if(IsValid(FlareBoltIndicator) && FlareBoltIndicator->MeshComp && Crossbow.CrossbowObject->BoltsArray[3]->GetDefaultObject<AC_Crossbowbolt>()->NumberOfBolts > 0)
 	{
 		// Left Trace
 		FVector StartLocation = FlareBoltIndicator->MeshComp->GetSocketLocation("LeftSocket");
