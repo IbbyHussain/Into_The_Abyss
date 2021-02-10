@@ -488,7 +488,10 @@ void AC_BaseAI::ApplyDamage2()
 
 void AC_BaseAI::PlayHitGrunt()
 {
-	UGameplayStatics::PlaySoundAtLocation(GetWorld(), HitGrunt, GetActorLocation());
+	if(!bHasDied)
+	{
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), HitGrunt, GetActorLocation());
+	}
 }
 
 void AC_BaseAI::CheckForAIDeath()
@@ -868,8 +871,11 @@ void AC_BaseAI::RangedStateCollision()
 
 void AC_BaseAI::PlayBoltHitMontage()
 {
-	PlayAnimMontage(BoltHitMontage, 1.0f);
-	UGameplayStatics::PlaySoundAtLocation(GetWorld(), HitGrunt, GetActorLocation());
+	if(!bHasDied)
+	{
+		PlayAnimMontage(BoltHitMontage, 1.0f);
+		PlayHitGrunt();
+	}
 }
 
 void AC_BaseAI::UpdateCapsuleForAnimations()
