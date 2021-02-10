@@ -70,7 +70,7 @@ void AC_MeleeAI::MeleeAIDamage(USkeletalMeshComponent* SKMesh, float Damage)
 		// Convert the collision type to standard collision channel
 		ETraceTypeQuery Trace6 = UEngineTypes::ConvertToTraceType(ECollisionChannel::COLLISION_AIMELEEDETECTION);
 
-		bool bHits = UKismetSystemLibrary::SphereTraceSingle(SKMesh, StartLocation, EndLocation, 15.0f, Trace6, false, ActorsIgnored, EDrawDebugTrace::None, HitResult, true, FLinearColor::Red, FLinearColor::Green);
+		bool bHits = UKismetSystemLibrary::SphereTraceSingle(SKMesh, StartLocation, EndLocation, 25.0f, Trace6, false, ActorsIgnored, EDrawDebugTrace::None, HitResult, true, FLinearColor::Red, FLinearColor::Green);
 
 		AC_PlayerCharacter* PlayerCharacterPTR = Cast<AC_PlayerCharacter>(HitResult.GetActor());
 
