@@ -496,16 +496,18 @@ void AC_BaseAI::PlayHitGrunt()
 
 void AC_BaseAI::ShouldFocusOnPlayer()
 {
+	// Get distance from AI to Player
 	FVector AILocation = GetActorLocation();
 	FVector PlayerLocation = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)->GetActorLocation();
 	FVector Distance = AILocation - PlayerLocation;
 	float Magnitude = Distance.Size();
 
+	// if distance is less than 1000, the AI will turn to face the player
 	if(Magnitude <= 1000.0f)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Distance was less than 200 and set new AI focus!"));
 		auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
-		AIController->SetFocus(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0), EAIFocusPriority::Gameplay);
+		//AIController->SetFocus(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0), EAIFocusPriority::Gameplay);
 	}
 
 }

@@ -2232,6 +2232,12 @@ void AC_PlayerCharacter::FireCrossbow()
 					{
 						Crossbow.CrossbowObject->Crossbowbolt->BoltDamage *= 2.0f;
 					}
+
+					// if hidden do extra dmg
+					if(!bIsHidden)
+					{
+						Crossbow.CrossbowObject->Crossbowbolt->BoltDamage *= 2.0f;
+					}
 				}
 			}
 

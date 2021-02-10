@@ -622,6 +622,9 @@ public:
 	USoundBase* PlayerHitSound;
 	
 
+	// Used to apply stealth Multiplier when in crossbow state
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadWrite, Category = "Crossbow")
+	bool bIsHidden;
 
 private:
 
