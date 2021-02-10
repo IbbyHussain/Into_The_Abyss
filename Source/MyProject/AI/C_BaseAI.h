@@ -266,6 +266,9 @@ public:
 
 	void PlayHitGrunt();
 
+	// Used when the player hits the AI, and the AI is not currently focused on player
+	void ShouldFocusOnPlayer();
+
 protected:
 	// Used in the blueprint of this class
 	UFUNCTION(BlueprintCallable)

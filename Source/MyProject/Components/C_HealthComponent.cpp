@@ -32,6 +32,14 @@ void UC_HealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage,
 	UE_LOG(LogTemp, Log, TEXT("Health is: %s for %s"), *FString::SanitizeFloat(Health), *GetOwner()->GetName());
 
 	OnHealthChanged.Broadcast(this, Health, Damage, DamageType, InstigatedBy, DamageCauser);
+
+	AActor* MyOwner = GetOwner();
+	AC_BaseAI* BaseAI = Cast<AC_BaseAI>(MyOwner);
+	if(BaseAI)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("BASE AI WAS OWNER"));
+		BaseAI->ShouldFocusOnPlayer();
+	}
 }
 
 

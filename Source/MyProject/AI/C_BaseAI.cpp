@@ -494,6 +494,22 @@ void AC_BaseAI::PlayHitGrunt()
 	}
 }
 
+void AC_BaseAI::ShouldFocusOnPlayer()
+{
+	FVector AILocation = GetActorLocation();
+	FVector PlayerLocation = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)->GetActorLocation();
+	FVector Distance = AILocation - PlayerLocation;
+	float Magnitude = Distance.Size();
+
+	if(Magnitude <= 1000.0f)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Distance was less than 200 and set new AI focus!"));
+		auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
+		AIController->SetFocus(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0), EAIFocusPriority::Gameplay);
+	}
+
+}
+
 void AC_BaseAI::CheckForAIDeath()
 {
 	if (HealthComp->Health <= 0.0f && !bHasDied)
