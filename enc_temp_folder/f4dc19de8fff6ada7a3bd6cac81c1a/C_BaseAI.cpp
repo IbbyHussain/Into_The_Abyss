@@ -507,7 +507,7 @@ void AC_BaseAI::ShouldFocusOnPlayer()
 	{
 		UE_LOG(LogTemp, Error, TEXT("Distance was less than 200 and set new AI focus!"));
 		auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
-		AIController->SetFocus(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0), EAIFocusPriority::Gameplay);
+		//AIController->SetFocus(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0), EAIFocusPriority::Gameplay);
 	}
 
 }

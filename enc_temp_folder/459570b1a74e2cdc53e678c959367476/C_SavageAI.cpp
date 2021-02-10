@@ -164,7 +164,7 @@ void AC_SavageAI::OnLandTimelineFinished()
 			if (Hit.GetActor() == PlayerCharacterPTR && bCanSpecialAttackDamagePlayer)
 			{
 				bCanSpecialAttackDamagePlayer = false;
-				PlayerCharacterPTR->ApplyDamageToPlayer(17.5f);
+				PlayerCharacterPTR->ApplyDamageToPlayer(35.0f);
 
 				// Play Camera shake if caught in damage field
 				APlayerController* PlayerController = Cast<APlayerController>(UGameplayStatics::GetPlayerController(this, 0));
