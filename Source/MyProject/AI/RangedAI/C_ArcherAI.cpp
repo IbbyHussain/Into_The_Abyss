@@ -5,5 +5,5 @@
 
 AC_ArcherAI::AC_ArcherAI()
 {
-
+	TypeOfAI = ETypeOfAI::ARCHER;
 }
