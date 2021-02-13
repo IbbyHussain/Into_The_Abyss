@@ -68,7 +68,7 @@ EBTNodeResult::Type UC_BTTaskGetWanderLocation::ExecuteTask(UBehaviorTreeCompone
 	{
 		AIController->GetBlackBoard()->SetValueAsVector(TargetLocation.SelectedKeyName, Location.Location);
 
-		UE_LOG(LogTemp, Log, TEXT("Distance was: %f"), DistanceToPlayer);
+		//UE_LOG(LogTemp, Log, TEXT("Distance was: %f"), DistanceToPlayer);
 
 		// DRAW A DEBUG SPHERE AT LOCATION IF GREATER THAN 50 UNITS AWAY
 		DrawDebugSphere(GetWorld(), Location.Location, 35.0f, 25, FColor::Green, false, 4.0f);
