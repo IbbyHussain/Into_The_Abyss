@@ -47,24 +47,11 @@ EBTNodeResult::Type UC_BTTaskGetWanderLocation::ExecuteTask(UBehaviorTreeCompone
 	FVector dist = OriginalLocation - Location.Location;
 	float Distance = dist.Size();
 
-	/*if(Distance > (WanderRadius - 50.0f))
-	{
-		AIController->GetBlackBoard()->SetValueAsVector(TargetLocation.SelectedKeyName, Location.Location);
-
-		// DRAW A DEBUG SPHERE AT LOCATION IF GREATER THAN 50 UNITS AWAY
-		DrawDebugSphere(GetWorld(), Location.Location, 35.0f, 25, FColor::Green, false, 4.0f);
-
-		// Finish Task with success
-		FinishLatentTask(Owner, EBTNodeResult::Succeeded);
-		return EBTNodeResult::Succeeded;
-	}*/
-
-	
-	FVector PlayerLocation = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)->GetActorLocation();
+	/*FVector PlayerLocation = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)->GetActorLocation();
 	FVector VectorDistanceToPlayer = PlayerLocation - Location.Location;
-	float DistanceToPlayer = VectorDistanceToPlayer.Size();
+	float DistanceToPlayer = VectorDistanceToPlayer.Size();*/
 
-	if (DistanceToPlayer > PlayerRadius && Distance > (WanderRadius - 50.0f))
+	if (Distance > (WanderRadius - 50.0f))
 	{
 		AIController->GetBlackBoard()->SetValueAsVector(TargetLocation.SelectedKeyName, Location.Location);
 
@@ -83,8 +70,11 @@ EBTNodeResult::Type UC_BTTaskGetWanderLocation::ExecuteTask(UBehaviorTreeCompone
 	{
 		// DRAW A DEBUG SPHERE AT LOCATION IF NOT GREATER THAN 50 UNITS AWAY
 		DrawDebugSphere(GetWorld(), Location.Location, 35.0f, 25, FColor::Red, false, 4.0f);
-	}
 
+		// Finish Task with FAIL
+		FinishLatentTask(Owner, EBTNodeResult::Failed);
+		return EBTNodeResult::Failed;
+	}
 
 	// Finish Task with FAIL
 	FinishLatentTask(Owner, EBTNodeResult::Failed);
