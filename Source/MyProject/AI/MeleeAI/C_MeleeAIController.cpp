@@ -15,14 +15,14 @@
 AC_MeleeAIController::AC_MeleeAIController(FObjectInitializer const& ObjectInitializer)
 {
 	// Used to assign the Behaviour tree in the editor via C++
-	static ConstructorHelpers::FObjectFinder<UBehaviorTree> obj(TEXT("BehaviorTree'/Game/AI/Base_MeleeAI/BT_MeleeAI.BT_MeleeAI'"));
-
-	PrimaryActorTick.bCanEverTick = true;
+	/*static ConstructorHelpers::FObjectFinder<UBehaviorTree> obj(TEXT("BehaviorTree'/Game/AI/Base_MeleeAI/BT_MeleeAI.BT_MeleeAI'"));
 
 	if (obj.Succeeded())
 	{
 		BehaviorTree = obj.Object;
-	}
+	}*/
+
+	PrimaryActorTick.bCanEverTick = true;
 
 	// Creates behaviour tree and black board component
 	BehaviorTreeComponent = ObjectInitializer.CreateDefaultSubobject<UBehaviorTreeComponent>(this, TEXT("MeleeBehaviorTreeComp"));
