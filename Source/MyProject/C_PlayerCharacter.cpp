@@ -293,6 +293,10 @@ void AC_PlayerCharacter::BeginPlay()
 		MaterialFadeTimeline->SetLooping(false);
 	}
 
+	// draw debug cirlce around player
+	FTransform PlayerTransform = GetActorTransform();
+	DrawDebugCircle(GetWorld(), PlayerTransform.ToMatrixWithScale(), 300.0f, 25, FColor::Purple, false, 20.0f, 1, 2.0f, false);
+	//DrawDebugCircle(GetWorld(), PlayerTransform, 300.0f, 25, FColor::Purple, true, 10.0f);
 }
 
 // Tick
