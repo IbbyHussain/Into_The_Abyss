@@ -16,6 +16,8 @@ UC_BTTaskGetWanderLocation::UC_BTTaskGetWanderLocation(FObjectInitializer const&
 {
 	// Set the nodes name
 	NodeName = TEXT("Find Wander Location");
+
+	WanderRadius = 350.0f;
 }
 
 EBTNodeResult::Type UC_BTTaskGetWanderLocation::ExecuteTask(UBehaviorTreeComponent& Owner, uint8* NodeMemory)
@@ -34,7 +36,7 @@ EBTNodeResult::Type UC_BTTaskGetWanderLocation::ExecuteTask(UBehaviorTreeCompone
 	UNavigationSystemV1* const NavigationSystem = UNavigationSystemV1::GetCurrent(GetWorld());
 
 	// Gets a random point in a navigable radius
-	NavigationSystem->GetRandomPointInNavigableRadius(AIController->GetBlackBoard()->GetValueAsVector(OriginLocation.SelectedKeyName), 350.0f, Location, nullptr);
+	NavigationSystem->GetRandomPointInNavigableRadius(AIController->GetBlackBoard()->GetValueAsVector(OriginLocation.SelectedKeyName), WanderRadius, Location, nullptr);
 
 	// Get the distance from the original location to target location
 	FVector dist = OriginalLocation - Location.Location;
@@ -42,7 +44,7 @@ EBTNodeResult::Type UC_BTTaskGetWanderLocation::ExecuteTask(UBehaviorTreeCompone
 
 	//UE_LOG(LogTemp, Log, TEXT("Distance was: %f"), Distance);
 
-	if(Distance > 300.0f)
+	if(Distance > (WanderRadius - 50.0f))
 	{
 		AIController->GetBlackBoard()->SetValueAsVector(TargetLocation.SelectedKeyName, Location.Location);
 

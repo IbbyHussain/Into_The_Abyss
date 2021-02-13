@@ -182,9 +182,12 @@ void AC_BaseCustomisedAI::WeaponBecomeFrozen()
 {
 	AC_BaseSkeletalMeleeWeapon* AIWeapon = Cast<AC_BaseSkeletalMeleeWeapon>(Weapon);
 
-	for (int i = 0; i < AIWeapon->MeshComp->GetMaterials().Num(); i++)
+	if (AIWeapon)
 	{
-		AIWeapon->MeshComp->SetMaterial(i, FrozenMaterial);
+		for (int i = 0; i < AIWeapon->MeshComp->GetMaterials().Num(); i++)
+		{
+			AIWeapon->MeshComp->SetMaterial(i, FrozenMaterial);
+		}
 	}
 }
 
@@ -192,9 +195,12 @@ void AC_BaseCustomisedAI::WeaponBecomeUnFrozen()
 {
 	AC_BaseSkeletalMeleeWeapon* AIWeapon = Cast<AC_BaseSkeletalMeleeWeapon>(Weapon);
 
-	for (int i = 0; i < AIWeapon->MeshComp->GetMaterials().Num(); i++)
+	if(AIWeapon)
 	{
-		AIWeapon->MeshComp->SetMaterial(i, DefaultWeaponMaterials[i]);
+		for (int i = 0; i < AIWeapon->MeshComp->GetMaterials().Num(); i++)
+		{
+			AIWeapon->MeshComp->SetMaterial(i, DefaultWeaponMaterials[i]);
+		}
 	}
 }
 
