@@ -76,6 +76,21 @@ void AC_Crossbow::SpawnBolt(FVector EndLocation)
 	Crossbowbolt = GetWorld()->SpawnActor<AC_Crossbowbolt>(CrossbowboltClass, CrossbowSpawnLocation, CrossbowSpawnRotation, SpawnParams);
 }
 
+void AC_Crossbow::SpawnBoltAI(FVector EndLoc)
+{
+	FActorSpawnParameters SpawnParams;
+
+	// Set the bolt's transform which is at the socket location
+	FTransform CrossbowTransform = MeshComp->GetSocketTransform(CrossbowboltSocket, ERelativeTransformSpace::RTS_World);
+	FVector CrossbowSpawnLocation = CrossbowTransform.GetLocation();
+
+	// This allows the bolt to fire towards the centre of teh screen as it will use the hit reult as final location
+	FRotator CrossbowSpawnRotation = UKismetMathLibrary::FindLookAtRotation(CrossbowSpawnLocation, EndLoc);
+
+	// Spawn the bolt
+	Crossbowbolt = GetWorld()->SpawnActor<AC_Crossbowbolt>(AICrossbowboltClass, CrossbowSpawnLocation, CrossbowSpawnRotation, SpawnParams);
+}
+
 void AC_Crossbow::SpawnDummybolt(FName SocketName, TSubclassOf<AC_DummyBolt> DummyClass)
 {
 	FActorSpawnParameters SpawnParams;

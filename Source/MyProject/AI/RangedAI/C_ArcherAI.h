@@ -17,6 +17,16 @@ private:
 
 	virtual void BasicAttack() override;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Basic Attacks")
+	virtual void BeginPlay() override;
+
+	class AC_Crossbow* Crossbow;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Archer Crossbow")
 	UAnimMontage* AttackMontage;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Archer Crossbow")
+	TSubclassOf<class AC_DummyBolt> SteelDummyBolt;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Archer Crossbow")
+	UAnimationAsset* CrossbowReloadMontage;
 };

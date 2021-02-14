@@ -30,8 +30,13 @@ public:
 
 	void SpawnBolt(FVector EndLocation);
 
+	void SpawnBoltAI(FVector EndLoc);
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Crossbow")
 	TSubclassOf<AC_Crossbowbolt> CrossbowboltClass;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "AI Crossbow")
+	TSubclassOf<AC_Crossbowbolt> AICrossbowboltClass;
 
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite,  Category = "Crossbow")
 	AC_Crossbowbolt* Crossbowbolt;

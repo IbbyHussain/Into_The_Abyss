@@ -93,6 +93,16 @@ AActor* AC_BaseCustomisedAI::SpawnTwoHandedWeapon(TSubclassOf<AActor> WeaponClas
 	return Weapon;
 }
 
+AActor* AC_BaseCustomisedAI::SpawnCrossbow(TSubclassOf<AActor> WeaponClass)
+{
+	//Spawns a random weapon (random weapon logic is in bp)
+	Weapon = SpawnItem(Melee.CrossbowSocket, Melee.MeleeWeapon, false, WeaponClass);
+
+	Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, Melee.CrossbowSocket);
+
+	return Weapon;
+}
+
 AActor* AC_BaseCustomisedAI::SpawnBackpack(TSubclassOf<AC_SkeletalMeshActor> BackpackClass)
 {
 	// Only if a class is selected will one spawn allows nothing to spawn as well

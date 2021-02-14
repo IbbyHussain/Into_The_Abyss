@@ -20,6 +20,8 @@
 
 AC_Crossbowbolt::AC_Crossbowbolt()
 {
+	bIsPlayerBolt = true;
+
 	// Use a sphere as a simple collision representation.
 	CollisionComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("SphereComponent"));
 	CollisionComponent->bReturnMaterialOnMove = true;
@@ -112,42 +114,77 @@ void AC_Crossbowbolt::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor
 	// Ensures will only collide once
 	if(bHasOverlapped == false)
 	{
-		AC_PlayerCharacter* Character = Cast<AC_PlayerCharacter>(OtherActor);
-
-		if(OtherActor != Character && OtherActor != this && OtherActor)
+		// If the bolt is fired from a player
+		if(bIsPlayerBolt)
 		{
-			SpawnHitEffect();
+			AC_PlayerCharacter* Character = Cast<AC_PlayerCharacter>(OtherActor);
+
+			if (OtherActor != Character && OtherActor != this && OtherActor)
+			{
+				SpawnHitEffect();
+
+				AC_BaseAI* AI = Cast<AC_BaseAI>(OtherActor);
+
+				if (OtherActor == AI && OtherComp == AI->GetMesh() && OtherComp != AI->BoxComp)
+				{
+					UE_LOG(LogTemp, Error, TEXT("BOLT HIT AI"));
+
+					bHasOverlapped = true;
+
+					StopBolt();
+
+					UGameplayStatics::ApplyDamage(AI, BoltDamage, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+
+					AI->CheckForAIDeath();
+
+					AttachToComponent(AI->GetMesh(), FAttachmentTransformRules::KeepWorldTransform, SweepResult.BoneName);
+
+					//UE_LOG(LogTemp, Log, TEXT("Bone name is: %s"), *SweepResult.BoneName.ToString());
+
+					if (bShouldStaggerAI)
+					{
+						AI->PlayBoltHitMontage();
+					}
+				}
+
+				// If we dont hit this and player and an AI then the bolt will stick to a wall 
+				else if (OtherActor != this && OtherActor != Character && AI == nullptr)
+				{
+					StopBolt();
+
+					//UE_LOG(LogTemp, Log, TEXT("OBJECT"));
+				}
+			}
+		}
+
+		// If the bolt is fired from an AI
+		else
+		{
+			AC_PlayerCharacter* Character = Cast<AC_PlayerCharacter>(OtherActor);
 
 			AC_BaseAI* AI = Cast<AC_BaseAI>(OtherActor);
 
-			if (OtherActor == AI && OtherComp == AI->GetMesh() && OtherComp != AI->BoxComp)
+			if (OtherActor != AI && OtherActor != this && OtherActor)
 			{
-				UE_LOG(LogTemp, Log, TEXT("AI"));
+				SpawnHitEffect();
 
-				bHasOverlapped = true;
-
-				StopBolt();
-
-				UGameplayStatics::ApplyDamage(AI, BoltDamage, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
-					
-				AI->CheckForAIDeath();
-
-				AttachToComponent(AI->GetMesh(), FAttachmentTransformRules::KeepWorldTransform, SweepResult.BoneName);
-
-				//UE_LOG(LogTemp, Log, TEXT("Bone name is: %s"), *SweepResult.BoneName.ToString());
-
-				if(bShouldStaggerAI)
+				if (OtherActor == Character && OtherComp == Character->GetMesh())
 				{
-					AI->PlayBoltHitMontage();
+					UE_LOG(LogTemp, Error, TEXT("BOLT HIT Player"));
+
+					bHasOverlapped = true;
+
+					//StopBolt();
+
 				}
-			}
 
-			// If we dont hit this and player and an AI then the bolt will stick to a wall 
-			else if (OtherActor != this && OtherActor != Character && AI == nullptr)
-			{
-				StopBolt();
+				// If we dont hit this and player and an AI then the bolt will stick to a wall 
+				else if (OtherActor != this && OtherActor != Character && AI == nullptr)
+				{
+					StopBolt();
 
-				//UE_LOG(LogTemp, Log, TEXT("OBJECT"));
+					//UE_LOG(LogTemp, Log, TEXT("OBJECT"));
+				}
 			}
 		}
 	}

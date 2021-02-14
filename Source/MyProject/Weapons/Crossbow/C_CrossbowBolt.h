@@ -17,6 +17,9 @@ public:
 
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Projectile")
+	bool bIsPlayerBolt;
+
 	// The amount of damage this actor will deal 
 	float BoltDamage;
 

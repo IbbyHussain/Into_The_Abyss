@@ -23,6 +23,8 @@ struct FMelee
 
 	FName TwoHandedSwordSocket;
 
+	FName CrossbowSocket;
+
 	//Constructor
 	FMelee()
 	{
@@ -33,6 +35,8 @@ struct FMelee
 		TwoHandedSocket = ("TwoHandedSocket");
 
 		TwoHandedSwordSocket = ("TwoHandedSocketSword");
+
+		CrossbowSocket = ("CrossbowSocket");
 	}
 };
 
@@ -113,6 +117,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	AActor* SpawnTwoHandedWeapon(TSubclassOf<AActor> WeaponClass, TSubclassOf<AActor> SwordClass);
+
+	UFUNCTION(BlueprintCallable)
+	AActor* SpawnCrossbow(TSubclassOf<AActor> WeaponClass);
 
 	UFUNCTION(BlueprintCallable)
 	AActor* SpawnBackpack(TSubclassOf<AC_SkeletalMeshActor> BackpackClass);
