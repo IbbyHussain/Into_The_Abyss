@@ -598,6 +598,7 @@ public:
 	// Damage
 
 	// Used in AI classes
+	UFUNCTION(BlueprintCallable)
 	void ApplyDamageToPlayer(float DamageAmount);
 
 	void TakeDamage();

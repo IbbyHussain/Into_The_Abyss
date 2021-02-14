@@ -168,13 +168,15 @@ void AC_Crossbowbolt::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor
 			{
 				SpawnHitEffect();
 
-				if (OtherActor == Character && OtherComp == Character->GetMesh())
+				if (OtherActor == Character)
 				{
+					// doesnt work?, done in bp
 					UE_LOG(LogTemp, Error, TEXT("BOLT HIT Player"));
 
 					bHasOverlapped = true;
 
-					//StopBolt();
+					Character->ApplyDamageToPlayer(5.0f);
+					StopBolt();
 
 				}
 

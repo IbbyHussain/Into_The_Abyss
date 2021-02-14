@@ -17,7 +17,7 @@ public:
 
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Projectile")
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite,  Category = "Projectile")
 	bool bIsPlayerBolt;
 
 	// The amount of damage this actor will deal 
@@ -52,6 +52,8 @@ public:
 	float DefaultGravity;
 
 	float DefaultVelocity;
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite, Category = "Projectile")
+	bool bHasOverlapped;
 
 protected:
 
@@ -77,8 +79,6 @@ private:
 	// Overlap function for damage 
 	UFUNCTION()
 	void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
-	bool bHasOverlapped;
 
 	void StopBolt();
 };
