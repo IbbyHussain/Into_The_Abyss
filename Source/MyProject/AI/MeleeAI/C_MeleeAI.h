@@ -33,7 +33,7 @@ public:
 	UPROPERTY(EditInstanceOnly, Category = "Melee AI")
 	class AC_AIFightManager* FightManager;
 
-	void BasicAttack();
+	virtual void BasicAttack();
 
 	void MeleeAIDamage(USkeletalMeshComponent* SKMesh, float Damage);
 

@@ -9,7 +9,6 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "MyProject/C_PlayerCharacter.h"
-#include "MyProject/AI/RangedAI/C_ArcherAI.h"
 
 #include "DrawDebugHelpers.h"
 
@@ -27,8 +26,6 @@ EBTNodeResult::Type UC_BTTaskGetWanderLocation::ExecuteTask(UBehaviorTreeCompone
 {
 	auto const AIController = Cast<AC_MeleeAIController>(Owner.GetAIOwner());
 	auto const BaseAI = AIController->GetPawn();
-
-	AC_ArcherAI* ArcherAI = Cast<AC_ArcherAI>(BaseAI);
 
 	// The initial Location of the AI
 	FVector OriginalLocation = BaseAI->GetActorLocation();

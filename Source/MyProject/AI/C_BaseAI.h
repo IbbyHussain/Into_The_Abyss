@@ -54,7 +54,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Base AI Variables")
 	ETypeOfDeath TypeOfDeath;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Base AI Variables")
+	UPROPERTY(BlueprintReadWrite, Category = "Base AI Variables")
 	ETypeOfAI TypeOfAI;
 
 	// Sets default values for this character's properties

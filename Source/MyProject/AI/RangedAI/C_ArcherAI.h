@@ -3,16 +3,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "MyProject/AI/C_BaseCustomisedAI.h"
+#include "MyProject/AI/MeleeAI/C_MeleeAI.h"
 #include "C_ArcherAI.generated.h"
 
-/**
- * 
- */
 UCLASS()
-class MYPROJECT_API AC_ArcherAI : public AC_BaseCustomisedAI
+class MYPROJECT_API AC_ArcherAI : public AC_MeleeAI
 {
 	GENERATED_BODY()
 
-	AC_ArcherAI();
+private:
+
+	virtual void ChangeAIColour() override;
+
+	virtual void BasicAttack() override;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Basic Attacks")
+	UAnimMontage* AttackMontage;
 };
