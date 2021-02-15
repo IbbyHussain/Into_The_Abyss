@@ -20,4 +20,6 @@ namespace BB_MeleeAIKeys
 	TCHAR const* const AIHealth = TEXT("BPAIHealth");
 
 	TCHAR const* const CanUseSpecialAttack = TEXT("BPCanuseSpecialAttack");
+
+	TCHAR const* const CanSeePlayer = TEXT("BPCanSeePlayer");
 }

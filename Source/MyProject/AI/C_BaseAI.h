@@ -40,7 +40,7 @@ enum class ETypeOfDeath : uint8
 };
 
 
-UCLASS()
+UCLASS(Blueprintable)
 class MYPROJECT_API AC_BaseAI : public ACharacter
 {
 	GENERATED_BODY()
@@ -268,6 +268,12 @@ public:
 
 	// Used when the player hits the AI, and the AI is not currently focused on player
 	void ShouldFocusOnPlayer();
+
+	// Will destroy the spawned items when the AI is shattered
+	UFUNCTION(BlueprintImplementableEvent)
+	void abc();
+
+	bool bIsBlind;
 
 protected:
 	// Used in the blueprint of this class

@@ -31,6 +31,8 @@
 #include "Particles/ParticleSystemComponent.h"
 
 #include "MyProject/AI/MeleeAI/C_MeleeAIController.h"
+#include "BehaviorTree/BlackBoardComponent.h"
+#include "MyProject/AI/MeleeAI/C_MeleeAIBlackBoardKeys.h"
 
 
 AC_BaseAI::AC_BaseAI()
@@ -505,13 +507,12 @@ void AC_BaseAI::ShouldFocusOnPlayer()
 	float Magnitude = Distance.Size();
 
 	// if distance is less than 1000, the AI will turn to face the player
-	if(Magnitude <= 1000.0f)
+	if(Magnitude <= 1000.0f && !bIsFrozen && !bIsBlind)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Distance was less than 200 and set new AI focus!"));
 		auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
 		AIController->SetFocus(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0), EAIFocusPriority::Gameplay);
 	}
-
 }
 
 void AC_BaseAI::CheckForAIDeath()
@@ -617,6 +618,8 @@ void AC_BaseAI::BecomeFrozen()
 
 		// Clear focus so no longer rotates to face player
 		AIController->ClearFocus(EAIFocusPriority::Gameplay);
+
+		//abc();
 
 		//Set materials to frozen material
 		for (int i = 0; i < GetMesh()->GetMaterials().Num(); i++)
@@ -757,6 +760,8 @@ void AC_BaseAI::ChangeColours(bool bRandomColours, TArray<UMaterialInstanceDynam
 
 void AC_BaseAI::BecomeBlind(UAnimMontage* MontageToPlay, float TimeUntilRecover)
 {
+	bIsBlind = true;
+
 	// Stops AI movement
 	GetCharacterMovement()->StopMovementImmediately();
 	GetCharacterMovement()->DisableMovement();
@@ -788,6 +793,8 @@ void AC_BaseAI::RemoveBlindness(UAnimMontage* MontageToStop)
 	LocalComp->ResumeLogic("Blind");
 
 	GetWorldTimerManager().ClearTimer(BlindnessHandle);
+
+	bIsBlind = false;
 
 	UE_LOG(LogTemp, Log, TEXT("Remove Blind"));
 }

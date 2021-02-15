@@ -2342,7 +2342,7 @@ void AC_PlayerCharacter::AddCircleBoltIndicator()
 			FlareBoltIndicator->SetActorHiddenInGame(true);
 		}
 
-		FlareBoltIndicatorCheck(); // Access violation executing location
+		//FlareBoltIndicatorCheck(); // Access violation executing location
 	}
 }
 
