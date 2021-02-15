@@ -30,6 +30,8 @@
 #include "MyProject/Weapons/Crossbow/C_Crossbowbolt.h"
 #include "Particles/ParticleSystemComponent.h"
 
+#include "MyProject/AI/MeleeAI/C_MeleeAIController.h"
+
 
 AC_BaseAI::AC_BaseAI()
 {
@@ -605,7 +607,10 @@ void AC_BaseAI::BecomeFrozen()
 	{
 		bIsFrozen = true;
 
-		// Pause the AI Behaviour tree
+		// Stops AI movement
+		GetCharacterMovement()->StopMovementImmediately();
+		GetCharacterMovement()->DisableMovement();
+
 		auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
 		UBrainComponent* LocalComp = AIController->GetBrainComponent();
 		LocalComp->PauseLogic(FString("Frozen"));
@@ -618,9 +623,6 @@ void AC_BaseAI::BecomeFrozen()
 		{
 			GetMesh()->SetMaterial(i, FrozenMaterial);
 		}
-
-		GetCharacterMovement()->StopMovementImmediately();
-		GetCharacterMovement()->DisableMovement();
 
 		//Plays a random montage from the array
 		if (bPlayFrozenPose)

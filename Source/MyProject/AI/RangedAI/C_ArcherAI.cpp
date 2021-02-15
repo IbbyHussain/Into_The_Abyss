@@ -24,8 +24,8 @@ void AC_ArcherAI::ChangeAIColour()
 	Super::ChangeAIColour();
 
 	ChangeColours(true, SkinColourMaterial.SkinMaterialArray, 2, 0);
-	ChangeColours(true, ClothingColourMaterial.ClothingMaterialArray, 2, 1);
 	ChangeColours(true, ClothingColourMaterial.ClothingMaterialArray, 2, 2);
+	ChangeColours(true, ClothingColourMaterial.ClothingMaterialArray, 2, 7);
 }
 
 void AC_ArcherAI::BasicAttack()
