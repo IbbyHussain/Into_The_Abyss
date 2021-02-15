@@ -3,6 +3,8 @@
 
 #include "C_BaseCustomisedAI.h"
 #include "MyProject/Weapons/MeleeWeapons/C_BaseSkeletalMeleeWeapon.h"
+#include "MyProject/GameObjects/SkeletalMeshs/Weapons/C_Crossbow.h"
+#include "MyProject/Weapons/Crossbow/C_DummyBolt.h"
 
 AC_BaseCustomisedAI::AC_BaseCustomisedAI()
 {
@@ -146,6 +148,7 @@ void AC_BaseCustomisedAI::ChangeAIColour()
 
 void AC_BaseCustomisedAI::GetDefaultWeaponMaterials()
 {
+	// Get materials for melee weapon
 	AC_BaseSkeletalMeleeWeapon* AIWeapon = Cast<AC_BaseSkeletalMeleeWeapon>(Weapon);
 
 	if(AIWeapon)
@@ -153,6 +156,17 @@ void AC_BaseCustomisedAI::GetDefaultWeaponMaterials()
 		for (int i = 0; i < AIWeapon->MeshComp->GetMaterials().Num(); i++) // Need to get the materials that have been assigned
 		{
 			DefaultWeaponMaterials.Add(AIWeapon->MeshComp->GetMaterials()[i]);
+		}
+	}
+
+	// Get materials for crossbows
+	AC_Crossbow* Crossbow = Cast<AC_Crossbow>(Weapon);
+
+	if(Crossbow)
+	{
+		for (int i = 0; i < Crossbow->MeshComp->GetMaterials().Num(); i++)
+		{
+			DefaultWeaponMaterials.Add(Crossbow->MeshComp->GetMaterials()[i]);
 		}
 	}
 }
@@ -199,6 +213,18 @@ void AC_BaseCustomisedAI::WeaponBecomeFrozen()
 			AIWeapon->MeshComp->SetMaterial(i, FrozenMaterial);
 		}
 	}
+
+	// Get materials for crossbows
+	AC_Crossbow* Crossbow = Cast<AC_Crossbow>(Weapon);
+
+	if (Crossbow)
+	{
+		for (int i = 0; i < Crossbow->MeshComp->GetMaterials().Num(); i++)
+		{
+			Crossbow->MeshComp->SetMaterial(i, FrozenMaterial);
+			Crossbow->DummyBolt->SetActorHiddenInGame(true);
+		}
+	}
 }
 
 void AC_BaseCustomisedAI::WeaponBecomeUnFrozen()
@@ -210,6 +236,18 @@ void AC_BaseCustomisedAI::WeaponBecomeUnFrozen()
 		for (int i = 0; i < AIWeapon->MeshComp->GetMaterials().Num(); i++)
 		{
 			AIWeapon->MeshComp->SetMaterial(i, DefaultWeaponMaterials[i]);
+		}
+	}
+
+	// Get materials for crossbows
+	AC_Crossbow* Crossbow = Cast<AC_Crossbow>(Weapon);
+
+	if (Crossbow)
+	{
+		for (int i = 0; i < Crossbow->MeshComp->GetMaterials().Num(); i++)
+		{
+			Crossbow->MeshComp->SetMaterial(i, DefaultWeaponMaterials[i]);
+			Crossbow->DummyBolt->SetActorHiddenInGame(false);
 		}
 	}
 }
