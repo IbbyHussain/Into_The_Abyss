@@ -275,6 +275,10 @@ public:
 
 	bool bIsBlind;
 
+	// The length of the death animation
+	UPROPERTY(EditDefaultsOnly, Category = "Death")
+	float TimeUntilRagdollDeath;
+
 protected:
 	// Used in the blueprint of this class
 	UFUNCTION(BlueprintCallable)

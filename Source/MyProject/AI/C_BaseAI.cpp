@@ -119,6 +119,8 @@ AC_BaseAI::AC_BaseAI()
 	BoxComp->SetCollisionResponseToChannel(ECollisionChannel::ECC_PhysicsBody, ECollisionResponse::ECR_Overlap);
 	BoxComp->SetCollisionResponseToChannel(ECollisionChannel::ECC_Vehicle, ECollisionResponse::ECR_Overlap);
 	BoxComp->SetCollisionResponseToChannel(ECollisionChannel::ECC_Destructible, ECollisionResponse::ECR_Overlap);
+
+	TimeUntilRagdollDeath = 3.0f;
 }
 
 void AC_BaseAI::BeginPlay()
@@ -542,7 +544,7 @@ void AC_BaseAI::CheckForAIDeath()
 		{
 			// Tells ABP to play death animation
 			bHasDied = true;
-			GetWorldTimerManager().SetTimer(DeathHandle, this, &AC_BaseAI::Death, 3.0f, false);
+			GetWorldTimerManager().SetTimer(DeathHandle, this, &AC_BaseAI::Death, TimeUntilRagdollDeath, false);
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), DeathSound, GetActorLocation());
 
 			TypeOfDeath = ETypeOfDeath::DEFAULTDEATH;
