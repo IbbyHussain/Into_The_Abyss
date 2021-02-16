@@ -16,4 +16,7 @@ class MYPROJECT_API AC_LostAdventurer : public AC_MeleeAI
 
 	AC_LostAdventurer();
 	
+private:
+
+	virtual void ChangeAIColour() override;
 };
