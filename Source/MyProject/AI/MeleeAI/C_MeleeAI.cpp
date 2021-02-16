@@ -114,5 +114,8 @@ void AC_MeleeAI::OnDeath()
 {
 	Super::OnDeath();
 
-	FightManager->DestroyManager();
+	if(FightManager)
+	{
+		FightManager->DestroyManager();
+	}
 }
