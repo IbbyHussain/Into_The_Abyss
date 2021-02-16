@@ -38,6 +38,8 @@ void AC_ArcherAI::BasicAttack()
 		
 		Crossbow->SpawnBoltAI(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)->GetActorLocation());
 
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), CrossbowFireSound, GetActorLocation());
+
 		Crossbow->ReloadCrossbow();
 	}
 }

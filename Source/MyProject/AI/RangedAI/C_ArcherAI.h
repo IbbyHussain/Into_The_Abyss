@@ -25,6 +25,9 @@ private:
 	UAnimMontage* AttackMontage;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Archer Crossbow")
+	USoundBase* CrossbowFireSound;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Archer Crossbow")
 	TSubclassOf<class AC_DummyBolt> SteelDummyBolt;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Archer Crossbow")
