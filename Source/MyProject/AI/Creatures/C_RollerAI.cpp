@@ -6,6 +6,7 @@
 #include "NavigationPath.h"
 #include "MyProject/C_PlayerCharacter.h"
 #include "MyProject/Components/C_HealthComponent.h"
+#include "DrawDebugHelpers.h"
 
 AC_RollerAI::AC_RollerAI()
 {
@@ -83,10 +84,10 @@ void AC_RollerAI::SelfDestruct()
 	FVector ActorLocation = GetActorLocation();
 
 	// Creates a sphere
-	FCollisionShape MyColSphere = FCollisionShape::MakeSphere(75.0f);
+	FCollisionShape MyColSphere = FCollisionShape::MakeSphere(150.0f);
 
 	// Debug 
-	//DrawDebugSphere(GetWorld(), ActorLocation, MyColSphere.GetSphereRadius(), 20, FColor::Green, true);
+	DrawDebugSphere(GetWorld(), ActorLocation, MyColSphere.GetSphereRadius(), 20, FColor::Green, true);
 
 	// A sweep trace that will hit anything within the sphere
 	bool bHit = GetWorld()->SweepMultiByChannel(OutHits, ActorLocation, ActorLocation, FQuat::Identity, ECC_Visibility, MyColSphere, CollisionParams);
@@ -99,9 +100,10 @@ void AC_RollerAI::SelfDestruct()
 
 			UE_LOG(LogTemp, Error, TEXT("Roller AI Hit: %s"), *Hit.GetActor()->GetName());
 
-			if (Hit.GetActor() == PlayerCharacter)
+			if (Hit.GetActor() == PlayerCharacter && !bAttackedPlayer)
 			{
-				PlayerCharacter->ApplyDamageToPlayer(10.0f);
+				bAttackedPlayer = true;
+				PlayerCharacter->ApplyDamageToPlayer(5.0f);
 			}
 		}
 	}

@@ -8,6 +8,7 @@
 #include "TimerManager.h"
 #include "Components/BoxComponent.h"
 #include "MyProject/AI/C_BaseAI.h"
+#include "MyProject/AI/Creatures/C_RollerAI.h"
 
 AC_IceSpike::AC_IceSpike()
 {
@@ -57,15 +58,22 @@ void AC_IceSpike::OnHit(const FHitResult& Hit)
 {
 	//Ability2 = Cast<AC_Ability2>(OtherActor);
 	BaseAI = Cast<AC_BaseAI>(Hit.GetActor());
+	AC_RollerAI* RollerAI = Cast<AC_RollerAI>(Hit.GetActor());
+
 	if(Hit.GetActor() == BaseAI)
 	{
-		UE_LOG(LogTemp, Log, TEXT("Hit BaseAI / Ability 4 death"));
+		//UE_LOG(LogTemp, Log, TEXT("Hit BaseAI / Ability 4 death"));
 		BaseAI->BecomeFrozen();
-		UGameplayStatics::ApplyDamage(Hit.GetActor(), 0.1f, UGameplayStatics::GetPlayerController(this, 0), this, NULL); // Acess violation reading location
+		UGameplayStatics::ApplyDamage(Hit.GetActor(), 0.1f, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
 		BaseAI->CheckForAIDeath();
 
 		//UE_LOG(LogTemp, Log, TEXT("Ability 2 Death"));
 		//BaseAI->TypeOfDeath = ETypeOfDeath::ABILITY4DEATH;
+	}
+
+	if (Hit.GetActor() == RollerAI)
+	{
+		UGameplayStatics::ApplyDamage(Hit.GetActor(), 1.0f, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
 	}
 
 	UGameplayStatics::PlaySoundAtLocation(GetWorld(), DestroyedSound, Hit.Location);

@@ -50,6 +50,8 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Roller AI")
 	UParticleSystem* Explosion;
 
+	bool bAttackedPlayer;
+
 	UPROPERTY(EditDefaultsOnly, Category = "Roller AI")
 	USoundBase* ExplosionSound;
 

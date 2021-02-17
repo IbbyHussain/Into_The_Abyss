@@ -1437,25 +1437,21 @@ TArray<FHitResult> AC_PlayerCharacter::Ability1Damage()
 	// for each AI that is hit
 	for (auto& Hit : OutHits)
 	{
-		//Iterate over the AI 
-		UWorld* World = GetWorld();
-		for (TActorIterator<AC_BaseAI> It(World, AC_BaseAI::StaticClass()); It; ++It)
+		AC_BaseAI* BaseAIHit = Cast<AC_BaseAI>(Hit.GetActor());
+		AC_RollerAI* RollerAI = Cast<AC_RollerAI>(Hit.GetActor());
+		if (BaseAIHit && Hit.Component == BaseAIHit->BoxComp)
 		{
-			BaseAI = *It;
-			if (BaseAI != NULL)
-			{
-				BaseAIArray.Add(BaseAI);
+			//Apply damage
+			UGameplayStatics::ApplyDamage(Hit.GetActor(), Ability1DamageAmount, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+			BaseAIHit->SpawnBurningEffects();
+			BaseAIHit->StopDamage();
+			BaseAIHit->bHasBeenHit = true;
+		}
 
-				//If the trace collides with the AI hit box
-				if (Hit.Component == BaseAI->BoxComp)
-				{
-					//Apply damage
-					UGameplayStatics::ApplyDamage(Hit.GetActor(), Ability1DamageAmount, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
-					BaseAI->SpawnBurningEffects();
-					BaseAI->StopDamage();
-					BaseAI->bHasBeenHit = true;
-				}
-			}
+		if(Hit.GetActor() == RollerAI)
+		{
+			//Apply damage
+			UGameplayStatics::ApplyDamage(Hit.GetActor(), Ability1DamageAmount * 15, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
 		}
 	}
 
