@@ -26,6 +26,8 @@ public:
 	UFUNCTION()
 	void HandleTakeDamage(UC_HealthComponent* HealthCompRef, float Health, float HealthDelta, const class UDamageType* DmgType, class AController* InstigatedBy, AActor* DamageCauser);
 
+	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
+
 protected:
 
 	virtual void BeginPlay() override;
@@ -55,5 +57,6 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Roller AI")
 	USoundBase* ExplosionSound;
 
-
+	UPROPERTY(EditDefaultsOnly, Category = "Roller AI")
+	class USphereComponent* SphereComp;
 };

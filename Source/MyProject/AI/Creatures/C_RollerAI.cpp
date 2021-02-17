@@ -7,6 +7,7 @@
 #include "MyProject/C_PlayerCharacter.h"
 #include "MyProject/Components/C_HealthComponent.h"
 #include "DrawDebugHelpers.h"
+#include "Components/SphereComponent.h"
 
 AC_RollerAI::AC_RollerAI()
 {
@@ -20,6 +21,13 @@ AC_RollerAI::AC_RollerAI()
 
 	HealthComp = CreateDefaultSubobject<UC_HealthComponent>(TEXT("Health Comp"));
 	HealthComp->OnHealthChanged.AddDynamic(this, &AC_RollerAI::HandleTakeDamage);
+
+	SphereComp = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere Comp"));
+	SphereComp->SetSphereRadius(250.f);
+	SphereComp->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	SphereComp->SetCollisionResponseToAllChannels(ECR_Ignore);
+	SphereComp->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
+	SphereComp->SetupAttachment(RootComponent);
 
 	bUseVelocityChange = true;
 	MovementForce = 1000.0f;
@@ -118,4 +126,14 @@ void AC_RollerAI::HandleTakeDamage(UC_HealthComponent* HealthCompRef, float Heal
 		SelfDestruct();
 	}
 	UE_LOG(LogTemp, Error, TEXT("Roller AI Health %s"), *FString::SanitizeFloat(Health));
+}
+
+void AC_RollerAI::NotifyActorBeginOverlap(AActor* OtherActor)
+{
+	AC_PlayerCharacter* PlayerCharacter = Cast<AC_PlayerCharacter>(OtherActor);
+
+	if(PlayerCharacter)
+	{
+		SelfDestruct();
+	}
 }
