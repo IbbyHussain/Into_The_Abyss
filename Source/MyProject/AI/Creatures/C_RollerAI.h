@@ -26,6 +26,19 @@ protected:
 
 private:
 
+	// Next point in navigation path
+	FVector NextPathPoint;
+
+	FVector GetNextPathPoint();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Roller AI")
+	float MovementForce;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Roller AI")
+	float RequiredDistanceToTarget;
+
+	bool bUseVelocityChange;
+	
 	
 
 
