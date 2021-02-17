@@ -5,6 +5,7 @@
 #include "NavigationSystem.h"
 #include "NavigationPath.h"
 #include "MyProject/C_PlayerCharacter.h"
+#include "MyProject/Components/C_HealthComponent.h"
 
 AC_RollerAI::AC_RollerAI()
 {
@@ -15,6 +16,9 @@ AC_RollerAI::AC_RollerAI()
 	MeshComp->SetCanEverAffectNavigation(false);
 	MeshComp->SetSimulatePhysics(true);
 	RootComponent = MeshComp;
+
+	HealthComp = CreateDefaultSubobject<UC_HealthComponent>(TEXT("Health Comp"));
+	HealthComp->OnHealthChanged.AddDynamic(this, &AC_RollerAI::HandleTakeDamage);
 
 	bUseVelocityChange = true;
 	MovementForce = 1000.0f;
@@ -64,4 +68,52 @@ FVector AC_RollerAI::GetNextPathPoint()
 	}
 
 	return GetActorLocation();
+}
+
+void AC_RollerAI::SelfDestruct()
+{
+	// Play particle effect and sound
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), Explosion, GetActorLocation());
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), ExplosionSound, GetActorLocation());
+
+	FCollisionQueryParams CollisionParams;
+
+	TArray<FHitResult> OutHits;
+
+	FVector ActorLocation = GetActorLocation();
+
+	// Creates a sphere
+	FCollisionShape MyColSphere = FCollisionShape::MakeSphere(75.0f);
+
+	// Debug 
+	//DrawDebugSphere(GetWorld(), ActorLocation, MyColSphere.GetSphereRadius(), 20, FColor::Green, true);
+
+	// A sweep trace that will hit anything within the sphere
+	bool bHit = GetWorld()->SweepMultiByChannel(OutHits, ActorLocation, ActorLocation, FQuat::Identity, ECC_Visibility, MyColSphere, CollisionParams);
+
+	if (bHit)
+	{
+		for (auto& Hit : OutHits)
+		{
+			AC_PlayerCharacter* PlayerCharacter = Cast<AC_PlayerCharacter>(Hit.GetActor());
+
+			UE_LOG(LogTemp, Error, TEXT("Roller AI Hit: %s"), *Hit.GetActor()->GetName());
+
+			if (Hit.GetActor() == PlayerCharacter)
+			{
+				PlayerCharacter->ApplyDamageToPlayer(10.0f);
+			}
+		}
+	}
+
+	Destroy();
+}
+
+void AC_RollerAI::HandleTakeDamage(UC_HealthComponent* HealthCompRef, float Health, float HealthDelta, const class UDamageType* DmgType, class AController* InstigatedBy, AActor* DamageCauser)
+{
+	if(Health <= 0.0f)
+	{
+		SelfDestruct();
+	}
+	UE_LOG(LogTemp, Error, TEXT("Roller AI Health %s"), *FString::SanitizeFloat(Health));
 }

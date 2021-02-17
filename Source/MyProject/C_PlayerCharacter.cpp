@@ -65,6 +65,7 @@
 
 #include "AI/EnglishEnemies/C_PeasantAI.h"
 #include "MyProject/AI/Creatures/C_LostAdventurer.h"
+#include "MyProject/AI/Creatures/C_RollerAI.h"
 //#include "MyProject/Misc/C_Checkpoint.h"
 
 //Constructor

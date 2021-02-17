@@ -18,7 +18,13 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Mesh")
-		UStaticMeshComponent* MeshComp;
+	UStaticMeshComponent* MeshComp;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base AI Variables")
+	class UC_HealthComponent* HealthComp;
+
+	UFUNCTION()
+	void HandleTakeDamage(UC_HealthComponent* HealthCompRef, float Health, float HealthDelta, const class UDamageType* DmgType, class AController* InstigatedBy, AActor* DamageCauser);
 
 protected:
 
@@ -39,7 +45,13 @@ private:
 
 	bool bUseVelocityChange;
 	
-	
+	void SelfDestruct();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Roller AI")
+	UParticleSystem* Explosion;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Roller AI")
+	USoundBase* ExplosionSound;
 
 
 };
