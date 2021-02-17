@@ -17,14 +17,16 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Mesh")
+		UStaticMeshComponent* MeshComp;
+
 protected:
 
 	virtual void BeginPlay() override;
 
 private:
 
-	UPROPERTY(EditDefaultsOnly, Category = "Mesh")
-	UStaticMeshComponent* MeshComp;
+	
 
 
 };

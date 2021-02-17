@@ -1,5 +1,6 @@
 
 #include "C_RollerAI.h"
+#include "Components/StaticMeshComponent.h"
 
 AC_RollerAI::AC_RollerAI()
 {
@@ -7,6 +8,7 @@ AC_RollerAI::AC_RollerAI()
 	PrimaryActorTick.bCanEverTick = true;
 
 	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh Comp"));
+	MeshComp->SetCanEverAffectNavigation(false);
 	RootComponent = MeshComp;
 
 }
