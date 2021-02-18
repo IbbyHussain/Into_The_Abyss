@@ -314,6 +314,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Player Abilities|Ability 4|Materials")
 	UMaterialInterface* FrozenMaterial;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Base AI Variables")
+	float TimeUntilEnableMovement;
+
 private:
 
 	TArray<UMaterialInterface*> DefaultMaterials;

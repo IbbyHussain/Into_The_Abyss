@@ -19,4 +19,14 @@ class MYPROJECT_API AC_LostAdventurer : public AC_MeleeAI
 private:
 
 	virtual void ChangeAIColour() override;
+
+public:
+
+	bool bLAcanAttack;
+
+	void Attack(USkeletalMeshComponent* SKMesh, float Damage, FName StartSocket, FName EndSocket);
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Crawler")
+	bool bIsCrawler;
+
 };

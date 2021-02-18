@@ -74,6 +74,8 @@ AC_BaseAI::AC_BaseAI()
 
 	bCanRagdoll = true;
 
+	TimeUntilEnableMovement = 2.0f;
+
 	// Capsule Component Settings
 	GetCapsuleComponent()->SetCapsuleHalfHeight(100.0f);
 	GetCapsuleComponent()->SetCapsuleRadius(45.0f);
@@ -355,7 +357,7 @@ void AC_BaseAI::DisableRagdoll()
 		bStopRagdoll = true;
 		GetWorldTimerManager().SetTimer(RagdollCooldownHandle, this, &AC_BaseAI::RagdollCooldown, 6.0f, false);
 
-		GetWorldTimerManager().SetTimer(EnableMovementHandle, this, &AC_BaseAI::EnableMovement, 2.0f, false);
+		GetWorldTimerManager().SetTimer(EnableMovementHandle, this, &AC_BaseAI::EnableMovement, TimeUntilEnableMovement, false);
 
 		bCanTalkAI = true;
 		bShowEKeyHint = true;
