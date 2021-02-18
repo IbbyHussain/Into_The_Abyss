@@ -1915,11 +1915,12 @@ void AC_PlayerCharacter::Rag(USkeletalMeshComponent* SKMesh)
 			AC_PeasantAI* PeasantAI = Cast<AC_PeasantAI>(SS.AI);
 			AC_LostAdventurer* LAAI = Cast<AC_LostAdventurer>(SS.AI);
 
-			if(SS.AI == PeasantAI || SS.AI == LAAI)
+			if(SS.AI == PeasantAI || (SS.AI == LAAI && !LAAI->bIsCrawler))
 			{
 				SS.AI->ApplyRagdoll();
-				SS.AI->PlayHitGrunt();
 			}
+
+			SS.AI->PlayHitGrunt();
 
 			SS.AI->CheckForAIDeath();
 		}
