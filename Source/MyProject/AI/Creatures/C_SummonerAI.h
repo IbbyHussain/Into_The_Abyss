@@ -1,0 +1,33 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "MyProject/AI/C_BaseCustomisedAI.h"
+#include "C_SummonerAI.generated.h"
+
+UCLASS()
+class MYPROJECT_API AC_SummonerAI : public AC_BaseCustomisedAI
+{
+	GENERATED_BODY()
+
+	AC_SummonerAI();
+
+private:
+
+public:
+
+	virtual void OnDeath() override;
+
+	UPROPERTY(EditAnywhere, Category = "Summoner")
+	UParticleSystem* DeathParticle;
+
+	UPROPERTY(EditAnywhere, Category = "Summoner")
+	UParticleSystem* TeleportParticle;
+
+	UPROPERTY(EditAnywhere, Category = "Summoner")
+	USoundBase* TeleportSound;
+
+	void TeleportToLocationEffects();
+
+};

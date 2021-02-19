@@ -331,7 +331,7 @@ void AC_PlayerCharacter::Tick(float DeltaTime)
 	//Ability 2 Check
 	Ability2Check();
 
-	AddCircleBoltIndicator();
+	//AddCircleBoltIndicator();
 
 	//CrouchCrossbowTransform();
 
@@ -2303,7 +2303,7 @@ void AC_PlayerCharacter::SpawnCircleIndicator(FVector Location)
 	}
 }
 
-void AC_PlayerCharacter::AddCircleBoltIndicator()
+void AC_PlayerCharacter::AddCircleBoltIndicator()                                           
 {
 	if(IsValid(FlareBoltIndicator))
 	{

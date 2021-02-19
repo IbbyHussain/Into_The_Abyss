@@ -123,6 +123,8 @@ AC_BaseAI::AC_BaseAI()
 	BoxComp->SetCollisionResponseToChannel(ECollisionChannel::ECC_Destructible, ECollisionResponse::ECR_Overlap);
 
 	TimeUntilRagdollDeath = 3.0f;
+
+	TimeUntilDestroyed = 15.0f;
 }
 
 void AC_BaseAI::BeginPlay()
@@ -534,7 +536,7 @@ void AC_BaseAI::CheckForAIDeath()
 
 		// Stops Behavior tree Logic
 		auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
-		UBrainComponent* LocalComp =  AIController->GetBrainComponent();
+		UBrainComponent* LocalComp = AIController->GetBrainComponent();
 		LocalComp->StopLogic(FString("Death"));
 
 
@@ -542,7 +544,7 @@ void AC_BaseAI::CheckForAIDeath()
 		GetWorldTimerManager().ClearAllTimersForObject(this);
 
 		// default death
-		if(!bIsFrozen)
+		if (!bIsFrozen)
 		{
 			// Tells ABP to play death animation
 			bHasDied = true;
@@ -566,7 +568,8 @@ void AC_BaseAI::CheckForAIDeath()
 			Shatter();
 		}
 
-		GetWorldTimerManager().SetTimer(DespawnHandle, this, &AC_BaseAI::DestroyThis, 15.0f, false);
+		GetWorldTimerManager().SetTimer(DespawnHandle, this, &AC_BaseAI::DestroyThis, TimeUntilDestroyed, false);
+		
 	}
 }
 

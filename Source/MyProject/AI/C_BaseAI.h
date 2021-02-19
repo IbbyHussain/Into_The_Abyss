@@ -154,6 +154,9 @@ public:
 
 	void CheckForAIDeath();
 
+	UPROPERTY(EditDefaultsOnly, Category = "Base AI Variables")
+	float TimeUntilDestroyed;
+
 
 	//Ragdoll Physics
 
