@@ -35,7 +35,7 @@ EBTNodeResult::Type UC_BTTask_TeleportToLocation::ExecuteTask(UBehaviorTreeCompo
 
 
 	// Draws a debug cirlce, circle used as the area the summoner should teleport to.
-	DrawDebugCircle(GetWorld(), PlayerTransform.ToMatrixWithScale(), Radius, 76, FColor::Purple, true, 10.0f, 10, 2.0f, true);
+	//DrawDebugCircle(GetWorld(), PlayerTransform.ToMatrixWithScale(), Radius, 76, FColor::Purple, true, 10.0f, 10, 2.0f, true);
 
 	// Get a random angle within the circle
 	float Theeta = UKismetMathLibrary::RandomFloatInRange(0, 360) * PI * 2.0f;
@@ -43,12 +43,60 @@ EBTNodeResult::Type UC_BTTask_TeleportToLocation::ExecuteTask(UBehaviorTreeCompo
 	// Get a X and Y co-ordinate on the circumference
 	float X = UKismetMathLibrary::DegCos(Theeta) * Radius + TeleportLocation.X;
 	float Y = UKismetMathLibrary::DegSin(Theeta) * Radius + TeleportLocation.Y;
-	
-	// Set summoner Location to that point on circumference
-	SummonerAI->SetActorLocation(FVector(X, Y, PlayerTransform.GetLocation().Z + 100.0f));
-	SummonerAI->TeleportToLocationEffects();
 
-	// Finish Task with success
-	FinishLatentTask(Owner, EBTNodeResult::Succeeded);
-	return EBTNodeResult::Succeeded;
+	// Sphere trace at point, to check if the point is not colliding with any other objects
+	FCollisionQueryParams CollisionParams;
+
+	TArray<FHitResult> OutHits;
+
+	FVector Point = (FVector(X, Y, PlayerTransform.GetLocation().Z + 100.0f));
+
+	// Creates a sphere
+	FCollisionShape MyColSphere = FCollisionShape::MakeSphere(75.0f);
+
+	// A sweep trace that will hit anything within the sphere
+	bool bHit = GetWorld()->SweepMultiByChannel(OutHits, Point, Point, FQuat::Identity, ECC_Visibility, MyColSphere, CollisionParams);
+
+	// Line trace at point to check if the poit is not in the air
+
+	FHitResult LineHitResult;
+
+	FVector StartLocation = Point;
+
+	FRotator Rot = StartLocation.Rotation();
+
+	// Line trace points down 
+	FVector EndLocation = StartLocation + ((UKismetMathLibrary::GetUpVector(Rot) * -1.0f) * 125.0f);
+
+	bool bLineHit = GetWorld()->LineTraceSingleByChannel(LineHitResult, StartLocation, EndLocation, ECC_Visibility, CollisionParams);
+
+	DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Emerald, false, 15.0f, 10, 5.0f);
+
+
+	if(!bHit && bLineHit)
+	{
+		// Debug 
+		DrawDebugSphere(GetWorld(), Point, MyColSphere.GetSphereRadius(), 40, FColor::Green, true);
+
+		// Set summoner Location to that point on circumference
+		SummonerAI->SetActorLocation(Point);
+		SummonerAI->TeleportToLocationEffects();
+
+		// Finish Task with success
+		FinishLatentTask(Owner, EBTNodeResult::Succeeded);
+		return EBTNodeResult::Succeeded;
+	}
+
+	else
+	{
+		// Debug 
+		DrawDebugSphere(GetWorld(), Point, MyColSphere.GetSphereRadius(), 40, FColor::Red, true);
+
+		FinishLatentTask(Owner, EBTNodeResult::Failed);
+		return EBTNodeResult::Failed;
+	}
+
+	FinishLatentTask(Owner, EBTNodeResult::Failed);
+	return EBTNodeResult::Failed;
+	
 }
