@@ -13,6 +13,7 @@
 #include "MyProject/AI/EnglishEnemies/C_SavageAI.h"
 #include "MyProject/AI/Creatures/C_SummonerAI.h"
 
+
 AC_MeleeAIController::AC_MeleeAIController(FObjectInitializer const& ObjectInitializer)
 {
 	// Used to assign the Behaviour tree in the editor via C++
@@ -70,6 +71,13 @@ void AC_MeleeAIController::Tick(float DeltaTime)
 		GetBlackBoard()->SetValueAsBool(BB_MeleeAIKeys::CanUseSpecialAttack, true);
 		bDoOnce = false;
 	}
+
+	if (SummonerAI && SummonerAI->HealthComp->Health <= 0.3 && bDoOnce)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Special Attack enabled SUMMONER INIT"));
+		GetBlackBoard()->SetValueAsBool(BB_MeleeAIKeys::CanUseSpecialAttack, true);
+		bDoOnce = false;
+	}
 }
 
 void AC_MeleeAIController::OnPossess(APawn* const CPawn)
@@ -118,14 +126,31 @@ void AC_MeleeAIController::DisableSpecialAttack()
 
 	UE_LOG(LogTemp, Error, TEXT("Special Attack Disabled"));
 
-	GetWorldTimerManager().SetTimer(SpecialAttackHandle, this, &AC_MeleeAIController::EnableSpecialAttack, 25.0f);
+	if(SavageAI)
+	{
+		GetWorldTimerManager().SetTimer(SpecialAttackHandle, this, &AC_MeleeAIController::EnableSavageSpecialAttack, 25.0f);
+	}
+
+	else
+	{
+		GetWorldTimerManager().SetTimer(SpecialAttackHandle, this, &AC_MeleeAIController::EnableSummonerSpecialAttack, 15.0f);
+	}
 }
 
-void AC_MeleeAIController::EnableSpecialAttack()
+void AC_MeleeAIController::EnableSavageSpecialAttack()
 {
 	if(SavageAI && SavageAI->HealthComp->Health <= 0.3f)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Special Attack enabled"));
+		UE_LOG(LogTemp, Error, TEXT("Special Attack SAVAGE enabled"));
+		GetBlackBoard()->SetValueAsBool(BB_MeleeAIKeys::CanUseSpecialAttack, true);
+	}
+}
+
+void AC_MeleeAIController::EnableSummonerSpecialAttack()
+{
+	if (SummonerAI && SummonerAI->HealthComp->Health <= 0.3f)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Special Attack SUMMONER enabled"));
 		GetBlackBoard()->SetValueAsBool(BB_MeleeAIKeys::CanUseSpecialAttack, true);
 	}
 }

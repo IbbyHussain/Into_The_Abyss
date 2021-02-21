@@ -27,6 +27,12 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Summoner")
 	TSubclassOf <class AC_RollerAI> RollerAIClass;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Summoner")
+	USoundBase* SummonSound;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Summoner")
+		UAnimMontage* SummonMontage;
+
 public:
 
 	virtual void OnDeath() override;

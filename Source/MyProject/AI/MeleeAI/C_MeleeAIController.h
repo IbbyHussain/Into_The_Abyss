@@ -67,7 +67,9 @@ public:
 
 	void DisableSpecialAttack();
 
-	void EnableSpecialAttack();
+	void EnableSavageSpecialAttack();
+
+	void EnableSummonerSpecialAttack();
 
 	FTimerHandle SpecialAttackHandle;
 
@@ -76,5 +78,4 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	class AC_SavageAI* SavageAI;
-	
 };

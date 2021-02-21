@@ -6,6 +6,8 @@
 #include "MyProject/AI/Creatures/C_SummonerProjectile.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "MyProject/AI/Creatures/C_RollerAI.h"
+#include "MyProject/AI/MeleeAI/C_MeleeAIController.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
 
 AC_SummonerAI::AC_SummonerAI()
 {
@@ -39,6 +41,10 @@ void AC_SummonerAI::SummonerBasicAttack()
 
 void AC_SummonerAI::SummonerSpecialAttack()
 {
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), SummonSound, GetActorLocation());
+
+	PlayAnimMontage(SummonMontage, 1.0f);
+
 	FActorSpawnParameters SpawnParams;
 
 	FTransform Roller1Transform = GetMesh()->GetSocketTransform(("Roller1"), ERelativeTransformSpace::RTS_World);
@@ -50,6 +56,12 @@ void AC_SummonerAI::SummonerSpecialAttack()
 	FVector Roller2SpawnLocation = Roller2Transform.GetLocation();
 
 	AC_RollerAI* RollerAI2 = GetWorld()->SpawnActor<AC_RollerAI>(RollerAIClass, Roller2SpawnLocation, FRotator::ZeroRotator, SpawnParams);
+
+	auto const AIController = Cast<AC_MeleeAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
+	if (AIControllerClass && AIController)
+	{
+		AIController->DisableSpecialAttack();
+	}
 }
 
 
