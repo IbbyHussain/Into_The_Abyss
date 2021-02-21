@@ -32,6 +32,8 @@ private:
 
 	class AC_MeleeAI* MeleeAI;
 
+	class AC_SummonerAI* SummonerAI;
+
 protected:
 
 public:

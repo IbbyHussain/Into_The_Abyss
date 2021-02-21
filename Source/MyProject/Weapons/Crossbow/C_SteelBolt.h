@@ -12,13 +12,13 @@ class MYPROJECT_API AC_SteelBolt : public AC_Crossbowbolt
 {
 	GENERATED_BODY()
 
-	AC_SteelBolt();
-
 private:
 
 	virtual void SpawnHitEffect() override;
 
 public:
+
+	AC_SteelBolt();
 
 	virtual void BeginPlay() override;
 

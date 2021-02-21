@@ -15,9 +15,25 @@ class MYPROJECT_API AC_SummonerAI : public AC_BaseCustomisedAI
 
 private:
 
+	UPROPERTY(EditDefaultsOnly, Category = "Summoner")
+	UAnimMontage* AttackMontage;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Summoner")
+	USoundBase* FireSound;
+
+	UPROPERTY(EditAnywhere, Category = "Summoner")
+	TSubclassOf <class AC_SummonerProjectile> ProjectileClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Summoner")
+	TSubclassOf <class AC_RollerAI> RollerAIClass;
+
 public:
 
 	virtual void OnDeath() override;
+
+	void SummonerBasicAttack();
+
+	void SummonerSpecialAttack();
 
 	UPROPERTY(EditAnywhere, Category = "Summoner")
 	UParticleSystem* DeathParticle;
@@ -25,7 +41,7 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Summoner")
 	UParticleSystem* TeleportParticle;
 
-	UPROPERTY(EditAnywhere, Category = "Summoner")
+	UPROPERTY(EditDefaultsOnly, Category = "Summoner")
 	USoundBase* TeleportSound;
 
 	void TeleportToLocationEffects();

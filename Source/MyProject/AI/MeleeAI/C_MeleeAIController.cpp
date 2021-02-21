@@ -11,6 +11,7 @@
 #include "TimerManager.h"
 #include "MyProject/Components/C_HealthComponent.h"
 #include "MyProject/AI/EnglishEnemies/C_SavageAI.h"
+#include "MyProject/AI/Creatures/C_SummonerAI.h"
 
 AC_MeleeAIController::AC_MeleeAIController(FObjectInitializer const& ObjectInitializer)
 {
@@ -42,6 +43,8 @@ void AC_MeleeAIController::BeginPlay()
 	MeleeAI = Cast<AC_MeleeAI>(GetPawn());
 
 	SavageAI = Cast<AC_SavageAI>(MeleeAI);
+
+	SummonerAI = Cast<AC_SummonerAI>(GetPawn());
 
 	// By default current target will be player character 
 	CurrentTarget = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
@@ -87,7 +90,15 @@ UBlackboardComponent* AC_MeleeAIController::GetBlackBoard() const
 
 void AC_MeleeAIController::PawnBasicAttack()
 {
-	MeleeAI->BasicAttack();
+	if(MeleeAI)
+	{
+		MeleeAI->BasicAttack();
+	}
+
+	if(SummonerAI)
+	{
+		SummonerAI->SummonerBasicAttack();
+	}
 }
 
 void AC_MeleeAIController::AIAttack()

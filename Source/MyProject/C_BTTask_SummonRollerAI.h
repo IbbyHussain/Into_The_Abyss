@@ -6,9 +6,6 @@
 #include "BehaviorTree/Tasks/BTTask_BlackboardBase.h"
 #include "C_BTTask_SummonRollerAI.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class MYPROJECT_API UC_BTTask_SummonRollerAI : public UBTTask_BlackboardBase
 {
