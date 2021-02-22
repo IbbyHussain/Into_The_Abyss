@@ -1875,6 +1875,7 @@ void AC_PlayerCharacter::MeleeAttackDamage(USkeletalMeshComponent* SKMesh, float
 
 		UGameplayStatics::ApplyDamage(HitResult.GetActor(), Damage, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
 		SS.AI->PlayHitGrunt();
+		SS.AI->PlayMeleeHitAnim();
 		SS.AI->CheckForAIDeath();
 
 		// If true will aplly dmg over time

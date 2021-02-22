@@ -282,6 +282,11 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Death")
 	float TimeUntilRagdollDeath;
 
+	void PlayMeleeHitAnim();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Death")
+	UAnimMontage* MeleeHitMontage;
+
 protected:
 	// Used in the blueprint of this class
 	UFUNCTION(BlueprintCallable)

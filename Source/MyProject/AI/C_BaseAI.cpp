@@ -734,6 +734,11 @@ void AC_BaseAI::MeleeAttackDamage(USkeletalMeshComponent* SKMesh)
 	
 }
 
+void AC_BaseAI::PlayMeleeHitAnim()
+{
+	PlayAnimMontage(MeleeHitMontage, 1.0f);
+}
+
 // Will spawn an actor attached to a socket with default spawn parameters
 AActor* AC_BaseAI::SpawnItem(FName SocketName, AActor* Item, bool bShouldBeAttached, TSubclassOf<AActor> ItemClass)
 {
