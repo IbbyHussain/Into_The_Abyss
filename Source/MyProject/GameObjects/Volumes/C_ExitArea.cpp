@@ -12,68 +12,87 @@
 AC_ExitArea::AC_ExitArea()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	//PrimaryActorTick.bCanEverTick = true;
 
 	BoxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision"));
 	RootComponent = BoxComp;
 	BoxComp->SetRelativeScale3D(FVector(2.5f));
 	BoxComp->SetHiddenInGame(false);
 
-	//Sets up collision for the box component
-	BoxComp->OnComponentBeginOverlap.AddDynamic(this, &AC_ExitArea::OnOverlapBegin);
-	BoxComp->OnComponentEndOverlap.AddDynamic(this, &AC_ExitArea::OnOverlapEnd);
+	bCanExit = true;
 }
 
 // Called when the game starts or when spawned
 void AC_ExitArea::BeginPlay()
 {
 	Super::BeginPlay();	
+
+	//Ref to the HUD Class
+	HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
+
+	//Ref to the player 
+	PlayerCharacter = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
 }
 
-// Called every frame
-void AC_ExitArea::Tick(float DeltaTime)
+bool AC_ExitArea::OverlappingBoxCollision()
 {
-	Super::Tick(DeltaTime);
-	AC_PlayerCharacter* PlayerRef = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
-}
-
-//On Overlap Begin
-void AC_ExitArea::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-	AC_PlayerCharacter* PlayerRef = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
-	if(OtherActor == PlayerRef && (OtherActor != this && OtherComp == PlayerRef->GetCapsuleComponent())) //&& OtherComp == PlayerRef->BoxComp
+	// Checks if the Player is overlapping with the Box collision
+	if (BoxComp->IsOverlappingActor(PlayerCharacter))
 	{
-		AC_PlayerHUD2* PlayerHUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
+		bOverlappingExitArea = true;
+		return bOverlappingExitArea;
+	}
 
-		if(PlayerHUD)
-		{
-			PlayerHUD->SetEKeyHintText("Climb");
-			PlayerHUD->MakeEKeyHintVisible();
-		}
-		PlayerRef->bCanExit = true;
+	else
+	{
+		bOverlappingExitArea = false;
+		return bOverlappingExitArea;
 	}
 }
 
-//On Overlap End
-void AC_ExitArea::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+void AC_ExitArea::ExitAreaFixMovement()
 {
-	AC_PlayerCharacter* PlayerRef = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
-	if (OtherActor == PlayerRef && (OtherActor != this && OtherComp == PlayerRef->GetCapsuleComponent())) //&& OtherComp == PlayerRef->BoxComp
-	{
-		//Cast to the HUD 
-		AC_PlayerHUD2* PlayerHUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
-		if (PlayerHUD)
-		{
-			PlayerHUD->MakeEKeyHintInVisible();
-		}
-		PlayerRef->bCanExit = false;
-	}
-	
+	HUD->InstantlyInVisible();
+	PlayerCharacter->SetActorLocation(NewLocation);
+	PlayerCharacter->ExitAreaFixMovement();
+	ResetExitArea();
 }
 
-void AC_ExitArea::EKeyPressed()
+void AC_ExitArea::ResetExitArea()
 {
-	// set the players location here then call it in the player file
-	AC_PlayerCharacter* Character = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
-	Character->SetActorLocation(ExitAreaActorLocation);
+	bCanExit = true;
+}
+
+void AC_ExitArea::Interact_Implementation()
+{
+	if (OverlappingBoxCollision() && bCanExit)
+	{
+		bCanExit = false;
+
+		HUD->PlayExitAreaAnimationHUD();
+		HUD->MakeEKeyHintInVisible();
+
+		GetWorldTimerManager().SetTimer(ResetExitAreaHandle, this, &AC_ExitArea::ExitAreaFixMovement, 2.0f, false);
+
+		PlayerCharacter->GetCharacterMovement()->StopMovementImmediately();
+		PlayerCharacter->GetCharacterMovement()->DisableMovement();
+
+	}
+}
+
+void AC_ExitArea::DisplayKeyHint_Implementation()
+{
+	if (HUD)
+	{
+		HUD->SetEKeyHintText("Climb");
+		HUD->MakeEKeyHintVisible();
+	}
+}
+
+void AC_ExitArea::RemoveKeyHint_Implementation()
+{
+	if (HUD)
+	{
+		HUD->MakeEKeyHintInVisible();
+	}
 }

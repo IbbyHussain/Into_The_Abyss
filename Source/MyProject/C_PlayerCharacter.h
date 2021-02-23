@@ -627,6 +627,8 @@ public:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadWrite, Category = "Crossbow")
 	bool bIsHidden;
 
+	// Used in exit area class, to fix player movement after exiting swimming area
+	void ExitAreaFixMovement();
 private:
 
 	//Idle
@@ -792,7 +794,6 @@ private:
 	// E KEY Interactions
 	FTimerHandle ExitAreaHandle;
 
-	void ExitAreaFixMovement();
 
 	void ExitAreaReleased();
 

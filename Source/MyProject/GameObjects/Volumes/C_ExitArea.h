@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "MyProject/Interfaces/C_InteractInterface.h"
 #include "C_ExitArea.generated.h"
 
 class UC_UW_EKeyHint;
@@ -11,7 +12,7 @@ class AC_ExitAreaSpawnLocation;
 
 
 UCLASS()
-class MYPROJECT_API AC_ExitArea : public AActor
+class MYPROJECT_API AC_ExitArea : public AActor, public IC_InteractInterface
 {
 	GENERATED_BODY()
 	
@@ -24,18 +25,9 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Collision")
 	class UBoxComponent* BoxComp;
-
-	UFUNCTION()
-	void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,bool bFromSweep, const FHitResult& SweepResult);
-
-	// declare overlap end function
-	UFUNCTION()
-	void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 	class AC_PlayerCharacter* PlayerCharacterRef;
 
@@ -44,11 +36,48 @@ public:
 
 	TSubclassOf<UC_UW_EKeyHint> WidgetClass;
 
-	UFUNCTION(BlueprintCallable)
-	void EKeyPressed();
+	// INTERACT 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actors")
-	FVector ExitAreaActorLocation;
+	// Interact function from interface
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	void Interact();
 
+	// Implementation of the interact function
+	virtual void Interact_Implementation() override;
 
+	// DisplayKeyhint function from interface
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	void DisplayKeyHint();
+
+	// Implementation of the DisplayKeyHint function
+	virtual void DisplayKeyHint_Implementation() override;
+
+	// RemoveKeyhint function from interface
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	void RemoveKeyHint();
+
+	// Implementation of the RemoveKeyHint function
+	virtual void RemoveKeyHint_Implementation() override;
+
+	//Ref to the HUD
+	class AC_PlayerHUD2* HUD;
+
+	//Ref to the Player Character
+	class AC_PlayerCharacter* PlayerCharacter;
+
+	bool OverlappingBoxCollision();
+
+	bool bOverlappingExitArea;
+
+	bool bCanExit;
+
+	FTimerHandle ResetExitAreaHandle;
+
+	void ResetExitArea();
+
+	void ExitAreaFixMovement();
+
+	// The location the player will spawn at after interacting with this exit area actor
+	UPROPERTY(EditInstanceOnly, Category = "Exit Area")
+	FVector NewLocation;
 };

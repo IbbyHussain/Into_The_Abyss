@@ -177,6 +177,14 @@ FString AC_PlayerHUD2::SetEKeyHintText(FString HUDKeyword)
 	return TEXT("");
 }
 
+void AC_PlayerHUD2::InstantlyInVisible()
+{
+	if (EKeyHintWidget)
+	{
+		EKeyHintWidget->InVisible();
+	}
+}
+
 // Crossbow bolt tracker
 
 void AC_PlayerHUD2::UpdateCrossbowBoltTracker(UC_CrossBowBoltTracker* CrossBowBoltTrackerWidget, int32 NumOfBolts)

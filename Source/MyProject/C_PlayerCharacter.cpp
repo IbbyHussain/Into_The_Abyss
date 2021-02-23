@@ -555,7 +555,13 @@ void AC_PlayerCharacter::StopDashing()
 {
 	GetCharacterMovement()->StopMovementImmediately();
 	GetWorldTimerManager().SetTimer(DashStopHandle, this, &AC_PlayerCharacter::ResetDash, DashCoolDown, false);
-	GetCharacterMovement()->BrakingFrictionFactor = 2.0f;
+	//GetCharacterMovement()->BrakingFrictionFactor = 2.0f;
+
+	if (CombatState == ECombatState::MELEE)
+	{
+		GetCharacterMovement()->MaxWalkSpeed = 450.0f;
+		GetCharacterMovement()->MaxWalkSpeedCrouched = 225.0f;
+	}
 }
 
 // Reset Dash

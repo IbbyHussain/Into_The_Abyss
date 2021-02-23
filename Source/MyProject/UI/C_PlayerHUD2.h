@@ -73,6 +73,8 @@ public:
 
 	FString SetEKeyHintText(FString HUDKeyword);
 
+	void InstantlyInVisible();
+
 	//WeaponWheel
 
 	UC_WeaponWheel* WeaponWheelWidget;
