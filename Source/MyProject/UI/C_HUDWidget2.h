@@ -21,6 +21,10 @@ class MYPROJECT_API UC_HUDWidget2 : public UUserWidget
 public:
 	virtual void NativeConstruct() override;
 
+	// The quest widget is added to this canvas pannel
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, meta = (BindWidget))
+	UCanvasPanel* QuestWidgetHolder;
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, meta = (BindWidget))
 	UProgressBar* PROHealthBar;
 

@@ -441,6 +441,11 @@ void AC_PlayerHUD2::CreateQuestWidget()
 		if (QuestWidget)
 		{
 			QuestWidget->AddToViewport();
+			QuestWidget->SetDesiredSizeInViewport(FVector2D(500.0f, 800.0f));
+			if(HUDWidget)
+			{
+				//HUDWidget->QuestWidgetHolder->AddChildToCanvas(QuestWidget)->SetAutoSize(true);
+			}
 		}
 	}
 }

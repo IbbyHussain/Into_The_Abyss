@@ -20,5 +20,19 @@ public:
 
 	virtual void NativeConstruct() override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UButton* AcceptButton;
+
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UButton* RejectButton;
+
+	UFUNCTION()
+	void AcceptQuest();
+
+	UFUNCTION()
+	void RejectQuest();
+
+	APlayerController* PlayerController;
 	
 };
