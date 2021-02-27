@@ -433,15 +433,17 @@ void AC_PlayerHUD2::DestroyTradingWindow(TSubclassOf<class UC_AITradeWindow> AIT
 
 // NPC Questing
 
-void AC_PlayerHUD2::CreateQuestWidget()
+void AC_PlayerHUD2::CreateQuestWidget(class AC_BaseQuest* QuestRef)
 {
 	if (QuestWidgetClass)
 	{
 		QuestWidget = CreateWidget<UC_QuestWidget>(GetWorld(), QuestWidgetClass);
 		if (QuestWidget)
 		{
+			QuestWidget->Quest = QuestRef;
 			QuestWidget->AddToViewport();
 			QuestWidget->SetDesiredSizeInViewport(FVector2D(500.0f, 800.0f));
+			
 			if(HUDWidget)
 			{
 				//HUDWidget->QuestWidgetHolder->AddChildToCanvas(QuestWidget)->SetAutoSize(true);

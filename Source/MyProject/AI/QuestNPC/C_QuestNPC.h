@@ -48,4 +48,6 @@ public:
 	FTimerHandle PlayerMeshVisibilityHandle;
 
 	void MakePlayerMeshVisible();
+
+	TArray<AActor*> AttachedActorsArray;
 };

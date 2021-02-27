@@ -3,19 +3,33 @@
 
 AC_BaseQuest::AC_BaseQuest()
 {
-	PrimaryActorTick.bCanEverTick = true;
 
 }
 
 void AC_BaseQuest::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	UE_LOG(LogTemp, Log, TEXT("Quest Name is: %s"), *QuestName.ToString());
+
 }
 
-void AC_BaseQuest::Tick(float DeltaTime)
+void AC_BaseQuest::OrganiseQuestInEditor()
 {
-	Super::Tick(DeltaTime);
-
+	// SetLocation to whatever this actor is attached to
+	SetActorLocation(GetAttachParentActor()->GetActorLocation());
 }
+
+void AC_BaseQuest::CheckLocationObjective()
+{
+}
+
+void AC_BaseQuest::CheckInteractionObjective()
+{
+}
+
+void AC_BaseQuest::CheckKilledEnemyObjective()
+{
+}
+
 

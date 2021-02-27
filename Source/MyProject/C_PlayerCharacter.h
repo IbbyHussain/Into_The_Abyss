@@ -629,6 +629,8 @@ public:
 
 	// Used in exit area class, to fix player movement after exiting swimming area
 	void ExitAreaFixMovement();
+
+	AActor* InteractHitActor;
 private:
 
 	//Idle

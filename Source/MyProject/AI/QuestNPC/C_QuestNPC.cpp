@@ -5,6 +5,7 @@
 #include "MyProject/UI/C_PlayerHUD2.h"
 #include "MyProject/C_PlayerCharacter.h"
 #include "MyProject/UI/C_AITradeWindow.h"
+#include "MyProject//Quest System/C_BaseQuest.h"
 
 
 AC_QuestNPC::AC_QuestNPC()
@@ -36,8 +37,21 @@ void AC_QuestNPC::Interact_Implementation()
 
 		PlayerCharacter->StopSprint();
 
-		// Will open the Trading widget.
-		HUD->CreateQuestWidget();
+		GetAttachedActors(AttachedActorsArray, true);
+
+		for (auto i : AttachedActorsArray)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("There are: %d attached actors"), AttachedActorsArray.Num());
+
+			AC_BaseQuest* Quest = Cast<AC_BaseQuest>(i);
+
+			if(Quest)
+			{
+				// Will open the Trading widget.
+				HUD->CreateQuestWidget(Quest);
+			}
+			
+		}
 
 		// Hides the HUD
 		HUD->HideAllElements();

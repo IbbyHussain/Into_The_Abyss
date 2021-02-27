@@ -6,9 +6,6 @@
 #include "Blueprint/UserWidget.h"
 #include "C_QuestWidget.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class MYPROJECT_API UC_QuestWidget : public UUserWidget
 {
@@ -34,5 +31,9 @@ public:
 	void RejectQuest();
 
 	APlayerController* PlayerController;
+
+	// A referenec to the quest that this widget should use
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
+	class AC_BaseQuest* Quest;
 	
 };

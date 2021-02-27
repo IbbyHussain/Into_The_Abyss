@@ -179,7 +179,7 @@ public:
 
 	// NPC Questing
 
-	void CreateQuestWidget();
+	void CreateQuestWidget(class AC_BaseQuest* QuestRef);
 
 	void DestroyQuestWidget();
 

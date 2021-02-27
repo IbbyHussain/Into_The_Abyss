@@ -4,23 +4,40 @@
 #include "GameFramework/Actor.h"
 #include "C_BaseQuest.generated.h"
 
-USTRUCT()
+UENUM()
+namespace EObjectiveTypes {
+	enum Type {
+		LOCATION UMETA(DisplayName = "Location"),
+		INTERACT UMETA(DisplayName = "Interact"),
+		KILL UMETA(DisplayName = "Kill")
+	};
+}
+
+USTRUCT(BlueprintType)
 struct FObjectiveData
 {
 	GENERATED_BODY() 
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Struct")
 	FName ObjectiveDescription;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Struct")
 	bool bIsObjectiveComplete;
 
 	// Which enemy type to kill
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Struct")
 	AActor* ObjectiveTarget;
 
 	// e.g number of targets
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Struct")
 	int32 ObjectiveNumber;
 
-	// The enums value
-	EObjectiveTypes ObjectiveTypes;
+public:
+	//UPROPERTY(EditAnywhere, Category = "Struct")
+	//EObjectiveTypes ObjectiveTypes;
+
+	UPROPERTY(EditAnywhere, Category = "Struct")
+	TEnumAsByte<EObjectiveTypes::Type> ObjectiveTypes;
 
 	FObjectiveData()
 	{
@@ -28,18 +45,6 @@ public:
 	}
 
 };
-
-
-// The type of objectives that quests can give
-UENUM()
-enum class EObjectiveTypes : uint8
-{
-	LOCATION,
-	COLLECT,
-	KILL
-};
-
-
 
 UCLASS()
 class MYPROJECT_API AC_BaseQuest : public AActor
@@ -49,8 +54,6 @@ class MYPROJECT_API AC_BaseQuest : public AActor
 protected:
 
 	virtual void BeginPlay() override;
-
-	virtual void Tick(float DeltaTime) override;
 
 public:	
 
@@ -62,20 +65,36 @@ public:
 
 	// Variables
 
-	FName QuestName;
+	// FText so that it works with widgets
 
-	FName QuestDescription;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
+	FText QuestName;
 
-	FName TurnInText;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
+	FText QuestDescription;
 
-	bool bIsStoryQuest;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
+	FText TurnInText;
+
+	//bool bIsStoryQuest;
 
 	bool bIsCompleted;
 
 	UPROPERTY(EditInstanceOnly, Category = "Quests")
 	AC_BaseQuest* PreRequisiteQuest;
 
+	UPROPERTY(EditAnywhere, Category = "Quests")
 	TArray<FObjectiveData> ObjectivesArray;
 
+	// functions
+
+	UFUNCTION(BlueprintCallable, CallInEditor)
+	void OrganiseQuestInEditor();
+
+	void CheckLocationObjective();
+
+	void CheckInteractionObjective();
+
+	void CheckKilledEnemyObjective();
 
 };

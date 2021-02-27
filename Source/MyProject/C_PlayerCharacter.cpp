@@ -2902,6 +2902,8 @@ void AC_PlayerCharacter::Interact()
 	{
 		UE_LOG(LogTemp, Log, TEXT("HIT A: %s"), *InteractHit.GetActor()->GetName());
 
+		InteractHitActor = InteractHit.GetActor();
+
 		// If the hit object inherits from the interact interface
 		if (InteractHit.GetActor()->GetClass()->ImplementsInterface(UC_InteractInterface::StaticClass()))
 		{
