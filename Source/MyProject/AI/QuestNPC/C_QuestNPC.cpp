@@ -1,0 +1,135 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+
+#include "C_QuestNPC.h"
+#include "MyProject/UI/C_PlayerHUD2.h"
+#include "MyProject/C_PlayerCharacter.h"
+#include "MyProject/UI/C_AITradeWindow.h"
+
+
+AC_QuestNPC::AC_QuestNPC()
+{
+	TypeOfAI = ETypeOfAI::TRADER;
+
+	bCanRagdoll = false;
+}
+
+void AC_QuestNPC::BeginPlay()
+{
+	Super::BeginPlay();
+
+	bCanRagdoll = false;
+
+	// Binds delegate
+	PlayerCharacter->CanTrade.AddDynamic(this, &AC_QuestNPC::StopInteract);
+}
+
+// when interact with the AI trader
+void AC_QuestNPC::Interact_Implementation()
+{
+	if (OverlappingLeverBoxCollision() && bCanTalkAI)
+	{
+		APlayerController* const PlayerController = Cast<APlayerController>(GEngine->GetFirstLocalPlayerController(GetWorld()));
+
+		// hides the AI health bar
+		PlayerCharacter->bIsTrading = true;
+
+		PlayerCharacter->StopSprint();
+
+		// Will open the Trading widget.
+		HUD->CreateQuestWidget();
+
+		// Hides the HUD
+		HUD->HideAllElements();
+
+		// Disables all input
+		PlayerCharacter->DisablePlayerInput();
+
+		// Stops player movement and locks camera movement.
+		PlayerCharacter->MovementState = EMovementState::NONE;
+		PlayerCharacter->UpdateMovement();
+		PlayerCharacter->bLockCamera = true;
+
+		PlayerCharacter->GetMesh()->SetVisibility(false);
+
+		if (PlayerController)
+		{
+			// Changes camera view to the camera view actor
+			PlayerController->SetViewTargetWithBlend(CameraViewPoint, 1.0f, EViewTargetBlendFunction::VTBlend_Cubic);
+
+			// Allows the player to use the mouse and sets the mouse to visible
+			PlayerController->SetInputMode(FInputModeUIOnly());
+			PlayerController->bShowMouseCursor = true;
+		}
+
+		RemoveKeyHint_Implementation();
+		bShowEKeyHint = false;
+	}
+}
+
+void AC_QuestNPC::DisplayKeyHint_Implementation()
+{
+	if (bShowEKeyHint)
+	{
+		PlayerCharacter->bCanInteractWithAI = true;
+
+		if (HUD)
+		{
+			HUD->SetEKeyHintText("Talk");
+			HUD->MakeEKeyHintVisible();
+		}
+	}
+}
+
+void AC_QuestNPC::RemoveKeyHint_Implementation()
+{
+	if (bShowEKeyHint)
+	{
+		PlayerCharacter->bCanInteractWithAI = false;
+
+		if (HUD)
+		{
+			HUD->MakeEKeyHintInVisible();
+		}
+	}
+}
+
+// Called when the close button is pressed on the trading window widget
+void AC_QuestNPC::StopInteract(int a)
+{
+	APlayerController* const PlayerController = Cast<APlayerController>(GEngine->GetFirstLocalPlayerController(GetWorld()));
+
+	PlayerCharacter->bIsTrading = false;
+
+	// Resets camera view
+	PlayerController->SetViewTargetWithBlend(PlayerCharacter, 1.0f, EViewTargetBlendFunction::VTBlend_Cubic);
+
+	// Allows the player to use the mouse and sets the mouse to visible
+	PlayerController->SetInputMode(FInputModeGameOnly());
+	PlayerController->bShowMouseCursor = false;
+
+	// After camera has panned back to player camera
+	GetWorldTimerManager().SetTimer(PlayerMeshVisibilityHandle, this, &AC_QuestNPC::MakePlayerMeshVisible, 1.0f, false);
+
+	HUD->DestroyQuestWidget();
+
+	HUD->ShowAllElements();
+
+	bShowEKeyHint = true;
+	DisplayKeyHint_Implementation();
+}
+
+void AC_QuestNPC::MakePlayerMeshVisible()
+{
+	APlayerController* const PlayerController = Cast<APlayerController>(GEngine->GetFirstLocalPlayerController(GetWorld()));
+
+	PlayerCharacter->GetMesh()->SetVisibility(true);
+
+	// Enables input
+	PlayerCharacter->EnablePlayerInput();
+
+	// Allows player to move again.
+	PlayerCharacter->MovementState = EMovementState::STANDING;
+	PlayerCharacter->UpdateMovement();
+	PlayerCharacter->bLockCamera = false;
+}

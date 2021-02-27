@@ -11,6 +11,7 @@
 #include "MyProject/UI/C_PickupWidget.h"
 #include "MyProject/UI/C_AITradeWindow.h"
 #include "MyProject/UI/C_PlayerDeathWidget.h"
+#include "MyProject/UI/C_QuestWidget.h"
 #include "TimerManager.h"
 
 //CONSTRUCTOR 
@@ -426,6 +427,31 @@ void AC_PlayerHUD2::DestroyTradingWindow(TSubclassOf<class UC_AITradeWindow> AIT
 		if (AITradeWidget)
 		{
 			AITradeWidget->RemoveFromParent();
+		}
+	}
+}
+
+// NPC Questing
+
+void AC_PlayerHUD2::CreateQuestWidget()
+{
+	if (QuestWidgetClass)
+	{
+		QuestWidget = CreateWidget<UC_QuestWidget>(GetWorld(), QuestWidgetClass);
+		if (QuestWidget)
+		{
+			QuestWidget->AddToViewport();
+		}
+	}
+}
+
+void AC_PlayerHUD2::DestroyQuestWidget()
+{
+	if (QuestWidgetClass)
+	{
+		if (QuestWidget)
+		{
+			QuestWidget->RemoveFromParent();
 		}
 	}
 }

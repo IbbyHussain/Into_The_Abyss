@@ -176,4 +176,16 @@ public:
 	void DestroyTradingWindow(TSubclassOf<class UC_AITradeWindow> AITradeWindowWidgetClass);
 
 	void UpdateCurrency();
+
+	// NPC Questing
+
+	void CreateQuestWidget();
+
+	void DestroyQuestWidget();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_QuestWidget> QuestWidgetClass;
+
+	class UC_QuestWidget* QuestWidget;
+
 };
