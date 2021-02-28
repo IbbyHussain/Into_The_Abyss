@@ -19,7 +19,7 @@ struct FObjectiveData
 	GENERATED_BODY() 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Struct")
-	FName ObjectiveDescription;
+	FText ObjectiveDescription;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Struct")
 	bool bIsObjectiveComplete;
@@ -61,6 +61,7 @@ public:
 
 	// Containers
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
 	FObjectiveData ObjectiveData;
 
 	// Variables
@@ -83,7 +84,7 @@ public:
 	UPROPERTY(EditInstanceOnly, Category = "Quests")
 	AC_BaseQuest* PreRequisiteQuest;
 
-	UPROPERTY(EditAnywhere, Category = "Quests")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
 	TArray<FObjectiveData> ObjectivesArray;
 
 	// functions

@@ -12,6 +12,8 @@
 #include "MyProject/UI/C_AITradeWindow.h"
 #include "MyProject/UI/C_PlayerDeathWidget.h"
 #include "MyProject/UI/C_QuestWidget.h"
+#include "MyProject/Quest System/C_QuestObjectivesWidget.h"
+#include "MyProject/Quest System/C_SingleObjectiveWidget.h"
 #include "TimerManager.h"
 
 //CONSTRUCTOR 
@@ -459,6 +461,47 @@ void AC_PlayerHUD2::DestroyQuestWidget()
 		if (QuestWidget)
 		{
 			QuestWidget->RemoveFromParent();
+		}
+	}
+}
+
+void AC_PlayerHUD2::CreateObjectiveWidget(AC_BaseQuest* QuestRef)
+{
+	if (QuestObjectivesWidgetClass)
+	{
+		QuestObjectivesWidget = CreateWidget<UC_QuestObjectivesWidget>(GetWorld(), QuestObjectivesWidgetClass);
+		if (QuestObjectivesWidget)
+		{
+			QuestObjectivesWidget->Quest = QuestRef;
+			QuestObjectivesWidget->AddToViewport();
+			QuestObjectivesWidget->SetDesiredSizeInViewport(FVector2D(500.0f, 800.0f));
+			QuestObjectivesWidget->SetPositionInViewport(FVector2D(500.0f, 250.0f));
+		}
+	}
+}
+
+void AC_PlayerHUD2::DestroyObjectiveWidget()
+{
+	if (QuestObjectivesWidgetClass)
+	{
+		if (QuestObjectivesWidget)
+		{
+			QuestObjectivesWidget->RemoveFromParent();
+		}
+	}
+}
+
+void AC_PlayerHUD2::CreateSingleObjectiveWidget(class UVerticalBox* VerticalBoxRef, FText ObjectiveDescription, bool bIsObjectiveComplete)
+{
+	if (SingleObjectivesWidgetClass)
+	{
+		SingleObjectivesWidget = CreateWidget<UC_SingleObjectiveWidget>(GetWorld(), SingleObjectivesWidgetClass);
+		if (SingleObjectivesWidget)
+		{
+			VerticalBoxRef->AddChild(SingleObjectivesWidget);
+
+			SingleObjectivesWidget->SingleObjectiveDescription = ObjectiveDescription;
+			SingleObjectivesWidget->bSingleIsComplete = bIsObjectiveComplete;
 		}
 	}
 }

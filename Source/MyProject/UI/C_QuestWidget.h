@@ -32,7 +32,8 @@ public:
 
 	APlayerController* PlayerController;
 
-	// A referenec to the quest that this widget should use
+	// A referenec to the quest that this widget should use.
+	// This referenece is used to bind the text fields in this widget to the struct data in the AC_BaseQuest class
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
 	class AC_BaseQuest* Quest;
 	

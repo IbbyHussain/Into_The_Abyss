@@ -5,6 +5,7 @@
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
 #include "MyProject/C_PlayerCharacter.h"
+#include "MyProject/UI/C_PlayerHUD2.h"
 
 UC_QuestWidget::UC_QuestWidget(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -33,6 +34,14 @@ void UC_QuestWidget::AcceptQuest()
 
 	AC_PlayerCharacter* PlayerCharacter = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
 	PlayerCharacter->BroadcastCanTrade();
+
+	AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
+
+	if (HUD)
+	{
+		HUD->CreateObjectiveWidget(Quest);
+	}
+
 }
 
 // when clicked reject button

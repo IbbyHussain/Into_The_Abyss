@@ -188,4 +188,26 @@ public:
 
 	class UC_QuestWidget* QuestWidget;
 
+	// NPC Questing - Objective widget
+
+	void CreateObjectiveWidget(class AC_BaseQuest* QuestRef);
+
+	void DestroyObjectiveWidget();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_QuestObjectivesWidget> QuestObjectivesWidgetClass;
+
+	class UC_QuestObjectivesWidget* QuestObjectivesWidget;
+
+	// NPC Questing - Objective Single widget
+
+	void CreateSingleObjectiveWidget(class UVerticalBox* VerticalBoxRef, FText ObjectiveDescription, bool bIsObjectiveComplete);
+
+	//void DestroySingleObjectiveWidget();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_SingleObjectiveWidget> SingleObjectivesWidgetClass;
+
+	class UC_SingleObjectiveWidget* SingleObjectivesWidget;
+
 };
