@@ -14,6 +14,7 @@
 #include "MyProject/UI/C_QuestWidget.h"
 #include "MyProject/Quest System/C_QuestObjectivesWidget.h"
 #include "MyProject/Quest System/C_SingleObjectiveWidget.h"
+#include "MyProject/Quest System/C_QuestTurnInWidget.h"
 #include "TimerManager.h"
 
 //CONSTRUCTOR 
@@ -445,11 +446,6 @@ void AC_PlayerHUD2::CreateQuestWidget(class AC_BaseQuest* QuestRef)
 			QuestWidget->Quest = QuestRef;
 			QuestWidget->AddToViewport();
 			QuestWidget->SetDesiredSizeInViewport(FVector2D(500.0f, 800.0f));
-			
-			if(HUDWidget)
-			{
-				//HUDWidget->QuestWidgetHolder->AddChildToCanvas(QuestWidget)->SetAutoSize(true);
-			}
 		}
 	}
 }
@@ -502,6 +498,20 @@ void AC_PlayerHUD2::CreateSingleObjectiveWidget(class UVerticalBox* VerticalBoxR
 
 			SingleObjectivesWidget->SingleObjectiveDescription = ObjectiveDescription;
 			SingleObjectivesWidget->bSingleIsComplete = bIsObjectiveComplete;
+		}
+	}
+}
+
+void AC_PlayerHUD2::CreateQuestTurnInWidget(AC_BaseQuest* QuestRef)
+{
+	if (QuestTurnInWidgetClass)
+	{
+		QuestTurnInWidget = CreateWidget<UC_QuestTurnInWidget>(GetWorld(), QuestTurnInWidgetClass);
+		if (QuestTurnInWidget)
+		{
+			QuestTurnInWidget->Quest = QuestRef;
+			QuestTurnInWidget->AddToViewport();
+			QuestTurnInWidget->SetDesiredSizeInViewport(FVector2D(500.0f, 800.0f));
 		}
 	}
 }

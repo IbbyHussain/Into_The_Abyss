@@ -210,4 +210,15 @@ public:
 
 	class UC_SingleObjectiveWidget* SingleObjectivesWidget;
 
+	// NPC Questing - Quest Turn In
+
+	void CreateQuestTurnInWidget(AC_BaseQuest* QuestRef);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_QuestTurnInWidget> QuestTurnInWidgetClass;
+
+	class UC_QuestTurnInWidget* QuestTurnInWidget;
+
+
+
 };

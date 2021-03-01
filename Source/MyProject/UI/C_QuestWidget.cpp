@@ -6,6 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MyProject/C_PlayerCharacter.h"
 #include "MyProject/UI/C_PlayerHUD2.h"
+#include "MyProject/Quest System/C_BaseQuest.h"
 
 UC_QuestWidget::UC_QuestWidget(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -26,8 +27,6 @@ void UC_QuestWidget::NativeConstruct()
 // When clicked accept button
 void UC_QuestWidget::AcceptQuest()
 {
-	// Add quest to quest log
-
 	RemoveFromParent();
 	PlayerController->SetInputMode(FInputModeGameOnly());
 	PlayerController->bShowMouseCursor = false;
@@ -41,6 +40,8 @@ void UC_QuestWidget::AcceptQuest()
 	{
 		HUD->CreateObjectiveWidget(Quest);
 	}
+
+	Quest->bHasBeenAccepted = true;
 
 }
 

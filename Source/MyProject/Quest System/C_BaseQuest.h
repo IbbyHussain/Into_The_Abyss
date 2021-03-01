@@ -79,7 +79,11 @@ public:
 
 	//bool bIsStoryQuest;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
 	bool bIsCompleted;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
+	bool bHasBeenAccepted;
 
 	UPROPERTY(EditInstanceOnly, Category = "Quests")
 	AC_BaseQuest* PreRequisiteQuest;
