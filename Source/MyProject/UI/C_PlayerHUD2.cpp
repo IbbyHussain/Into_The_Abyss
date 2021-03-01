@@ -458,7 +458,7 @@ void AC_PlayerHUD2::DestroyQuestWidget()
 	{
 		if (QuestWidget)
 		{
-			QuestWidget->RemoveFromParent();
+			QuestWidget->RemoveFromParent(); // acess violation reading location
 		}
 	}
 }
