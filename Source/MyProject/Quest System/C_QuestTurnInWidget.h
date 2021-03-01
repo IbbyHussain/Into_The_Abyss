@@ -22,5 +22,22 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
 	class AC_BaseQuest* Quest;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UScrollBox* ObjectivesList;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UButton* TurnInButton;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UButton* CancelButton;
+
+	bool bIsQuestComplete();
+
+	UFUNCTION()
+	void TurnInButtonClicked();
+
+	UFUNCTION()
+	void CancelButtonClicked();
 	
+	APlayerController* PlayerController;
 };

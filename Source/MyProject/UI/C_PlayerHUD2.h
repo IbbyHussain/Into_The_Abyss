@@ -219,6 +219,12 @@ public:
 
 	class UC_QuestTurnInWidget* QuestTurnInWidget;
 
+	// NPC Questing - Quest Objective Items
 
+	void CreateQuestObjectiveItems(AC_BaseQuest* QuestRef, class UScrollBox* ScrollBox, FText Text, bool bIsComplete);
 
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_QuestObjectiveItemsWidget> QuestObjectiveItemsWidgetClass;
+
+	class UC_QuestObjectiveItemsWidget* QuestObjectiveItemsWidget;
 };
