@@ -25,3 +25,8 @@ void UC_QuestObjectivesWidget::UpdateObjectives()
 		}
 	}
 }
+
+void UC_QuestObjectivesWidget::ClearObjectives()
+{
+	List->ClearChildren();
+}

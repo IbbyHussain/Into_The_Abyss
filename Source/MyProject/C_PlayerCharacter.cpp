@@ -2835,6 +2835,7 @@ void AC_PlayerCharacter::Yaw(float val)
 void AC_PlayerCharacter::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	BaseAI = Cast<AC_BaseAI>(OtherActor);
+
 	AC_Pickup* Pickup = Cast<AC_Pickup>(OtherActor);
 
 	AC_SkeletalPickupBase* BasePickup = Cast<AC_SkeletalPickupBase>(OtherActor);

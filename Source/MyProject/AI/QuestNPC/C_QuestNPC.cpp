@@ -47,17 +47,25 @@ void AC_QuestNPC::Interact_Implementation()
 
 			if(Quest)
 			{
-				if(Quest->bHasBeenAccepted)
+
+				if(Quest->bIsCompleted)
 				{
-					// Will open the turn in quest widget
-					HUD->CreateQuestTurnInWidget(Quest);
-					HUD->DestroyQuestWidget();
+				
 				}
 
 				else
 				{
-					// Will open the Quest widget.
-					HUD->CreateQuestWidget(Quest);
+					if (Quest->bHasBeenAccepted)
+					{
+						// Will open the turn in quest widget
+						HUD->CreateQuestTurnInWidget(Quest, this);
+						HUD->DestroyQuestWidget();
+					}
+					else
+					{
+						// Will open the Quest widget.
+						HUD->CreateQuestWidget(Quest);
+					}
 				}
 			}
 			
@@ -111,9 +119,11 @@ void AC_QuestNPC::RemoveKeyHint_Implementation()
 	{
 		PlayerCharacter->bCanInteractWithAI = false;
 
+
 		if (HUD)
 		{
 			HUD->MakeEKeyHintInVisible();
+			UE_LOG(LogTemp, Warning, TEXT("called yfefesfewfefeas"));
 		}
 	}
 }

@@ -199,11 +199,11 @@ public:
 
 	class UC_QuestObjectivesWidget* QuestObjectivesWidget;
 
+	void ClearObjectives();
+
 	// NPC Questing - Objective Single widget
 
 	void CreateSingleObjectiveWidget(class UVerticalBox* VerticalBoxRef, FText ObjectiveDescription, bool bIsObjectiveComplete);
-
-	//void DestroySingleObjectiveWidget();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
 	TSubclassOf<class UC_SingleObjectiveWidget> SingleObjectivesWidgetClass;
@@ -212,7 +212,7 @@ public:
 
 	// NPC Questing - Quest Turn In
 
-	void CreateQuestTurnInWidget(AC_BaseQuest* QuestRef);
+	void CreateQuestTurnInWidget(AC_BaseQuest* QuestRef, class AC_QuestNPC* NPCRef);
 
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
 	TSubclassOf<class UC_QuestTurnInWidget> QuestTurnInWidgetClass;

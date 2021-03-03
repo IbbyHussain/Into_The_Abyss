@@ -18,6 +18,7 @@
 #include "MyProject/C_QuestObjectiveItemsWidget.h"
 #include "TimerManager.h"
 #include "Components/ScrollBox.h"
+#include "MyProject/AI/QuestNPC/C_QuestNPC.h"
 
 //CONSTRUCTOR 
 AC_PlayerHUD2::AC_PlayerHUD2()
@@ -489,6 +490,14 @@ void AC_PlayerHUD2::DestroyObjectiveWidget()
 	}
 }
 
+void AC_PlayerHUD2::ClearObjectives()
+{
+	if(QuestObjectivesWidget)
+	{
+		QuestObjectivesWidget->ClearObjectives();
+	}
+}
+
 void AC_PlayerHUD2::CreateSingleObjectiveWidget(class UVerticalBox* VerticalBoxRef, FText ObjectiveDescription, bool bIsObjectiveComplete)
 {
 	if (SingleObjectivesWidgetClass)
@@ -504,7 +513,7 @@ void AC_PlayerHUD2::CreateSingleObjectiveWidget(class UVerticalBox* VerticalBoxR
 	}
 }
 
-void AC_PlayerHUD2::CreateQuestTurnInWidget(AC_BaseQuest* QuestRef)
+void AC_PlayerHUD2::CreateQuestTurnInWidget(AC_BaseQuest* QuestRef, class AC_QuestNPC* NPCRef)
 {
 	if (QuestTurnInWidgetClass)
 	{
@@ -512,6 +521,7 @@ void AC_PlayerHUD2::CreateQuestTurnInWidget(AC_BaseQuest* QuestRef)
 		if (QuestTurnInWidget)
 		{
 			QuestTurnInWidget->Quest = QuestRef;
+			QuestTurnInWidget->QuestNPC = NPCRef;
 			QuestTurnInWidget->AddToViewport();
 			QuestTurnInWidget->SetDesiredSizeInViewport(FVector2D(500.0f, 800.0f));
 		}

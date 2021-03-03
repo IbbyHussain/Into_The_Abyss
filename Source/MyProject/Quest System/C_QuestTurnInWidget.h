@@ -6,9 +6,6 @@
 #include "Blueprint/UserWidget.h"
 #include "C_QuestTurnInWidget.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class MYPROJECT_API UC_QuestTurnInWidget : public UUserWidget
 {
@@ -21,6 +18,10 @@ public:
 	// A referenec to the quest that this widget should use.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
 	class AC_BaseQuest* Quest;
+
+	// A reference to the quest NPC that this widget should use.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
+	class AC_QuestNPC* QuestNPC;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UScrollBox* ObjectivesList;

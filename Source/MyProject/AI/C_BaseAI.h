@@ -287,6 +287,12 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Death")
 	UAnimMontage* MeleeHitMontage;
 
+	// Used to enable interactions for Quest NPC AI and Trader AI
+	bool bCanTalkAI;
+
+	// Used to enable  for Quest NPC AI and Trader AI
+	bool bShowEKeyHint;
+
 protected:
 	// Used in the blueprint of this class
 	UFUNCTION(BlueprintCallable)
@@ -301,15 +307,11 @@ protected:
 
 	class AC_PlayerCharacter* PlayerCharacter;
 
-	bool bShowEKeyHint;
-
 	class AC_PlayerHUD2* HUD;
 
 	bool OverlappingLeverBoxCollision();
 
 	bool bOverlappingPlayer;
-
-	bool bCanTalkAI;
 
 	// Used for ai that need to do something unique on death
 	virtual void OnDeath();

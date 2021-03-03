@@ -27,5 +27,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UVerticalBox* List;
+
+	void ClearObjectives();
 	
 };

@@ -9,6 +9,7 @@
 #include "MyProject/C_PlayerCharacter.h"
 #include "Kismet/GameplayStatics.h"
 #include "MyProject/Quest System/C_QuestObjectivesWidget.h"
+#include "MyProject/AI/QuestNPC/C_QuestNPC.h"
 
 void UC_QuestTurnInWidget::NativeConstruct()
 {
@@ -64,6 +65,7 @@ void UC_QuestTurnInWidget::TurnInButtonClicked()
 		if(HUD->QuestObjectivesWidget)
 		{
 			HUD->QuestObjectivesWidget->UpdateObjectives();
+			HUD->ClearObjectives();
 
 			UE_LOG(LogTemp, Error, TEXT("UPDATED OBJECTIVES"));
 
@@ -75,6 +77,10 @@ void UC_QuestTurnInWidget::TurnInButtonClicked()
 
 			AC_PlayerCharacter* PlayerCharacter = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
 			PlayerCharacter->BroadcastCanTrade();
+
+			QuestNPC->RemoveKeyHint_Implementation();
+			QuestNPC->bCanTalkAI = false;
+			QuestNPC->bShowEKeyHint = false;
 		}
 	}
 }

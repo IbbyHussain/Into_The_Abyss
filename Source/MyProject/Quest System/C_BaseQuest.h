@@ -4,6 +4,10 @@
 #include "GameFramework/Actor.h"
 #include "C_BaseQuest.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCheckLocationObjective);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCheckInteractionObjective);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCheckKilledEnemyObjective);
+
 UENUM()
 namespace EObjectiveTypes {
 	enum Type {
@@ -32,7 +36,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Struct")
 	int32 ObjectiveNumber;
 
-public:
 	//UPROPERTY(EditAnywhere, Category = "Struct")
 	//EObjectiveTypes ObjectiveTypes;
 
@@ -58,6 +61,17 @@ protected:
 public:	
 
 	AC_BaseQuest();
+
+	// Delegates
+
+	UPROPERTY(BlueprintAssignable, Category = "Quests")
+	FCheckLocationObjective CheckLocationObjectiveDelegate;
+
+	UPROPERTY(BlueprintAssignable, Category = "Quests")
+	FCheckInteractionObjective CheckInteractionObjectiveDelegate;
+
+	UPROPERTY(BlueprintAssignable, Category = "Quests")
+	FCheckKilledEnemyObjective CheckKilledEnemyObjectiveDelegate;
 
 	// Containers
 
@@ -96,10 +110,13 @@ public:
 	UFUNCTION(BlueprintCallable, CallInEditor)
 	void OrganiseQuestInEditor();
 
+	UFUNCTION()
 	void CheckLocationObjective();
 
+	UFUNCTION()
 	void CheckInteractionObjective();
 
+	UFUNCTION()
 	void CheckKilledEnemyObjective();
 
 };
