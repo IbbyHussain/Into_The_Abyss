@@ -27,7 +27,7 @@ void AC_BaseQuest::CheckLocationObjective(AC_LocationMarker* LocationReached)
 {
 	if(bHasBeenAccepted ) //&& ObjectiveData.ObjectiveTypes == EObjectiveTypes::LOCATION
 	{
-		UE_LOG(LogTemp, Warning, TEXT("CHECK LOCATION OBJECTIVE DELEGATE CALLED"));
+		//UE_LOG(LogTemp, Warning, TEXT("CHECK LOCATION OBJECTIVE DELEGATE CALLED"));
 
 		bool bUpdateUI;
 
@@ -37,7 +37,7 @@ void AC_BaseQuest::CheckLocationObjective(AC_LocationMarker* LocationReached)
 
 			if ((!ObjectivesArray[i].bIsObjectiveComplete) && ObjectivesArray[i].ObjectiveTarget == LocationReached)
 			{
-				UE_LOG(LogTemp, Warning, TEXT("COMPLETE"));
+				//UE_LOG(LogTemp, Warning, TEXT("COMPLETE"));
 				ObjectivesArray[ObjectiveNumber].bIsObjectiveComplete = true;
 				bUpdateUI = true;
 			}
@@ -55,6 +55,30 @@ void AC_BaseQuest::CheckLocationObjective(AC_LocationMarker* LocationReached)
 void AC_BaseQuest::CheckInteractionObjective(AActor* InteractionTarget)
 {
 	UE_LOG(LogTemp, Warning, TEXT("CHECK interact OBJECTIVE DELEGATE CALLED"));
+
+	if (bHasBeenAccepted) //&& ObjectiveData.ObjectiveTypes == EObjectiveTypes::LOCATION
+	{
+		bool bUpdateUI;
+
+		for (int i = 0; i < ObjectivesArray.Num(); i++)
+		{
+			int ObjectiveNumber = i;
+
+			if ((!ObjectivesArray[i].bIsObjectiveComplete) && ObjectivesArray[i].ObjectiveTarget == InteractionTarget) //&& ObjectivesArray[i].ObjectiveTarget == InteractionTarget
+			{
+				UE_LOG(LogTemp, Warning, TEXT("INTERACTION COMPLETE"));
+				ObjectivesArray[ObjectiveNumber].bIsObjectiveComplete = true;
+				bUpdateUI = true;
+			}
+		}
+
+		if (bUpdateUI)
+		{
+			// Update Objectives
+			AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
+			HUD->UpdateObjectives();
+		}
+	}
 }
 
 void AC_BaseQuest::CheckKilledEnemyObjective(AC_BaseAI* EnemyTarget)

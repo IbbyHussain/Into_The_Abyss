@@ -37,6 +37,11 @@ void AC_QuestNPC::Interact_Implementation()
 
 		PlayerCharacter->StopSprint();
 
+		if(QuestREF)
+		{
+			QuestREF->CheckInteractionObjective(this);
+		}
+
 		GetAttachedActors(AttachedActorsArray, true);
 
 		for (auto i : AttachedActorsArray)
