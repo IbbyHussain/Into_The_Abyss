@@ -5,10 +5,11 @@
 #include "C_BaseQuest.generated.h"
 
 class AC_LocationMarker;
+class AC_BaseAI;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCheckLocationObjective, AC_LocationMarker*, LocationReached);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCheckInteractionObjective);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCheckKilledEnemyObjective);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCheckInteractionObjective, AActor*, InteractionTarget);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCheckKilledEnemyObjective, AC_BaseAI*, EnemyTarget);
 
 UENUM()
 namespace EObjectiveTypes {
@@ -116,9 +117,9 @@ public:
 	void CheckLocationObjective(AC_LocationMarker* LocationReached);
 
 	UFUNCTION()
-	void CheckInteractionObjective();
+	void CheckInteractionObjective(AActor* InteractionTarget);
 
 	UFUNCTION()
-	void CheckKilledEnemyObjective();
+	void CheckKilledEnemyObjective(AC_BaseAI* EnemyTarget);
 
 };

@@ -25,7 +25,7 @@ void AC_BaseQuest::OrganiseQuestInEditor()
 
 void AC_BaseQuest::CheckLocationObjective(AC_LocationMarker* LocationReached)
 {
-	if(bHasBeenAccepted ) //&& ObjectiveData.ObjectiveTypes == EObjectiveTypes::LOCATION
+	if(bHasBeenAccepted && ObjectiveData.ObjectiveTypes == EObjectiveTypes::LOCATION)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("CHECK LOCATION OBJECTIVE DELEGATE CALLED"));
 
