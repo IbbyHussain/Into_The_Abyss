@@ -490,6 +490,14 @@ void AC_PlayerHUD2::DestroyObjectiveWidget()
 	}
 }
 
+void AC_PlayerHUD2::UpdateObjectives()
+{
+	if(QuestObjectivesWidget)
+	{
+		QuestObjectivesWidget->UpdateObjectives();
+	}
+}
+
 void AC_PlayerHUD2::ClearObjectives()
 {
 	if(QuestObjectivesWidget)

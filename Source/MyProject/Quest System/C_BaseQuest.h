@@ -4,7 +4,9 @@
 #include "GameFramework/Actor.h"
 #include "C_BaseQuest.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCheckLocationObjective);
+class AC_LocationMarker;
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCheckLocationObjective, AC_LocationMarker*, LocationReached);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCheckInteractionObjective);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCheckKilledEnemyObjective);
 
@@ -111,7 +113,7 @@ public:
 	void OrganiseQuestInEditor();
 
 	UFUNCTION()
-	void CheckLocationObjective();
+	void CheckLocationObjective(AC_LocationMarker* LocationReached);
 
 	UFUNCTION()
 	void CheckInteractionObjective();

@@ -199,6 +199,8 @@ public:
 
 	class UC_QuestObjectivesWidget* QuestObjectivesWidget;
 
+	void UpdateObjectives();
+
 	void ClearObjectives();
 
 	// NPC Questing - Objective Single widget
