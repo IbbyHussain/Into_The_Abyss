@@ -297,6 +297,8 @@ public:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Location Marker")
 	class AC_BaseQuest* BaseAIQuestRef;
 
+
+	bool bTakeAbility2Damage;
 protected:
 	// Used in the blueprint of this class
 	UFUNCTION(BlueprintCallable)

@@ -23,6 +23,8 @@ void AC_QuestNPC::BeginPlay()
 
 	// Binds delegate
 	PlayerCharacter->CanTrade.AddDynamic(this, &AC_QuestNPC::StopInteract);
+
+	bTakeAbility2Damage = false;
 }
 
 // when interact with the AI trader

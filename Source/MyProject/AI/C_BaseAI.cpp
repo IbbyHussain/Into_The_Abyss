@@ -127,6 +127,8 @@ AC_BaseAI::AC_BaseAI()
 	TimeUntilRagdollDeath = 3.0f;
 
 	TimeUntilDestroyed = 15.0f;
+
+	bTakeAbility2Damage = true;
 }
 
 void AC_BaseAI::BeginPlay()
@@ -221,7 +223,7 @@ void AC_BaseAI::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Othe
 	if (Ability2)
 	{
 
-		if (OtherActor == Ability2 && OtherComp == Ability2->BoxComp && !bInRagdoll)
+		if (OtherActor == Ability2 && OtherComp == Ability2->BoxComp && !bInRagdoll && bTakeAbility2Damage)
 		{
 
 			bOverlapping = true;
