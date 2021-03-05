@@ -293,6 +293,10 @@ public:
 	// Used to enable  for Quest NPC AI and Trader AI
 	bool bShowEKeyHint;
 
+	// Ther quest that this AI is a kill requirement for 
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Location Marker")
+	class AC_BaseQuest* BaseAIQuestRef;
+
 protected:
 	// Used in the blueprint of this class
 	UFUNCTION(BlueprintCallable)

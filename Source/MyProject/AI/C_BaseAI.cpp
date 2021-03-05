@@ -34,6 +34,8 @@
 #include "BehaviorTree/BlackBoardComponent.h"
 #include "MyProject/AI/MeleeAI/C_MeleeAIBlackBoardKeys.h"
 
+#include "MyProject/Quest System/C_BaseQuest.h"
+
 
 AC_BaseAI::AC_BaseAI()
 {
@@ -542,6 +544,9 @@ void AC_BaseAI::CheckForAIDeath()
 
 		//Stops the AI from removing physics ( Doesnt execute RemoveRagdoll() ) This also ensures no animations are played
 		GetWorldTimerManager().ClearAllTimersForObject(this);
+
+		// Call the quest killed objective delegate
+		BaseAIQuestRef->CheckKilledEnemyObjectiveDelegate.Broadcast(this);
 
 		// default death
 		if (!bIsFrozen)

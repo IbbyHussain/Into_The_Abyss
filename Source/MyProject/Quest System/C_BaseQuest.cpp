@@ -2,6 +2,7 @@
 #include "C_BaseQuest.h"
 #include "MyProject/Quest System/C_LocationMarker.h"
 #include "MyProject/UI/C_PlayerHUD2.h"
+#include "MyProject/AI/C_BaseAI.h"
 
 AC_BaseQuest::AC_BaseQuest()
 {
@@ -56,7 +57,7 @@ void AC_BaseQuest::CheckInteractionObjective(AActor* InteractionTarget)
 {
 	UE_LOG(LogTemp, Warning, TEXT("CHECK interact OBJECTIVE DELEGATE CALLED"));
 
-	if (bHasBeenAccepted) //&& ObjectiveData.ObjectiveTypes == EObjectiveTypes::LOCATION
+	if (bHasBeenAccepted)
 	{
 		bool bUpdateUI;
 
@@ -64,7 +65,7 @@ void AC_BaseQuest::CheckInteractionObjective(AActor* InteractionTarget)
 		{
 			int ObjectiveNumber = i;
 
-			if ((!ObjectivesArray[i].bIsObjectiveComplete) && ObjectivesArray[i].ObjectiveTarget == InteractionTarget) //&& ObjectivesArray[i].ObjectiveTarget == InteractionTarget
+			if ((!ObjectivesArray[i].bIsObjectiveComplete) && ObjectivesArray[i].ObjectiveTarget == InteractionTarget)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("INTERACTION COMPLETE"));
 				ObjectivesArray[ObjectiveNumber].bIsObjectiveComplete = true;
@@ -84,6 +85,35 @@ void AC_BaseQuest::CheckInteractionObjective(AActor* InteractionTarget)
 void AC_BaseQuest::CheckKilledEnemyObjective(AC_BaseAI* EnemyTarget)
 {
 	UE_LOG(LogTemp, Warning, TEXT("CHECK kill OBJECTIVE DELEGATE CALLED"));
+
+	if (bHasBeenAccepted)
+	{
+		bool bUpdateUI;
+
+		for (int i = 0; i < ObjectivesArray.Num(); i++)
+		{
+			int ObjectiveNumber = i;
+
+			if ((!ObjectivesArray[i].bIsObjectiveComplete) && ObjectivesArray[i].ObjectiveTarget->GetClass() == EnemyTarget->GetClass())
+			{
+				CurrentKillCount++;
+
+				if(CurrentKillCount >= ObjectivesArray[i].ObjectiveNumber)
+				{
+					UE_LOG(LogTemp, Warning, TEXT("KILL COMPLETE"));
+					ObjectivesArray[ObjectiveNumber].bIsObjectiveComplete = true;
+					bUpdateUI = true;
+				}
+			}
+		}
+
+		if (bUpdateUI)
+		{
+			// Update Objectives
+			AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
+			HUD->UpdateObjectives();
+		}
+	}
 }
 
 

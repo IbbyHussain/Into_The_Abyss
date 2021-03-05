@@ -102,6 +102,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
 	bool bHasBeenAccepted;
 
+	int32 CurrentKillCount;
+
 	UPROPERTY(EditInstanceOnly, Category = "Quests")
 	AC_BaseQuest* PreRequisiteQuest;
 

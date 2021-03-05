@@ -22,7 +22,6 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	int32 ManaQuantity;
 
-
 	UPROPERTY(EditDefaultsOnly)
 	TArray<int32> QuantityArray;
 
