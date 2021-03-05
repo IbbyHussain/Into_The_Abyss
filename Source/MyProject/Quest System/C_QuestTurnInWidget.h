@@ -39,6 +39,10 @@ public:
 
 	UFUNCTION()
 	void CancelButtonClicked();
+
+	FTimerHandle CameraHandle;
+
+	void EnableUIInput();
 	
 	APlayerController* PlayerController;
 };

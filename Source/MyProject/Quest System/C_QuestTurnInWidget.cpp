@@ -10,6 +10,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MyProject/Quest System/C_QuestObjectivesWidget.h"
 #include "MyProject/AI/QuestNPC/C_QuestNPC.h"
+#include "TimerManager.h"
 
 void UC_QuestTurnInWidget::NativeConstruct()
 {
@@ -22,8 +23,7 @@ void UC_QuestTurnInWidget::NativeConstruct()
 
 	PlayerController = Cast<APlayerController>(GEngine->GetFirstLocalPlayerController(GetWorld()));
 
-	PlayerController->SetInputMode(FInputModeUIOnly());
-	PlayerController->bShowMouseCursor = true;
+	GetWorld()->GetTimerManager().SetTimer(CameraHandle, this, &UC_QuestTurnInWidget::EnableUIInput, 1.0f);
 
 	for (auto i : Quest->ObjectivesArray)
 	{
@@ -39,6 +39,12 @@ void UC_QuestTurnInWidget::NativeConstruct()
 			TurnInButton->SetVisibility(ESlateVisibility::Hidden);
 		}
 	}
+}
+
+void UC_QuestTurnInWidget::EnableUIInput()
+{
+	PlayerController->SetInputMode(FInputModeUIOnly());
+	PlayerController->bShowMouseCursor = true;
 }
 
 bool UC_QuestTurnInWidget::bIsQuestComplete()

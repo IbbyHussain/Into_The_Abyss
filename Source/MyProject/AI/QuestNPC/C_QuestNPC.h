@@ -54,4 +54,8 @@ public:
 	// A referenec to the quest that this actor should use. The current quest of the player
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
 	class AC_BaseQuest* QuestREF;
+
+	FTimerHandle CameraHandle;
+
+	void EnableUIInput();
 };

@@ -94,14 +94,21 @@ void AC_QuestNPC::Interact_Implementation()
 			// Changes camera view to the camera view actor
 			PlayerController->SetViewTargetWithBlend(CameraViewPoint, 1.0f, EViewTargetBlendFunction::VTBlend_Cubic);
 
-			// Allows the player to use the mouse and sets the mouse to visible
-			PlayerController->SetInputMode(FInputModeUIOnly());
-			PlayerController->bShowMouseCursor = true;
+			GetWorldTimerManager().SetTimer(CameraHandle, this, &AC_QuestNPC::EnableUIInput, 1.0f, false);
 		}
 
 		RemoveKeyHint_Implementation();
 		bShowEKeyHint = false;
 	}
+}
+
+void AC_QuestNPC::EnableUIInput()
+{
+	APlayerController* const PlayerController = Cast<APlayerController>(GEngine->GetFirstLocalPlayerController(GetWorld()));
+
+	// Allows the player to use the mouse and sets the mouse to visible
+	PlayerController->SetInputMode(FInputModeUIOnly());
+	PlayerController->bShowMouseCursor = true;
 }
 
 void AC_QuestNPC::DisplayKeyHint_Implementation()
