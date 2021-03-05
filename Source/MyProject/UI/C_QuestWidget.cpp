@@ -22,6 +22,12 @@ void UC_QuestWidget::NativeConstruct()
 
 	PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 
+	AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
+	for (auto i : Quest->ObjectivesArray)
+	{
+		HUD->CreateQuestObjectiveItems(Quest, ObjectivesList, i.ObjectiveDescription, i.bIsObjectiveComplete);
+	}
+
 }
 
 // When clicked accept button
