@@ -9,8 +9,6 @@ void UC_AITalkWindow::NativeConstruct()
 
 	AISpeechArrayIndex = 1;
 
-	//AISpeech->SetText(AISpeechArray[0]);
-
 	NextButton->OnClicked.AddDynamic(this, &UC_AITalkWindow::OnClickedNextButton);
 
 	for (auto x : AISpeechArray)
@@ -18,6 +16,7 @@ void UC_AITalkWindow::NativeConstruct()
 		UE_LOG(LogTemp, Log, TEXT("There are: %d items in the AISpeechArray"), AISpeechArray.Num());
 	}
 
+	AISpeech->SetText(AISpeechArray[0]);
 }
 
 void UC_AITalkWindow::OnClickedNextButton()
