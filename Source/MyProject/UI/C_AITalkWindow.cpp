@@ -2,6 +2,8 @@
 #include "C_AITalkWindow.h"
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
+#include "MyProject/C_PlayerCharacter.h"
+#include "Kismet/GameplayStatics.h"
 
 void UC_AITalkWindow::NativeConstruct()
 {
@@ -21,18 +23,35 @@ void UC_AITalkWindow::NativeConstruct()
 
 void UC_AITalkWindow::OnClickedNextButton()
 {
-	AISpeech->SetText(AISpeechArray[AISpeechArrayIndex]);
-
-	if(AISpeechArrayIndex >= AISpeechArray.Num() - 1)
+	if(!bFinished)
 	{
-		AISpeechArrayIndex = 0;
+		AISpeech->SetText(AISpeechArray[AISpeechArrayIndex]);
 
-		//AISpeech->SetText(FText::FromString("Dialogue is finished "));
-		
+		if (AISpeechArrayIndex >= AISpeechArray.Num() - 1)
+		{
+			AISpeechArrayIndex = 0;
+
+			NextButtonText->SetText(FText::FromString("Close"));
+			bFinished = true;
+			//AISpeech->SetText(FText::FromString("Dialogue is finished "));
+
+		}
+
+		else
+		{
+			AISpeechArrayIndex++;
+		}
 	}
 
 	else
 	{
-		AISpeechArrayIndex++;
+		RemoveFromParent();
+
+		APlayerController* PlayerController = Cast<APlayerController>(GEngine->GetFirstLocalPlayerController(GetWorld()));
+		PlayerController->SetInputMode(FInputModeGameOnly());
+		PlayerController->bShowMouseCursor = false;
+
+		AC_PlayerCharacter* PlayerCharacter = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
+		PlayerCharacter->BroadcastCanTrade();
 	}
 }

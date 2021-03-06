@@ -18,6 +18,9 @@ public:
 	class UButton* NextButton;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UTextBlock* NextButtonText;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UTextBlock* AISpeech;
 
 	UFUNCTION()
@@ -27,4 +30,6 @@ public:
 	TArray<FText> AISpeechArray;
 
 	int32 AISpeechArrayIndex;
+
+	bool bFinished;
 };
