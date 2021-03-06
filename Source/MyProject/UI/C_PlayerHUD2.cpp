@@ -473,8 +473,8 @@ void AC_PlayerHUD2::CreateObjectiveWidget(AC_BaseQuest* QuestRef)
 		{
 			QuestObjectivesWidget->Quest = QuestRef;
 			QuestObjectivesWidget->AddToViewport();
-			QuestObjectivesWidget->SetDesiredSizeInViewport(FVector2D(500.0f, 800.0f));
-			QuestObjectivesWidget->SetPositionInViewport(FVector2D(500.0f, 250.0f));
+			//QuestObjectivesWidget->SetDesiredSizeInViewport(FVector2D(500.0f, 800.0f));
+			//QuestObjectivesWidget->SetPositionInViewport(FVector2D(500.0f, 250.0f));
 		}
 	}
 }
