@@ -1657,11 +1657,13 @@ void AC_PlayerCharacter::SpawnWall()
 		if (WallArray.Num() == 3)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Delete Last Element"));
+
 			//Play effect here
 			if(WallArray[0]->bHasDied == false)
 			{
 				WallArray[0]->PlayDeSummonEffect();
 			}
+
 			WallArray[0]->DespawnSummonEffect();
 			WallArray[0]->Destroy();
 			WallArray.RemoveAt(0);

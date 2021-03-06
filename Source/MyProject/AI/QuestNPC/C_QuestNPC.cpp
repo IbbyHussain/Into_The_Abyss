@@ -25,6 +25,11 @@ void AC_QuestNPC::BeginPlay()
 	PlayerCharacter->CanTrade.AddDynamic(this, &AC_QuestNPC::StopInteract);
 
 	bTakeAbility2Damage = false;
+
+	for (auto x : SpeechArray)
+	{
+		UE_LOG(LogTemp, Log, TEXT("There are: %d items in the NPCSpeechArray"), SpeechArray.Num());
+	}
 }
 
 void AC_QuestNPC::InteractFunctionality()
@@ -117,7 +122,7 @@ void AC_QuestNPC::TalkAIFunctionality()
 		QuestREF->CheckInteractionObjective(this);
 	}
 
-	HUD->CreateTalkWindow();
+	HUD->CreateTalkWindow(SpeechArray);
 
 	// Hides the HUD
 	HUD->HideAllElements();

@@ -232,7 +232,7 @@ public:
 
 	// NPC - Talk Window
 
-	void CreateTalkWindow();
+	void CreateTalkWindow(TArray<FText> SpeechArray);
 
 	void DestroyTalkWindow();
 

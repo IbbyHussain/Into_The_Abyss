@@ -554,13 +554,19 @@ void AC_PlayerHUD2::CreateQuestObjectiveItems(AC_BaseQuest* QuestRef, class UScr
 
 // NPC Talk Window
 
-void AC_PlayerHUD2::CreateTalkWindow()
+void AC_PlayerHUD2::CreateTalkWindow(TArray<FText> SpeechArray)
 {
 	if (TalkWindowWidgetClass)
 	{
 		TalkWindow = CreateWidget<UC_AITalkWindow>(GetWorld(), TalkWindowWidgetClass);
 		if (TalkWindow)
 		{
+
+			for (int i = 0; i < SpeechArray.Num(); i++)
+			{
+				TalkWindow->AISpeechArray.Add(SpeechArray[i]);
+			}
+
 			TalkWindow->AddToViewport();
 		}
 	}
