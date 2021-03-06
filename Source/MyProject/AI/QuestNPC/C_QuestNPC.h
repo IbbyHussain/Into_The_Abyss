@@ -42,7 +42,7 @@ public:
 	void StopInteract(int a);
 
 	//The actor that will give the viewpoint of the camera 
-	UPROPERTY(EditInstanceOnly, Category = "Camera")
+	UPROPERTY(EditInstanceOnly, Category = "NPC")
 	AActor* CameraViewPoint;
 
 	FTimerHandle PlayerMeshVisibilityHandle;
@@ -52,7 +52,7 @@ public:
 	TArray<AActor*> AttachedActorsArray;
 
 	// A referenec to the quest that this actor should use. The current quest of the player
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
 	class AC_BaseQuest* QuestREF;
 
 	FTimerHandle CameraHandle;
@@ -60,4 +60,9 @@ public:
 	void EnableUIInput();
 
 	void InteractFunctionality();
+
+	UPROPERTY(EditInstanceOnly, Category = "NPC")
+	bool bIsQuestGiver;
+
+	void TalkAIFunctionality();
 };

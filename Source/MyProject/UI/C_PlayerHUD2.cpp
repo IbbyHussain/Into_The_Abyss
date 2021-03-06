@@ -5,6 +5,7 @@
 #include "C_HUDWidget2.h"
 #include "C_UW_EKeyHint.h"
 #include "C_WeaponWheel.h"
+#include "MyProject/UI/C_AITalkWindow.h"
 #include "MyProject/UI/C_MiniMap.h"
 #include "MyProject/UI/C_CrossBowBoltTracker.h"
 #include "MyProject/UI/C_AIHealthBar.h"
@@ -547,6 +548,31 @@ void AC_PlayerHUD2::CreateQuestObjectiveItems(AC_BaseQuest* QuestRef, class UScr
 			ScrollBox->AddChild(QuestObjectiveItemsWidget);
 			QuestObjectiveItemsWidget->ObjectiveText = Text;
 			QuestObjectiveItemsWidget->bIsObjectiveComplete = bIsComplete;
+		}
+	}
+}
+
+// NPC Talk Window
+
+void AC_PlayerHUD2::CreateTalkWindow()
+{
+	if (TalkWindowWidgetClass)
+	{
+		TalkWindow = CreateWidget<UC_AITalkWindow>(GetWorld(), TalkWindowWidgetClass);
+		if (TalkWindow)
+		{
+			TalkWindow->AddToViewport();
+		}
+	}
+}
+
+void AC_PlayerHUD2::DestroyTalkWindow()
+{
+	if (TalkWindowWidgetClass)
+	{
+		if (TalkWindow)
+		{
+			TalkWindow->RemoveFromParent();
 		}
 	}
 }

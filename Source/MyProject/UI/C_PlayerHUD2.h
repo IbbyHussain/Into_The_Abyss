@@ -229,4 +229,15 @@ public:
 	TSubclassOf<class UC_QuestObjectiveItemsWidget> QuestObjectiveItemsWidgetClass;
 
 	class UC_QuestObjectiveItemsWidget* QuestObjectiveItemsWidget;
+
+	// NPC - Talk Window
+
+	void CreateTalkWindow();
+
+	void DestroyTalkWindow();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_AITalkWindow> TalkWindowWidgetClass;
+
+	class UC_AITalkWindow* TalkWindow;
 };

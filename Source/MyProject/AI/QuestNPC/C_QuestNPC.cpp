@@ -101,20 +101,71 @@ void AC_QuestNPC::InteractFunctionality()
 	bShowEKeyHint = false;
 }
 
+void AC_QuestNPC::TalkAIFunctionality()
+{
+
+
+	APlayerController* const PlayerController = Cast<APlayerController>(GEngine->GetFirstLocalPlayerController(GetWorld()));
+
+	// hides the AI health bar
+	PlayerCharacter->bIsTrading = true;
+
+	PlayerCharacter->StopSprint();
+
+	if (QuestREF)
+	{
+		QuestREF->CheckInteractionObjective(this);
+	}
+
+	HUD->CreateTalkWindow();
+
+	// Hides the HUD
+	HUD->HideAllElements();
+
+	// Disables all input
+	PlayerCharacter->DisablePlayerInput();
+
+	// Stops player movement and locks camera movement.
+	PlayerCharacter->MovementState = EMovementState::NONE;
+	PlayerCharacter->UpdateMovement();
+	PlayerCharacter->bLockCamera = true;
+
+	PlayerCharacter->GetMesh()->SetVisibility(false);
+
+	if (PlayerController)
+	{
+		// Changes camera view to the camera view actor
+		PlayerController->SetViewTargetWithBlend(CameraViewPoint, 1.0f, EViewTargetBlendFunction::VTBlend_Cubic);
+
+		GetWorldTimerManager().SetTimer(CameraHandle, this, &AC_QuestNPC::EnableUIInput, 1.0f, false);
+	}
+
+	RemoveKeyHint_Implementation();
+	bShowEKeyHint = false;
+}
+
 // when interact with the AI trader
 void AC_QuestNPC::Interact_Implementation()
 {
-	if (OverlappingLeverBoxCollision() && bCanTalkAI ) //QuestREF->PreRequisiteQuest->bIsCompleted && QuestREF->PreRequisiteQuest
+	if (OverlappingLeverBoxCollision() && bCanTalkAI )
 	{
-		// If the AI has a PreRequisite quest that quest must be complete before they can be interacted with
-		if(QuestREF->PreRequisiteQuest && QuestREF->PreRequisiteQuest->bIsCompleted)
+		if(bIsQuestGiver)
 		{
-			InteractFunctionality();
+			// If the AI has a PreRequisite quest, that quest must be complete before they can be interacted with
+			if (QuestREF->PreRequisiteQuest && QuestREF->PreRequisiteQuest->bIsCompleted)
+			{
+				InteractFunctionality();
+			}
+
+			else if (QuestREF->PreRequisiteQuest == NULL)
+			{
+				InteractFunctionality();
+			}
 		}
 
-		else if (QuestREF->PreRequisiteQuest == NULL)
+		else
 		{
-			InteractFunctionality();
+			TalkAIFunctionality();
 		}
 	}
 }
