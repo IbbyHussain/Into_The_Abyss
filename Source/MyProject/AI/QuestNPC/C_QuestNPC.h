@@ -58,4 +58,6 @@ public:
 	FTimerHandle CameraHandle;
 
 	void EnableUIInput();
+
+	void InteractFunctionality();
 };

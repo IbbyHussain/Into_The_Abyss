@@ -104,6 +104,7 @@ public:
 
 	int32 CurrentKillCount;
 
+	// The quest that muste be completed before this quest can be completed
 	UPROPERTY(EditInstanceOnly, Category = "Quests")
 	AC_BaseQuest* PreRequisiteQuest;
 

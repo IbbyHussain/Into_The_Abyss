@@ -27,80 +27,95 @@ void AC_QuestNPC::BeginPlay()
 	bTakeAbility2Damage = false;
 }
 
+void AC_QuestNPC::InteractFunctionality()
+{
+	GetAttachedActors(AttachedActorsArray, true);
+
+	APlayerController* const PlayerController = Cast<APlayerController>(GEngine->GetFirstLocalPlayerController(GetWorld()));
+
+	// hides the AI health bar
+	PlayerCharacter->bIsTrading = true;
+
+	PlayerCharacter->StopSprint();
+
+
+	if (QuestREF)
+	{
+		QuestREF->CheckInteractionObjective(this);
+	}
+
+	for (auto i : AttachedActorsArray)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("There are: %d attached actors"), AttachedActorsArray.Num());
+
+		AC_BaseQuest* Quest = Cast<AC_BaseQuest>(i);
+
+		if (Quest)
+		{
+
+			if (Quest->bIsCompleted)
+			{
+
+			}
+
+			else
+			{
+				if (Quest->bHasBeenAccepted)
+				{
+					// Will open the turn in quest widget
+					HUD->CreateQuestTurnInWidget(Quest, this);
+					HUD->DestroyQuestWidget();
+				}
+				else
+				{
+					// Will open the Quest widget.
+					HUD->CreateQuestWidget(Quest);
+				}
+			}
+		}
+
+	}
+
+	// Hides the HUD
+	HUD->HideAllElements();
+
+	// Disables all input
+	PlayerCharacter->DisablePlayerInput();
+
+	// Stops player movement and locks camera movement.
+	PlayerCharacter->MovementState = EMovementState::NONE;
+	PlayerCharacter->UpdateMovement();
+	PlayerCharacter->bLockCamera = true;
+
+	PlayerCharacter->GetMesh()->SetVisibility(false);
+
+	if (PlayerController)
+	{
+		// Changes camera view to the camera view actor
+		PlayerController->SetViewTargetWithBlend(CameraViewPoint, 1.0f, EViewTargetBlendFunction::VTBlend_Cubic);
+
+		GetWorldTimerManager().SetTimer(CameraHandle, this, &AC_QuestNPC::EnableUIInput, 1.0f, false);
+	}
+
+	RemoveKeyHint_Implementation();
+	bShowEKeyHint = false;
+}
+
 // when interact with the AI trader
 void AC_QuestNPC::Interact_Implementation()
 {
-	if (OverlappingLeverBoxCollision() && bCanTalkAI)
+	if (OverlappingLeverBoxCollision() && bCanTalkAI ) //QuestREF->PreRequisiteQuest->bIsCompleted && QuestREF->PreRequisiteQuest
 	{
-		APlayerController* const PlayerController = Cast<APlayerController>(GEngine->GetFirstLocalPlayerController(GetWorld()));
-
-		// hides the AI health bar
-		PlayerCharacter->bIsTrading = true;
-
-		PlayerCharacter->StopSprint();
-
-		if(QuestREF)
+		// If the AI has a PreRequisite quest that quest must be complete before they can be interacted with
+		if(QuestREF->PreRequisiteQuest && QuestREF->PreRequisiteQuest->bIsCompleted)
 		{
-			QuestREF->CheckInteractionObjective(this);
+			InteractFunctionality();
 		}
 
-		GetAttachedActors(AttachedActorsArray, true);
-
-		for (auto i : AttachedActorsArray)
+		else if (QuestREF->PreRequisiteQuest == NULL)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("There are: %d attached actors"), AttachedActorsArray.Num());
-
-			AC_BaseQuest* Quest = Cast<AC_BaseQuest>(i);
-
-			if(Quest)
-			{
-
-				if(Quest->bIsCompleted)
-				{
-				
-				}
-
-				else
-				{
-					if (Quest->bHasBeenAccepted)
-					{
-						// Will open the turn in quest widget
-						HUD->CreateQuestTurnInWidget(Quest, this);
-						HUD->DestroyQuestWidget();
-					}
-					else
-					{
-						// Will open the Quest widget.
-						HUD->CreateQuestWidget(Quest);
-					}
-				}
-			}
-			
+			InteractFunctionality();
 		}
-
-		// Hides the HUD
-		HUD->HideAllElements();
-
-		// Disables all input
-		PlayerCharacter->DisablePlayerInput();
-
-		// Stops player movement and locks camera movement.
-		PlayerCharacter->MovementState = EMovementState::NONE;
-		PlayerCharacter->UpdateMovement();
-		PlayerCharacter->bLockCamera = true;
-
-		PlayerCharacter->GetMesh()->SetVisibility(false);
-
-		if (PlayerController)
-		{
-			// Changes camera view to the camera view actor
-			PlayerController->SetViewTargetWithBlend(CameraViewPoint, 1.0f, EViewTargetBlendFunction::VTBlend_Cubic);
-
-			GetWorldTimerManager().SetTimer(CameraHandle, this, &AC_QuestNPC::EnableUIInput, 1.0f, false);
-		}
-
-		RemoveKeyHint_Implementation();
-		bShowEKeyHint = false;
 	}
 }
 
