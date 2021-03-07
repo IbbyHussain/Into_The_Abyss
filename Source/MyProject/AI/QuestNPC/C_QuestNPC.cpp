@@ -57,20 +57,15 @@ void AC_QuestNPC::InteractFunctionality()
 
 		if (Quest)
 		{
-
-			if (Quest->bIsCompleted)
-			{
-
-			}
-
-			else
+			if (!Quest->bIsCompleted)
 			{
 				if (Quest->bHasBeenAccepted)
 				{
 					// Will open the turn in quest widget
-					HUD->CreateQuestTurnInWidget(Quest, this);
 					HUD->DestroyQuestWidget();
+					HUD->CreateQuestTurnInWidget(Quest, this);
 				}
+
 				else
 				{
 					// Will open the Quest widget.
