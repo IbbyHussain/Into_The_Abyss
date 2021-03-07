@@ -102,6 +102,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
 	bool bHasBeenAccepted;
 
+	// The number of souls given as a quest reward
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
+	int32 QuestSoulsReward;
+
 	int32 CurrentKillCount;
 
 	// The quest that muste be completed before this quest can be completed

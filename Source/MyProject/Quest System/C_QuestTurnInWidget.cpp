@@ -84,6 +84,24 @@ void UC_QuestTurnInWidget::TurnInButtonClicked()
 			AC_PlayerCharacter* PlayerCharacter = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
 			PlayerCharacter->BroadcastCanTrade();
 
+			// Adds souls as a reward
+			if (PlayerCharacter->NumberOfSouls < 30)
+			{
+				// Increments and Sends a signal to HUD widget to update text
+				PlayerCharacter->NumberOfSouls += Quest->QuestSoulsReward;
+
+				if(PlayerCharacter->NumberOfSouls > 30)
+				{
+					PlayerCharacter->NumberOfSouls = 30;
+				}
+
+				PlayerCharacter->UpdatenumberOfSouls.Broadcast(PlayerCharacter->NumberOfSouls);
+
+				// Saves the value
+				PlayerCharacter->SaveNumberOfSouls();
+			}
+
+
 			QuestNPC->RemoveKeyHint_Implementation();
 			QuestNPC->bCanTalkAI = false;
 			QuestNPC->bShowEKeyHint = false;
