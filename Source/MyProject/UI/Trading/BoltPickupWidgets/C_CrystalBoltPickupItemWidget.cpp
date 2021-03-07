@@ -22,7 +22,7 @@ void UC_CrystalBoltPickupItemWidget::NativeConstruct()
 
 	PurchaseButton->OnClicked.AddDynamic(this, &UC_CrystalBoltPickupItemWidget::PurchaseCrystalBolt);
 
-	CallChildPurchaseButtons.AddDynamic(this, &UC_CrystalBoltPickupItemWidget::ConstructChecks);
+	//CallChildPurchaseButtons.AddDynamic(this, &UC_CrystalBoltPickupItemWidget::ConstructChecks);
 }
 
 void UC_CrystalBoltPickupItemWidget::ConstructChecks()

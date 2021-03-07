@@ -5,7 +5,7 @@
 #include "Blueprint/UserWidget.h"
 #include "C_ItemWidget.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCallChildPurchaseButtons);
+//DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCallChildPurchaseButtons);
 
 UCLASS()
 class MYPROJECT_API UC_ItemWidget : public UUserWidget
@@ -14,8 +14,8 @@ class MYPROJECT_API UC_ItemWidget : public UUserWidget
 
 public:
 
-	UPROPERTY(BlueprintAssignable, Category = "Widget")
-	FCallChildPurchaseButtons CallChildPurchaseButtons;
+	//UPROPERTY(BlueprintAssignable, Category = "Widget")
+	//FCallChildPurchaseButtons CallChildPurchaseButtons;
 
 	UC_ItemWidget(const FObjectInitializer& ObjectInitializer);
 
@@ -80,8 +80,8 @@ public:
 	// Will tint the item image when disabled
 	void UnTintItemImage();
 
-	UFUNCTION()
-	void PurchaseButtonClicked();
+	//UFUNCTION()
+	//void PurchaseButtonClicked();
 
 private:
 	UPROPERTY(EditAnywhere, Category = "ItemImage")

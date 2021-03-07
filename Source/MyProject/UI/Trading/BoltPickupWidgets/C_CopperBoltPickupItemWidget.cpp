@@ -22,7 +22,7 @@ void UC_CopperBoltPickupItemWidget::NativeConstruct()
 
 	PurchaseButton->OnClicked.AddDynamic(this, &UC_CopperBoltPickupItemWidget::PurchaseCopperBolt);
 
-	CallChildPurchaseButtons.AddDynamic(this, &UC_CopperBoltPickupItemWidget::ConstructChecks);
+	//CallChildPurchaseButtons.AddDynamic(this, &UC_CopperBoltPickupItemWidget::ConstructChecks);
 }
 
 void UC_CopperBoltPickupItemWidget::ConstructChecks()
@@ -33,7 +33,7 @@ void UC_CopperBoltPickupItemWidget::ConstructChecks()
 		<AC_Crossbowbolt>()->Price);
 	UpdateItem();
 
-	UE_LOG(LogTemp, Log, TEXT("RESPONDEED DELEGATE"));
+	//UE_LOG(LogTemp, Log, TEXT("RESPONDEED DELEGATE"));
 }
 
 void UC_CopperBoltPickupItemWidget::UpdateItem()

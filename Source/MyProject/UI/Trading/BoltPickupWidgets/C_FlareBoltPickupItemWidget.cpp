@@ -22,7 +22,7 @@ void UC_FlareBoltPickupItemWidget::NativeConstruct()
 
 	PurchaseButton->OnClicked.AddDynamic(this, &UC_FlareBoltPickupItemWidget::PurchaseFlareBolt);
 
-	CallChildPurchaseButtons.AddDynamic(this, &UC_FlareBoltPickupItemWidget::ConstructChecks);
+	//CallChildPurchaseButtons.AddDynamic(this, &UC_FlareBoltPickupItemWidget::ConstructChecks);
 }
 
 void UC_FlareBoltPickupItemWidget::ConstructChecks()

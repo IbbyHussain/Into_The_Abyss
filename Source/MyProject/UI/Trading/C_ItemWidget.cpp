@@ -34,7 +34,7 @@ void UC_ItemWidget::NativeConstruct()
 
 	UnTintItemImage();
 
-	PurchaseButton->OnClicked.AddDynamic(this, &UC_ItemWidget::PurchaseButtonClicked);
+	//PurchaseButton->OnClicked.AddDynamic(this, &UC_ItemWidget::PurchaseButtonClicked);
 }
 
 void UC_ItemWidget::NativeTick(const FGeometry& MyGeometry, float DeltaTime)
@@ -56,12 +56,12 @@ void UC_ItemWidget::NativeTick(const FGeometry& MyGeometry, float DeltaTime)
 	}
 }
 
-void UC_ItemWidget::PurchaseButtonClicked()
+/*void UC_ItemWidget::PurchaseButtonClicked()
 {
 	CallChildPurchaseButtons.Broadcast();
 
 	UE_LOG(LogTemp, Log, TEXT("CALLED DELEGATE"));
-}
+}*/
 
 void UC_ItemWidget::Purchase(int32& Quantity, int32 ItemPrice)
 {

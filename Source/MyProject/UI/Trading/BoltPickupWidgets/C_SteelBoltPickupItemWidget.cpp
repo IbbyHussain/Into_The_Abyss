@@ -26,7 +26,7 @@ void UC_SteelBoltPickupItemWidget::NativeConstruct()
 
 	PurchaseButton->OnClicked.AddDynamic(this, &UC_SteelBoltPickupItemWidget::PurchaseHealth);
 
-	CallChildPurchaseButtons.AddDynamic(this, &UC_SteelBoltPickupItemWidget::ConstructChecks);
+	//CallChildPurchaseButtons.AddDynamic(this, &UC_SteelBoltPickupItemWidget::ConstructChecks);
 }
 
 void UC_SteelBoltPickupItemWidget::ConstructChecks()
