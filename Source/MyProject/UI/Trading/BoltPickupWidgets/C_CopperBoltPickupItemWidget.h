@@ -17,6 +17,7 @@ class MYPROJECT_API UC_CopperBoltPickupItemWidget : public UC_ItemWidget
 public:
 	virtual void NativeConstruct() override;
 
+	UFUNCTION()
 	void ConstructChecks();
 
 	void UpdateItem();

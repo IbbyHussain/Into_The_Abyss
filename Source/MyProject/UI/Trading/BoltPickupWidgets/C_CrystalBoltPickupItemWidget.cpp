@@ -18,9 +18,11 @@ void UC_CrystalBoltPickupItemWidget::NativeConstruct()
 
 	// Frame skip
 	FTimerHandle FrameHandle;
-	GetWorld()->GetTimerManager().SetTimer(FrameHandle, this, &UC_CrystalBoltPickupItemWidget::ConstructChecks, 0.02f, false);
+	GetWorld()->GetTimerManager().SetTimer(FrameHandle, this, &UC_CrystalBoltPickupItemWidget::ConstructChecks, 0.02f, true);
 
 	PurchaseButton->OnClicked.AddDynamic(this, &UC_CrystalBoltPickupItemWidget::PurchaseCrystalBolt);
+
+	CallChildPurchaseButtons.AddDynamic(this, &UC_CrystalBoltPickupItemWidget::ConstructChecks);
 }
 
 void UC_CrystalBoltPickupItemWidget::ConstructChecks()

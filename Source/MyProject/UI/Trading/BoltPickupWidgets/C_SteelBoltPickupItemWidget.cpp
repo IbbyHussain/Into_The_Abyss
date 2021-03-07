@@ -22,9 +22,11 @@ void UC_SteelBoltPickupItemWidget::NativeConstruct()
 
 	// Frame skip
 	FTimerHandle FrameHandle;
-	GetWorld()->GetTimerManager().SetTimer(FrameHandle, this, &UC_SteelBoltPickupItemWidget::ConstructChecks, 0.02f, false);
+	GetWorld()->GetTimerManager().SetTimer(FrameHandle, this, &UC_SteelBoltPickupItemWidget::ConstructChecks, 0.02f, true);
 
 	PurchaseButton->OnClicked.AddDynamic(this, &UC_SteelBoltPickupItemWidget::PurchaseHealth);
+
+	CallChildPurchaseButtons.AddDynamic(this, &UC_SteelBoltPickupItemWidget::ConstructChecks);
 }
 
 void UC_SteelBoltPickupItemWidget::ConstructChecks()

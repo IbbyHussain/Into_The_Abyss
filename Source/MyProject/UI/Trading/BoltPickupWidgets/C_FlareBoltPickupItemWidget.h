@@ -14,6 +14,7 @@ class MYPROJECT_API UC_FlareBoltPickupItemWidget : public UC_ItemWidget
 public:
 	virtual void NativeConstruct() override;
 
+	UFUNCTION()
 	void ConstructChecks();
 
 	void UpdateItem();

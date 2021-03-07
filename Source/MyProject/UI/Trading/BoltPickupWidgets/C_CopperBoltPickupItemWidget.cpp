@@ -18,9 +18,11 @@ void UC_CopperBoltPickupItemWidget::NativeConstruct()
 
 	// Frame skip
 	FTimerHandle FrameHandle;
-	GetWorld()->GetTimerManager().SetTimer(FrameHandle, this, &UC_CopperBoltPickupItemWidget::ConstructChecks, 0.02f, false);
+	GetWorld()->GetTimerManager().SetTimer(FrameHandle, this, &UC_CopperBoltPickupItemWidget::ConstructChecks, 0.02f, true);
 
 	PurchaseButton->OnClicked.AddDynamic(this, &UC_CopperBoltPickupItemWidget::PurchaseCopperBolt);
+
+	CallChildPurchaseButtons.AddDynamic(this, &UC_CopperBoltPickupItemWidget::ConstructChecks);
 }
 
 void UC_CopperBoltPickupItemWidget::ConstructChecks()
@@ -30,6 +32,8 @@ void UC_CopperBoltPickupItemWidget::ConstructChecks()
 		<AC_Crossbowbolt>()->MaxAmountOfBolts, PlayerCharacter->Crossbow.CrossbowObject->BoltsArray[1]->GetDefaultObject
 		<AC_Crossbowbolt>()->Price);
 	UpdateItem();
+
+	UE_LOG(LogTemp, Log, TEXT("RESPONDEED DELEGATE"));
 }
 
 void UC_CopperBoltPickupItemWidget::UpdateItem()
