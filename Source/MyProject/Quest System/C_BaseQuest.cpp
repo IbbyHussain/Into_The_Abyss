@@ -16,6 +16,7 @@ void AC_BaseQuest::BeginPlay()
 	CheckLocationObjectiveDelegate.AddDynamic(this, &AC_BaseQuest::CheckLocationObjective);
 	CheckInteractionObjectiveDelegate.AddDynamic(this, &AC_BaseQuest::CheckInteractionObjective);
 	CheckKilledEnemyObjectiveDelegate.AddDynamic(this, &AC_BaseQuest::CheckKilledEnemyObjective);
+	CheckPuzzleObjectiveDelegate.AddDynamic(this, &AC_BaseQuest::CheckPuzzleObjective);
 }
 
 void AC_BaseQuest::OrganiseQuestInEditor()
@@ -116,4 +117,32 @@ void AC_BaseQuest::CheckKilledEnemyObjective(AC_BaseAI* EnemyTarget)
 	}
 }
 
+void AC_BaseQuest::CheckPuzzleObjective(AActor* Puzzle)
+{
+	// Puzzle objectives can be completed before accepting the quest
+
+	UE_LOG(LogTemp, Warning, TEXT("CHECK puzzle OBJECTIVE DELEGATE CALLED"));
+
+	bool bUpdateUI;
+
+	for (int i = 0; i < ObjectivesArray.Num(); i++)
+	{
+		int ObjectiveNumber = i;
+
+		if ((!ObjectivesArray[i].bIsObjectiveComplete) && ObjectivesArray[i].ObjectiveTarget == Puzzle)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Puzzle COMPLETE"));
+			ObjectivesArray[ObjectiveNumber].bIsObjectiveComplete = true;
+			bUpdateUI = true;
+		}
+	}
+
+	if (bUpdateUI)
+	{
+		// Update Objectives
+		AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
+		HUD->UpdateObjectives();
+	}
+	
+}
 

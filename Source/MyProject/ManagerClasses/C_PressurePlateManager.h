@@ -56,6 +56,10 @@ protected:
 	UPROPERTY(EditInstanceOnly, Category = "Number of actors")
 	bool b3PressurePlates;
 
+	// The quest that needs this puzzle to complete an objective
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Actor to choose")
+	class AC_BaseQuest* Quest;
+
 private:
 	//Camera Pan
 	void ChangeCameraView();
@@ -79,6 +83,7 @@ private:
 	//Reference to the Player Controller
 	class APlayerController* PlayerController;
 
+	UFUNCTION()
 	void PuzzleComplete();
 
 };

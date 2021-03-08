@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MyProject/GameObjects/StaticMeshs/Interactables/Puzzles/C_PressurePlate.h"
 #include "MyProject/ManagerClasses/C_TheLabLevel_ManagerClass.h"
+#include "MyProject/Quest System/C_BaseQuest.h"
 
 // Sets default values
 AC_PressurePlateManager::AC_PressurePlateManager()
@@ -72,6 +73,9 @@ void AC_PressurePlateManager::PuzzleComplete()
 	{
 		LevelManager->Update();
 	}
+
+	// Objective complete here
+	Quest->CheckPuzzleObjectiveDelegate.Broadcast(PressurePlate1);
 }
 
 

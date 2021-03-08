@@ -10,13 +10,15 @@ class AC_BaseAI;
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCheckLocationObjective, AC_LocationMarker*, LocationReached);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCheckInteractionObjective, AActor*, InteractionTarget);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCheckKilledEnemyObjective, AC_BaseAI*, EnemyTarget);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCheckPuzzleObjective, AActor*, Puzzle);
 
 UENUM()
 namespace EObjectiveTypes {
 	enum Type {
 		LOCATION UMETA(DisplayName = "Location"),
 		INTERACT UMETA(DisplayName = "Interact"),
-		KILL UMETA(DisplayName = "Kill")
+		KILL UMETA(DisplayName = "Kill"),
+		PUZZLE UMETA(DisplayName = "Puzzle")
 	};
 }
 
@@ -76,6 +78,9 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Quests")
 	FCheckKilledEnemyObjective CheckKilledEnemyObjectiveDelegate;
 
+	UPROPERTY(BlueprintAssignable, Category = "Quests")
+	FCheckPuzzleObjective CheckPuzzleObjectiveDelegate;
+
 	// Containers
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quests")
@@ -128,5 +133,8 @@ public:
 
 	UFUNCTION()
 	void CheckKilledEnemyObjective(AC_BaseAI* EnemyTarget);
+
+	UFUNCTION()
+	void CheckPuzzleObjective(AActor* Puzzle);
 
 };

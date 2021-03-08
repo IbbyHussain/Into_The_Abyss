@@ -73,6 +73,8 @@ void AC_RotatingPuzzleManager::PuzzleComplete()
 	{
 		LevelManager->Update();
 	}
+
+	// objective complete here 
 }
 
 void AC_RotatingPuzzleManager::ChangeCameraView()
