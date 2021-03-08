@@ -98,7 +98,7 @@ public:
 	virtual void RemoveKeyHint_Implementation() override;
 
 	// The quest that needs this puzzle to complete an objective
-	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Lever")
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Actor to choose")
 	class AC_BaseQuest* Quest;
 
 private:

@@ -11,6 +11,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "MyProject/GameObjects/StaticMeshs/Buildings/C_SpikeDoor.h"
 #include "MyProject/ManagerClasses/C_LeverManager.h"
+#include "MyProject/Quest System/C_BaseQuest.h"
 
 AC_BaseAnimLever::AC_BaseAnimLever()
 {
@@ -122,6 +123,11 @@ void AC_BaseAnimLever::Interact_Implementation()
 			PlayerCharacter->MovementState = EMovementState::NONE;
 			PlayerCharacter->UpdateMovement();
 			PlayerCharacter->bLockCamera = true;
+		}
+
+		if(Quest)
+		{
+			Quest->CheckPuzzleObjectiveDelegate.Broadcast(this);
 		}
 	}
 }

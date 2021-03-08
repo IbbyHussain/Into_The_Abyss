@@ -75,7 +75,10 @@ void AC_PressurePlateManager::PuzzleComplete()
 	}
 
 	// Objective complete here
-	Quest->CheckPuzzleObjectiveDelegate.Broadcast(PressurePlate1);
+	if(Quest)
+	{
+		Quest->CheckPuzzleObjectiveDelegate.Broadcast(PressurePlate1);
+	}
 }
 
 

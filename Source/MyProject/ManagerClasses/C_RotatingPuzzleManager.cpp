@@ -76,7 +76,10 @@ void AC_RotatingPuzzleManager::PuzzleComplete()
 	}
 
 	// Objective complete here
-	Quest->CheckPuzzleObjectiveDelegate.Broadcast(RotatingPuzzle1);
+	if(Quest)
+	{
+		Quest->CheckPuzzleObjectiveDelegate.Broadcast(RotatingPuzzle1);
+	}
 }
 
 void AC_RotatingPuzzleManager::ChangeCameraView()
