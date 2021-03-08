@@ -9,6 +9,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MyProject/UI/C_PlayerHUD2.h"
 #include "MyProject/ManagerClasses/C_TheLabLevel_ManagerClass.h"
+#include "MyProject/Quest System/C_BaseQuest.h"
 
 AC_RotatingPuzzleManager::AC_RotatingPuzzleManager()
 {
@@ -74,7 +75,8 @@ void AC_RotatingPuzzleManager::PuzzleComplete()
 		LevelManager->Update();
 	}
 
-	// objective complete here 
+	// Objective complete here
+	Quest->CheckPuzzleObjectiveDelegate.Broadcast(RotatingPuzzle1);
 }
 
 void AC_RotatingPuzzleManager::ChangeCameraView()
