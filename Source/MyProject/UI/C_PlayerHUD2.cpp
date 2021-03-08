@@ -582,3 +582,4 @@ void AC_PlayerHUD2::DestroyTalkWindow()
 		}
 	}
 }
+

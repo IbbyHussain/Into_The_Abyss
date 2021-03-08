@@ -69,4 +69,7 @@ public:
 	// If this is a interact NPC (Not quest giver), this will be the text that this AI will say.
 	UPROPERTY(EditAnywhere, Category = "NPC")
 	TArray<FText> SpeechArray;
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "NPC")
+	void DestroyAvailableQuestWidget();
 };

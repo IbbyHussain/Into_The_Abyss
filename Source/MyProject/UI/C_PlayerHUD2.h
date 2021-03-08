@@ -240,4 +240,6 @@ public:
 	TSubclassOf<class UC_AITalkWindow> TalkWindowWidgetClass;
 
 	class UC_AITalkWindow* TalkWindow;
+
+
 };

@@ -34,6 +34,8 @@ void AC_QuestNPC::BeginPlay()
 
 void AC_QuestNPC::InteractFunctionality()
 {
+	DestroyAvailableQuestWidget();
+
 	GetAttachedActors(AttachedActorsArray, true);
 
 	APlayerController* const PlayerController = Cast<APlayerController>(GEngine->GetFirstLocalPlayerController(GetWorld()));
