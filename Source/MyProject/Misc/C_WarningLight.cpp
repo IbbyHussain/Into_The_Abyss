@@ -3,10 +3,15 @@
 
 #include "C_WarningLight.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/PointLightComponent.h"
 
 AC_WarningLight::AC_WarningLight()
 {
 	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	PointLight = CreateDefaultSubobject<UPointLightComponent>(TEXT("Light"));
+	PointLight->SetupAttachment(MeshComp);
+	PointLight->LightColor = FColor(0, 255, 0);
+	PointLight->SetMobility(EComponentMobility::Stationary);
 }
 
 void AC_WarningLight::BeginPlay()
@@ -14,12 +19,11 @@ void AC_WarningLight::BeginPlay()
 	Super::BeginPlay();
 
 	MatInst = UMaterialInstanceDynamic::Create(WarningLightGlow, this);
-
-	//StartPulse();
 }
 
 void AC_WarningLight::StartPulse()
 {
+	PointLight->SetLightColor(FLinearColor::Red);
 	MeshComp->SetMaterial(1, MatInst);
 	GetWorldTimerManager().SetTimer(PulseHandle, this, &AC_WarningLight::Pulse, 1.0, true);
 }

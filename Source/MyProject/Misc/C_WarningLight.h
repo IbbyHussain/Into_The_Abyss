@@ -42,6 +42,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Light")
 	UStaticMeshComponent* MeshComp;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Light")
+	class UPointLightComponent* PointLight;
+
 
 
 };
