@@ -1,4 +1,6 @@
 #include "C_TheLabLevel_ManagerClass.h"
+#include "MyProject/Misc/C_WarningLight.h"
+#include "EngineUtils.h"
 
 AC_TheLabLevel_ManagerClass::AC_TheLabLevel_ManagerClass()
 {
@@ -38,5 +40,23 @@ void AC_TheLabLevel_ManagerClass::Update()
 	if(IsAllOn == true)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("All puzzles completed"));
+
+
+
+
+		UWorld* World = GetWorld();
+		for (TActorIterator<AC_WarningLight> It(World, AC_WarningLight::StaticClass()); It; ++It)
+		{
+			Light = *It;
+			if (Light != NULL)
+			{
+				LightArray.Add(Light);
+				Light->StartPulse();
+			}
+		}
+
+
+
+
 	}
 }
