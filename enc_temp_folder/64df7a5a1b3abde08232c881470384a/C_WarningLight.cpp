@@ -25,7 +25,6 @@ void AC_WarningLight::BeginPlay()
 
 void AC_WarningLight::StartPulse()
 {
-	//PointLight->SetLightColor(FLinearColor::Red); can be here if player doesnt see lights immediately 
 	MeshComp->SetMaterial(1, MatInst);
 	GetWorldTimerManager().SetTimer(PulseHandle, this, &AC_WarningLight::Pulse, 1.0, true);
 }
