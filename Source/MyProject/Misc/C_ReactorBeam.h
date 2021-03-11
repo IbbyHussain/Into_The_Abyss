@@ -18,10 +18,15 @@ protected:
 
 	virtual void BeginPlay() override;
 
+	void BeginCorruption();
+
 	void BecomeCorrupted();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Beam")
 		class UNiagaraComponent* BeamComp;
+
+	UPROPERTY(EditInstanceOnly, Category = "Beam")
+	AActor* TargetActor;
 
 	// Exposed Variables
 

@@ -21,8 +21,14 @@ void AC_ReactorBeam::BeginPlay()
 {
 	Super::BeginPlay();
 
+	BeamComp->SetNiagaraVariableVec3(FString("Target"), TargetActor->GetActorLocation());
+
+	BeginCorruption();
+}
+
+void AC_ReactorBeam::BeginCorruption()
+{
 	GetWorldTimerManager().SetTimer(ChangeTargetLocationHandle, this, &AC_ReactorBeam::BecomeCorrupted, 0.5f, true);
-	
 }
 
 void AC_ReactorBeam::BecomeCorrupted()
@@ -33,8 +39,5 @@ void AC_ReactorBeam::BecomeCorrupted()
 
 void AC_ReactorBeam::SpawnEffects()
 {
-
-	BeamComp->SetNiagaraVariableVec3(FString("TangentStart"), );
-
-	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), SparksEffect, )
+	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), SparksEffect, GetActorLocation());
 }
