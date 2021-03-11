@@ -23,7 +23,7 @@ protected:
 	void BecomeCorrupted();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Beam")
-		class UNiagaraComponent* BeamComp;
+	class UNiagaraComponent* BeamComp;
 
 	UPROPERTY(EditInstanceOnly, Category = "Beam")
 	AActor* TargetActor;
@@ -54,4 +54,11 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Beam")
 	class UNiagaraSystem* SparksEffect;
+
+	// Beam Color
+
+	UPROPERTY(EditInstanceOnly, Category = "Beam")
+	FLinearColor color;
+
+
 };
