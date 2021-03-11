@@ -21,9 +21,9 @@ void AC_ReactorBeam::BeginPlay()
 {
 	Super::BeginPlay();
 
-	BeamComp->SetNiagaraVariableVec3(FString("Target"), TargetActor->GetActorLocation());
+	SpawnEffects();
 
-	BeginCorruption();
+	BeamComp->SetNiagaraVariableVec3(FString("Target"), TargetActor->GetActorLocation());
 }
 
 void AC_ReactorBeam::BeginCorruption()

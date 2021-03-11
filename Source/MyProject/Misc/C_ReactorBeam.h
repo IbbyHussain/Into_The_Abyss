@@ -52,5 +52,6 @@ protected:
 
 	void SpawnEffects();
 
+	UPROPERTY(EditDefaultsOnly, Category = "Beam")
 	class UNiagaraSystem* SparksEffect;
 };
