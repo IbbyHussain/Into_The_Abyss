@@ -18,12 +18,14 @@ protected:
 
 	virtual void BeginPlay() override;
 
+	void BecomeCorrupted();
+
 	UPROPERTY(EditDefaultsOnly, Category = "Beam")
-	class UNiagaraComponent* BeamComp;
+		class UNiagaraComponent* BeamComp;
 
 	// Exposed Variables
 
-	// The location of where the beam will strike, used when beam uses random points 
+	// The location of where the beam will strike 
 	UPROPERTY(EditAnywhere, Category = "Beam")
 	FVector BeamTargetLocation;
 
@@ -41,27 +43,9 @@ protected:
 
 	FTimerHandle ChangeTargetLocationHandle;
 
-	// The location of the end of the beam
-	UPROPERTY(EditAnywhere, Category = "Beam")
-	AActor* EndActor;
-
-	// The location of the tangents
-	UPROPERTY(EditAnywhere, Category = "Beam")
-	AActor* TangentActor;
-
 	// Beam spawn
 
 	void SpawnEffects();
 
-	// The particle effect that will spawn when this actor spawns
-	UPROPERTY(EditAnywhere, Category = "Beam")
 	class UNiagaraSystem* SparksEffect;
-
-	// beam corrupted
-
-	void BeginCorruption();
-
-	void BecomeCorrupted();
-
-	bool bIsCorrupted;
 };
