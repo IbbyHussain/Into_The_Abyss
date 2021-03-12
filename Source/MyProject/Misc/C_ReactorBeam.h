@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/TimelineComponent.h"
 #include "C_ReactorBeam.generated.h"
 
 UCLASS()
@@ -55,10 +56,24 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Beam")
 	class UNiagaraSystem* SparksEffect;
 
-	// Beam Color
+	// Beam Colour
 
+	// Default beam colour
 	UPROPERTY(EditInstanceOnly, Category = "Beam")
 	FLinearColor color;
+
+	// The curve that controlls how the colour will change
+	UPROPERTY(EditDefaultsOnly, Category = "Beam")
+	UCurveFloat* FColourChangeCurve;
+
+	UTimelineComponent* ColourChangeTimeline;
+
+	FOnTimelineFloat ColourChangeInterpFunction{};
+
+	UFUNCTION()
+	void ColourChangeTimelineFloatReturn(float Alpha);
+
+
 
 
 };
