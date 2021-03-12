@@ -25,7 +25,7 @@ void AC_ReactorBeam::BeginPlay()
 
 	BeamComp->SetNiagaraVariableVec3(FString("Target"), TargetActor->GetActorLocation());
 
-	BeamComp->SetNiagaraVariableLinearColor(FString("Color"), color * UKismetMathLibrary::HSVToRGB(0.0f, 0.0f, 1000.0f, 1.0f));
+	BeamComp->SetNiagaraVariableLinearColor(FString("Color"), color * UKismetMathLibrary::HSVToRGB(0.0f, 0.0f, 1000.0f, 1.0f)); //
 }
 
 void AC_ReactorBeam::BeginCorruption()
