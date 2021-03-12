@@ -1,5 +1,6 @@
 #include "C_TheLabLevel_ManagerClass.h"
 #include "MyProject/Misc/C_WarningLight.h"
+#include "MyProject/Misc/C_ReactorBeam.h"
 #include "EngineUtils.h"
 
 AC_TheLabLevel_ManagerClass::AC_TheLabLevel_ManagerClass()
@@ -41,22 +42,29 @@ void AC_TheLabLevel_ManagerClass::Update()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("All puzzles completed"));
 
-
-
-
-		UWorld* World = GetWorld();
-		for (TActorIterator<AC_WarningLight> It(World, AC_WarningLight::StaticClass()); It; ++It)
+		for (auto i : WarningLightArray)
 		{
-			Light = *It;
-			if (Light != NULL)
-			{
-				LightArray.Add(Light);
-				Light->StartPulse();
-			}
+			i->StartPulse();
 		}
 
+		// Core beams become corrupted
+		for (auto i : CoreBeamArray)
+		{
+			i->BecomeVisible();
+			i->BeginCorruption();
+		}
 
+		// Core beams become corrupted
+		for (auto i : CoreBeamArray)
+		{
+			i->BecomeVisible();
+			i->BeginCorruption();
+		}
 
+		for(auto i : MinorBeamArray)
+		{
+			i->MinorBeamSetup();
+		}
 
 	}
 }

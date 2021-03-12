@@ -27,10 +27,13 @@ void AC_ReactorBeam::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SpawnEffects();
+	BeamComp->SetVisibility(false);
 
 	// Sets the beams target (where it will strike).
-	BeamComp->SetNiagaraVariableVec3(FString("Target"), TargetActor->GetActorLocation());
+	if(TargetActor)
+	{
+		BeamComp->SetNiagaraVariableVec3(FString("Target"), TargetActor->GetActorLocation());
+	}
 
 	// Sets the default beam colour to a colour variable in editor. Also gives it some emissive value (HSV).
 	BeamComp->SetNiagaraVariableLinearColor(FString("Color"), color * UKismetMathLibrary::HSVToRGB(0.0f, 0.0f, 1000.0f, 1.0f));
@@ -42,7 +45,7 @@ void AC_ReactorBeam::BeginPlay()
 		ColourChangeTimeline->SetLooping(false);
 	}
 
-	BeginCorruption();
+	//BeginCorruption();
 }
 
 void AC_ReactorBeam::BeginCorruption()
@@ -69,4 +72,24 @@ void AC_ReactorBeam::ColourChangeTimelineFloatReturn(float Alpha)
 {
 	// Smoothly transitions from original colour to black
 	BeamComp->SetNiagaraVariableLinearColor(FString("Color"), UKismetMathLibrary::LinearColorLerp(color * UKismetMathLibrary::HSVToRGB(0.0f, 0.0f, 1000.0f, 1.0f), FLinearColor::Black, Alpha));
+}
+
+void AC_ReactorBeam::BecomeVisible()
+{
+	BeamComp->SetVisibility(true);
+	SpawnEffects();
+}
+
+void AC_ReactorBeam::MinorBeamSetup()
+{
+	GetWorldTimerManager().SetTimer(ChangeTargetLocationHandle, this, &AC_ReactorBeam::MinorBeamBecomeCorrupted, LightningFrequency, true, 4.0f);
+}
+
+void AC_ReactorBeam::MinorBeamBecomeCorrupted()
+{
+	BeamComp->SetNiagaraVariableLinearColor(FString("Color"), FLinearColor::Black);
+	BeamComp->SetVisibility(true);
+	// Beams will strike random areas
+	BeamComp->SetNiagaraVariableVec3(FString("Target"), FVector(UKismetMathLibrary::RandomFloatInRange(MinBeamRange, MaxBeamRange), UKismetMathLibrary::RandomFloatInRange(MinBeamRange, MaxBeamRange),
+		UKismetMathLibrary::RandomFloatInRange(MinBeamRange, MaxBeamRange)));
 }

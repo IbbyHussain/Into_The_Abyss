@@ -21,8 +21,6 @@ void AC_WarningLight::BeginPlay()
 
 	MatInst = UMaterialInstanceDynamic::Create(WarningLightGlow, this);
 	PointLight->SetLightColor(FLinearColor::Green);
-
-	StartPulse();
 }
 
 void AC_WarningLight::StartPulse()

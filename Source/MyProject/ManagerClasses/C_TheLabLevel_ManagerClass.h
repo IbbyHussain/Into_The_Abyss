@@ -5,6 +5,7 @@
 
 class AC_BaseManagerClass;
 class AC_WarningLight;
+class AC_ReactorBeam;
 
 UCLASS()
 class MYPROJECT_API AC_TheLabLevel_ManagerClass : public AC_BaseManagerClass
@@ -26,8 +27,14 @@ protected:
 
 private:
 
-	TArray<AC_WarningLight*> LightArray;
-	AC_WarningLight* Light;
+	UPROPERTY(EditInstanceOnly)
+	TArray<AC_WarningLight*> WarningLightArray;
+
+	UPROPERTY(EditInstanceOnly)
+	TArray<AC_ReactorBeam*> CoreBeamArray;
+
+	UPROPERTY(EditInstanceOnly)
+	TArray<AC_ReactorBeam*> MinorBeamArray;
 
 
 };

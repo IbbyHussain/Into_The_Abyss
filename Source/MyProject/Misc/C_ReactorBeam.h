@@ -15,11 +15,19 @@ class MYPROJECT_API AC_ReactorBeam : public AActor
 public:	
 	AC_ReactorBeam();
 
+	void BeginCorruption();
+
+	void BecomeVisible();
+
+	// Minor Beams
+
+	void MinorBeamSetup();
+
+	void MinorBeamBecomeCorrupted();
+
 protected:
 
 	virtual void BeginPlay() override;
-
-	void BeginCorruption();
 
 	void BecomeCorrupted();
 
