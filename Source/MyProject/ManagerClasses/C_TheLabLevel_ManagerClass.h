@@ -30,11 +30,17 @@ private:
 	UPROPERTY(EditInstanceOnly)
 	TArray<AC_WarningLight*> WarningLightArray;
 
+	// Beams
+
 	UPROPERTY(EditInstanceOnly)
 	TArray<AC_ReactorBeam*> CoreBeamArray;
 
 	UPROPERTY(EditInstanceOnly)
 	TArray<AC_ReactorBeam*> MinorBeamArray;
 
+	FTimerHandle ActivateBeamHandle;
 
+	bool bDoOnce;
+
+	void ActivateSecondBeam();
 };

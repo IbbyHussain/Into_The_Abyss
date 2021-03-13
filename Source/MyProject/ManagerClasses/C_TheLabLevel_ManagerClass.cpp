@@ -6,6 +6,8 @@
 AC_TheLabLevel_ManagerClass::AC_TheLabLevel_ManagerClass()
 {
 	PrimaryActorTick.bCanEverTick = true;
+
+	bDoOnce = true;
 }
 
 void AC_TheLabLevel_ManagerClass::BeginPlay()
@@ -38,33 +40,48 @@ void AC_TheLabLevel_ManagerClass::Update()
 
 	IsAllOn = Allon;
 
+	// If all puzzles are complete...
 	if(IsAllOn == true)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("All puzzles completed"));
+		//UE_LOG(LogTemp, Warning, TEXT("All puzzles completed"));
 
 		for (auto i : WarningLightArray)
 		{
 			i->StartPulse();
 		}
 
+		CoreBeamArray[0]->BecomeVisible();
+		GetWorldTimerManager().SetTimer(ActivateBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateSecondBeam, 3.0f, true);
+
+
 		// Core beams become corrupted
-		for (auto i : CoreBeamArray)
+		/*for (auto i : CoreBeamArray)
 		{
 			i->BecomeVisible();
 			i->BeginCorruption();
-		}
+		}*/
 
-		// Core beams become corrupted
-		for (auto i : CoreBeamArray)
-		{
-			i->BecomeVisible();
-			i->BeginCorruption();
-		}
-
-		for(auto i : MinorBeamArray)
+		/*for(auto i : MinorBeamArray)
 		{
 			i->MinorBeamSetup();
-		}
+		}*/
 
+	}
+}
+
+void AC_TheLabLevel_ManagerClass::ActivateSecondBeam()
+{
+	if(bDoOnce)
+	{
+		bDoOnce = false;
+		CoreBeamArray[1]->BecomeVisible();
+		UE_LOG(LogTemp, Warning, TEXT("first time"));
+	}
+
+	else
+	{
+		CoreBeamArray[2]->BecomeVisible();
+		UE_LOG(LogTemp, Warning, TEXT("second time"));
+		GetWorldTimerManager().ClearTimer(ActivateBeamHandle);
 	}
 }

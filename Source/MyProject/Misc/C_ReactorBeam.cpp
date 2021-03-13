@@ -65,7 +65,8 @@ void AC_ReactorBeam::BecomeCorrupted()
 
 void AC_ReactorBeam::SpawnEffects()
 {
-	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), SparksEffect, GetActorLocation());
+	UNiagaraComponent* SparksComp = UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), SparksEffect, GetActorLocation());
+	SparksComp->SetNiagaraVariableLinearColor(FString("Color"), color * UKismetMathLibrary::HSVToRGB(0.0f, 0.0f, 1000.0f, 1.0f));
 }
 
 void AC_ReactorBeam::ColourChangeTimelineFloatReturn(float Alpha)
@@ -89,6 +90,7 @@ void AC_ReactorBeam::MinorBeamBecomeCorrupted()
 {
 	BeamComp->SetNiagaraVariableLinearColor(FString("Color"), FLinearColor::Black);
 	BeamComp->SetVisibility(true);
+
 	// Beams will strike random areas
 	BeamComp->SetNiagaraVariableVec3(FString("Target"), FVector(UKismetMathLibrary::RandomFloatInRange(MinBeamRange, MaxBeamRange), UKismetMathLibrary::RandomFloatInRange(MinBeamRange, MaxBeamRange),
 		UKismetMathLibrary::RandomFloatInRange(MinBeamRange, MaxBeamRange)));
