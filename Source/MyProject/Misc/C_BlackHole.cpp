@@ -33,7 +33,7 @@ AC_BlackHole::AC_BlackHole()
 	GrowthInterpFunction.BindUFunction(this, FName("GrowthTimelineFloatReturn"));
 	GrowthTimelineFinished.BindUFunction(this, FName("OnGrowthTimelineFinished"));
 
-	Scale = 1.01;
+	Scale = 8.0f;
 
 }
 
@@ -86,7 +86,7 @@ void AC_BlackHole::Tick(float DeltaTime)
 
 void AC_BlackHole::OverlapInnerSphere(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (OtherActor && OtherActor != Player)
+	if (OtherActor && OtherActor != Player && OtherActor != this)
 	{
 		OtherActor->Destroy();
 	}

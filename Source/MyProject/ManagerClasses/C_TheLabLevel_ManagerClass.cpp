@@ -1,6 +1,7 @@
 #include "C_TheLabLevel_ManagerClass.h"
 #include "MyProject/Misc/C_WarningLight.h"
 #include "MyProject/Misc/C_ReactorBeam.h"
+#include "MyProject/Misc/C_BlackHole.h"
 #include "EngineUtils.h"
 
 AC_TheLabLevel_ManagerClass::AC_TheLabLevel_ManagerClass()
@@ -53,7 +54,7 @@ void AC_TheLabLevel_ManagerClass::Update()
 		CoreBeamArray[0]->BecomeVisible();
 		GetWorldTimerManager().SetTimer(ActivateBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateSecondBeam, 3.0f, true);
 
-
+		//SpawnBlackHole();
 		// Core beams become corrupted
 		/*for (auto i : CoreBeamArray)
 		{
@@ -86,6 +87,9 @@ void AC_TheLabLevel_ManagerClass::ActivateSecondBeam()
 		break;
 
 	case 2:
+		BeamCounter++;
+		UE_LOG(LogTemp, Warning, TEXT("third time"));
+
 		for (auto i : CoreBeamArray)
 		{
 			i->BeginCorruption();
@@ -96,13 +100,28 @@ void AC_TheLabLevel_ManagerClass::ActivateSecondBeam()
 			i->MinorBeamSetup();
 		}
 
-		GetWorldTimerManager().ClearTimer(ActivateBeamHandle);
 		break;
 
 	case 3:
 
-		// Spawn black hole here
+		UE_LOG(LogTemp, Warning, TEXT("fourth time"));
+
+		SpawnBlackHole();
+
+		GetWorldTimerManager().ClearTimer(ActivateBeamHandle);
 
 		break;
 	}
+}
+
+
+void AC_TheLabLevel_ManagerClass::SpawnBlackHole()
+{
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	FVector BHSpawnLocation = BlackHoleSpawnPoint->GetActorLocation();
+	FRotator BHSpawnRotation = BlackHoleSpawnPoint->GetActorRotation();
+
+	BlackHole = GetWorld()->SpawnActor<AC_BlackHole>(BlackHoleClass, BHSpawnLocation, BHSpawnRotation, SpawnParams);
 }

@@ -70,5 +70,4 @@ public:
 	AC_BlackHole();
 
 	virtual void Tick(float DeltaTime) override;
-
 };

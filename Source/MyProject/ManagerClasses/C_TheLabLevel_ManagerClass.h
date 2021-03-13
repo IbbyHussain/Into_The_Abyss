@@ -6,6 +6,7 @@
 class AC_BaseManagerClass;
 class AC_WarningLight;
 class AC_ReactorBeam;
+class AC_BlackHole;
 
 UCLASS()
 class MYPROJECT_API AC_TheLabLevel_ManagerClass : public AC_BaseManagerClass
@@ -15,7 +16,7 @@ class MYPROJECT_API AC_TheLabLevel_ManagerClass : public AC_BaseManagerClass
 public:	
 	AC_TheLabLevel_ManagerClass();
 
-	UPROPERTY(EditInstanceOnly)
+	UPROPERTY(EditInstanceOnly, Category = "Exposed | Defaults")
 	TArray<AC_BaseManagerClass*> ManagerArray;
 
 	void Update();
@@ -25,17 +26,19 @@ protected:
 
 	virtual void Tick(float DeltaTime) override;
 
+
+
 private:
 
-	UPROPERTY(EditInstanceOnly)
+	UPROPERTY(EditInstanceOnly, Category = "Exposed | WarningLights")
 	TArray<AC_WarningLight*> WarningLightArray;
 
 	// Beams
 
-	UPROPERTY(EditInstanceOnly)
+	UPROPERTY(EditInstanceOnly, Category = "Exposed | Beams")
 	TArray<AC_ReactorBeam*> CoreBeamArray;
 
-	UPROPERTY(EditInstanceOnly)
+	UPROPERTY(EditInstanceOnly, Category = "Exposed | Beams")
 	TArray<AC_ReactorBeam*> MinorBeamArray;
 
 	FTimerHandle ActivateBeamHandle;
@@ -46,9 +49,17 @@ private:
 
 	// Blackhole
 
-	void SpawnBlackHole();
-
-	UPROPERTY(EditInstanceOnly)
+	UPROPERTY(EditInstanceOnly, Category = "Exposed | Blackhole")
 	TArray<AActor*> PhysicsActorsArray;
 
+	UFUNCTION()
+	void SpawnBlackHole();
+
+	AC_BlackHole* BlackHole;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Exposed | Blackhole")
+	TSubclassOf<AC_BlackHole> BlackHoleClass;
+
+	UPROPERTY(EditInstanceOnly, Category = "Exposed | Blackhole")
+	AActor* BlackHoleSpawnPoint;
 };
