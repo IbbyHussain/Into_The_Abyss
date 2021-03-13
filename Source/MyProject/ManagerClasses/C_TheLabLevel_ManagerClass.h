@@ -40,7 +40,7 @@ private:
 
 	FTimerHandle ActivateBeamHandle;
 
-	bool bDoOnce;
+	int BeamCounter;
 
 	void ActivateSecondBeam();
 };

@@ -98,11 +98,5 @@ void AC_TheLabLevel_ManagerClass::ActivateSecondBeam()
 
 		GetWorldTimerManager().ClearTimer(ActivateBeamHandle);
 		break;
-
-	case 3:
-
-		// Spawn black hole here
-
-		break;
 	}
 }
