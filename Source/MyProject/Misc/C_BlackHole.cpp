@@ -4,6 +4,8 @@
 #include "C_BlackHole.h"
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "MyProject/C_PlayerCharacter.h"
 
 AC_BlackHole::AC_BlackHole()
 {
@@ -23,12 +25,39 @@ AC_BlackHole::AC_BlackHole()
 	OuterSphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("OuterSphereComp"));
 	OuterSphereComponent->SetSphereRadius(3000);
 	OuterSphereComponent->SetupAttachment(MeshComp);
+
+	// Timeline delegate setup
+
+	GrowthTimeline = CreateDefaultSubobject<UTimelineComponent>(TEXT("GrowthTimeline"));
+	// Here is where we bind our delegates to our functions via function names
+	GrowthInterpFunction.BindUFunction(this, FName("GrowthTimelineFloatReturn"));
+	GrowthTimelineFinished.BindUFunction(this, FName("OnGrowthTimelineFinished"));
+
+	Scale = 1.01;
+
 }
 
 void AC_BlackHole::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	Player = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+
+	// Growth timeline further setup
+	if (FGrowthCurve)
+	{
+		// Now we set the functions and some values.
+		GrowthTimeline->AddInterpFloat(FGrowthCurve, GrowthInterpFunction, FName("Alpha"));
+		GrowthTimeline->SetTimelineFinishedFunc(GrowthTimelineFinished);
+		GrowthTimeline->SetLooping(false);
+	}
+
+	DefaultScale = GetActorScale3D();
+
+	FinalScale = GetActorScale3D() * Scale;
+
+	GrowthTimeline->Play();
+
 }
 
 void AC_BlackHole::Tick(float DeltaTime)
@@ -57,8 +86,18 @@ void AC_BlackHole::Tick(float DeltaTime)
 
 void AC_BlackHole::OverlapInnerSphere(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (OtherActor)
+	if (OtherActor && OtherActor != Player)
 	{
 		OtherActor->Destroy();
 	}
+}
+
+void AC_BlackHole::GrowthTimelineFloatReturn(float Value)
+{
+	SetActorScale3D(FVector(FMath::Lerp(DefaultScale, FinalScale, Value)));
+}
+
+void AC_BlackHole::OnGrowthTimelineFinished()
+{
+
 }
