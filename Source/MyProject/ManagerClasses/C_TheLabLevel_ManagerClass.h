@@ -43,4 +43,12 @@ private:
 	int BeamCounter;
 
 	void ActivateSecondBeam();
+
+	// Blackhole
+
+	void SpawnBlackHole();
+
+	UPROPERTY(EditInstanceOnly)
+	TArray<AActor*> PhysicsActorsArray;
+
 };
