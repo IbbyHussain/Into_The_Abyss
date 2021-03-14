@@ -19,6 +19,36 @@ void AC_TheLabLevel_ManagerClass::BeginPlay()
 
 	CoreBeamArray[0]->BecomeVisible();
 	GetWorldTimerManager().SetTimer(ActivateBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateSecondBeam, 3.0f, true);
+
+	for (auto x : PhysicsActorsArray)
+	{
+		for (auto i : x->GetComponents())
+		{
+			UStaticMeshComponent* SM = Cast<UStaticMeshComponent>(i);
+
+			UE_LOG(LogTemp, Warning, TEXT("GOT COMPS"));
+
+			if (SM)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("CAST SUCCESS"));
+				SM->SetGenerateOverlapEvents(true);
+				SM->SetMobility(EComponentMobility::Movable);
+				SM->SetSimulatePhysics(true);
+				SM->AddForce(FVector(10000, 10000, 10000));
+			}
+
+			USkeletalMeshComponent* SK = Cast<USkeletalMeshComponent>(i);
+
+			if(SK)
+			{
+				SK->SetGenerateOverlapEvents(true);
+				SK->SetMobility(EComponentMobility::Movable);
+				SK->SetSimulatePhysics(true);
+				SK->AddForce(FVector(10000, 10000, 10000));
+			}
+		}
+
+	}
 }
 
 void AC_TheLabLevel_ManagerClass::Tick(float DeltaTime)
@@ -39,7 +69,7 @@ void AC_TheLabLevel_ManagerClass::Update()
 		if(!x->bIsComplete)
 		{
 			Allon = false;
-			UE_LOG(LogTemp, Warning, TEXT("All puzzles not completed"));
+			//UE_LOG(LogTemp, Warning, TEXT("All puzzles not completed"));
 			break;
 		}
 	}
@@ -82,17 +112,17 @@ void AC_TheLabLevel_ManagerClass::ActivateSecondBeam()
 	case 0:
 		BeamCounter++;
 		CoreBeamArray[1]->BecomeVisible();
-		UE_LOG(LogTemp, Warning, TEXT("first time"));
+		//UE_LOG(LogTemp, Warning, TEXT("first time"));
 		break;
 
 	case 1:
 		BeamCounter++;
 		CoreBeamArray[2]->BecomeVisible();
-		UE_LOG(LogTemp, Warning, TEXT("second time"));
+		//UE_LOG(LogTemp, Warning, TEXT("second time"));
 		break;
 
 	case 2:
-		UE_LOG(LogTemp, Warning, TEXT("third time"));
+		//UE_LOG(LogTemp, Warning, TEXT("third time"));
 
 		for (auto i : CoreBeamArray)
 		{
@@ -123,4 +153,6 @@ void AC_TheLabLevel_ManagerClass::SpawnBlackHole()
 	FRotator BHSpawnRotation = BlackHoleSpawnPoint->GetActorRotation();
 
 	BlackHole = GetWorld()->SpawnActor<AC_BlackHole>(BlackHoleClass, BHSpawnLocation, BHSpawnRotation, SpawnParams);
+
+
 }
