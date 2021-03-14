@@ -53,7 +53,7 @@ void AC_ReactorBeam::BeginCorruption()
 	// Start change colour timeline
 	ColourChangeTimeline->Play();
 
-	GetWorldTimerManager().SetTimer(ChangeTargetLocationHandle, this, &AC_ReactorBeam::BecomeCorrupted, LightningFrequency, true, 4.0f);
+	GetWorldTimerManager().SetTimer(ChangeTargetLocationHandle, this, &AC_ReactorBeam::BecomeCorrupted, LightningFrequency, true, 7.0f);
 }
 
 void AC_ReactorBeam::BecomeCorrupted()
@@ -83,7 +83,8 @@ void AC_ReactorBeam::BecomeVisible()
 
 void AC_ReactorBeam::MinorBeamSetup()
 {
-	GetWorldTimerManager().SetTimer(ChangeTargetLocationHandle, this, &AC_ReactorBeam::MinorBeamBecomeCorrupted, LightningFrequency, true, 4.0f);
+	GetWorldTimerManager().SetTimer(ChangeTargetLocationHandle, this, &AC_ReactorBeam::MinorBeamBecomeCorrupted, LightningFrequency, true, 7.0f);
+	BeamComp->SetNiagaraVariableLinearColor(FString("Color"), FLinearColor::Black);
 }
 
 void AC_ReactorBeam::MinorBeamBecomeCorrupted()

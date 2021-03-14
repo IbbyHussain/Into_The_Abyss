@@ -9,11 +9,16 @@ AC_TheLabLevel_ManagerClass::AC_TheLabLevel_ManagerClass()
 	PrimaryActorTick.bCanEverTick = true;
 
 	BeamCounter = 0;
+
+	TimeBetweenSequences = 3;
 }
 
 void AC_TheLabLevel_ManagerClass::BeginPlay()
 {
 	Super::BeginPlay();
+
+	CoreBeamArray[0]->BecomeVisible();
+	GetWorldTimerManager().SetTimer(ActivateBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateSecondBeam, 3.0f, true);
 }
 
 void AC_TheLabLevel_ManagerClass::Tick(float DeltaTime)
@@ -52,7 +57,7 @@ void AC_TheLabLevel_ManagerClass::Update()
 		}
 
 		CoreBeamArray[0]->BecomeVisible();
-		GetWorldTimerManager().SetTimer(ActivateBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateSecondBeam, 3.0f, true);
+		GetWorldTimerManager().SetTimer(ActivateBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateSecondBeam, TimeBetweenSequences, true);
 
 		//SpawnBlackHole();
 		// Core beams become corrupted
@@ -87,7 +92,6 @@ void AC_TheLabLevel_ManagerClass::ActivateSecondBeam()
 		break;
 
 	case 2:
-		BeamCounter++;
 		UE_LOG(LogTemp, Warning, TEXT("third time"));
 
 		for (auto i : CoreBeamArray)
@@ -100,13 +104,8 @@ void AC_TheLabLevel_ManagerClass::ActivateSecondBeam()
 			i->MinorBeamSetup();
 		}
 
-		break;
-
-	case 3:
-
-		UE_LOG(LogTemp, Warning, TEXT("fourth time"));
-
-		SpawnBlackHole();
+		FTimerHandle BlackHoleHandle;
+		GetWorldTimerManager().SetTimer(BlackHoleHandle, this, &AC_TheLabLevel_ManagerClass::SpawnBlackHole, 6.0f, false);
 
 		GetWorldTimerManager().ClearTimer(ActivateBeamHandle);
 

@@ -30,6 +30,8 @@ protected:
 
 private:
 
+	float TimeBetweenSequences;
+
 	UPROPERTY(EditInstanceOnly, Category = "Exposed | WarningLights")
 	TArray<AC_WarningLight*> WarningLightArray;
 
