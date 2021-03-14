@@ -17,38 +17,8 @@ void AC_TheLabLevel_ManagerClass::BeginPlay()
 {
 	Super::BeginPlay();
 
-	CoreBeamArray[0]->BecomeVisible();
-	GetWorldTimerManager().SetTimer(ActivateBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateSecondBeam, 3.0f, true);
-
-	for (auto x : PhysicsActorsArray)
-	{
-		for (auto i : x->GetComponents())
-		{
-			UStaticMeshComponent* SM = Cast<UStaticMeshComponent>(i);
-
-			UE_LOG(LogTemp, Warning, TEXT("GOT COMPS"));
-
-			if (SM)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("CAST SUCCESS"));
-				SM->SetGenerateOverlapEvents(true);
-				SM->SetMobility(EComponentMobility::Movable);
-				SM->SetSimulatePhysics(true);
-				SM->AddForce(FVector(10000, 10000, 10000));
-			}
-
-			USkeletalMeshComponent* SK = Cast<USkeletalMeshComponent>(i);
-
-			if(SK)
-			{
-				SK->SetGenerateOverlapEvents(true);
-				SK->SetMobility(EComponentMobility::Movable);
-				SK->SetSimulatePhysics(true);
-				SK->AddForce(FVector(10000, 10000, 10000));
-			}
-		}
-
-	}
+	//CoreBeamArray[0]->BecomeVisible();
+	//GetWorldTimerManager().SetTimer(ActivateBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateSecondBeam, 3.0f, true);
 }
 
 void AC_TheLabLevel_ManagerClass::Tick(float DeltaTime)
@@ -134,6 +104,7 @@ void AC_TheLabLevel_ManagerClass::ActivateSecondBeam()
 			i->MinorBeamSetup();
 		}
 
+
 		FTimerHandle BlackHoleHandle;
 		GetWorldTimerManager().SetTimer(BlackHoleHandle, this, &AC_TheLabLevel_ManagerClass::SpawnBlackHole, 6.0f, false);
 
@@ -146,6 +117,36 @@ void AC_TheLabLevel_ManagerClass::ActivateSecondBeam()
 
 void AC_TheLabLevel_ManagerClass::SpawnBlackHole()
 {
+	for (auto x : PhysicsActorsArray)
+	{
+		for (auto i : x->GetComponents())
+		{
+			UStaticMeshComponent* SM = Cast<UStaticMeshComponent>(i);
+
+			UE_LOG(LogTemp, Warning, TEXT("GOT COMPS"));
+
+			if (SM)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("CAST SUCCESS"));
+				SM->SetGenerateOverlapEvents(true);
+				SM->SetMobility(EComponentMobility::Movable);
+				SM->SetSimulatePhysics(true);
+				SM->AddForce(FVector(10000, 10000, 10000));
+			}
+
+			USkeletalMeshComponent* SK = Cast<USkeletalMeshComponent>(i);
+
+			if (SK)
+			{
+				SK->SetGenerateOverlapEvents(true);
+				SK->SetMobility(EComponentMobility::Movable);
+				SK->SetSimulatePhysics(true);
+				SK->AddForce(FVector(500000, 500000, 500000));
+			}
+		}
+	}
+
+
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
