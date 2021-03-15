@@ -21,6 +21,9 @@ public:
 
 	void Update();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void ChangeLighting();
+
 protected:
 	virtual void BeginPlay() override;
 
@@ -64,4 +67,16 @@ private:
 
 	UPROPERTY(EditInstanceOnly, Category = "Exposed | Blackhole")
 	AActor* BlackHoleSpawnPoint;
+
+	// Misc
+
+	UPROPERTY(EditDefaultsOnly, Category = "Exposed | Defaults")
+	TSubclassOf<UCameraShake> CameraShake;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Exposed | BlackHole")
+	TSubclassOf<UCameraShake> BlackHoleCameraShake;
+
+	void PlayCameraShake();
+
+	
 };
