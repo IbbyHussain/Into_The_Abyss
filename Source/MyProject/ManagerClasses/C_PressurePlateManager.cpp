@@ -42,7 +42,7 @@ void AC_PressurePlateManager::Tick(float DeltaTime)
 
 	else if (b3PressurePlates)
 	{
-		if (PressurePlate1->bIsActivated && PressurePlate2->bIsActivated && PressurePlate3->bIsActivated && bDoOnce)
+		if (PressurePlate1 && PressurePlate1->bIsActivated && PressurePlate2->bIsActivated && PressurePlate3->bIsActivated && bDoOnce)
 		{
 			PuzzleComplete();
 		}

@@ -63,6 +63,31 @@ protected:
 
 	FVector FinalScale;
 
+	// Growth - second time
+
+	UTimelineComponent* Growth2Timeline;
+
+	// delegates for the timeline (update and finish)
+	FOnTimelineFloat Growth2InterpFunction{};
+
+	UFUNCTION()
+	void Growth2TimelineFloatReturn(float Value);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Timeline")
+	UCurveFloat* FGrowth2Curve;
+
+	FVector FinalScale2;
+
+	UPROPERTY(EditAnywhere, Category = "Timeline")
+	float Scale2;
+
+	void PlayGrowth2();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Exposed | BlackHole")
+	TSubclassOf<UCameraShake> BlackHoleCameraShake;
+
+	// Misc
+
 	class AC_PlayerCharacter* Player;
 
 public:	

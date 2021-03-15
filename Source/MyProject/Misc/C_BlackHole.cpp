@@ -29,11 +29,17 @@ AC_BlackHole::AC_BlackHole()
 	// Timeline delegate setup
 
 	GrowthTimeline = CreateDefaultSubobject<UTimelineComponent>(TEXT("GrowthTimeline"));
+
 	// Here is where we bind our delegates to our functions via function names
 	GrowthInterpFunction.BindUFunction(this, FName("GrowthTimelineFloatReturn"));
 	GrowthTimelineFinished.BindUFunction(this, FName("OnGrowthTimelineFinished"));
 
+	Growth2Timeline = CreateDefaultSubobject<UTimelineComponent>(TEXT("GrowthTimeline2"));
+	Growth2InterpFunction.BindUFunction(this, FName("Growth2TimelineFloatReturn"));
+
 	Scale = 8.0f;
+
+	Scale2 = 16.0;
 
 }
 
@@ -52,11 +58,18 @@ void AC_BlackHole::BeginPlay()
 		GrowthTimeline->SetLooping(false);
 	}
 
+	if(FGrowth2Curve)
+	{
+		// Now we set the functions and some values.
+		Growth2Timeline->AddInterpFloat(FGrowth2Curve, Growth2InterpFunction, FName("Bravo"));
+		Growth2Timeline->SetLooping(false);
+	}
+
 	DefaultScale = GetActorScale3D();
 
 	FinalScale = GetActorScale3D() * Scale;
 
-	GrowthTimeline->Play();
+	GrowthTimeline->PlayFromStart();
 
 }
 
@@ -99,5 +112,28 @@ void AC_BlackHole::GrowthTimelineFloatReturn(float Value)
 
 void AC_BlackHole::OnGrowthTimelineFinished()
 {
+	UE_LOG(LogTemp, Error, TEXT("FINISHED BLACK HOLE"));
 
+	FTimerHandle Growth2Handle;
+	GetWorldTimerManager().SetTimer(Growth2Handle, this, &AC_BlackHole::PlayGrowth2, 5.0f, false);
+}
+
+void AC_BlackHole::PlayGrowth2()
+{
+	FinalScale = GetActorScale3D();
+
+	FinalScale2 = GetActorScale3D() * Scale2;
+
+	APlayerController* PlayerController = Cast<APlayerController>(UGameplayStatics::GetPlayerController(this, 0));
+	if (PlayerController)
+	{
+		PlayerController->ClientPlayCameraShake(BlackHoleCameraShake);
+	}
+
+	Growth2Timeline->Play();
+}
+
+void AC_BlackHole::Growth2TimelineFloatReturn(float Value)
+{
+	SetActorScale3D(FVector(FMath::Lerp(FinalScale, FinalScale2, Value)));
 }
