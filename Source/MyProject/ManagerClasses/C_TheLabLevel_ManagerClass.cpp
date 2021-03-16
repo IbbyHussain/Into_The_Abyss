@@ -19,8 +19,8 @@ void AC_TheLabLevel_ManagerClass::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//CoreBeamArray[0]->BecomeVisible();
-	//GetWorldTimerManager().SetTimer(ActivateBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateSecondBeam, 3.0f, true);
+	CoreBeamArray[0]->BecomeVisible();
+	GetWorldTimerManager().SetTimer(ActivateBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateSecondBeam, 3.0f, true);
 }
 
 void AC_TheLabLevel_ManagerClass::Tick(float DeltaTime)
