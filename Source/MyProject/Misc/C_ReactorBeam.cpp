@@ -52,8 +52,6 @@ void AC_ReactorBeam::BeginCorruption()
 {
 	// Start change colour timeline
 	ColourChangeTimeline->Play();
-
-	GetWorldTimerManager().SetTimer(ChangeTargetLocationHandle, this, &AC_ReactorBeam::BecomeCorrupted, LightningFrequency, true, 7.0f);
 }
 
 void AC_ReactorBeam::BecomeCorrupted()
@@ -81,6 +79,12 @@ void AC_ReactorBeam::BecomeVisible()
 	SpawnEffects();
 }
 
+void AC_ReactorBeam::StartCorruptionMajorBeams()
+{
+	GetWorldTimerManager().SetTimer(ChangeTargetLocationHandle, this, &AC_ReactorBeam::BecomeCorrupted, LightningFrequency, true, 7.0f);
+}
+
+// makes all beams minor and major hit random points
 void AC_ReactorBeam::MinorBeamSetup()
 {
 	GetWorldTimerManager().SetTimer(ChangeTargetLocationHandle, this, &AC_ReactorBeam::MinorBeamBecomeCorrupted, LightningFrequency, true, 7.0f);

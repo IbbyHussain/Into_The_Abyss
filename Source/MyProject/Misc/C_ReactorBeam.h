@@ -19,6 +19,8 @@ public:
 
 	void BecomeVisible();
 
+	void StartCorruptionMajorBeams();
+
 	// Minor Beams
 
 	void MinorBeamSetup();
@@ -80,8 +82,6 @@ protected:
 
 	UFUNCTION()
 	void ColourChangeTimelineFloatReturn(float Alpha);
-
-
 
 
 };

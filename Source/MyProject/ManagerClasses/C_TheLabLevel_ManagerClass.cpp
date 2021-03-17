@@ -87,22 +87,8 @@ void AC_TheLabLevel_ManagerClass::ActivateSecondBeam()
 	case 2:
 		//UE_LOG(LogTemp, Warning, TEXT("third time"));
 
-		for (auto i : CoreBeamArray)
-		{
-			i->BeginCorruption();
-		}
-
-		for(auto i : MinorBeamArray)
-		{
-			i->MinorBeamSetup();
-		}
-
-
-		FTimerHandle BlackHoleHandle;
-		GetWorldTimerManager().SetTimer(BlackHoleHandle, this, &AC_TheLabLevel_ManagerClass::SpawnBlackHole, 6.0f, false);
-
+		StartBeamCorruption();
 		GetWorldTimerManager().ClearTimer(ActivateBeamHandle);
-
 		break;
 	}
 }
@@ -160,5 +146,27 @@ void AC_TheLabLevel_ManagerClass::PlayCameraShake()
 	if (PlayerController)
 	{
 		PlayerController->ClientPlayCameraShake(CameraShake);
+	}
+}
+
+// Starts beam corruption sequence 
+void AC_TheLabLevel_ManagerClass::StartBeamCorruption()
+{
+	for (auto i : CoreBeamArray)
+	{
+		i->BeginCorruption();
+	}
+}
+
+void AC_TheLabLevel_ManagerClass::StartMinorBeamCorruption()
+{
+	for (auto i : MinorBeamArray)
+	{
+		i->MinorBeamSetup();
+	}
+
+	for(auto i : CoreBeamArray)
+	{
+		i->StartCorruptionMajorBeams();
 	}
 }

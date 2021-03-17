@@ -24,6 +24,15 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void ChangeLighting();
 
+	UFUNCTION(BlueprintCallable)
+	void SpawnBlackHole();
+
+	UFUNCTION(BlueprintCallable)
+	void StartBeamCorruption();
+
+	UFUNCTION(BlueprintCallable)
+	void StartMinorBeamCorruption();
+
 protected:
 	virtual void BeginPlay() override;
 
@@ -57,9 +66,6 @@ private:
 	UPROPERTY(EditInstanceOnly, Category = "Exposed | Blackhole")
 	TArray<AActor*> PhysicsActorsArray;
 
-	UFUNCTION()
-	void SpawnBlackHole();
-
 	AC_BlackHole* BlackHole;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Exposed | Blackhole")
@@ -77,6 +83,9 @@ private:
 	TSubclassOf<UCameraShake> BlackHoleCameraShake;
 
 	void PlayCameraShake();
+
+	// Events
+
 
 	
 };
