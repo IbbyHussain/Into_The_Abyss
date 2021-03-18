@@ -20,6 +20,7 @@
 #include "TimerManager.h"
 #include "Components/ScrollBox.h"
 #include "MyProject/AI/QuestNPC/C_QuestNPC.h"
+#include "MyProject/UI/C_SercurityCameraWidget.h"
 
 //CONSTRUCTOR 
 AC_PlayerHUD2::AC_PlayerHUD2()
@@ -579,6 +580,31 @@ void AC_PlayerHUD2::DestroyTalkWindow()
 		if (TalkWindow)
 		{
 			TalkWindow->RemoveFromParent();
+		}
+	}
+}
+
+// Camera
+
+void AC_PlayerHUD2::CreateCameraWidget()
+{
+	if (CameraWidgetClass)
+	{
+		CameraWidget = CreateWidget<UC_SercurityCameraWidget>(GetWorld(), CameraWidgetClass);
+		if (CameraWidget)
+		{
+			CameraWidget->AddToViewport();
+		}
+	}
+}
+
+void AC_PlayerHUD2::DestroyCameraWidget()
+{
+	if (CameraWidgetClass)
+	{
+		if (CameraWidget)
+		{
+			CameraWidget->RemoveFromParent();
 		}
 	}
 }

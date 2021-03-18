@@ -5,6 +5,7 @@
 #include "MyProject/Misc/C_BlackHole.h"
 #include "EngineUtils.h"
 #include "kismet/GameplayStatics.h"
+#include "MyProject/UI/C_PlayerHUD2.h"
 
 AC_TheLabLevel_ManagerClass::AC_TheLabLevel_ManagerClass()
 {
@@ -19,8 +20,8 @@ void AC_TheLabLevel_ManagerClass::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FTimerHandle FirstBeamHandle;
-	GetWorldTimerManager().SetTimer(FirstBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateFirstBeam, 1.0f, false);
+	//FTimerHandle FirstBeamHandle;
+	//GetWorldTimerManager().SetTimer(FirstBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateFirstBeam, 1.0f, false);
 }
 
 void AC_TheLabLevel_ManagerClass::Tick(float DeltaTime)
@@ -53,12 +54,21 @@ void AC_TheLabLevel_ManagerClass::Update()
 	{
 		//UE_LOG(LogTemp, Warning, TEXT("All puzzles completed"));
 
+		AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
+
+		if(HUD)
+		{
+			HUD->HideAllElements();
+		}
+
 		ChangeLighting();
 
 		for (auto i : WarningLightArray)
 		{
 			i->StartPulse();
 		}
+
+		PuzzlesAreComplete();
 
 		FTimerHandle FirstBeamHandle;
 		GetWorldTimerManager().SetTimer(FirstBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateFirstBeam, 1.0f, false);

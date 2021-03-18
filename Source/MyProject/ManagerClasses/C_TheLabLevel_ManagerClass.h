@@ -36,6 +36,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ActivateFirstBeam();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void PuzzlesAreComplete();
+
 protected:
 	virtual void BeginPlay() override;
 

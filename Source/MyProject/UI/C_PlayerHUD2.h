@@ -24,8 +24,10 @@ public:
 
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintCallable)
 	void HideAllElements();
 
+	UFUNCTION(BlueprintCallable)
 	void ShowAllElements();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -241,5 +243,14 @@ public:
 
 	class UC_AITalkWindow* TalkWindow;
 
+	// Misc - Sercurity Camera
 
+	void CreateCameraWidget();
+
+	void DestroyCameraWidget();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_SercurityCameraWidget> CameraWidgetClass;
+
+	class UC_SercurityCameraWidget* CameraWidget;
 };
