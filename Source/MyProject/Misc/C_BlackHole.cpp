@@ -115,7 +115,7 @@ void AC_BlackHole::OnGrowthTimelineFinished()
 	UE_LOG(LogTemp, Error, TEXT("FINISHED BLACK HOLE"));
 
 	FTimerHandle Growth2Handle;
-	GetWorldTimerManager().SetTimer(Growth2Handle, this, &AC_BlackHole::PlayGrowth2, 5.0f, false);
+	GetWorldTimerManager().SetTimer(Growth2Handle, this, &AC_BlackHole::PlayGrowth2, 3.0f, false);
 }
 
 void AC_BlackHole::PlayGrowth2()

@@ -107,10 +107,11 @@ void AC_TheLabLevel_ManagerClass::SpawnBlackHole()
 			if (SM)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("CAST SUCCESS"));
+
 				SM->SetGenerateOverlapEvents(true);
 				SM->SetMobility(EComponentMobility::Movable);
 				SM->SetSimulatePhysics(true);
-				SM->AddForce(FVector(10000, 10000, 10000));
+				SM->AddForce(FVector(900000, 900000, 900000));
 			}
 
 			USkeletalMeshComponent* SK = Cast<USkeletalMeshComponent>(i);
