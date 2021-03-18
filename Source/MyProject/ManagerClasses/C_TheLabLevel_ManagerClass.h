@@ -33,6 +33,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void StartMinorBeamCorruption();
 
+	UFUNCTION(BlueprintCallable)
+	void ActivateFirstBeam();
+
 protected:
 	virtual void BeginPlay() override;
 
