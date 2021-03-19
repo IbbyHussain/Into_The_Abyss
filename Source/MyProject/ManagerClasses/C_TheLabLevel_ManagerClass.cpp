@@ -70,6 +70,8 @@ void AC_TheLabLevel_ManagerClass::Update()
 
 		PuzzlesAreComplete();
 
+		HUD->MakeEKeyHintInVisible();
+
 		FTimerHandle FirstBeamHandle;
 		GetWorldTimerManager().SetTimer(FirstBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateFirstBeam, 1.0f, false);
 	}
