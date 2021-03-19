@@ -6,6 +6,7 @@
 #include "EngineUtils.h"
 #include "kismet/GameplayStatics.h"
 #include "MyProject/UI/C_PlayerHUD2.h"
+#include "MyProject/C_PlayerCharacter.h"
 
 AC_TheLabLevel_ManagerClass::AC_TheLabLevel_ManagerClass()
 {
@@ -19,9 +20,6 @@ AC_TheLabLevel_ManagerClass::AC_TheLabLevel_ManagerClass()
 void AC_TheLabLevel_ManagerClass::BeginPlay()
 {
 	Super::BeginPlay();
-
-	//FTimerHandle FirstBeamHandle;
-	//GetWorldTimerManager().SetTimer(FirstBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateFirstBeam, 1.0f, false);
 }
 
 void AC_TheLabLevel_ManagerClass::Tick(float DeltaTime)
@@ -70,7 +68,8 @@ void AC_TheLabLevel_ManagerClass::Update()
 
 		PuzzlesAreComplete();
 
-		HUD->MakeEKeyHintInVisible();
+		AC_PlayerCharacter* PlayerCharacter = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
+		PlayerCharacter->bCanInteract = false;
 
 		FTimerHandle FirstBeamHandle;
 		GetWorldTimerManager().SetTimer(FirstBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateFirstBeam, 1.0f, false);

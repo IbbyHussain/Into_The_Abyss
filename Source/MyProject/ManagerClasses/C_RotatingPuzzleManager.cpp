@@ -107,7 +107,10 @@ void AC_RotatingPuzzleManager::ResetPlayerMovement()
 	PlayerCharacter->UpdateMovement();
 	PlayerCharacter->bLockCamera = false;
 	GetWorldTimerManager().ClearTimer(CameraViewHandle);
-	HUD->MakeEKeyHintVisible();
+	if(PlayerCharacter->bCanInteract)
+	{
+		HUD->MakeEKeyHintVisible();
+	}
 }
 
 void AC_RotatingPuzzleManager::PlaySpikeDoorAnimation()

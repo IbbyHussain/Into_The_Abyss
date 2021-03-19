@@ -631,6 +631,10 @@ public:
 	void ExitAreaFixMovement();
 
 	AActor* InteractHitActor;
+
+	// used to disable interactions when in cutscenes
+	bool bCanInteract;
+
 private:
 
 	//Idle
@@ -1180,5 +1184,7 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "General")
 	TArray<UMaterialInterface*> PlayerMaterials;
+
+
 
 };

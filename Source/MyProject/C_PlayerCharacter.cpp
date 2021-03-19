@@ -153,6 +153,8 @@ AC_PlayerCharacter::AC_PlayerCharacter()
 
 	bCanRotatePuzzle = true;
 
+	bCanInteract = true;
+
 	//Water Volume
 	bInWaterVolume = false;
 
@@ -2843,7 +2845,7 @@ void AC_PlayerCharacter::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AAc
 	AC_SkeletalPickupBase* BasePickup = Cast<AC_SkeletalPickupBase>(OtherActor);
 
 	// Checks if Actor is interactable
-	if (OtherActor->GetClass()->ImplementsInterface(UC_InteractInterface::StaticClass()))
+	if (OtherActor->GetClass()->ImplementsInterface(UC_InteractInterface::StaticClass()) && bCanInteract)
 	{
 		// Stops the key hint disappearing if the player overlaps with mesh of AI
 		if (OtherActor != BaseAI || OtherActor == BaseAI && OtherComp == BaseAI->BoxComp) // OtherComp != BaseAI MeshComp ???
@@ -2866,7 +2868,7 @@ void AC_PlayerCharacter::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActo
 	BaseAI = Cast<AC_BaseAI>(OtherActor);
 
 	// Checks if Actor is interactable
-	if (OtherActor->GetClass()->ImplementsInterface(UC_InteractInterface::StaticClass()))
+	if (OtherActor->GetClass()->ImplementsInterface(UC_InteractInterface::StaticClass()) && bCanInteract)
 	{
 		// Makes the key hint disappear
 		if (OtherActor != BaseAI || OtherActor == BaseAI && OtherComp == BaseAI->BoxComp)
@@ -2903,12 +2905,12 @@ void AC_PlayerCharacter::Interact()
 	// If successfully collided with an object
 	if (bIsHit)
 	{
-		UE_LOG(LogTemp, Log, TEXT("HIT A: %s"), *InteractHit.GetActor()->GetName());
+		//UE_LOG(LogTemp, Log, TEXT("HIT A: %s"), *InteractHit.GetActor()->GetName());
 
 		InteractHitActor = InteractHit.GetActor();
 
 		// If the hit object inherits from the interact interface
-		if (InteractHit.GetActor()->GetClass()->ImplementsInterface(UC_InteractInterface::StaticClass()))
+		if (InteractHit.GetActor()->GetClass()->ImplementsInterface(UC_InteractInterface::StaticClass()) && bCanInteract)
 		{
 			// Calls the Interact function on that object
 			IC_InteractInterface::Execute_Interact(InteractHit.GetActor());
