@@ -20,6 +20,8 @@ void AC_LocationMarker::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AAct
 {
 	// location reached delegate here 
 	Quest->CheckLocationObjectiveDelegate.Broadcast(this);
+
+	Destroy();
 }
 
 
