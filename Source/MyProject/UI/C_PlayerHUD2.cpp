@@ -83,6 +83,7 @@ void AC_PlayerHUD2::HideAllElements()
 	HUDWidget->PROMagicBar->SetVisibility(ESlateVisibility::Hidden);
 	HUDWidget->PROBreathBar->SetVisibility(ESlateVisibility::Hidden);
 	HUDWidget->MiniMap->SetVisibility(ESlateVisibility::Hidden);
+	//HUDWidget->
 	//HUDWidget->PROHealthBar->SetVisibility(ESlateVisibility::Hidden);
 }
 
