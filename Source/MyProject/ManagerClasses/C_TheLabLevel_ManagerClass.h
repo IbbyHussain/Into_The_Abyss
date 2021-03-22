@@ -72,6 +72,7 @@ private:
 	UPROPERTY(EditInstanceOnly, Category = "Exposed | Blackhole")
 	TArray<AActor*> PhysicsActorsArray;
 
+	UPROPERTY()
 	AC_BlackHole* BlackHole;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Exposed | Blackhole")

@@ -188,6 +188,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
 	TSubclassOf<class UC_QuestWidget> QuestWidgetClass;
 
+	UPROPERTY()
 	class UC_QuestWidget* QuestWidget;
 
 	// NPC Questing - Objective widget
