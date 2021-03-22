@@ -6,6 +6,8 @@
 #include "MyProject/C_PlayerCharacter.h"
 #include "MyProject/UI/C_AITradeWindow.h"
 #include "MyProject//Quest System/C_BaseQuest.h"
+#include "Components/WidgetComponent.h"
+#include "MyProject/Quest System/C_AvailableQuest.h"
 
 
 AC_QuestNPC::AC_QuestNPC()
@@ -13,6 +15,12 @@ AC_QuestNPC::AC_QuestNPC()
 	TypeOfAI = ETypeOfAI::TRADER;
 
 	bCanRagdoll = false;
+
+	FrontQuestWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("Widget1"));
+	BackQuestWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("Widget2"));
+
+	FrontQuestWidget->SetupAttachment(GetMesh());
+	BackQuestWidget->SetupAttachment(GetMesh());
 }
 
 void AC_QuestNPC::BeginPlay()
@@ -248,4 +256,16 @@ void AC_QuestNPC::MakePlayerMeshVisible()
 	PlayerCharacter->MovementState = EMovementState::STANDING;
 	PlayerCharacter->UpdateMovement();
 	PlayerCharacter->bLockCamera = false;
+}
+
+void AC_QuestNPC::DestroyQuestWidgets()
+{
+	if(bShouldHaveQuestIcon)
+	{
+		if(FrontQuestWidget && BackQuestWidget)
+		{
+			FrontQuestWidget->DestroyComponent();
+			BackQuestWidget->DestroyComponent();
+		}
+	}
 }

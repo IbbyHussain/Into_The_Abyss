@@ -7,6 +7,8 @@
 #include "MyProject/Interfaces/C_InteractInterface.h"
 #include "C_QuestNPC.generated.h"
 
+class UWidgetComponent;
+
 UCLASS()
 class MYPROJECT_API AC_QuestNPC : public AC_BaseAI, public IC_InteractInterface
 {
@@ -72,4 +74,18 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "NPC")
 	void DestroyAvailableQuestWidget();
+
+	// Quest widget above NPC
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "NPC")
+	UWidgetComponent* FrontQuestWidget;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "NPC")
+	UWidgetComponent* BackQuestWidget;
+
+	UFUNCTION(BlueprintCallable)
+	void DestroyQuestWidgets();
+
+	UPROPERTY(EditInstanceOnly, Category = "NPC")
+	bool bShouldHaveQuestIcon;
 };
