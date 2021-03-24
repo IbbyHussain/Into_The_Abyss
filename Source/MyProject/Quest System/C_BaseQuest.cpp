@@ -118,7 +118,7 @@ void AC_BaseQuest::CheckPuzzleObjective(AActor* Puzzle)
 {
 	// Puzzle objectives can be completed before accepting the quest
 
-	UE_LOG(LogTemp, Warning, TEXT("CHECK puzzle OBJECTIVE DELEGATE CALLED"));
+	//UE_LOG(LogTemp, Warning, TEXT("CHECK puzzle OBJECTIVE DELEGATE CALLED"));
 
 	bool bUpdateUI;
 
@@ -128,13 +128,13 @@ void AC_BaseQuest::CheckPuzzleObjective(AActor* Puzzle)
 
 		if ((!ObjectivesArray[i].bIsObjectiveComplete) && ObjectivesArray[i].ObjectiveTarget == Puzzle)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Puzzle COMPLETE"));
+			//UE_LOG(LogTemp, Warning, TEXT("Puzzle COMPLETE"));
 			ObjectivesArray[ObjectiveNumber].bIsObjectiveComplete = true;
 			bUpdateUI = true;
 		}
 	}
 
-	if (bUpdateUI)
+	if (bUpdateUI && bHasBeenAccepted)
 	{
 		// Update Objectives
 		AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());

@@ -7,6 +7,7 @@
 #include "kismet/GameplayStatics.h"
 #include "MyProject/UI/C_PlayerHUD2.h"
 #include "MyProject/C_PlayerCharacter.h"
+#include "MyProject/Quest System/C_BaseQuest.h"
 
 AC_TheLabLevel_ManagerClass::AC_TheLabLevel_ManagerClass()
 {
@@ -52,9 +53,16 @@ void AC_TheLabLevel_ManagerClass::Update()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("All puzzles completed"));
 
+		
+	}
+
+	if(MainQuest && MainQuest->bIsCompleted)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("MAIN QUEST COMPLETE"));
+
 		AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
 
-		if(HUD)
+		if (HUD)
 		{
 			HUD->HideAllElements();
 		}
@@ -63,7 +71,7 @@ void AC_TheLabLevel_ManagerClass::Update()
 
 		for (auto i : WarningLightArray)
 		{
-			i->StartPulse(); //causes issues and crash 
+			i->StartPulse();
 		}
 
 		PuzzlesAreComplete();

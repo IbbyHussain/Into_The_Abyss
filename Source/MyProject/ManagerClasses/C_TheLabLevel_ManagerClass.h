@@ -91,7 +91,10 @@ private:
 
 	void PlayCameraShake();
 
-	// Events
+	// Start Cinematic
+
+	UPROPERTY(EditInstanceOnly, Category = "Exposed | Defaults")
+	class AC_BaseQuest* MainQuest;
 
 
 	
