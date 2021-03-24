@@ -113,18 +113,22 @@ private:
 	int32 PuzzleCounter;
 
 	//Timeline1
+	UPROPERTY()
 	UTimelineComponent* Timeline1;
 	FOnTimelineFloat Timeline1InterpFunction{};
 
 	//Timeline 2
+	UPROPERTY()
 	UTimelineComponent* Timeline2;
 	FOnTimelineFloat Timeline2InterpFunction{};
 
 	//Timeline 3
+	UPROPERTY()
 	UTimelineComponent* Timeline3;
 	FOnTimelineFloat Timeline3InterpFunction{};
 
 	//Timeline 4
+	UPROPERTY()
 	UTimelineComponent* Timeline4;
 	FOnTimelineFloat Timeline4InterpFunction{};
 

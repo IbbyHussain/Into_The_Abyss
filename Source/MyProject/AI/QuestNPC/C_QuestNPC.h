@@ -51,6 +51,7 @@ public:
 
 	void MakePlayerMeshVisible();
 
+	UPROPERTY()
 	TArray<AActor*> AttachedActorsArray;
 
 	// A referenec to the quest that this actor should use. The current quest of the player

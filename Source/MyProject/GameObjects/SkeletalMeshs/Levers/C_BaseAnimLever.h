@@ -108,6 +108,7 @@ private:
 
 	class AC_PlayerHUD2* HUD;
 
+	UPROPERTY()
 	USceneComponent* SceneComp;
 	
 };

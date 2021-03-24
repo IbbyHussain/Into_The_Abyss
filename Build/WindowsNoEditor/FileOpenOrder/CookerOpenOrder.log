@@ -819,193 +819,194 @@
 "../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/JapaneseArchitecture/Japanese_FutureArchitecture/Puzzles/SM_JAP_Future_RotatingPuzzle.uasset" 818
 "../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/JapaneseArchitecture/Japanese_PastArchitecture/Puzzles/SM_JAP_Past_RotatingPuzzle.uasset" 819
 "../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Interactables/Puzzles/RotatingPuzzle/BP_RotatingPuzzleActor.uasset" 820
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/Pulse/M_PulseV2.uasset" 821
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/EmissiveMaterials/MI_Glow_Green.uasset" 822
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Warning_Lights.uasset" 823
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/sounds/Enviromental/Lab/WarningLightSound.uasset" 824
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/sounds/Enviromental/Lab/WarningLightSound_Cue.uasset" 825
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BP_WarningLight.uasset" 826
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Reactor/Lightning/LightningColourChange_Curve.uasset" 827
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/VFX/M_RibbonMaterial_OpaqueBlack.uasset" 828
-"../../Plugins/FX/Niagara/Content/DefaultAssets/DefaultRIbbonMaterial.uasset" 829
-"../../Plugins/FX/Niagara/Content/DynamicInputs/Helpers/SimulationPosition.uasset" 830
-"../../Plugins/FX/Niagara/Content/DynamicInputs/Multiply/Multiply_VectorByFloat.uasset" 831
-"../../Plugins/FX/Niagara/Content/DynamicInputs/ValueFromCurve/FloatFromCurve.uasset" 832
-"../../Plugins/FX/Niagara/Content/Functions/Localspace/TransformPosition.uasset" 833
-"../../Plugins/FX/Niagara/Content/Modules/Beams/BeamEmitterSetup.uasset" 834
-"../../Plugins/FX/Niagara/Content/Modules/Beams/BeamWidth.uasset" 835
-"../../Plugins/FX/Niagara/Content/Functions/NormalizedExecutionIndex.uasset" 836
-"../../Plugins/FX/Niagara/Content/Functions/Spline/FindPositionOnBezierSpline.uasset" 837
-"../../Plugins/FX/Niagara/Content/Modules/Beams/SpawnBeam.uasset" 838
-"../../Plugins/FX/Niagara/Content/Modules/Emitter/SpawnBurst_Instantaneous.uasset" 839
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Reactor/Lightning/NE_Beam.uasset" 840
-"../../Plugins/FX/Niagara/Content/Functions/RandomUnitVector.uasset" 841
-"../../Plugins/FX/Niagara/Content/Functions/RandomVector.uasset" 842
-"../../Plugins/FX/Niagara/Content/Modules/Update/Position/JitterPosition.uasset" 843
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Reactor/Lightning/NS_Lightning.uasset" 844
-"../../Plugins/FX/Niagara/Content/DefaultAssets/DefaultSpriteMaterial.uasset" 845
-"../../Plugins/FX/Niagara/Content/DynamicInputs/TypeConversions/Vector2DFromFloat.uasset" 846
-"../../Plugins/FX/Niagara/Content/Functions/RandomRangeInteger.uasset" 847
-"../../Plugins/FX/Niagara/Content/DynamicInputs/UniformRange/UniformRangedInt.uasset" 848
-"../../Plugins/FX/Niagara/Content/Enums/ENiagaraCalculateRadiusOptions.uasset" 849
-"../../Plugins/FX/Niagara/Content/Functions/CalculateMeshRadius.uasset" 850
-"../../Plugins/FX/Niagara/Content/Functions/CalculateRadiusFromSpriteSize.uasset" 851
-"../../Plugins/FX/Niagara/Content/Functions/Helpers/DoOnce_fn.uasset" 852
-"../../Plugins/FX/Niagara/Content/Functions/ProjectVectorOnPlane.uasset" 853
-"../../Plugins/FX/Niagara/Content/Functions/Collision/PlaneSphereCollisionDetection.uasset" 854
-"../../Plugins/FX/Niagara/Content/Functions/Rotation/MultiplyVectorWithQuaternion.uasset" 855
-"../../Plugins/FX/Niagara/Content/Functions/Collision/RandomizeCollisionNormals.uasset" 856
-"../../Plugins/FX/Niagara/Content/Functions/Math/CentimeterMeterConversion.uasset" 857
-"../../Plugins/FX/Niagara/Content/Functions/ReflectVector.uasset" 858
-"../../Plugins/FX/Niagara/Content/Modules/Collision/NiagaraDistanceFieldCollisions.uasset" 859
-"../../Plugins/FX/Niagara/Content/Modules/Collision/SceneDepthTest.uasset" 860
-"../../Plugins/FX/Niagara/Content/Enums/ENiagara_CPUCollisionType.uasset" 861
-"../../Plugins/FX/Niagara/Content/Enums/ENiagara_GPUCollisionType.uasset" 862
-"../../Plugins/FX/Niagara/Content/Enums/ENiagaraFrictionMergeType.uasset" 863
-"../../Plugins/FX/Niagara/Content/Enums/ENiagaraRestitutionMergeType.uasset" 864
-"../../Plugins/FX/Niagara/Content/Modules/Collision/CollisionQueryAndResponse.uasset" 865
-"../../Plugins/FX/Niagara/Content/Enums/ENiagaraCollisionRadiusOptions.uasset" 866
-"../../Plugins/FX/Niagara/Content/Modules/Collision/Collision.uasset" 867
-"../../Plugins/FX/Niagara/Content/Functions/Math/RemapValueRange.uasset" 868
-"../../Plugins/FX/Niagara/Content/Functions/PolarToCartesianCoordinates.uasset" 869
-"../../Plugins/FX/Niagara/Content/Functions/RandomVectorInCone.uasset" 870
-"../../Plugins/FX/Niagara/Content/Modules/Spawn/Velocity/AddVelocityInCone.uasset" 871
-"../../Plugins/FX/Niagara/Content/Enums/ENiagaraScaleColorMode.uasset" 872
-"../../Plugins/FX/Niagara/Content/Modules/Update/Color/ScaleColor.uasset" 873
-"../../Plugins/FX/Niagara/Content/Modules/Update/Size/ScaleSpriteSizeBySpeed.uasset" 874
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Reactor/Lightning/NE_LightningSparks.uasset" 875
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Reactor/Lightning/NS_LightningSparks.uasset" 876
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Reactor/Lightning/BP_ReactorBeam.uasset" 877
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/ManagerClasses/BP_LeverManager.uasset" 878
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/ManagerClasses/BP_PressurePlateManager.uasset" 879
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/ManagerClasses/BP_RotatingPuzzleManager.uasset" 880
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/AI/Scientists/Animations/BackgroundAnimations/LevelSequenceAnims/Terrified.uasset" 881
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/AI/Scientists/Animations/BackgroundAnimations/LevelSequenceAnims/AM_Terrified.uasset" 882
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/AI/Scientists/Animations/BackgroundAnimations/LevelSequenceAnims/Right_Turn_90.uasset" 883
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/AI/Scientists/Animations/BackgroundAnimations/LevelSequenceAnims/AM_Turn.uasset" 884
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BlackHole/BP_BlackHoleCameraShakeExtsreme.uasset" 885
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BlackHole/BlackHole_Curve.uasset" 886
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BlackHole/M_BlackHole_Inner.uasset" 887
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BlackHole/M_BlackHole_Outter.uasset" 888
-"../../../Engine/Content/EditorMeshes/ArcadeEditorSphere.uasset" 889
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BlackHole/BP_BlackHole.uasset" 890
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BlackHole/BP_BlackHoleCameraShake.uasset" 891
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BlackHole/BP_BlackHoleDummy.uasset" 892
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Reactor/BP_ReactorImpactCameraShake.uasset" 893
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quest_UI/WBP_Objectives2.uasset" 894
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quest_UI/WBP_QuestObjectivesItemWidget.uasset" 895
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quest_UI/WBP_QuestTurnInWidget.uasset" 896
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quest_UI/WBP_QuestWidget.uasset" 897
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quest_UI/WBP_SingleObjective.uasset" 898
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quest_UI/Textures/T_BaseArrow.uasset" 899
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quest_UI/WBP_TalkWindow.uasset" 900
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/AIWidgets/AI_Trader/AttributeIcons/MagicPickupIcon.uasset" 901
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/AIWidgets/Pickup_ItemWidgets/PlayerStatWidgets/WBP_ManaPickupWidget.uasset" 902
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/AIWidgets/TradeWindows/WBP_HealerTradeWindow.uasset" 903
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/AIWidgets/WBP_AIHealthBar.uasset" 904
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/EKeyHint/WBP_EKeyHint.uasset" 905
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/Pickup/T_HealthEffect.uasset" 906
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/Pickup/T_ManaEffect.uasset" 907
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/Pickup/T_StaminaEffect.uasset" 908
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/Pickup/WBP_PickupImage.uasset" 909
-"../../../Engine/Content/EngineFonts/Faces/DroidSansMono.uasset" 910
-"../../../Engine/Content/EngineFonts/DroidSansMono.uasset" 911
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WBP_PlayerDeath.uasset" 912
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Bottom_Left.uasset" 913
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Bottom_Left_Hovered.uasset" 914
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Bottom_Right.uasset" 915
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Bottom_Right_Hovered.uasset" 916
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Selection_Wheel_Line.uasset" 917
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Top_Left.uasset" 918
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Top_Left_Hovered.uasset" 919
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Top_Right.uasset" 920
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Top_Right_Hovered.uasset" 921
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/WBP_WeaponWheel.uasset" 922
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/BP_PlayerHUD2.uasset" 923
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/MISC/CameraView.uasset" 924
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/MISC/Rec_Circle.uasset" 925
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/MISC/WBP_Camera.uasset" 926
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/ManagerClasses/BP_TheLabLevel_ManagerClass.uasset" 927
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Misc/TempGameMode.uasset" 928
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/BP_LocationMarker.uasset" 929
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quests/BP_Quest_000.uasset" 930
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quests/BP_Quest_001.uasset" 931
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Cinematics/Level1-Shot1.uasset" 932
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Cinematics/Level1-Shot2.uasset" 933
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Cinematics/level1-Shot3.uasset" 934
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Cinematics/Level1-Shot4.uasset" 935
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Cinematics/Level1-Shot5.uasset" 936
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Cinematics/Level1-MasterSequence.uasset" 937
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Levels/IntroLevel_BuiltData.uasset" 938
-"../../../Engine/Content/BasicShapes/BasicShapeMaterial.uasset" 939
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Interactables/Puzzles/PressurePlate/M_PressurePlateMaterial.uasset" 940
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/StarterContent/Textures/T_Door_M.uasset" 941
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/StarterContent/Textures/T_Door_N.uasset" 942
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/StarterContent/Props/Materials/M_Door.uasset" 943
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/BaseColors/Cyan/M_Cyan.uasset" 944
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/EmissiveMaterials/MI_Glow_Blue.uasset" 945
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/EmissiveMaterials/MI_Glow_Yellow.uasset" 946
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/Glass/M_GlassBase.uasset" 947
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/Glass/MI_RedGlass.uasset" 948
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/Glass/MI_WhiteGlass.uasset" 949
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/Glass/MI_YellowGlass.uasset" 950
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_Code_2.uasset" 951
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/MI_Code2.uasset" 952
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_Code_3.uasset" 953
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/MI_Code3.uasset" 954
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_cosec_graph.uasset" 955
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/MI_CosecGraph.uasset" 956
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_sin_graph.uasset" 957
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/MI_SinGraph.uasset" 958
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_Terminal_UI_2.uasset" 959
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/MI_Terminal2.uasset" 960
-"../../Plugins/FX/Niagara/Content/Modules/Update/Forces/Drag.uasset" 961
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/VFX/EnviromentAffects/Misc/NewNiagaraEmitter.uasset" 962
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/VFX/EnviromentAffects/Misc/NS_CoffeeSpill.uasset" 963
-"../../../Engine/Content/BasicShapes/Sphere.uasset" 964
-"../../../Engine/Content/MapTemplates/SM_Template_Map_Floor.uasset" 965
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/English_Architecture/English_FutureArchitecture/Puzzles/SM_ENG_Future_Crate.uasset" 966
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/English_Architecture/English_PastArchitectuire/Buildings/SHIT.uasset" 967
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Curved_Table.uasset" 968
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/Glass/MI_BlueGlass.uasset" 969
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_code.uasset" 970
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/MI_Code.uasset" 971
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_laptopkeys.uasset" 972
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/MI_LaptopKeys.uasset" 973
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_Screen.uasset" 974
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/MI_Screen.uasset" 975
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/Computer.uasset" 976
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Drone.uasset" 977
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Generator_Cover.uasset" 978
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Rocket/T_Logo.uasset" 979
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Rocket/MI_Logo.uasset" 980
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Rocket/T_Normandy_logo.uasset" 981
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Rocket/MI_Slowmandy_Logo.uasset" 982
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Rocket/Rocket_Ship.uasset" 983
-"../../../Engine/Content/EditorMeshes/ColorCalibrator/M_ChromeBall.uasset" 984
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Rocket/Ship_Hangar.uasset" 985
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Rocket_Booster.uasset" 986
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Canister.uasset" 987
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Chair.uasset" 988
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Command_Centre.uasset" 989
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Core.uasset" 990
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Door.uasset" 991
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Helmet_Stand.uasset" 992
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Knob.uasset" 993
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_laserDoor.uasset" 994
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_MainConsole.uasset" 995
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Mouse.uasset" 996
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_mug.uasset" 997
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Sercurity_Camera.uasset" 998
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_Terminal_UI.uasset" 999
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/MI_Terminal.uasset" 1000
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Terminal.uasset" 1001
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Spider_Drone.uasset" 1002
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Storage_Box_1.uasset" 1003
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Storage_Box_2.uasset" 1004
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Trolley.uasset" 1005
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Walk_way.uasset" 1006
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Walk_way_Curved.uasset" 1007
-"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Levels/IntroLevel.umap" 1008
-"../../../Engine/Content/Maps/Entry_BuiltData.uasset" 1009
-"../../../Engine/Content/Maps/Entry.umap" 1010
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/EmissiveMaterials/MI_Glow_Green.uasset" 821
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/Pulse/M_PulseV2.uasset" 822
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/Pulse/MI_PulseV2.uasset" 823
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Warning_Lights.uasset" 824
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/sounds/Enviromental/Lab/WarningLightSound.uasset" 825
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/sounds/Enviromental/Lab/WarningLightSound_Cue.uasset" 826
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BP_WarningLight.uasset" 827
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Reactor/Lightning/LightningColourChange_Curve.uasset" 828
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/VFX/M_RibbonMaterial_OpaqueBlack.uasset" 829
+"../../Plugins/FX/Niagara/Content/DefaultAssets/DefaultRIbbonMaterial.uasset" 830
+"../../Plugins/FX/Niagara/Content/DynamicInputs/Helpers/SimulationPosition.uasset" 831
+"../../Plugins/FX/Niagara/Content/DynamicInputs/Multiply/Multiply_VectorByFloat.uasset" 832
+"../../Plugins/FX/Niagara/Content/DynamicInputs/ValueFromCurve/FloatFromCurve.uasset" 833
+"../../Plugins/FX/Niagara/Content/Functions/Localspace/TransformPosition.uasset" 834
+"../../Plugins/FX/Niagara/Content/Modules/Beams/BeamEmitterSetup.uasset" 835
+"../../Plugins/FX/Niagara/Content/Modules/Beams/BeamWidth.uasset" 836
+"../../Plugins/FX/Niagara/Content/Functions/NormalizedExecutionIndex.uasset" 837
+"../../Plugins/FX/Niagara/Content/Functions/Spline/FindPositionOnBezierSpline.uasset" 838
+"../../Plugins/FX/Niagara/Content/Modules/Beams/SpawnBeam.uasset" 839
+"../../Plugins/FX/Niagara/Content/Modules/Emitter/SpawnBurst_Instantaneous.uasset" 840
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Reactor/Lightning/NE_Beam.uasset" 841
+"../../Plugins/FX/Niagara/Content/Functions/RandomUnitVector.uasset" 842
+"../../Plugins/FX/Niagara/Content/Functions/RandomVector.uasset" 843
+"../../Plugins/FX/Niagara/Content/Modules/Update/Position/JitterPosition.uasset" 844
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Reactor/Lightning/NS_Lightning.uasset" 845
+"../../Plugins/FX/Niagara/Content/DefaultAssets/DefaultSpriteMaterial.uasset" 846
+"../../Plugins/FX/Niagara/Content/DynamicInputs/TypeConversions/Vector2DFromFloat.uasset" 847
+"../../Plugins/FX/Niagara/Content/Functions/RandomRangeInteger.uasset" 848
+"../../Plugins/FX/Niagara/Content/DynamicInputs/UniformRange/UniformRangedInt.uasset" 849
+"../../Plugins/FX/Niagara/Content/Enums/ENiagaraCalculateRadiusOptions.uasset" 850
+"../../Plugins/FX/Niagara/Content/Functions/CalculateMeshRadius.uasset" 851
+"../../Plugins/FX/Niagara/Content/Functions/CalculateRadiusFromSpriteSize.uasset" 852
+"../../Plugins/FX/Niagara/Content/Functions/Helpers/DoOnce_fn.uasset" 853
+"../../Plugins/FX/Niagara/Content/Functions/ProjectVectorOnPlane.uasset" 854
+"../../Plugins/FX/Niagara/Content/Functions/Collision/PlaneSphereCollisionDetection.uasset" 855
+"../../Plugins/FX/Niagara/Content/Functions/Rotation/MultiplyVectorWithQuaternion.uasset" 856
+"../../Plugins/FX/Niagara/Content/Functions/Collision/RandomizeCollisionNormals.uasset" 857
+"../../Plugins/FX/Niagara/Content/Functions/Math/CentimeterMeterConversion.uasset" 858
+"../../Plugins/FX/Niagara/Content/Functions/ReflectVector.uasset" 859
+"../../Plugins/FX/Niagara/Content/Modules/Collision/NiagaraDistanceFieldCollisions.uasset" 860
+"../../Plugins/FX/Niagara/Content/Modules/Collision/SceneDepthTest.uasset" 861
+"../../Plugins/FX/Niagara/Content/Enums/ENiagara_CPUCollisionType.uasset" 862
+"../../Plugins/FX/Niagara/Content/Enums/ENiagara_GPUCollisionType.uasset" 863
+"../../Plugins/FX/Niagara/Content/Enums/ENiagaraFrictionMergeType.uasset" 864
+"../../Plugins/FX/Niagara/Content/Enums/ENiagaraRestitutionMergeType.uasset" 865
+"../../Plugins/FX/Niagara/Content/Modules/Collision/CollisionQueryAndResponse.uasset" 866
+"../../Plugins/FX/Niagara/Content/Enums/ENiagaraCollisionRadiusOptions.uasset" 867
+"../../Plugins/FX/Niagara/Content/Modules/Collision/Collision.uasset" 868
+"../../Plugins/FX/Niagara/Content/Functions/Math/RemapValueRange.uasset" 869
+"../../Plugins/FX/Niagara/Content/Functions/PolarToCartesianCoordinates.uasset" 870
+"../../Plugins/FX/Niagara/Content/Functions/RandomVectorInCone.uasset" 871
+"../../Plugins/FX/Niagara/Content/Modules/Spawn/Velocity/AddVelocityInCone.uasset" 872
+"../../Plugins/FX/Niagara/Content/Enums/ENiagaraScaleColorMode.uasset" 873
+"../../Plugins/FX/Niagara/Content/Modules/Update/Color/ScaleColor.uasset" 874
+"../../Plugins/FX/Niagara/Content/Modules/Update/Size/ScaleSpriteSizeBySpeed.uasset" 875
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Reactor/Lightning/NE_LightningSparks.uasset" 876
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Reactor/Lightning/NS_LightningSparks.uasset" 877
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Reactor/Lightning/BP_ReactorBeam.uasset" 878
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/ManagerClasses/BP_LeverManager.uasset" 879
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/ManagerClasses/BP_PressurePlateManager.uasset" 880
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/ManagerClasses/BP_RotatingPuzzleManager.uasset" 881
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/AI/Scientists/Animations/BackgroundAnimations/LevelSequenceAnims/Terrified.uasset" 882
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/AI/Scientists/Animations/BackgroundAnimations/LevelSequenceAnims/AM_Terrified.uasset" 883
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/AI/Scientists/Animations/BackgroundAnimations/LevelSequenceAnims/Right_Turn_90.uasset" 884
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/AI/Scientists/Animations/BackgroundAnimations/LevelSequenceAnims/AM_Turn.uasset" 885
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BlackHole/BP_BlackHoleCameraShakeExtsreme.uasset" 886
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BlackHole/BlackHole_Curve.uasset" 887
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BlackHole/M_BlackHole_Inner.uasset" 888
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BlackHole/M_BlackHole_Outter.uasset" 889
+"../../../Engine/Content/EditorMeshes/ArcadeEditorSphere.uasset" 890
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BlackHole/BP_BlackHole.uasset" 891
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BlackHole/BP_BlackHoleCameraShake.uasset" 892
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/BlackHole/BP_BlackHoleDummy.uasset" 893
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Reactor/BP_ReactorImpactCameraShake.uasset" 894
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quest_UI/WBP_Objectives2.uasset" 895
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quest_UI/WBP_QuestObjectivesItemWidget.uasset" 896
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quest_UI/WBP_QuestTurnInWidget.uasset" 897
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quest_UI/WBP_QuestWidget.uasset" 898
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quest_UI/WBP_SingleObjective.uasset" 899
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quest_UI/Textures/T_BaseArrow.uasset" 900
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quest_UI/WBP_TalkWindow.uasset" 901
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/AIWidgets/AI_Trader/AttributeIcons/MagicPickupIcon.uasset" 902
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/AIWidgets/Pickup_ItemWidgets/PlayerStatWidgets/WBP_ManaPickupWidget.uasset" 903
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/AIWidgets/TradeWindows/WBP_HealerTradeWindow.uasset" 904
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/AIWidgets/WBP_AIHealthBar.uasset" 905
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/EKeyHint/WBP_EKeyHint.uasset" 906
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/Pickup/T_HealthEffect.uasset" 907
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/Pickup/T_ManaEffect.uasset" 908
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/Pickup/T_StaminaEffect.uasset" 909
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/Pickup/WBP_PickupImage.uasset" 910
+"../../../Engine/Content/EngineFonts/Faces/DroidSansMono.uasset" 911
+"../../../Engine/Content/EngineFonts/DroidSansMono.uasset" 912
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WBP_PlayerDeath.uasset" 913
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Bottom_Left.uasset" 914
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Bottom_Left_Hovered.uasset" 915
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Bottom_Right.uasset" 916
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Bottom_Right_Hovered.uasset" 917
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Selection_Wheel_Line.uasset" 918
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Top_Left.uasset" 919
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Top_Left_Hovered.uasset" 920
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Top_Right.uasset" 921
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/Top_Right_Hovered.uasset" 922
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/WeaponWheel/WBP_WeaponWheel.uasset" 923
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/BP_PlayerHUD2.uasset" 924
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/MISC/CameraView.uasset" 925
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/MISC/Rec_Circle.uasset" 926
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/UI/MISC/WBP_Camera.uasset" 927
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/ManagerClasses/BP_TheLabLevel_ManagerClass.uasset" 928
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Misc/TempGameMode.uasset" 929
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/BP_LocationMarker.uasset" 930
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quests/BP_Quest_000.uasset" 931
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Quest_System/Quests/BP_Quest_001.uasset" 932
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Cinematics/Level1-Shot1.uasset" 933
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Cinematics/Level1-Shot2.uasset" 934
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Cinematics/level1-Shot3.uasset" 935
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Cinematics/Level1-Shot4.uasset" 936
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Cinematics/Level1-Shot5.uasset" 937
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Cinematics/Level1-MasterSequence.uasset" 938
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Levels/IntroLevel_BuiltData.uasset" 939
+"../../../Engine/Content/BasicShapes/BasicShapeMaterial.uasset" 940
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Interactables/Puzzles/PressurePlate/M_PressurePlateMaterial.uasset" 941
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/StarterContent/Textures/T_Door_M.uasset" 942
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/StarterContent/Textures/T_Door_N.uasset" 943
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/StarterContent/Props/Materials/M_Door.uasset" 944
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/BaseColors/Cyan/M_Cyan.uasset" 945
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/EmissiveMaterials/MI_Glow_Blue.uasset" 946
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/EmissiveMaterials/MI_Glow_Yellow.uasset" 947
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/Glass/M_GlassBase.uasset" 948
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/Glass/MI_RedGlass.uasset" 949
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/Glass/MI_WhiteGlass.uasset" 950
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/Glass/MI_YellowGlass.uasset" 951
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_Code_2.uasset" 952
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/MI_Code2.uasset" 953
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_Code_3.uasset" 954
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/MI_Code3.uasset" 955
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_cosec_graph.uasset" 956
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/MI_CosecGraph.uasset" 957
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_sin_graph.uasset" 958
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/MI_SinGraph.uasset" 959
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_Terminal_UI_2.uasset" 960
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/MI_Terminal2.uasset" 961
+"../../Plugins/FX/Niagara/Content/Modules/Update/Forces/Drag.uasset" 962
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/VFX/EnviromentAffects/Misc/NewNiagaraEmitter.uasset" 963
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/VFX/EnviromentAffects/Misc/NS_CoffeeSpill.uasset" 964
+"../../../Engine/Content/BasicShapes/Sphere.uasset" 965
+"../../../Engine/Content/MapTemplates/SM_Template_Map_Floor.uasset" 966
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/English_Architecture/English_FutureArchitecture/Puzzles/SM_ENG_Future_Crate.uasset" 967
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/English_Architecture/English_PastArchitectuire/Buildings/SHIT.uasset" 968
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Curved_Table.uasset" 969
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Materials/Glass/MI_BlueGlass.uasset" 970
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_code.uasset" 971
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/MI_Code.uasset" 972
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_laptopkeys.uasset" 973
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/MI_LaptopKeys.uasset" 974
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_Screen.uasset" 975
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/MI_Screen.uasset" 976
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Desk_1/Computer.uasset" 977
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Drone.uasset" 978
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Generator_Cover.uasset" 979
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Rocket/T_Logo.uasset" 980
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Rocket/MI_Logo.uasset" 981
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Rocket/T_Normandy_logo.uasset" 982
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Rocket/MI_Slowmandy_Logo.uasset" 983
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Rocket/Rocket_Ship.uasset" 984
+"../../../Engine/Content/EditorMeshes/ColorCalibrator/M_ChromeBall.uasset" 985
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Rocket/Ship_Hangar.uasset" 986
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Rocket_Booster.uasset" 987
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Canister.uasset" 988
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Chair.uasset" 989
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Command_Centre.uasset" 990
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Core.uasset" 991
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Door.uasset" 992
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Helmet_Stand.uasset" 993
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Knob.uasset" 994
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_laserDoor.uasset" 995
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_MainConsole.uasset" 996
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Mouse.uasset" 997
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_mug.uasset" 998
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Sercurity_Camera.uasset" 999
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Textures/T_Terminal_UI.uasset" 1000
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/MI_Terminal.uasset" 1001
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/SM_Terminal.uasset" 1002
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Spider_Drone.uasset" 1003
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Storage_Box_1.uasset" 1004
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Storage_Box_2.uasset" 1005
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Trolley.uasset" 1006
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Walk_way.uasset" 1007
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Enviroment/Scientist/Walk_way_Curved.uasset" 1008
+"../../../../../../UE4 Projects/Project_TheetaV2-master/Content/Levels/IntroLevel.umap" 1009
+"../../../Engine/Content/Maps/Entry_BuiltData.uasset" 1010
+"../../../Engine/Content/Maps/Entry.umap" 1011

@@ -18,14 +18,13 @@ AC_WarningLight::AC_WarningLight()
 void AC_WarningLight::BeginPlay()
 {
 	Super::BeginPlay();
-
-	MatInst = UMaterialInstanceDynamic::Create(WarningLightGlow, this);
 	PointLight->SetLightColor(FLinearColor::Green);
 }
 
 void AC_WarningLight::StartPulse()
 {
 	//PointLight->SetLightColor(FLinearColor::Red); can be here if player doesnt see lights immediately 
+	MatInst = UMaterialInstanceDynamic::Create(WarningLightGlow, this);
 	MeshComp->SetMaterial(1, MatInst);
 	GetWorldTimerManager().SetTimer(PulseHandle, this, &AC_WarningLight::Pulse, 2.0, true);
 }

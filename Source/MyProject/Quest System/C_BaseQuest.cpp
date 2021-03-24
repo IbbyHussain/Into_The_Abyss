@@ -27,94 +27,91 @@ void AC_BaseQuest::OrganiseQuestInEditor()
 
 void AC_BaseQuest::CheckLocationObjective(AC_LocationMarker* LocationReached)
 {
-	if(bHasBeenAccepted ) //&& ObjectiveData.ObjectiveTypes == EObjectiveTypes::LOCATION
+	
+	//UE_LOG(LogTemp, Warning, TEXT("CHECK LOCATION OBJECTIVE DELEGATE CALLED"));
+
+	bool bUpdateUI;
+
+	for (int i = 0; i < ObjectivesArray.Num(); i++)
 	{
-		//UE_LOG(LogTemp, Warning, TEXT("CHECK LOCATION OBJECTIVE DELEGATE CALLED"));
+		int ObjectiveNumber = i;
 
-		bool bUpdateUI;
-
-		for (int i = 0; i < ObjectivesArray.Num(); i++)
+		if ((!ObjectivesArray[i].bIsObjectiveComplete) && ObjectivesArray[i].ObjectiveTarget == LocationReached)
 		{
-			int ObjectiveNumber = i;
-
-			if ((!ObjectivesArray[i].bIsObjectiveComplete) && ObjectivesArray[i].ObjectiveTarget == LocationReached)
-			{
-				//UE_LOG(LogTemp, Warning, TEXT("COMPLETE"));
-				ObjectivesArray[ObjectiveNumber].bIsObjectiveComplete = true;
-				bUpdateUI = true;
-			}
-		}
-
-		if (bUpdateUI)
-		{
-			// Update Objectives
-			AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
-			HUD->UpdateObjectives();
+			//UE_LOG(LogTemp, Warning, TEXT("COMPLETE"));
+			ObjectivesArray[ObjectiveNumber].bIsObjectiveComplete = true;
+			bUpdateUI = true;
 		}
 	}
+
+	if (bUpdateUI)
+	{
+		// Update Objectives
+		AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
+		HUD->UpdateObjectives();
+	}
+	
 }
 
 void AC_BaseQuest::CheckInteractionObjective(AActor* InteractionTarget)
 {
 	UE_LOG(LogTemp, Warning, TEXT("CHECK interact OBJECTIVE DELEGATE CALLED"));
 
-	if (bHasBeenAccepted)
+	
+	bool bUpdateUI;
+
+	for (int i = 0; i < ObjectivesArray.Num(); i++)
 	{
-		bool bUpdateUI;
+		int ObjectiveNumber = i;
 
-		for (int i = 0; i < ObjectivesArray.Num(); i++)
+		if ((!ObjectivesArray[i].bIsObjectiveComplete) && ObjectivesArray[i].ObjectiveTarget == InteractionTarget)
 		{
-			int ObjectiveNumber = i;
-
-			if ((!ObjectivesArray[i].bIsObjectiveComplete) && ObjectivesArray[i].ObjectiveTarget == InteractionTarget)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("INTERACTION COMPLETE"));
-				ObjectivesArray[ObjectiveNumber].bIsObjectiveComplete = true;
-				bUpdateUI = true;
-			}
-		}
-
-		if (bUpdateUI)
-		{
-			// Update Objectives
-			AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
-			HUD->UpdateObjectives();
+			UE_LOG(LogTemp, Warning, TEXT("INTERACTION COMPLETE"));
+			ObjectivesArray[ObjectiveNumber].bIsObjectiveComplete = true;
+			bUpdateUI = true;
 		}
 	}
+
+	if (bUpdateUI)
+	{
+		// Update Objectives
+		AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
+		HUD->UpdateObjectives();
+	}
+	
 }
 
 void AC_BaseQuest::CheckKilledEnemyObjective(AC_BaseAI* EnemyTarget)
 {
 	UE_LOG(LogTemp, Warning, TEXT("CHECK kill OBJECTIVE DELEGATE CALLED"));
 
-	if (bHasBeenAccepted)
+	
+	bool bUpdateUI;
+
+	for (int i = 0; i < ObjectivesArray.Num(); i++)
 	{
-		bool bUpdateUI;
+		int ObjectiveNumber = i;
 
-		for (int i = 0; i < ObjectivesArray.Num(); i++)
+		if ((!ObjectivesArray[i].bIsObjectiveComplete) && ObjectivesArray[i].ObjectiveTarget->GetClass() == EnemyTarget->GetClass())
 		{
-			int ObjectiveNumber = i;
+			CurrentKillCount++;
 
-			if ((!ObjectivesArray[i].bIsObjectiveComplete) && ObjectivesArray[i].ObjectiveTarget->GetClass() == EnemyTarget->GetClass())
+			if (CurrentKillCount >= ObjectivesArray[i].ObjectiveNumber)
 			{
-				CurrentKillCount++;
-
-				if(CurrentKillCount >= ObjectivesArray[i].ObjectiveNumber)
-				{
-					UE_LOG(LogTemp, Warning, TEXT("KILL COMPLETE"));
-					ObjectivesArray[ObjectiveNumber].bIsObjectiveComplete = true;
-					bUpdateUI = true;
-				}
+				UE_LOG(LogTemp, Warning, TEXT("KILL COMPLETE"));
+				ObjectivesArray[ObjectiveNumber].bIsObjectiveComplete = true;
+				bUpdateUI = true;
 			}
 		}
-
-		if (bUpdateUI)
-		{
-			// Update Objectives
-			AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
-			HUD->UpdateObjectives();
-		}
 	}
+
+	if (bUpdateUI)
+	{
+		// Update Objectives
+		AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
+		HUD->UpdateObjectives();
+	}
+	
 }
 
 void AC_BaseQuest::CheckPuzzleObjective(AActor* Puzzle)

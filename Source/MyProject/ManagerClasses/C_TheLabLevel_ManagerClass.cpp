@@ -50,7 +50,7 @@ void AC_TheLabLevel_ManagerClass::Update()
 	// If all puzzles are complete...
 	if(IsAllOn == true)
 	{
-		//UE_LOG(LogTemp, Warning, TEXT("All puzzles completed"));
+		UE_LOG(LogTemp, Warning, TEXT("All puzzles completed"));
 
 		AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
 
@@ -63,7 +63,7 @@ void AC_TheLabLevel_ManagerClass::Update()
 
 		for (auto i : WarningLightArray)
 		{
-			i->StartPulse();
+			i->StartPulse(); //causes issues and crash 
 		}
 
 		PuzzlesAreComplete();
