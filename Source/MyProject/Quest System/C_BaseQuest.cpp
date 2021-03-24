@@ -44,7 +44,7 @@ void AC_BaseQuest::CheckLocationObjective(AC_LocationMarker* LocationReached)
 		}
 	}
 
-	if (bUpdateUI)
+	if (bUpdateUI && bHasBeenAccepted && !bIsCompleted)
 	{
 		// Update Objectives
 		AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
@@ -72,7 +72,7 @@ void AC_BaseQuest::CheckInteractionObjective(AActor* InteractionTarget)
 		}
 	}
 
-	if (bUpdateUI)
+	if (bUpdateUI && bHasBeenAccepted && !bIsCompleted)
 	{
 		// Update Objectives
 		AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
@@ -105,7 +105,7 @@ void AC_BaseQuest::CheckKilledEnemyObjective(AC_BaseAI* EnemyTarget)
 		}
 	}
 
-	if (bUpdateUI)
+	if (bUpdateUI && bHasBeenAccepted && !bIsCompleted)
 	{
 		// Update Objectives
 		AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
@@ -134,7 +134,7 @@ void AC_BaseQuest::CheckPuzzleObjective(AActor* Puzzle)
 		}
 	}
 
-	if (bUpdateUI && bHasBeenAccepted)
+	if (bUpdateUI && bHasBeenAccepted && !bIsCompleted)
 	{
 		// Update Objectives
 		AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
