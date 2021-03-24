@@ -15,9 +15,6 @@ class MYPROJECT_API AC_LeverManager : public AC_BaseManagerClass
 public:	
 	AC_LeverManager();
 
-	UPROPERTY(EditInstanceOnly, Category = "Manager")
-	AC_TheLabLevel_ManagerClass* LevelManager;
-
 	UFUNCTION(BlueprintImplementableEvent)
 	void UpdateboolArray();
 

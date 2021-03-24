@@ -45,4 +45,6 @@ public:
 	void EnableUIInput();
 	
 	APlayerController* PlayerController;
+
+	class AC_TheLabLevel_ManagerClass* ManagerClass;
 };

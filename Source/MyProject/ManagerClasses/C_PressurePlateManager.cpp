@@ -69,11 +69,6 @@ void AC_PressurePlateManager::PuzzleComplete()
 
 	bIsComplete = true;
 
-	if (LevelManager)
-	{
-		LevelManager->Update();
-	}
-
 	// Objective complete here
 	if(Quest)
 	{

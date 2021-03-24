@@ -70,11 +70,6 @@ void AC_RotatingPuzzleManager::PuzzleComplete()
 
 	bIsComplete = true;
 
-	if (LevelManager)
-	{
-		LevelManager->Update();
-	}
-
 	// Objective complete here
 	if(Quest)
 	{

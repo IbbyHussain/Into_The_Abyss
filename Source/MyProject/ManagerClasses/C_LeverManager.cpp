@@ -63,11 +63,6 @@ void AC_LeverManager::CheckLever()
 		PlayerCharacter->bLockCamera = true;
 
 		bIsComplete = true;
-
-		if (LevelManager)
-		{
-			LevelManager->Update();
-		}
 	}
 }
 

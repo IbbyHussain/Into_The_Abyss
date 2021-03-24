@@ -11,6 +11,7 @@
 #include "MyProject/Quest System/C_QuestObjectivesWidget.h"
 #include "MyProject/AI/QuestNPC/C_QuestNPC.h"
 #include "TimerManager.h"
+#include "MyProject/ManagerClasses/C_TheLabLevel_ManagerClass.h"
 
 void UC_QuestTurnInWidget::NativeConstruct()
 {
@@ -105,6 +106,11 @@ void UC_QuestTurnInWidget::TurnInButtonClicked()
 			QuestNPC->RemoveKeyHint_Implementation();
 			QuestNPC->bCanTalkAI = false;
 			QuestNPC->bShowEKeyHint = false;
+
+			
+			ManagerClass->Update(); // updates the lab level manager class
+			UE_LOG(LogTemp, Error, TEXT("UPDATED OBJECTIVES - manager class"));
+			
 		}
 	}
 }

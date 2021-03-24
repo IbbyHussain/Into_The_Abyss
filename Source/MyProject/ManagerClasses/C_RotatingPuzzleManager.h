@@ -18,9 +18,6 @@ public:
 	// Sets default values for this actor's properties
 	AC_RotatingPuzzleManager();
 
-	UPROPERTY(EditInstanceOnly, Category = "Manager")
-	AC_TheLabLevel_ManagerClass* LevelManager;
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

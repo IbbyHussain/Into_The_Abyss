@@ -524,7 +524,7 @@ void AC_PlayerHUD2::CreateSingleObjectiveWidget(class UVerticalBox* VerticalBoxR
 	}
 }
 
-void AC_PlayerHUD2::CreateQuestTurnInWidget(AC_BaseQuest* QuestRef, class AC_QuestNPC* NPCRef)
+void AC_PlayerHUD2::CreateQuestTurnInWidget(AC_BaseQuest* QuestRef, class AC_QuestNPC* NPCRef, class AC_TheLabLevel_ManagerClass* ManagerClassRef)
 {
 	if (QuestTurnInWidgetClass)
 	{
@@ -533,6 +533,7 @@ void AC_PlayerHUD2::CreateQuestTurnInWidget(AC_BaseQuest* QuestRef, class AC_Que
 		{
 			QuestTurnInWidget->Quest = QuestRef;
 			QuestTurnInWidget->QuestNPC = NPCRef;
+			QuestTurnInWidget->ManagerClass = ManagerClassRef;
 			QuestTurnInWidget->AddToViewport();
 			QuestTurnInWidget->SetDesiredSizeInViewport(FVector2D(500.0f, 800.0f));
 		}

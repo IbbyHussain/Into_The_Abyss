@@ -89,4 +89,7 @@ public:
 
 	UPROPERTY(EditInstanceOnly, Category = "NPC")
 	bool bShouldHaveQuestIcon;
+
+	UPROPERTY(EditInstanceOnly, Category = "Manager")
+	class AC_TheLabLevel_ManagerClass* LevelManager;
 };

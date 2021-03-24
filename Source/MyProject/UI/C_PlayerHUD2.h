@@ -217,7 +217,7 @@ public:
 
 	// NPC Questing - Quest Turn In
 
-	void CreateQuestTurnInWidget(AC_BaseQuest* QuestRef, class AC_QuestNPC* NPCRef);
+	void CreateQuestTurnInWidget(AC_BaseQuest* QuestRef, class AC_QuestNPC* NPCRef, class AC_TheLabLevel_ManagerClass* ManagerClassRef);
 
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
 	TSubclassOf<class UC_QuestTurnInWidget> QuestTurnInWidgetClass;

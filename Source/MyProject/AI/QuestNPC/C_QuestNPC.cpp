@@ -73,7 +73,7 @@ void AC_QuestNPC::InteractFunctionality()
 				{
 					// Will open the turn in quest widget
 					HUD->DestroyQuestWidget();
-					HUD->CreateQuestTurnInWidget(Quest, this);
+					HUD->CreateQuestTurnInWidget(Quest, this, LevelManager);
 				}
 
 				else

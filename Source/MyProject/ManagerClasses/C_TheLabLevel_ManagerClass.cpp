@@ -33,7 +33,9 @@ void AC_TheLabLevel_ManagerClass::Update()
 	// This for loop check will check if all manager classes in the array have been completed via the bIsComplete bool in the base class.
 	// If they have will Log.
 
-	bool IsAllOn;
+	/*bool IsAllOn;
+
+	UE_LOG(LogTemp, Error, TEXT("called update()"));
 
 	bool Allon = true;
 	for (AC_BaseManagerClass* x : ManagerArray)
@@ -51,10 +53,10 @@ void AC_TheLabLevel_ManagerClass::Update()
 	// If all puzzles are complete...
 	if(IsAllOn == true)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("All puzzles completed"));
+		//UE_LOG(LogTemp, Warning, TEXT("All puzzles completed"));
 
 		
-	}
+	}*/
 
 	if(MainQuest && MainQuest->bIsCompleted)
 	{
@@ -127,11 +129,11 @@ void AC_TheLabLevel_ManagerClass::SpawnBlackHole()
 		{
 			UStaticMeshComponent* SM = Cast<UStaticMeshComponent>(i);
 
-			UE_LOG(LogTemp, Warning, TEXT("GOT COMPS"));
+			//UE_LOG(LogTemp, Warning, TEXT("GOT COMPS"));
 
 			if (SM)
 			{
-				UE_LOG(LogTemp, Warning, TEXT("CAST SUCCESS"));
+				//UE_LOG(LogTemp, Warning, TEXT("CAST SUCCESS"));
 
 				SM->SetGenerateOverlapEvents(true);
 				SM->SetMobility(EComponentMobility::Movable);

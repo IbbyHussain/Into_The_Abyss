@@ -25,9 +25,6 @@ protected:
 
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditInstanceOnly, Category = "Manager")
-	AC_TheLabLevel_ManagerClass* LevelManager;
-
 	// The pressure plates
 	UPROPERTY(EditInstanceOnly, Category = "Actor to choose")
 	AC_PressurePlate* PressurePlate1;
