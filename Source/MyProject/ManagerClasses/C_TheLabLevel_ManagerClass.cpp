@@ -80,6 +80,7 @@ void AC_TheLabLevel_ManagerClass::Update()
 
 		AC_PlayerCharacter* PlayerCharacter = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
 		PlayerCharacter->bCanInteract = false;
+		PlayerCharacter->bIsTrading = true;
 
 		FTimerHandle FirstBeamHandle;
 		GetWorldTimerManager().SetTimer(FirstBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateFirstBeam, 1.0f, false);

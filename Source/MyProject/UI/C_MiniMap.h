@@ -32,13 +32,13 @@ public:
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	class UImage* Map;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Size")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Size")
 	float Dimensions;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Size")
 	float Zoom;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Size")
 	class UTexture* MapTexture;
 
 	//Player Icon widget
