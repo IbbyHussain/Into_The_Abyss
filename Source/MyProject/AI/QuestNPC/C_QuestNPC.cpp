@@ -258,9 +258,21 @@ void AC_QuestNPC::MakePlayerMeshVisible()
 	PlayerCharacter->bLockCamera = false;
 }
 
-void AC_QuestNPC::DestroyQuestWidgets()
+void AC_QuestNPC::DestroyQuestWidgets(bool bBeginPlayDestroy)
 {
-	if(bShouldHaveQuestIcon)
+	if(bBeginPlayDestroy)
+	{
+		if (!bShouldHaveQuestIcon)
+		{
+			if (FrontQuestWidget && BackQuestWidget)
+			{
+				FrontQuestWidget->DestroyComponent();
+				BackQuestWidget->DestroyComponent();
+			}
+		}
+	}
+	
+	else
 	{
 		if(FrontQuestWidget && BackQuestWidget)
 		{

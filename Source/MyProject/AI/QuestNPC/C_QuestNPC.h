@@ -76,6 +76,7 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "NPC")
 	void DestroyAvailableQuestWidget();
 
+
 	// Quest widget above NPC
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "NPC")
@@ -85,7 +86,7 @@ public:
 	UWidgetComponent* BackQuestWidget;
 
 	UFUNCTION(BlueprintCallable)
-	void DestroyQuestWidgets();
+	void DestroyQuestWidgets(bool bBeginPlayDestroy);
 
 	UPROPERTY(EditInstanceOnly, Category = "NPC")
 	bool bShouldHaveQuestIcon;
