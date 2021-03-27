@@ -40,11 +40,11 @@ public:
 	class AC_SpikeDoor* SpikeDoor;
 
 	//The animation to be played when the lever is pulled
-	UPROPERTY(EditInstanceOnly, Category = "Lever")
+	UPROPERTY(EditDefaultsOnly, Category = "Lever")
 	class UAnimationAsset* LeverPastPulledAnimation;
 
 	//The animation to be played when the lever is pulled
-	UPROPERTY(EditInstanceOnly, Category = "Lever")
+	UPROPERTY(EditDefaultsOnly, Category = "Lever")
 	class UAnimationAsset* LeverFuturePulledAnimation;
 
 	//The actor that will give the viewpoint of the camera 

@@ -21,11 +21,15 @@ AC_BaseAnimLever::AC_BaseAnimLever()
 	RootComponent = SceneComp;
 
 	BoxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Collision"));
+	BoxComp->SetupAttachment(RootComponent);
 
 	Collision = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision"));
+	Collision->SetupAttachment(RootComponent);
 
 	PastMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
 	FutureMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+	PastMesh->SetupAttachment(RootComponent);
+	FutureMesh->SetupAttachment(RootComponent);
 
 	bShowEKeyHint = true;
 
