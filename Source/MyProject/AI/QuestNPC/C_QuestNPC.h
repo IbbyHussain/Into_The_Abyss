@@ -88,7 +88,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void DestroyQuestWidgets(bool bBeginPlayDestroy);
 
-	UPROPERTY(EditInstanceOnly, Category = "NPC")
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "NPC")
 	bool bShouldHaveQuestIcon;
 
 	UPROPERTY(EditInstanceOnly, Category = "Manager")
