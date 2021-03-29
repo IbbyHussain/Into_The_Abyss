@@ -342,6 +342,25 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Movement")
 	bool bCanDash;
 
+	// Crouching
+	UPROPERTY(BlueprintReadWrite, Category = "Movement")
+	bool bCanCrouch;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Movement")
+	bool bCanSlide;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Movement")
+	bool bIsSlideUnlocked;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Movement")
+	bool IsDashUnlocked;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Movement")
+	bool bIsCrouchUnlocked;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Movement")
+	bool bCanUseWeaponWheel;
+
 	//E Key Interactions
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Level")
 	bool bCanExit;
@@ -398,6 +417,10 @@ public:
 	class AC_MoveableObjectManager* MoveableObjectManager;
 
 	//Combat
+
+	UPROPERTY(BlueprintReadWrite, Category = "Combat")
+	bool bDisableWeaponWheel;
+
 	bool bShowWeaponWheel;
 
 	void ShowWeaponWheel();
@@ -702,7 +725,6 @@ private:
 	void ResetDash();
 
 	//Sliding
-	bool bCanSlide;
 
 	float SlideACOs1;
 
@@ -760,9 +782,6 @@ private:
 	FOnTimelineFloat SwimInterpFunction{};
 
 	void CheckSwimmingMeshHeight();
-
-	// Crouching
-	bool bCanCrouch;
 
 	float DefaultCameraHeight;
 

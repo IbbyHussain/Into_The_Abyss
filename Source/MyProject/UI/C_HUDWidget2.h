@@ -44,6 +44,9 @@ public:
 	UPROPERTY(EditdefaultsOnly, BlueprintReadWrite, meta = (BindWidget))
 	UTextBlock* TXTSoulCounter;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, meta = (BindWidget))
+	UImage* SoulsImage;
+
 	FString Souls;
 
 	float WidgetStamina;

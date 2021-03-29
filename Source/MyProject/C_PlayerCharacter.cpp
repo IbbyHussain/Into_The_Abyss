@@ -124,6 +124,12 @@ AC_PlayerCharacter::AC_PlayerCharacter()
 	// Crouching
 	bCanCrouch = true;
 
+	bIsCrouchUnlocked = true;
+
+	IsDashUnlocked = true;
+
+	bIsSlideUnlocked = true;
+
 	//Crouch Timeline
 	CrouchTimeline = CreateDefaultSubobject<UTimelineComponent>(TEXT("CrouchTimeline"));
 	CrouchInterpFunction.BindUFunction(this, FName("CrouchTimelineFloatReturn"));
@@ -145,6 +151,8 @@ AC_PlayerCharacter::AC_PlayerCharacter()
 
 	//Show Weapon Wheel
 	bShowWeaponWheel = true;
+
+	bDisableWeaponWheel = false;
 
 	//E Key Interactions
 	bEKeyPressed = false;
@@ -517,38 +525,41 @@ void AC_PlayerCharacter::DecreaseStamina()
 // Dash
 void AC_PlayerCharacter::Dash()
 {
-	CheckIdle();
-
-	//Idle Dash
-	if (GetCharacterMovement()->IsWalking() == true && Stamina >= 10 && bCanDash && bIsIdle && !CrouchKeydown)
+	if(IsDashUnlocked)
 	{
-		GetCharacterMovement()->bUseSeparateBrakingFriction = 0.0f;
-		LaunchCharacter(FVector(CameraComp->GetForwardVector().X, CameraComp->GetForwardVector().Y, 0).GetSafeNormal() * DashDistance, true, true);
-		bCanDash = false;
-		Stamina -= 10.0f;
-		GetWorldTimerManager().SetTimer(DashHandle, this, &AC_PlayerCharacter::StopDashing, DashStop, false);
-	}
+		CheckIdle();
 
-	//Moving Dash
-	if (GetCharacterMovement()->IsWalking() == true && Stamina >= 10 && bCanDash && !CrouchKeydown)
-	{
-		GetCharacterMovement()->bUseSeparateBrakingFriction = 0.0f;
-		FVector LocVelocity = GetVelocity();
-		FVector NormLocVelocity = LocVelocity.GetSafeNormal();
-		LaunchCharacter(NormLocVelocity * 5000.0f, false, false);
-		bCanDash = false;
-		Stamina -= 10.0f;
-		GetWorldTimerManager().SetTimer(DashHandle, this, &AC_PlayerCharacter::StopDashing, DashStop, false);
-	}
+		//Idle Dash
+		if (GetCharacterMovement()->IsWalking() == true && Stamina >= 10 && bCanDash && bIsIdle && !CrouchKeydown)
+		{
+			GetCharacterMovement()->bUseSeparateBrakingFriction = 0.0f;
+			LaunchCharacter(FVector(CameraComp->GetForwardVector().X, CameraComp->GetForwardVector().Y, 0).GetSafeNormal() * DashDistance, true, true);
+			bCanDash = false;
+			Stamina -= 10.0f;
+			GetWorldTimerManager().SetTimer(DashHandle, this, &AC_PlayerCharacter::StopDashing, DashStop, false);
+		}
 
-	//In Air Dash
-	if(GetCharacterMovement()->IsFalling() == true && Stamina >= 10 && bCanDash && !CrouchKeydown)
-	{
-		GetCharacterMovement()->bUseSeparateBrakingFriction = 0.0f;
-		LaunchCharacter(FVector(CameraComp->GetForwardVector().X, CameraComp->GetForwardVector().Y, 0).GetSafeNormal() * DashDistance, true, true);
-		bCanDash = false;
-		Stamina -= 10.0f;
-		GetWorldTimerManager().SetTimer(DashHandle, this, &AC_PlayerCharacter::StopDashing, DashStop, false);
+		//Moving Dash
+		if (GetCharacterMovement()->IsWalking() == true && Stamina >= 10 && bCanDash && !CrouchKeydown)
+		{
+			GetCharacterMovement()->bUseSeparateBrakingFriction = 0.0f;
+			FVector LocVelocity = GetVelocity();
+			FVector NormLocVelocity = LocVelocity.GetSafeNormal();
+			LaunchCharacter(NormLocVelocity * 5000.0f, false, false);
+			bCanDash = false;
+			Stamina -= 10.0f;
+			GetWorldTimerManager().SetTimer(DashHandle, this, &AC_PlayerCharacter::StopDashing, DashStop, false);
+		}
+
+		//In Air Dash
+		if (GetCharacterMovement()->IsFalling() == true && Stamina >= 10 && bCanDash && !CrouchKeydown)
+		{
+			GetCharacterMovement()->bUseSeparateBrakingFriction = 0.0f;
+			LaunchCharacter(FVector(CameraComp->GetForwardVector().X, CameraComp->GetForwardVector().Y, 0).GetSafeNormal() * DashDistance, true, true);
+			bCanDash = false;
+			Stamina -= 10.0f;
+			GetWorldTimerManager().SetTimer(DashHandle, this, &AC_PlayerCharacter::StopDashing, DashStop, false);
+		}
 	}
 }
 
@@ -575,7 +586,7 @@ void AC_PlayerCharacter::ResetDash()
 // Crouch
 void AC_PlayerCharacter::CustomCrouch()
 {
-	if (bCanCrouch)
+	if (bCanCrouch && bIsCrouchUnlocked)
 	{
 		CrouchKeydown = true;
 		if (MovementState == EMovementState::STANDING)
@@ -666,18 +677,21 @@ void AC_PlayerCharacter::CrouchTimelineFloatReturn(float Value)
 // Slide
 void AC_PlayerCharacter::Slide()
 {
-	FVector Velocity = GetVelocity();
-	Velocity.Normalize();
-	SlideDirection = Velocity;
-
-	float SlideDirectionDotProduct = SlideDirection.DotProduct(SlideDirection, GetActorForwardVector());
-	float SlideACOs = UKismetMathLibrary::DegAcos(SlideDirectionDotProduct);
-
-	if (bCanSlide && SlideACOs < 100.0f)
+	if(bIsSlideUnlocked)
 	{
-		bCanCrouch = false;
-		bCanDash = false;
-		SlideTimeline->PlayFromStart();
+		FVector Velocity = GetVelocity();
+		Velocity.Normalize();
+		SlideDirection = Velocity;
+
+		float SlideDirectionDotProduct = SlideDirection.DotProduct(SlideDirection, GetActorForwardVector());
+		float SlideACOs = UKismetMathLibrary::DegAcos(SlideDirectionDotProduct);
+
+		if (bCanSlide && SlideACOs < 100.0f)
+		{
+			bCanCrouch = false;
+			bCanDash = false;
+			SlideTimeline->PlayFromStart();
+		}
 	}
 }
 
@@ -1032,21 +1046,25 @@ void AC_PlayerCharacter::UpdateCombatState()
 void AC_PlayerCharacter::ShowWeaponWheel()
 {
 	// Flip flop node
-	while (1)
-	{
-		if (bShowWeaponWheel)
-		{
-			bShowWeaponWheel = false;
-			HUD->MakeWeaponWheelVisible();
-			DisableCurrentCombatState.Broadcast();
-			break;
-		}
 
-		else
+	if(!bDisableWeaponWheel)
+	{
+		while (1)
 		{
-			bShowWeaponWheel = true;
-			HUD->MakeWeaponWheelInVisible();
-			break;
+			if (bShowWeaponWheel)
+			{
+				bShowWeaponWheel = false;
+				HUD->MakeWeaponWheelVisible();
+				DisableCurrentCombatState.Broadcast();
+				break;
+			}
+
+			else
+			{
+				bShowWeaponWheel = true;
+				HUD->MakeWeaponWheelInVisible();
+				break;
+			}
 		}
 	}
 }
