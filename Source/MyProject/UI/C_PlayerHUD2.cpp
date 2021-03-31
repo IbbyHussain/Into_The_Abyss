@@ -243,6 +243,19 @@ void AC_PlayerHUD2::MakeWeaponWheelInVisible()
 	}
 }
 
+void AC_PlayerHUD2::UnlockWeaponWheelAbilities(bool bUnlockSword, bool bUnlockMagic, bool bUnlockCrossbow)
+{
+	if(WeaponWheelWidgetClass && WeaponWheelWidget)
+	{
+		// If the player has unlocked an ability allow them to use it else make it locked
+		bUnlockSword ? WeaponWheelWidget->bUnLockedSword = true : WeaponWheelWidget->bUnLockedSword = false;
+
+		bUnlockMagic ? WeaponWheelWidget->bUnlockedMagic = true : WeaponWheelWidget->bUnlockedMagic = false;
+		
+		bUnlockCrossbow ? WeaponWheelWidget->bUnlockedCrossBow = true : WeaponWheelWidget->bUnlockedCrossBow = false;
+	}
+}
+
 //Sets the input mode mode to game and UI
 void AC_PlayerHUD2::SetInputModeGameAndUI()
 {

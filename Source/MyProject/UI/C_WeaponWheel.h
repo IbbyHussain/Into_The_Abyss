@@ -138,8 +138,10 @@ public:
 	// Unlocking Option Slots
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bUnLockedSword;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bUnlockedCrossBow;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bUnlockedMagic;
 

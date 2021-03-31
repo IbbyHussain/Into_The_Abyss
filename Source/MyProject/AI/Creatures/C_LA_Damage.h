@@ -20,6 +20,9 @@ public:
 	float Damage;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
+	float BossDamageMultiplier;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
 	FName Start;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")

@@ -296,9 +296,13 @@ public:
 	// Ther quest that this AI is a kill requirement for 
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Location Marker")
 	class AC_BaseQuest* BaseAIQuestRef;
-
-
+	
 	bool bTakeAbility2Damage;
+
+	// If true will do 2x damage
+	UPROPERTY(EditInstanceOnly, Category = "Base AI Variables")
+	bool bIsBossAI;
+
 protected:
 	// Used in the blueprint of this class
 	UFUNCTION(BlueprintCallable)

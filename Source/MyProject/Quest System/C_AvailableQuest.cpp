@@ -12,7 +12,7 @@ void UC_AvailableQuest::NativeConstruct()
 
 void UC_AvailableQuest::SetQuestMarkerImage(class AC_BaseQuest* Quest)
 {
-	if(Quest->PreRequisiteQuest)
+	if(Quest && Quest->PreRequisiteQuest)
 	{
 		//UE_LOG(LogTemp, Error, TEXT("Available Quest: there was a pre requisite"));
 
@@ -29,7 +29,7 @@ void UC_AvailableQuest::SetQuestMarkerImage(class AC_BaseQuest* Quest)
 
 void UC_AvailableQuest::CheckQuestMarkerImage(class AC_BaseQuest* Quest)
 {
-	if (Quest->PreRequisiteQuest &&  Quest->PreRequisiteQuest->bIsCompleted)
+	if (Quest && Quest->PreRequisiteQuest &&  Quest->PreRequisiteQuest->bIsCompleted)
 	{
 		//UE_LOG(LogTemp, Error, TEXT("Available Quest: pre requisite IS COMPLETE"));
 

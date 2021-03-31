@@ -86,7 +86,6 @@ void UC_WeaponWheel::NativeTick(const FGeometry& MyGeometry, float DeltaTime)
 // Top Left clicked
 void UC_WeaponWheel::OverlayTLClicked()
 {
-	//UE_LOG(LogTemp, Log, TEXT("TL"));
 	Player->CombatState = ECombatState::UNARMED;
 	OverlayClickedSettings();
 }
@@ -94,25 +93,31 @@ void UC_WeaponWheel::OverlayTLClicked()
 // Top Right clicked  
 void UC_WeaponWheel::OverlayTRClicked()
 {
-	//UE_LOG(LogTemp, Log, TEXT("TR"));
-	Player->CombatState = ECombatState::MELEE;
-	OverlayClickedSettings();
+	if(bUnLockedSword)
+	{
+		Player->CombatState = ECombatState::MELEE;
+		OverlayClickedSettings();
+	}
 }
 
 // Bottom Left clicked
 void UC_WeaponWheel::OverlayBLClicked()
 {
-	//UE_LOG(LogTemp, Log, TEXT("BL"));
-	Player->CombatState = ECombatState::MAGIC;
-	OverlayClickedSettings();
+	if(bUnlockedMagic)
+	{
+		Player->CombatState = ECombatState::MAGIC;
+		OverlayClickedSettings();
+	}
 }
 
 // Bottom Right clicked
 void UC_WeaponWheel::OverlayBRClicked()
 {
-	//UE_LOG(LogTemp, Log, TEXT("BR"));
-	Player->CombatState = ECombatState::RANGED;
-	OverlayClickedSettings();
+	if(bUnlockedCrossBow)
+	{
+		Player->CombatState = ECombatState::RANGED;
+		OverlayClickedSettings();
+	}
 }
 
 void UC_WeaponWheel::OverlayClickedSettings()

@@ -8,6 +8,11 @@
 void UC_LA_Damage::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration)
 {
 	LAAI = Cast<AC_LostAdventurer>(MeshComp->GetAnimInstance()->TryGetPawnOwner());
+
+	if(LAAI && LAAI->bIsBossAI)
+	{
+		Damage *= BossDamageMultiplier;
+	}
 }
 
 void UC_LA_Damage::NotifyTick(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float FrameDeltaTime)
@@ -23,5 +28,10 @@ void UC_LA_Damage::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase
 	if (LAAI)
 	{
 		LAAI->bLAcanAttack = true;
+
+		if (LAAI->bIsBossAI)
+		{
+			Damage /= BossDamageMultiplier;
+		}
 	}
 }

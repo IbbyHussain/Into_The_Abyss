@@ -90,6 +90,9 @@ public:
 
 	void MakeWeaponWheelInVisible();
 
+	UFUNCTION(BlueprintCallable)
+	void UnlockWeaponWheelAbilities(bool bUnlockSword, bool bUnlockMagic, bool bUnlockCrossbow);
+
 	//Input Modes
 
 	APlayerController* PlayerController;
