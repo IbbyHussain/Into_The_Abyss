@@ -257,4 +257,8 @@ public:
 	TSubclassOf<class UC_SercurityCameraWidget> CameraWidgetClass;
 
 	class UC_SercurityCameraWidget* CameraWidget;
+
+	// MISC
+
+	void HideLockedWidgets(bool bMagic, bool bHealth, bool bSouls);
 };

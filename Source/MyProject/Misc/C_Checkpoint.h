@@ -68,5 +68,4 @@ public:
 	bool bCanInteract;
 
 	bool OverlappingBoxCollision();
-	
 };

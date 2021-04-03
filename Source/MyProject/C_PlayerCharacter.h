@@ -658,6 +658,9 @@ public:
 	// used to disable interactions when in cutscenes
 	bool bCanInteract;
 
+	UFUNCTION(BlueprintCallable)
+	void LockedAbilities(bool bIsDashLocked, bool bIsCrouchLocked, bool bIsSlideLocked, bool bIsWeaponWheelLocked);
+
 private:
 
 	//Idle

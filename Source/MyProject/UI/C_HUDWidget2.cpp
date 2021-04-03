@@ -4,6 +4,7 @@
 #include "C_HUDWidget2.h"
 #include "Kismet/GameplayStatics.h"
 #include "MyProject/C_PlayerCharacter.h"
+#include "TimerManager.h"
 
 UC_HUDWidget2::UC_HUDWidget2(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -58,9 +59,17 @@ void UC_HUDWidget2::NativeConstruct()
 
 	BlackImage->SetRenderOpacity(0.0f);
 
+	PlayerCharacter->DisablePlayerInput();
+	FTimerHandle BeginPlayHandle;
+	GetWorld()->GetTimerManager().SetTimer(BeginPlayHandle, this, &UC_HUDWidget2::PlayBeginPlayAnimation, 1.0f, false);
+}
+
+void UC_HUDWidget2::PlayBeginPlayAnimation()
+{
 	if (BeginPlayAnimation)
 	{
 		PlayAnimation(BeginPlayAnimation, 0.0f, 1, EUMGSequencePlayMode::Forward, 1.0f);
+		PlayerCharacter->EnablePlayerInput();
 	}
 }
 

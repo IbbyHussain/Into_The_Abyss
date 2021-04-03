@@ -624,3 +624,23 @@ void AC_PlayerHUD2::DestroyCameraWidget()
 	}
 }
 
+void AC_PlayerHUD2::HideLockedWidgets(bool bMagic, bool bHealth, bool bSouls)
+{
+	if(bMagic)
+	{
+		HUDWidget->PROMagicBar->SetVisibility(ESlateVisibility::Hidden);
+	}
+	
+	if(bHealth)
+	{
+		HUDWidget->PROHealthBar->SetVisibility(ESlateVisibility::Hidden);
+	}
+
+	if(bSouls)
+	{
+		HUDWidget->SoulsImage->SetVisibility(ESlateVisibility::Hidden);
+		HUDWidget->TXTSoulCounter->SetVisibility(ESlateVisibility::Hidden);
+	}
+
+}
+

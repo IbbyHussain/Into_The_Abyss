@@ -923,6 +923,7 @@ void AC_PlayerCharacter::ExitAreaFixMovement()
 	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);
 }
 
+
 // Exit Area Released 
 void AC_PlayerCharacter::ExitAreaReleased()
 {
@@ -3238,4 +3239,15 @@ void AC_PlayerCharacter::ResetBolts()
 	Crossbow.CrossbowObject->ResetBolts();
 	// Updates bolt tracker
 	Crossbow.CrossbowObject->UpdateNumberofBolts(Crossbow.CurrentBolt->GetDefaultObject<AC_Crossbowbolt>()->NumberOfBolts);
+}
+
+void AC_PlayerCharacter::LockedAbilities(bool bIsDashLocked, bool bIsCrouchLocked, bool bIsSlideLocked, bool bIsWeaponWheelLocked)
+{
+	bIsDashLocked ? IsDashUnlocked = false : IsDashUnlocked = true;
+
+	bIsCrouchLocked ? bIsCrouchUnlocked = false : bIsCrouchUnlocked = true;
+
+	bIsSlideLocked ? bIsSlideUnlocked = false : bIsSlideUnlocked = true;
+
+	bIsWeaponWheelLocked ? bDisableWeaponWheel = true : bDisableWeaponWheel = false;
 }

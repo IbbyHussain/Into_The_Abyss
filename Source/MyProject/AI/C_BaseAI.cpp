@@ -138,6 +138,7 @@ void AC_BaseAI::BeginPlay()
 	// Gives us access to this delegate 
 	HealthComp->OnHealthChanged.AddDynamic(this, &AC_BaseAI::UpdateHealth);
 
+	// Ability 2 damage
 	BoxComp->OnComponentBeginOverlap.AddDynamic(this, &AC_BaseAI::OnOverlapBegin);
 	BoxComp->OnComponentEndOverlap.AddDynamic(this, &AC_BaseAI::OnOverlapEnd);
 
@@ -152,11 +153,13 @@ void AC_BaseAI::BeginPlay()
 	
 	if (PlayerCharacter)
 	{
+		// DONT CAUSE CRASH
 		PlayerCharacter->EnteredMagicState.AddDynamic(this, &AC_BaseAI::MagicStateCollision);
 	}
 
 	if (PlayerCharacter)
 	{
+		// DONT CAUSE CRASH
 		PlayerCharacter->EnteredRangedState.AddDynamic(this, &AC_BaseAI::RangedStateCollision);
 	}
 
@@ -548,7 +551,10 @@ void AC_BaseAI::CheckForAIDeath()
 		GetWorldTimerManager().ClearAllTimersForObject(this);
 
 		// Call the quest killed objective delegate
-		BaseAIQuestRef->CheckKilledEnemyObjectiveDelegate.Broadcast(this);
+		if(BaseAIQuestRef)
+		{
+			BaseAIQuestRef->CheckKilledEnemyObjectiveDelegate.Broadcast(this);
+		}
 
 		// default death
 		if (!bIsFrozen)

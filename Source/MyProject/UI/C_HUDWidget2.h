@@ -105,4 +105,6 @@ public:
 
 	class AC_PlayerCharacter* PlayerCharacter;
 
+	void PlayBeginPlayAnimation();
+
 };
