@@ -297,7 +297,10 @@ public:
 
 	bool bLockCamera;
 
+	UFUNCTION(BlueprintCallable)
 	void DisablePlayerInput();
+
+	UFUNCTION(BlueprintCallable)
 	void EnablePlayerInput();
 
 	//Combat State
