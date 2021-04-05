@@ -163,10 +163,10 @@ void AC_Crossbow::LoadBolts()
 		BoltsArray[3]->GetDefaultObject<AC_Crossbowbolt>()->NumberOfBolts = LoadedGame->NumberOfFlareBolts;
 
 		// The operation was successful, so LoadedGame now contains the data we saved earlier.
-		UE_LOG(LogTemp, Warning, TEXT("LOADED: %d"), LoadedGame->NumberOfSteelBolts);
-		UE_LOG(LogTemp, Warning, TEXT("LOADED: %d"), LoadedGame->NumberOfCopperBolts);
-		UE_LOG(LogTemp, Warning, TEXT("LOADED: %d"), LoadedGame->NumberOfCrystalBolts);
-		UE_LOG(LogTemp, Warning, TEXT("LOADED: %d"), LoadedGame->NumberOfFlareBolts);
+		//UE_LOG(LogTemp, Warning, TEXT("LOADED: %d"), LoadedGame->NumberOfSteelBolts);
+		//UE_LOG(LogTemp, Warning, TEXT("LOADED: %d"), LoadedGame->NumberOfCopperBolts);
+		//UE_LOG(LogTemp, Warning, TEXT("LOADED: %d"), LoadedGame->NumberOfCrystalBolts);
+		//UE_LOG(LogTemp, Warning, TEXT("LOADED: %d"), LoadedGame->NumberOfFlareBolts);
 	}
 }
 

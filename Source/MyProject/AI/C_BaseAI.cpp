@@ -188,7 +188,7 @@ void AC_BaseAI::BeginPlay()
 	
 	for(auto x : DefaultMaterials)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("AI IS: %s, there are: %d materials"), *this->GetName(), DefaultMaterials.Num());
+		//UE_LOG(LogTemp, Warning, TEXT("AI IS: %s, there are: %d materials"), *this->GetName(), DefaultMaterials.Num());
 	}
 }
 

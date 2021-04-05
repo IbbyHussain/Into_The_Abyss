@@ -578,6 +578,8 @@ public:
 	// Flare Bolt Indicator
 	void ShouldSpawnFlareBoltIndicator();
 
+	// Saving Data
+
 	UFUNCTION(BlueprintCallable)
 	void SavePlayerLocation();
 

@@ -33,15 +33,18 @@ public:
 
     //Defaults
 
-    UPROPERTY(VisibleAnywhere, Category = Basic)
+    UPROPERTY(VisibleAnywhere, Category = "Basic")
     FString SaveSlotName;
 
-    UPROPERTY(VisibleAnywhere, Category = Basic)
+    UPROPERTY(VisibleAnywhere, Category = "Basic")
     uint32 UserIndex;
 
     // Player
 
     UPROPERTY(VisibleAnywhere, Category = "Combat")
     int32 Currency;
+
+    UPROPERTY(VisibleAnywhere, Category = "Basic")
+    FString CurrentLevel;
 
 };

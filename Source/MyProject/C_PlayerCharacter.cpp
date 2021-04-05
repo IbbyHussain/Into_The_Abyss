@@ -3163,10 +3163,9 @@ void AC_PlayerCharacter::SavePlayerLocation()
 		// Set data on the savegame object.
 		SaveGameInstance->PlayerLocation = GetActorLocation();
 
-		// Save the data immediately.
-		if (UGameplayStatics::SaveGameToSlot(SaveGameInstance, "LOC", 0))
+		if (UGameplayStatics::SaveGameToSlot(SaveGameInstance, TEXT("LOC"), 0))
 		{
-			UE_LOG(LogTemp, Log, TEXT("Save Succeeded"));
+			UE_LOG(LogTemp, Log, TEXT("Save Succeeded (crossbowbolts)"));
 		}
 	}
 }
@@ -3178,7 +3177,7 @@ void AC_PlayerCharacter::LoadPlayerLocation()
 		SetActorLocation(LoadedGame->PlayerLocation);
 
 		// The operation was successful, so LoadedGame now contains the data we saved earlier.
-		UE_LOG(LogTemp, Warning, TEXT("LOADED: %s"), *LoadedGame->PlayerLocation.ToString());
+		//UE_LOG(LogTemp, Warning, TEXT("LOADED: %s"), *LoadedGame->PlayerLocation.ToString());
 	}
 }
 
@@ -3188,12 +3187,6 @@ void AC_PlayerCharacter::SaveNumberOfSouls()
 	{
 		// Saves the NumberOfSouls, sets the currency saved variable to the NumberOfSouls value
 		SaveGameInstance->Currency = NumberOfSouls;
-
-		// Save the data immediately.
-		if (UGameplayStatics::SaveGameToSlot(SaveGameInstance, "SOULS", 0))
-		{
-			UE_LOG(LogTemp, Warning, TEXT("SAVED: %d"), SaveGameInstance->Currency);
-		}
 	}
 }
 
@@ -3208,9 +3201,6 @@ void AC_PlayerCharacter::LoadNumberOfSouls()
 
 		// Sends a signal to HUD widget to update text
 		UpdatenumberOfSouls.Broadcast(NumberOfSouls);
-
-		UE_LOG(LogTemp, Warning, TEXT("LOADED: currency: %d"), LoadedGame->Currency);
-		UE_LOG(LogTemp, Warning, TEXT("LOADED: souls: %d"), NumberOfSouls);
 	}
 }
 

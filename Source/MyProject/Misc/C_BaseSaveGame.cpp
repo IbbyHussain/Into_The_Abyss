@@ -2,6 +2,7 @@
 
 
 #include "C_BaseSaveGame.h"
+#include "Kismet/GameplayStatics.h"
 
 UC_BaseSaveGame::UC_BaseSaveGame()
 {
