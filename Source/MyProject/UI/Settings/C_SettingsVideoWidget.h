@@ -13,5 +13,16 @@ UCLASS()
 class MYPROJECT_API UC_SettingsVideoWidget : public UUserWidget
 {
 	GENERATED_BODY()
+
+public:
+	virtual void NativeConstruct() override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UButton* BackButton;
+
+	UFUNCTION()
+	void BackButtonClicked();
+
+	class AC_PlayerHUD2* HUD;
 	
 };
