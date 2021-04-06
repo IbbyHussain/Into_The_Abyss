@@ -10,5 +10,46 @@ UCLASS()
 class MYPROJECT_API UC_SettingsWidget : public UUserWidget
 {
 	GENERATED_BODY()
+
+	UC_SettingsWidget(const FObjectInitializer& ObjectInitializer);
+
+public:
+	virtual void NativeConstruct() override;
+
+	class AC_PlayerHUD2* HUD;
+
+	// Video 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UButton* VideoButton;
+
+	UFUNCTION()
+	void VideoButtonClicked();
+
+	// Sound
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UButton* SoundButton;
+
+	UFUNCTION()
+	void SoundButtonClicked();
+
+	// Controls
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UButton* ControlsButton;
+
+	UFUNCTION()
+	void ControlsButtonClicked();
+
+	// Game Options
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UButton* GameOptionsButton;
+
+	UFUNCTION()
+	void GameOptionsButtonClicked();
+
+
 	
 };

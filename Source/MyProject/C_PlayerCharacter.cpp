@@ -3157,11 +3157,13 @@ void AC_PlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 	PlayerInputComponent->BindAction("AnyKey", IE_Pressed, this, &AC_PlayerCharacter::Respawn);
 
 	// Settings
-	PlayerInputComponent->BindAction("Settings", IE_Pressed, this, &AC_PlayerCharacter::OpenSettingsMenu);
+	PlayerInputComponent->BindAction("Settings", IE_Pressed, this, &AC_PlayerCharacter::OpenSettingsMenu).bExecuteWhenPaused = true;
 }
 
 void AC_PlayerCharacter::OpenSettingsMenu()
 {
+	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+
 	while (1)
 	{
 		if (bOpenSettings)
@@ -3170,6 +3172,11 @@ void AC_PlayerCharacter::OpenSettingsMenu()
 
 			// Create settings menu 
 			HUD->CreateSettingsWidget();
+
+			// UI Settings
+			UGameplayStatics::SetGamePaused(this, true);
+			PlayerController->bShowMouseCursor = true;
+			PlayerController->SetInputMode(FInputModeGameAndUI());
 
 			bOpenSettings = false;
 			break;
@@ -3181,6 +3188,11 @@ void AC_PlayerCharacter::OpenSettingsMenu()
 
 			// Destroy Settings menu 
 			HUD->DestroySettingsWidget();
+
+			// UI Settings
+			UGameplayStatics::SetGamePaused(this, false);
+			PlayerController->bShowMouseCursor = false;
+			PlayerController->SetInputMode(FInputModeGameOnly());
 
 			bOpenSettings = true;
 			break;

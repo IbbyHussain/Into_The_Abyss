@@ -269,6 +269,50 @@ public:
 
 	class UC_SettingsWidget* SettingsWidget;
 
+	// Video Settings
+
+	void CreateVideoSettingsWidget();
+
+	void DestroyVideoSettingsWidget();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_SettingsVideoWidget> VideoSettingsWidgetClass;
+
+	class UC_SettingsVideoWidget* VideoSettingsWidget;
+
+	// Sound Settings
+
+	void CreateSoundSettingsWidget();
+
+	void DestroySoundSettingsWidget();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_SettingsSoundWidget> SoundSettingsWidgetClass;
+
+	class UC_SettingsSoundWidget* SoundSettingsWidget;
+
+	// Controls
+
+	void CreateControlsSettingsWidget();
+
+	void DestroyControlsSettingsWidget();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_SettingsControlsWidget> ControlSettingsWidgetClass;
+
+	class UC_SettingsControlsWidget* ControlSettingsWidget;
+
+	// Game Options
+
+	void CreateGameOptionsSettingsWidget();
+
+	void DestroyGameOptionsSettingsWidget();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_SettingsGameOptionsWidget> GameOptionsSettingsWidgetClass;
+
+	class UC_SettingsGameOptionsWidget* GameOptionsSettingsWidget;
+
 	// MISC
 
 	void HideLockedWidgets(bool bMagic, bool bHealth, bool bSouls);

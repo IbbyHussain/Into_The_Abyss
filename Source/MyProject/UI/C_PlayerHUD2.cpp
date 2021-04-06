@@ -22,7 +22,10 @@
 #include "MyProject/AI/QuestNPC/C_QuestNPC.h"
 #include "MyProject/UI/C_SercurityCameraWidget.h"
 #include "MyProject/UI/C_SettingsWidget.h"
-
+#include "MyProject/UI/Settings/C_SettingsVideoWidget.h"
+#include "MyProject/UI/Settings/C_SettingsSoundWidget.h"
+#include "MyProject/C_SettingsControlsWidget.h"
+#include "MyProject/C_SettingsGameOptionsWidget.h"
 //CONSTRUCTOR 
 AC_PlayerHUD2::AC_PlayerHUD2()
 {
@@ -646,6 +649,106 @@ void AC_PlayerHUD2::DestroySettingsWidget()
 		if (SettingsWidget)
 		{
 			SettingsWidget->RemoveFromParent();
+		}
+	}
+}
+
+// Video
+
+void AC_PlayerHUD2::CreateVideoSettingsWidget()
+{
+	if (VideoSettingsWidgetClass)
+	{
+		VideoSettingsWidget = CreateWidget<UC_SettingsVideoWidget>(GetWorld(), VideoSettingsWidgetClass);
+		if (VideoSettingsWidget)
+		{
+			VideoSettingsWidget->AddToViewport();
+		}
+	}
+}
+
+void AC_PlayerHUD2::DestroyVideoSettingsWidget()
+{
+	if (VideoSettingsWidgetClass)
+	{
+		if (VideoSettingsWidget)
+		{
+			VideoSettingsWidget->RemoveFromParent();
+		}
+	}
+}
+
+// Sound
+
+void AC_PlayerHUD2::CreateSoundSettingsWidget()
+{
+	if (SoundSettingsWidgetClass)
+	{
+		SoundSettingsWidget = CreateWidget<UC_SettingsSoundWidget>(GetWorld(), SoundSettingsWidgetClass);
+		if (SoundSettingsWidget)
+		{
+			SoundSettingsWidget->AddToViewport();
+		}
+	}
+}
+
+void AC_PlayerHUD2::DestroySoundSettingsWidget()
+{
+	if (SoundSettingsWidgetClass)
+	{
+		if (SoundSettingsWidget)
+		{
+			SoundSettingsWidget->RemoveFromParent();
+		}
+	}
+}
+
+// Controls
+
+void AC_PlayerHUD2::CreateControlsSettingsWidget()
+{
+	if (ControlSettingsWidgetClass)
+	{
+		ControlSettingsWidget = CreateWidget<UC_SettingsControlsWidget>(GetWorld(), ControlSettingsWidgetClass);
+		if (ControlSettingsWidget)
+		{
+			ControlSettingsWidget->AddToViewport();
+		}
+	}
+}
+
+void AC_PlayerHUD2::DestroyControlsSettingsWidget()
+{
+	if (ControlSettingsWidgetClass)
+	{
+		if (ControlSettingsWidget)
+		{
+			ControlSettingsWidget->RemoveFromParent();
+		}
+	}
+}
+
+// Game Options
+
+void AC_PlayerHUD2::CreateGameOptionsSettingsWidget()
+{
+	if (GameOptionsSettingsWidgetClass)
+	{
+		GameOptionsSettingsWidget = CreateWidget<UC_SettingsGameOptionsWidget>(GetWorld(), GameOptionsSettingsWidgetClass);
+		if (GameOptionsSettingsWidget)
+		{
+			GameOptionsSettingsWidget->AddToViewport();
+		}
+	}
+}
+
+void AC_PlayerHUD2::DestroyGameOptionsSettingsWidget()
+{
+	if (GameOptionsSettingsWidgetClass)
+	{
+		if (GameOptionsSettingsWidget)
+		{
+			GameOptionsSettingsWidget->RemoveFromParent();
 		}
 	}
 }
