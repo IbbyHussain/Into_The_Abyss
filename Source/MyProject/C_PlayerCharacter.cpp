@@ -228,6 +228,8 @@ AC_PlayerCharacter::AC_PlayerCharacter()
 	// Dynamic material fade for ability 1
 	MaterialFadeTimeline = CreateDefaultSubobject<UTimelineComponent>(TEXT("Material Fade Timeline"));
 	MaterialFadeInterpFunction.BindUFunction(this, FName("MaterialFadeTimelineFloatReturn"));
+
+	bOpenSettings = true;
 }
 
 // Begin play
@@ -3154,6 +3156,36 @@ void AC_PlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 
 	PlayerInputComponent->BindAction("AnyKey", IE_Pressed, this, &AC_PlayerCharacter::Respawn);
 
+	// Settings
+	PlayerInputComponent->BindAction("Settings", IE_Pressed, this, &AC_PlayerCharacter::OpenSettingsMenu);
+}
+
+void AC_PlayerCharacter::OpenSettingsMenu()
+{
+	while (1)
+	{
+		if (bOpenSettings)
+		{
+			UE_LOG(LogTemp, Error, TEXT("OPEN SETTINGS"));
+
+			// Create settings menu 
+			HUD->CreateSettingsWidget();
+
+			bOpenSettings = false;
+			break;
+		}
+
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("CLOSE SETTINGS"));
+
+			// Destroy Settings menu 
+			HUD->DestroySettingsWidget();
+
+			bOpenSettings = true;
+			break;
+		}
+	}
 }
 
 void AC_PlayerCharacter::SavePlayerLocation()

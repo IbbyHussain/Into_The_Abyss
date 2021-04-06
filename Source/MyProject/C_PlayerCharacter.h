@@ -1212,6 +1212,10 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "General")
 	TArray<UMaterialInterface*> PlayerMaterials;
 
+	// settings
 
+	void OpenSettingsMenu();
+
+	bool bOpenSettings;
 
 };

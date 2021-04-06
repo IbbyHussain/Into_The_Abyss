@@ -21,6 +21,7 @@
 #include "Components/ScrollBox.h"
 #include "MyProject/AI/QuestNPC/C_QuestNPC.h"
 #include "MyProject/UI/C_SercurityCameraWidget.h"
+#include "MyProject/UI/C_SettingsWidget.h"
 
 //CONSTRUCTOR 
 AC_PlayerHUD2::AC_PlayerHUD2()
@@ -623,6 +624,33 @@ void AC_PlayerHUD2::DestroyCameraWidget()
 		}
 	}
 }
+
+// Settings
+
+void AC_PlayerHUD2::CreateSettingsWidget()
+{
+	if (SettingsWidgetClass)
+	{
+		SettingsWidget = CreateWidget<UC_SettingsWidget>(GetWorld(), SettingsWidgetClass);
+		if (SettingsWidget)
+		{
+			SettingsWidget->AddToViewport();
+		}
+	}
+}
+
+void AC_PlayerHUD2::DestroySettingsWidget()
+{
+	if (SettingsWidgetClass)
+	{
+		if (SettingsWidget)
+		{
+			SettingsWidget->RemoveFromParent();
+		}
+	}
+}
+
+// MISC
 
 void AC_PlayerHUD2::HideLockedWidgets(bool bMagic, bool bHealth, bool bSouls)
 {

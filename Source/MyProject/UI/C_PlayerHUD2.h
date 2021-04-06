@@ -258,7 +258,20 @@ public:
 
 	class UC_SercurityCameraWidget* CameraWidget;
 
+	// Settings Menu
+
+	void CreateSettingsWidget();
+
+	void DestroySettingsWidget();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	TSubclassOf<class UC_SettingsWidget> SettingsWidgetClass;
+
+	class UC_SettingsWidget* SettingsWidget;
+
 	// MISC
 
 	void HideLockedWidgets(bool bMagic, bool bHealth, bool bSouls);
+
+
 };

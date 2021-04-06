@@ -45,7 +45,7 @@ void AC_LevelNameSaver::LoadSavedLevel()
 	else
 	{
 		UE_LOG(LogTemp, Error, TEXT("NO SAVE SLOT FOUND"));
-		UGameplayStatics::OpenLevel(this, FName("Level2-Part1"));
+		UGameplayStatics::OpenLevel(this, FName("IntroLevel"));
 	}
 }
 
@@ -53,7 +53,7 @@ void AC_LevelNameSaver::ResetLevelName()
 {
 	if (UC_BaseSaveGame* SaveGameInstance = Cast<UC_BaseSaveGame>(UGameplayStatics::CreateSaveGameObject(UC_BaseSaveGame::StaticClass())))
 	{
-		SaveGameInstance->CurrentLevel = ("Level2-Part1");
+		SaveGameInstance->CurrentLevel = ("IntroLevel");
 
 		if (UGameplayStatics::SaveGameToSlot(SaveGameInstance, TEXT("LevelSave"), 0))
 		{
