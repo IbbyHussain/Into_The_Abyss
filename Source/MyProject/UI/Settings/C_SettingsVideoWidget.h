@@ -130,4 +130,31 @@ public:
 
 	UFUNCTION()
 	void TQEpicButtonClicked();
+
+	// Motion Blur
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* MBLowButton;
+
+	UFUNCTION()
+	void MBLowButtonClicked();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* MBMediumButton;
+
+	UFUNCTION()
+	void MBMediumButtonClicked();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* MBHighButton;
+
+	UFUNCTION()
+	void MBHighButtonClicked();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* MBEpicButton;
+
+	UFUNCTION()
+	void MBEpicButtonClicked();
+
 };

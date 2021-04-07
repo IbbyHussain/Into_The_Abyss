@@ -40,6 +40,12 @@ void UC_SettingsVideoWidget::NativeConstruct()
 	TQMediumButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::TQMediumButtonClicked);
 	TQHighButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::TQHighButtonClicked);
 	TQEpicButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::TQEpicButtonClicked);
+
+	// Motion Blur Quality Button Bindings
+	MBLowButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::MBLowButtonClicked);
+	MBMediumButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::MBMediumButtonClicked);
+	MBHighButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::MBHighButtonClicked);
+	MBEpicButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::MBEpicButtonClicked);
 }
 
 void UC_SettingsVideoWidget::BackButtonClicked()
@@ -137,4 +143,26 @@ void UC_SettingsVideoWidget::TQHighButtonClicked()
 void UC_SettingsVideoWidget::TQEpicButtonClicked()
 {
 	PlayerController->ConsoleCommand(FString("sg.TextureQuality 3"), true);
+}
+
+// MB Settings
+
+void UC_SettingsVideoWidget::MBLowButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("r.BloomQuality 0"), true);
+}
+
+void UC_SettingsVideoWidget::MBMediumButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("r.BloomQuality 1"), true);
+}
+
+void UC_SettingsVideoWidget::MBHighButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("r.BloomQuality 3"), true);
+}
+
+void UC_SettingsVideoWidget::MBEpicButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("r.BloomQuality 4"), true);
 }
