@@ -18,11 +18,35 @@ public:
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
-		class UButton* BackButton;
+	class UButton* BackButton;
 
 	UFUNCTION()
-		void BackButtonClicked();
+	void BackButtonClicked();
 
 	class AC_PlayerHUD2* HUD;
+
+	class APlayerController* PlayerController;
+
+	// View Distance Settings
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* NearButton;
+
+	UFUNCTION()
+	void NearButtonClicked();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* MediumButton;
+
+	UFUNCTION()
+	void MediumButtonClicked();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* FarButton;
+
+	UFUNCTION()
+	void FarButtonClicked();
+
+
 	
 };
