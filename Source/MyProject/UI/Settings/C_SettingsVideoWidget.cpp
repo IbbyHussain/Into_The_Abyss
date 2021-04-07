@@ -22,6 +22,24 @@ void UC_SettingsVideoWidget::NativeConstruct()
 	HDButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::HDButtonClicked);
 	FHDButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::FHDButtonClicked);
 	QHDButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::QHDButtonClicked);
+
+	// AA Button Bindings
+	LowButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::LowButtonClicked);
+	MediumButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::MediumButtonClicked);
+	HighButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::HighButtonClicked);
+	EpicButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::EpicButtonClicked);
+	
+	// Shadow Quality Button Bindings
+	SQLowButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::SQLowButtonClicked);
+	SQMediumButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::SQMediumButtonClicked);
+	SQHighButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::SQHighButtonClicked);
+	SQEpicButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::SQEpicButtonClicked);
+
+	// Texture Quality Button Bindings
+	TQLowButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::TQLowButtonClicked);
+	TQMediumButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::TQMediumButtonClicked);
+	TQHighButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::TQHighButtonClicked);
+	TQEpicButton->OnClicked.AddDynamic(this, &UC_SettingsVideoWidget::TQEpicButtonClicked);
 }
 
 void UC_SettingsVideoWidget::BackButtonClicked()
@@ -32,6 +50,8 @@ void UC_SettingsVideoWidget::BackButtonClicked()
 		RemoveFromParent();
 	}
 }
+
+// Resolution Settings
 
 void UC_SettingsVideoWidget::SDButtonClicked()
 {
@@ -51,4 +71,70 @@ void UC_SettingsVideoWidget::FHDButtonClicked()
 void UC_SettingsVideoWidget::QHDButtonClicked()
 {
 	PlayerController->ConsoleCommand(FString("r.setres 2560x1440"), true);
+}
+
+// AA settings
+
+void UC_SettingsVideoWidget::LowButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("r.PostProcessAAQuality 0"), true);
+}
+
+void UC_SettingsVideoWidget::MediumButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("r.PostProcessAAQuality 2"), true);
+}
+
+void UC_SettingsVideoWidget::HighButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("r.PostProcessAAQuality 4"), true);
+}
+
+void UC_SettingsVideoWidget::EpicButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("r.PostProcessAAQuality 6"), true);
+}
+
+// SQ Settings
+
+void UC_SettingsVideoWidget::SQLowButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("sg.ShadowQuality 0"), true);
+}
+
+void UC_SettingsVideoWidget::SQMediumButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("sg.ShadowQuality 1"), true);
+}
+
+void UC_SettingsVideoWidget::SQHighButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("sg.ShadowQuality 2"), true);
+}
+
+void UC_SettingsVideoWidget::SQEpicButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("sg.ShadowQuality 3"), true);
+}
+
+// TQ Settings
+
+void UC_SettingsVideoWidget::TQLowButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("sg.TextureQuality 0"), true);
+}
+
+void UC_SettingsVideoWidget::TQMediumButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("sg.TextureQuality 1"), true);
+}
+
+void UC_SettingsVideoWidget::TQHighButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("sg.TextureQuality 2"), true);
+}
+
+void UC_SettingsVideoWidget::TQEpicButtonClicked()
+{
+	PlayerController->ConsoleCommand(FString("sg.TextureQuality 3"), true);
 }

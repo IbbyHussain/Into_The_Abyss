@@ -53,6 +53,81 @@ public:
 	UFUNCTION()
 	void QHDButtonClicked();
 
+	// Anti Aliasing settings
 
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* LowButton;
+
+	UFUNCTION()
+	void LowButtonClicked();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* MediumButton;
+
+	UFUNCTION()
+	void MediumButtonClicked();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* HighButton;
+
+	UFUNCTION()
+	void HighButtonClicked();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* EpicButton;
+
+	UFUNCTION()
+	void EpicButtonClicked();
+
+	// Shadow Quality 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* SQLowButton;
+
+	UFUNCTION()
+	void SQLowButtonClicked();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* SQMediumButton;
+
+	UFUNCTION()
+	void SQMediumButtonClicked();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* SQHighButton;
+
+	UFUNCTION()
+	void SQHighButtonClicked();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* SQEpicButton;
+
+	UFUNCTION()
+	void SQEpicButtonClicked();
+
+	// Texture Quality 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* TQLowButton;
+
+	UFUNCTION()
+	void TQLowButtonClicked();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* TQMediumButton;
+
+	UFUNCTION()
+	void TQMediumButtonClicked();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* TQHighButton;
+
+	UFUNCTION()
+	void TQHighButtonClicked();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* TQEpicButton;
+
+	UFUNCTION()
+	void TQEpicButtonClicked();
 };
