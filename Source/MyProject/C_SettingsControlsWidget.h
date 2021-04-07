@@ -24,5 +24,18 @@ public:
 	void BackButtonClicked();
 
 	class AC_PlayerHUD2* HUD;
+
+	// Remappings
+
+	class UInputSettings* Input;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* JumpButton;
+
+	UFUNCTION()
+	void JumpButtonClicked(FInputChord InputChord);
+
+	UFUNCTION()
+	void RemapActionBinding(FName ActionName);
 	
 };
