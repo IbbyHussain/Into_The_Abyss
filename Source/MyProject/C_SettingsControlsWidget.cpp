@@ -51,10 +51,11 @@ void UC_SettingsControlsWidget::JumpButtonClicked(FInputChord InputChord)
 
 	FInputActionKeyMapping NewMapping;
 	
-	InputChord.bShift = NewMapping.bShift;
-	InputChord.bCtrl = NewMapping.bCtrl;
-	InputChord.bAlt = NewMapping.bAlt;
-	InputChord.bCmd = NewMapping.bCmd;
+	NewMapping.bShift = InputChord.bShift;
+	NewMapping.bCtrl = InputChord.bCtrl;
+	NewMapping.bAlt = InputChord.bAlt;
+	NewMapping.bCmd = InputChord.bCmd;
+	NewMapping.Key = InputChord.Key;
 
 	NewMapping.ActionName = "Jump";
 
@@ -62,6 +63,8 @@ void UC_SettingsControlsWidget::JumpButtonClicked(FInputChord InputChord)
 	
 	Input->SaveKeyMappings();
 	Input->SaveConfig();
+
+	//UInputSettings::GetInputSettings()->AddA
 }
 
 
