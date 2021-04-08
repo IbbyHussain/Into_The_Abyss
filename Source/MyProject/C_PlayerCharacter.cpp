@@ -3103,10 +3103,6 @@ void AC_PlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &AC_PlayerCharacter::CustomCrouch);
 	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &AC_PlayerCharacter::StopCustomCrouch);
 
-	// ExitArea
-	//PlayerInputComponent->BindAction("Exit", IE_Pressed, this, &AC_PlayerCharacter::ExitArea);
-	//PlayerInputComponent->BindAction("Exit", IE_Released, this, &AC_PlayerCharacter::ExitAreaReleased);
-
 	// Interact 
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &AC_PlayerCharacter::Interact);
 

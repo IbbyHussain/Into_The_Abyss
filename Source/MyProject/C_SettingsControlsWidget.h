@@ -30,44 +30,152 @@ public:
 
 	class UInputSettings* Input;
 
-	// Misc Remappings
-
-	// Interact
-
-	// Weapon wheel
-
-	// Settings
-
-	// Combat Remappings
-
-	// Sword and Shield
-
-	// Block
-
-	// Default Attack
-
-	// Shield Bash
-
-	// Downward Attack
-
-	// Magic
-
-	// Ability1
-	// Ability2
-	// Ability3
-	// Ability4
-
-	// Crossbow Mappings
-
-	// Aim
-
-	// Fire
-
 	void RemapActionBinding(FInputChord InputChord, FName ActionName);
+
+	// INTERACT
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* InteractButton;
+
+	UFUNCTION()
+	void InteractButtonClicked(FInputChord InputChord);
+
+	// WEAPON WHEEL
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* WeaponWheelButton;
+
+	UFUNCTION()
+	void WeaponWheelButtonClicked(FInputChord InputChord);
+
+	// SETTINGS
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* SettingsButton;
+
+	UFUNCTION()
+	void SettingsButtonClicked(FInputChord InputChord);
+
+
+	// JUMP
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UInputKeySelector* JumpButton;
 	
 	UFUNCTION()
 	void JumpButtonClicked(FInputChord InputChord);
+
+	// DASH
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* DashButton;
+
+	UFUNCTION()
+	void DashButtonClicked(FInputChord InputChord);
+
+	// CROUCH
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* CrouchButton;
+
+	UFUNCTION()
+	void CrouchButtonClicked(FInputChord InputChord);
+
+	// SLIDE
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* SlideButton;
+
+	UFUNCTION()
+	void SlideButtonClicked(FInputChord InputChord);
+
+	// SPRINT
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* SprintButton;
+
+	UFUNCTION()
+	void SprintButtonClicked(FInputChord InputChord);
+
+	// ABILITY 1
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* Ability1Button;
+
+	UFUNCTION()
+	void Ability1ButtonClicked(FInputChord InputChord);
+
+	// ABILITY 2
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* Ability2Button;
+
+	UFUNCTION()
+	void Ability2ButtonClicked(FInputChord InputChord);
+
+	// ABILITY 3
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* Ability3Button;
+
+	UFUNCTION()
+	void Ability3ButtonClicked(FInputChord InputChord);
+
+	// ABILITY 4
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* Ability4Button;
+
+	UFUNCTION()
+	void Ability4ButtonClicked(FInputChord InputChord);
+
+	// AIM
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* AimButton;
+
+	UFUNCTION()
+	void AimButtonClicked(FInputChord InputChord);
+
+	// FIRE
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* FireButton;
+
+	UFUNCTION()
+	void FireButtonClicked(FInputChord InputChord);
+
+	// BLOCK
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* BlockButton;
+
+	UFUNCTION()
+	void BlockButtonClicked(FInputChord InputChord);
+
+	// SHIELD BASH
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* BashButton;
+
+	UFUNCTION()
+	void BashButtonClicked(FInputChord InputChord);
+
+	// BASIC ATTACK
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* AttackButton;
+
+	UFUNCTION()
+	void AttackButtonClicked(FInputChord InputChord);
+
+	// DOWNWARD ATTACK
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* Attack2Button;
+
+	UFUNCTION()
+	void Attack2ButtonClicked(FInputChord InputChord);
+
+
 };
