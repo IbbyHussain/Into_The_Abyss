@@ -32,7 +32,6 @@ void UC_SettingsControlsWidget::BackButtonClicked()
 	}
 }
 
-// Will remap any action binding
 void UC_SettingsControlsWidget::RemapActionBinding(FInputChord InputChord, FName ActionName)
 {
 	TArray <FInputActionKeyMapping> OutMappings;
