@@ -8,4 +8,7 @@ UC_BaseSaveGame::UC_BaseSaveGame()
 {
 	SaveSlotName = TEXT("TestSaveSlot");
 	UserIndex = 0;
+
+	KeyNameArray.SetNum(21);
+	//KeyNameArray.Init(("Key"), 21);
 }

@@ -8,6 +8,9 @@
 #include "MyProject/C_PlayerCharacter.h"
 #include "Components/InputKeySelector.h"
 
+#include "Misc/C_BaseSaveGame.h"
+#include "Kismet/GameplayStatics.h"
+
 void UC_SettingsControlsWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
@@ -51,6 +54,11 @@ void UC_SettingsControlsWidget::NativeConstruct()
 	MBButton->OnKeySelected.AddDynamic(this, &UC_SettingsControlsWidget::MBButtonClicked);
 	MRButton->OnKeySelected.AddDynamic(this, &UC_SettingsControlsWidget::MRButtonClicked);
 	MLButton->OnKeySelected.AddDynamic(this, &UC_SettingsControlsWidget::MLButtonClicked);
+
+	KeySelectorArray = { InteractButton, WeaponWheelButton, SettingsButton, JumpButton, DashButton, CrouchButton, SprintButton, Ability1Button, Ability2Button, Ability3Button, Ability4Button,
+	BlockButton, BashButton, Attack2Button, AttackButton, AimButton, FireButton, MFButton, MBButton, MRButton, MLButton};
+
+	LoadKeyText();
 }
 
 void UC_SettingsControlsWidget::BackButtonClicked()
@@ -63,7 +71,7 @@ void UC_SettingsControlsWidget::BackButtonClicked()
 }
 
 // Will remap any action binding
-void UC_SettingsControlsWidget::RemapActionBinding(FInputChord InputChord, FName ActionName)
+void UC_SettingsControlsWidget::RemapActionBinding(FInputChord InputChord, FName ActionName, UInputKeySelector* KeySelectorButton, int32 Index)
 {
 	TArray <FInputActionKeyMapping> OutMappings;
 
@@ -90,9 +98,13 @@ void UC_SettingsControlsWidget::RemapActionBinding(FInputChord InputChord, FName
 	// Adds new mapping
 	Input->AddActionMapping(NewMapping, true);
 
+	//KeySelectorButton->SetNoKeySpecifiedText(NewMapping.Key.GetDisplayName());
+
 	// Saves the mapping 
 	Input->SaveKeyMappings();
 	Input->SaveConfig();
+
+	SaveKeyText(Index, NewMapping.Key.GetDisplayName().ToString());
 }
 
 // Will remap any axis binding
@@ -133,87 +145,87 @@ void UC_SettingsControlsWidget::RemapAxisBinding(FInputChord InputChord, FName A
 
 void UC_SettingsControlsWidget::InteractButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("Interact"));
+	RemapActionBinding(InputChord, FName("Interact"), InteractButton, 0);
 }
 
 void UC_SettingsControlsWidget::WeaponWheelButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("WeaponWheel"));
+	RemapActionBinding(InputChord, FName("WeaponWheel"), WeaponWheelButton, 1);
 }
 
 void UC_SettingsControlsWidget::SettingsButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("Settings"));
+	RemapActionBinding(InputChord, FName("Settings"), SettingsButton, 2);
 }
 
 void UC_SettingsControlsWidget::JumpButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("Jump"));
+	RemapActionBinding(InputChord, FName("Jump"), JumpButton, 3);
 }
 
 void UC_SettingsControlsWidget::DashButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("Dash"));
+	RemapActionBinding(InputChord, FName("Dash"), DashButton, 4);
 }
 
 void UC_SettingsControlsWidget::CrouchButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("Crouch"));
+	RemapActionBinding(InputChord, FName("Crouch"), CrouchButton, 5);
 }
 
 void UC_SettingsControlsWidget::SprintButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("Sprint"));
+	RemapActionBinding(InputChord, FName("Sprint"), SprintButton, 6);
 }
 
 void UC_SettingsControlsWidget::Ability1ButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("Ability1"));
+	RemapActionBinding(InputChord, FName("Ability1"), Ability1Button, 7);
 }
 
 void UC_SettingsControlsWidget::Ability2ButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("Ability2"));
+	RemapActionBinding(InputChord, FName("Ability2"), Ability2Button, 8);
 }
 
 void UC_SettingsControlsWidget::Ability3ButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("Ability3"));
+	RemapActionBinding(InputChord, FName("Ability3"), Ability3Button, 9);
 }
 
 void UC_SettingsControlsWidget::Ability4ButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("Ability4"));
+	RemapActionBinding(InputChord, FName("Ability4"),Ability4Button, 10);
 }
 
 void UC_SettingsControlsWidget::AimButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("Aiming"));
+	RemapActionBinding(InputChord, FName("Aiming"), AimButton, 11);
 }
 
 void UC_SettingsControlsWidget::FireButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("Fire"));
+	RemapActionBinding(InputChord, FName("Fire"), FireButton, 12);
 }
 
 void UC_SettingsControlsWidget::BlockButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("Blocking"));
+	RemapActionBinding(InputChord, FName("Blocking"), BlockButton, 13);
 }
 
 void UC_SettingsControlsWidget::BashButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("ShieldBash"));
+	RemapActionBinding(InputChord, FName("ShieldBash"), BashButton, 14);
 }
 
 void UC_SettingsControlsWidget::AttackButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("DefaultAttack"));
+	RemapActionBinding(InputChord, FName("DefaultAttack"), AttackButton, 15);
 }
 
 void UC_SettingsControlsWidget::Attack2ButtonClicked(FInputChord InputChord)
 {
-	RemapActionBinding(InputChord, FName("Thrust"));
+	RemapActionBinding(InputChord, FName("Thrust"), Attack2Button, 16);
 }
 
 // AXIS MAPPINGS
@@ -236,4 +248,45 @@ void UC_SettingsControlsWidget::MRButtonClicked(FInputChord InputChord)
 void UC_SettingsControlsWidget::MLButtonClicked(FInputChord InputChord)
 {
 	RemapAxisBinding(InputChord, FName("MoveRight"), -1.0f);
+}
+
+void UC_SettingsControlsWidget::SaveKeyText(int32 Index, FString KeyName)
+{
+	if (UC_BaseSaveGame* SaveGameInstance = Cast<UC_BaseSaveGame>(UGameplayStatics::CreateSaveGameObject(UC_BaseSaveGame::StaticClass())))
+	{
+		// Set data on the savegame object.
+		//SaveGameInstance->KeyNameArray[Index] = KeyName;
+		//UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key name is: %s"), *SaveGameInstance->KeyNameArray[Index]);
+
+		SaveGameInstance->SavedKey = KeyName; 
+		UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key name is: %s"), *SaveGameInstance->SavedKey);
+
+		if (UGameplayStatics::SaveGameToSlot(SaveGameInstance, TEXT("Keys"), 0))
+		{
+			//UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Saved KEY name"));
+		}
+	}
+}
+
+void UC_SettingsControlsWidget::LoadKeyText()
+{
+	if (UC_BaseSaveGame* LoadedGame = Cast<UC_BaseSaveGame>(UGameplayStatics::LoadGameFromSlot(TEXT("Keys"), 0)))
+	{
+		//KeySelectorArray[0]->SetNoKeySpecifiedText(FText::FromString(LoadedGame->KeyNameArray[0]));
+		UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key SELECTOR 0 is: %s"), *KeySelectorArray[0]->GetName());
+		//UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key NAME 0 is: %s"), *LoadedGame->KeyNameArray[0]);
+
+		KeySelectorArray[0]->SetNoKeySpecifiedText(FText::FromString(LoadedGame->SavedKey));
+		UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key NAME is: %s"), *LoadedGame->SavedKey);
+
+		/*for(int i = 0; i < KeySelectorArray.Num(); i++)
+		{
+			KeySelectorArray[i]->SetNoKeySpecifiedText(FText::FromString(LoadedGame->KeyNameArray[i]));
+			UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key SELECTOR is: %s"), *KeySelectorArray[i]->GetName());
+			UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key NAME is: %s"), *LoadedGame->KeyNameArray[i]);
+		}*/
+
+		// The operation was successful, so LoadedGame now contains the data we saved earlier.
+		//UE_LOG(LogTemp, Warning, TEXT("LOADED: %s"), *LoadedGame->PlayerLocation.ToString());
+	}
 }

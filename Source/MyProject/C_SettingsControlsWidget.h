@@ -30,7 +30,7 @@ public:
 
 	class UInputSettings* Input;
 
-	void RemapActionBinding(FInputChord InputChord, FName ActionName);
+	void RemapActionBinding(FInputChord InputChord, FName ActionName, UInputKeySelector* KeySelectorButton, int32 Index);
 
 	void RemapAxisBinding(FInputChord InputChord, FName AxisName, float AxisValue);
 
@@ -201,5 +201,13 @@ public:
 
 	UFUNCTION()
 	void MLButtonClicked(FInputChord InputChord);
+
+	// Saving 
+
+	void SaveKeyText(int32 Index, FString KeyName);
+
+	void LoadKeyText();
+
+	TArray<UInputKeySelector*> KeySelectorArray;
 
 };

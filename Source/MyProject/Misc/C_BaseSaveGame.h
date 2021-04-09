@@ -47,4 +47,12 @@ public:
     UPROPERTY(VisibleAnywhere, Category = "Basic")
     FString CurrentLevel;
 
+    // Key Bidnings
+
+    UPROPERTY(VisibleAnywhere, Category = "Combat")
+    TArray<FString> KeyNameArray;
+
+    UPROPERTY(VisibleAnywhere, Category = "Combat")
+    FString SavedKey;
+
 };
