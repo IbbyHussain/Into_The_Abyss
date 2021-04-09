@@ -28,7 +28,6 @@ void UC_SettingsControlsWidget::NativeConstruct()
 	JumpButton->OnKeySelected.AddDynamic(this, &UC_SettingsControlsWidget::JumpButtonClicked);
 	DashButton->OnKeySelected.AddDynamic(this, &UC_SettingsControlsWidget::DashButtonClicked);
 	CrouchButton->OnKeySelected.AddDynamic(this, &UC_SettingsControlsWidget::CrouchButtonClicked);
-	SlideButton->OnKeySelected.AddDynamic(this, &UC_SettingsControlsWidget::SlideButtonClicked);
 	SprintButton->OnKeySelected.AddDynamic(this, &UC_SettingsControlsWidget::SprintButtonClicked);
 
 	// Magic Action Remappings
@@ -160,11 +159,6 @@ void UC_SettingsControlsWidget::DashButtonClicked(FInputChord InputChord)
 void UC_SettingsControlsWidget::CrouchButtonClicked(FInputChord InputChord)
 {
 	RemapActionBinding(InputChord, FName("Crouch"));
-}
-
-void UC_SettingsControlsWidget::SlideButtonClicked(FInputChord InputChord)
-{
-	RemapActionBinding(InputChord, FName("Slide"));
 }
 
 void UC_SettingsControlsWidget::SprintButtonClicked(FInputChord InputChord)

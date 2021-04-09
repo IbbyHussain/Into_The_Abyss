@@ -82,14 +82,6 @@ public:
 	UFUNCTION()
 	void CrouchButtonClicked(FInputChord InputChord);
 
-	// SLIDE
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
-	class UInputKeySelector* SlideButton;
-
-	UFUNCTION()
-	void SlideButtonClicked(FInputChord InputChord);
-
 	// SPRINT
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
