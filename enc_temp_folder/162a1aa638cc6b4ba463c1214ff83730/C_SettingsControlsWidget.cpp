@@ -118,10 +118,6 @@ void UC_SettingsControlsWidget::RemapAxisBinding(FInputChord InputChord, FName A
 	FinalMapping.Key = InputChord.Key;
 
 	Input->AddAxisMapping(FinalMapping, true);
-
-	// Saves the mapping 
-	Input->SaveKeyMappings();
-	Input->SaveConfig();
 }
 
 // ACTION MAPPINGS

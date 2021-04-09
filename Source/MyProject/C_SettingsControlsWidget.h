@@ -32,6 +32,8 @@ public:
 
 	void RemapActionBinding(FInputChord InputChord, FName ActionName);
 
+	void RemapAxisBinding(FInputChord InputChord, FName AxisName, float AxisValue);
+
 	// INTERACT
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
@@ -55,7 +57,6 @@ public:
 
 	UFUNCTION()
 	void SettingsButtonClicked(FInputChord InputChord);
-
 
 	// JUMP
 
@@ -177,5 +178,20 @@ public:
 	UFUNCTION()
 	void Attack2ButtonClicked(FInputChord InputChord);
 
+	// MOVE FORWARD
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* MFButton;
+
+	UFUNCTION()
+	void MFButtonClicked(FInputChord InputChord);
+
+	// MOVE BACKWARD
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* MBButton;
+
+	UFUNCTION()
+	void MBButtonClicked(FInputChord InputChord);
 
 };
