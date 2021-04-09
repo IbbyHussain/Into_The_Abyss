@@ -30,9 +30,9 @@ public:
 
 	class UInputSettings* Input;
 
-	void RemapActionBinding(FInputChord InputChord, FName ActionName, UInputKeySelector* KeySelectorButton, int32 Index);
+	void RemapActionBinding(FInputChord InputChord, FName ActionName, UInputKeySelector* KeySelectorButton);
 
-	void RemapAxisBinding(FInputChord InputChord, FName AxisName, float AxisValue);
+	void RemapAxisBinding(FInputChord InputChord, FName AxisName, float AxisValue, UInputKeySelector* KeySelectorButton);
 
 	// INTERACT
 
@@ -204,7 +204,7 @@ public:
 
 	// Saving 
 
-	void SaveKeyText(int32 Index, FString KeyName);
+	void SaveKeyText();
 
 	void LoadKeyText();
 
