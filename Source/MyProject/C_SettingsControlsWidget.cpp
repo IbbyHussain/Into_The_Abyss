@@ -255,11 +255,11 @@ void UC_SettingsControlsWidget::SaveKeyText(int32 Index, FString KeyName)
 	if (UC_BaseSaveGame* SaveGameInstance = Cast<UC_BaseSaveGame>(UGameplayStatics::CreateSaveGameObject(UC_BaseSaveGame::StaticClass())))
 	{
 		// Set data on the savegame object.
-		//SaveGameInstance->KeyNameArray[Index] = KeyName;
-		//UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key name is: %s"), *SaveGameInstance->KeyNameArray[Index]);
+		SaveGameInstance->KeyNameArray[0] = KeyName;
+		UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key name is: %s"), *SaveGameInstance->KeyNameArray[0]);
 
-		SaveGameInstance->SavedKey = KeyName; 
-		UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key name is: %s"), *SaveGameInstance->SavedKey);
+		//SaveGameInstance->SavedKey = KeyName; 
+		//UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key name is: %s"), *SaveGameInstance->SavedKey);
 
 		if (UGameplayStatics::SaveGameToSlot(SaveGameInstance, TEXT("Keys"), 0))
 		{
@@ -272,12 +272,12 @@ void UC_SettingsControlsWidget::LoadKeyText()
 {
 	if (UC_BaseSaveGame* LoadedGame = Cast<UC_BaseSaveGame>(UGameplayStatics::LoadGameFromSlot(TEXT("Keys"), 0)))
 	{
-		//KeySelectorArray[0]->SetNoKeySpecifiedText(FText::FromString(LoadedGame->KeyNameArray[0]));
+		KeySelectorArray[0]->SetNoKeySpecifiedText(FText::FromString(LoadedGame->KeyNameArray[0]));
 		UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key SELECTOR 0 is: %s"), *KeySelectorArray[0]->GetName());
-		//UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key NAME 0 is: %s"), *LoadedGame->KeyNameArray[0]);
+		UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key NAME 0 is: %s"), *LoadedGame->KeyNameArray[0]);
 
-		KeySelectorArray[0]->SetNoKeySpecifiedText(FText::FromString(LoadedGame->SavedKey));
-		UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key NAME is: %s"), *LoadedGame->SavedKey);
+		//KeySelectorArray[0]->SetNoKeySpecifiedText(FText::FromString(LoadedGame->SavedKey));
+		//UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Key NAME is: %s"), *LoadedGame->SavedKey);
 
 		/*for(int i = 0; i < KeySelectorArray.Num(); i++)
 		{

@@ -10,5 +10,6 @@ UC_BaseSaveGame::UC_BaseSaveGame()
 	UserIndex = 0;
 
 	KeyNameArray.SetNum(21);
+	KeyNameArray[0] = "E";
 	//KeyNameArray.Init(("Key"), 21);
 }
