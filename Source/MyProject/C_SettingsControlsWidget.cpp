@@ -50,6 +50,8 @@ void UC_SettingsControlsWidget::NativeConstruct()
 	// Moving Axis Mappings
 	MFButton->OnKeySelected.AddDynamic(this, &UC_SettingsControlsWidget::MFButtonClicked);
 	MBButton->OnKeySelected.AddDynamic(this, &UC_SettingsControlsWidget::MBButtonClicked);
+	MRButton->OnKeySelected.AddDynamic(this, &UC_SettingsControlsWidget::MRButtonClicked);
+	MLButton->OnKeySelected.AddDynamic(this, &UC_SettingsControlsWidget::MLButtonClicked);
 }
 
 void UC_SettingsControlsWidget::BackButtonClicked()
@@ -94,6 +96,7 @@ void UC_SettingsControlsWidget::RemapActionBinding(FInputChord InputChord, FName
 	Input->SaveConfig();
 }
 
+// Will remap any axis binding
 void UC_SettingsControlsWidget::RemapAxisBinding(FInputChord InputChord, FName AxisName, float AxisValue)
 {
 	TArray <FInputAxisKeyMapping> OutMappings;
@@ -101,6 +104,7 @@ void UC_SettingsControlsWidget::RemapAxisBinding(FInputChord InputChord, FName A
 
 	for (auto i : OutMappings)
 	{
+		// If the mapping is a certain scale
 		if (i.Scale == AxisValue)
 		{
 			FInputAxisKeyMapping NewMapping;
@@ -108,10 +112,12 @@ void UC_SettingsControlsWidget::RemapAxisBinding(FInputChord InputChord, FName A
 			NewMapping.Key = i.Key;
 			NewMapping.Scale = AxisValue;
 
+			// Remove that mapping - This does not remove all mappings just the mapping with that specific scale
 			Input->RemoveAxisMapping(NewMapping, false);
 		} 
 	}
 
+	// Set the new mapping
 	FInputAxisKeyMapping FinalMapping;
 	FinalMapping.AxisName = AxisName;
 	FinalMapping.Scale = AxisValue;
@@ -226,4 +232,14 @@ void UC_SettingsControlsWidget::MFButtonClicked(FInputChord InputChord)
 void UC_SettingsControlsWidget::MBButtonClicked(FInputChord InputChord)
 {
 	RemapAxisBinding(InputChord, FName("MoveForward"), -1.0f);
+}
+
+void UC_SettingsControlsWidget::MRButtonClicked(FInputChord InputChord)
+{
+	RemapAxisBinding(InputChord, FName("MoveRight"), 1.0f);
+}
+
+void UC_SettingsControlsWidget::MLButtonClicked(FInputChord InputChord)
+{
+	RemapAxisBinding(InputChord, FName("MoveRight"), -1.0f);
 }

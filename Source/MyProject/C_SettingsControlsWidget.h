@@ -194,4 +194,20 @@ public:
 	UFUNCTION()
 	void MBButtonClicked(FInputChord InputChord);
 
+	// MOVE RIGHT
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* MRButton;
+
+	UFUNCTION()
+	void MRButtonClicked(FInputChord InputChord);
+
+	// MOVE LEFT
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UInputKeySelector* MLButton;
+
+	UFUNCTION()
+	void MLButtonClicked(FInputChord InputChord);
+
 };
