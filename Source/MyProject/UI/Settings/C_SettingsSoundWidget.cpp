@@ -61,11 +61,18 @@ void UC_SettingsSoundWidget::SaveSliderValue()
 	}
 }
 
+// Call this on begin play in a delegate ?
 void UC_SettingsSoundWidget::LoadSliderValue()
 {
 	if (UC_BaseSaveGame* LoadedGame = Cast<UC_BaseSaveGame>(UGameplayStatics::LoadGameFromSlot(TEXT("Sound"), 0)))
 	{
 		MasterSlider->SetValue(LoadedGame->MasterSliderValue);
 		MusicSlider->SetValue(LoadedGame->MusicSliderValue);
+
+		UGameplayStatics::SetSoundMixClassOverride(GetWorld(), MasterSoundMix, MasterSoundClass, LoadedGame->MasterSliderValue, 1.0f, 0.1f, true);
+		UGameplayStatics::PushSoundMixModifier(GetWorld(), MasterSoundMix);
+
+		UGameplayStatics::SetSoundMixClassOverride(GetWorld(), MusicSoundMix, MusicSoundClass, LoadedGame->MusicSliderValue, 1.0f, 0.1f, true);
+		UGameplayStatics::PushSoundMixModifier(GetWorld(), MusicSoundMix);
 	}
 }

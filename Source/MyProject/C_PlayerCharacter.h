@@ -18,6 +18,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDisableCurrentCombatState);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEnteredMagicState);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEnteredRangedState);
 
+// Game settings
 
 
 class USpringArmComponent;
@@ -669,6 +670,13 @@ public:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadWrite, Category = "Settings")
 	bool bOpenSettings;
 
+
+	// Settings
+
+	// Will set the sound to the saved volume
+	void SetSoundVolume();
+
+	void DestroyTempSoundWidget();
 private:
 
 	//Idle

@@ -28,6 +28,8 @@
 
 #include "Engine/CollisionProfile.h"
 
+#include "MyProject/UI/Settings/C_SettingsSoundWidget.h"
+
 // Sword and Shield includes
 #include "MyProject/Weapons/MeleeWeapons/C_BaseSkeletalMeleeWeapon.h"
 //#include "MyProject/Weapons/MeleeWeapons/C_BaseMeleeWeapon.h"
@@ -308,9 +310,11 @@ void AC_PlayerCharacter::BeginPlay()
 	}
 
 	// draw debug cirlce around player
-	FTransform PlayerTransform = GetActorTransform();
-	DrawDebugCircle(GetWorld(), PlayerTransform.ToMatrixWithScale(), 300.0f, 25, FColor::Purple, false, 20.0f, 1, 2.0f, false);
+	//FTransform PlayerTransform = GetActorTransform();
+	//DrawDebugCircle(GetWorld(), PlayerTransform.ToMatrixWithScale(), 300.0f, 25, FColor::Purple, false, 20.0f, 1, 2.0f, false);
 	//DrawDebugCircle(GetWorld(), PlayerTransform, 300.0f, 25, FColor::Purple, true, 10.0f);
+
+	SetSoundVolume();
 }
 
 // Tick
@@ -3284,4 +3288,22 @@ void AC_PlayerCharacter::LockedAbilities(bool bIsDashLocked, bool bIsCrouchLocke
 	bIsSlideLocked ? bIsSlideUnlocked = false : bIsSlideUnlocked = true;
 
 	bIsWeaponWheelLocked ? bDisableWeaponWheel = true : bDisableWeaponWheel = false;
+}
+
+// Settings
+
+void AC_PlayerCharacter::SetSoundVolume()
+{
+	// Create this widget to load the correct volumes for sound
+	HUD->CreateSoundSettingsWidget();
+	HUD->SoundSettingsWidget->SetVisibility(ESlateVisibility::Hidden);
+
+	// detsroy it quickly later
+	FTimerHandle SoundHandle;
+	GetWorldTimerManager().SetTimer(SoundHandle, this, &AC_PlayerCharacter::DestroyTempSoundWidget, 0.1f, false);
+}
+
+void AC_PlayerCharacter::DestroyTempSoundWidget()
+{
+	HUD->DestroySoundSettingsWidget();
 }
