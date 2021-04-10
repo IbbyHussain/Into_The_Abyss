@@ -20,8 +20,6 @@ void UC_SettingsWidget::NativeConstruct()
 	VideoButton->OnClicked.AddDynamic(this, &UC_SettingsWidget::VideoButtonClicked);
 	ControlsButton->OnClicked.AddDynamic(this, &UC_SettingsWidget::ControlsButtonClicked);
 	SoundButton->OnClicked.AddDynamic(this, &UC_SettingsWidget::SoundButtonClicked);
-	GameOptionsButton->OnClicked.AddDynamic(this, &UC_SettingsWidget::GameOptionsButtonClicked);
-
 }
 
 void UC_SettingsWidget::VideoButtonClicked()
@@ -51,11 +49,3 @@ void UC_SettingsWidget::SoundButtonClicked()
 	}
 }
 
-void UC_SettingsWidget::GameOptionsButtonClicked()
-{
-	if (HUD)
-	{
-		HUD->CreateGameOptionsSettingsWidget();
-		RemoveFromParent();
-	}
-}

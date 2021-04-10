@@ -666,6 +666,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void LockedAbilities(bool bIsDashLocked, bool bIsCrouchLocked, bool bIsSlideLocked, bool bIsWeaponWheelLocked);
 
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadWrite, Category = "Settings")
+	bool bOpenSettings;
+
 private:
 
 	//Idle
@@ -1215,7 +1218,5 @@ private:
 	// settings
 
 	void OpenSettingsMenu();
-
-	bool bOpenSettings;
 
 };

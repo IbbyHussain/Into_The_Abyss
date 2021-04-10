@@ -41,15 +41,4 @@ public:
 
 	UFUNCTION()
 	void ControlsButtonClicked();
-
-	// Game Options
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
-	class UButton* GameOptionsButton;
-
-	UFUNCTION()
-	void GameOptionsButtonClicked();
-
-
-	
 };
