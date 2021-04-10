@@ -55,4 +55,12 @@ public:
     UPROPERTY(VisibleAnywhere, Category = "Combat")
     FString SavedKey;
 
+    // Music Settings
+
+    UPROPERTY(VisibleAnywhere, Category = "Settings")
+    float MasterSliderValue;
+
+    UPROPERTY(VisibleAnywhere, Category = "Settings")
+    float MusicSliderValue;
+
 };

@@ -775,3 +775,14 @@ void AC_PlayerHUD2::HideLockedWidgets(bool bMagic, bool bHealth, bool bSouls)
 
 }
 
+void AC_PlayerHUD2::HideSouls()
+{
+	HUDWidget->SoulsImage->SetVisibility(ESlateVisibility::Hidden);
+	HUDWidget->TXTSoulCounter->SetVisibility(ESlateVisibility::Hidden);
+}
+
+void AC_PlayerHUD2::ShowSouls()
+{
+	HUDWidget->SoulsImage->SetVisibility(ESlateVisibility::Visible);
+	HUDWidget->TXTSoulCounter->SetVisibility(ESlateVisibility::Visible);
+}

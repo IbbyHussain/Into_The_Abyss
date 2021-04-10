@@ -317,5 +317,10 @@ public:
 
 	void HideLockedWidgets(bool bMagic, bool bHealth, bool bSouls);
 
+	UFUNCTION(BlueprintCallable)
+	void HideSouls();
+
+	UFUNCTION(BlueprintCallable)
+	void ShowSouls();
 
 };

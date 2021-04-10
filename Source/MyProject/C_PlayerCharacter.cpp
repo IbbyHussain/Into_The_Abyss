@@ -3168,6 +3168,8 @@ void AC_PlayerCharacter::OpenSettingsMenu()
 
 			// Create settings menu 
 			HUD->CreateSettingsWidget();
+			HUD->HideAllElements();
+			HUD->HideSouls();
 
 			// UI Settings
 			UGameplayStatics::SetGamePaused(this, true);
@@ -3184,6 +3186,8 @@ void AC_PlayerCharacter::OpenSettingsMenu()
 
 			// Destroy Settings menu 
 			HUD->DestroySettingsWidget();
+			HUD->ShowAllElements();
+			HUD->ShowSouls();
 
 			// UI Settings
 			UGameplayStatics::SetGamePaused(this, false);
