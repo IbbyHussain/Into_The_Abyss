@@ -3236,11 +3236,6 @@ void AC_PlayerCharacter::SaveNumberOfSouls()
 	{
 		// Saves the NumberOfSouls, sets the currency saved variable to the NumberOfSouls value
 		SaveGameInstance->Currency = NumberOfSouls;
-
-		if (UGameplayStatics::SaveGameToSlot(SaveGameInstance, TEXT("SOULS"), 0))
-		{
-			UE_LOG(LogTemp, Log, TEXT("Save Succeeded (souls)"));
-		}
 	}
 }
 

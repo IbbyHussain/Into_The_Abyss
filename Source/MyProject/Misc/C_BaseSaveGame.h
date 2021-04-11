@@ -6,12 +6,26 @@
 #include "GameFramework/SaveGame.h"
 #include "C_BaseSaveGame.generated.h"
 
+UENUM(BlueprintType)
+enum class EVideoOption : uint8
+{
+    OPTION1,
+    OPTION2,
+    OPTION3,
+    OPTION4
+};
+
+
 UCLASS()
 class MYPROJECT_API UC_BaseSaveGame : public USaveGame
 {
 	GENERATED_BODY()
 
 public:
+
+    UPROPERTY(VisibleAnywhere, Category = Basic)
+    EVideoOption VideoOption;
+
 	UC_BaseSaveGame();
 
     UPROPERTY(VisibleAnywhere, Category = Basic)
@@ -62,5 +76,10 @@ public:
 
     UPROPERTY(VisibleAnywhere, Category = "Settings")
     float MusicSliderValue;
+
+    // Video Settings
+
+    UPROPERTY(VisibleAnywhere, Category = "Settings")
+    TArray<EVideoOption> VideoOptionArray;
 
 };

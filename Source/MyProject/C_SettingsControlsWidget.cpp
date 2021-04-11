@@ -254,6 +254,8 @@ void UC_SettingsControlsWidget::MLButtonClicked(FInputChord InputChord)
 	RemapAxisBinding(InputChord, FName("MoveRight"), -1.0f, MLButton);
 }
 
+// Saving
+
 void UC_SettingsControlsWidget::SaveKeyText()
 {
 	if (UC_BaseSaveGame* SaveGameInstance = Cast<UC_BaseSaveGame>(UGameplayStatics::CreateSaveGameObject(UC_BaseSaveGame::StaticClass())))
@@ -267,7 +269,7 @@ void UC_SettingsControlsWidget::SaveKeyText()
 
 		if (UGameplayStatics::SaveGameToSlot(SaveGameInstance, TEXT("Keys"), 0))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Saved KEY name"));
+			//UE_LOG(LogTemp, Warning, TEXT("C_SettingsControlWidegt: Saved KEY name"));
 		}
 	}
 }

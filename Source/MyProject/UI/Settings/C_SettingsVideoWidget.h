@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "MyProject/Misc/C_BaseSaveGame.h"
 #include "C_SettingsVideoWidget.generated.h"
 
 
@@ -157,4 +158,9 @@ public:
 	UFUNCTION()
 	void MBEpicButtonClicked();
 
+	void SaveVideoOption(TEnumAsByte<EVideoOption> Option, int32 Index);
+
+	void LoadVideoOption();
+
+	void CheckForVideoOption(UC_BaseSaveGame* SaveGame, int32 Index);
 };

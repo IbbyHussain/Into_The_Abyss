@@ -12,4 +12,8 @@ UC_BaseSaveGame::UC_BaseSaveGame()
 	KeyNameArray.SetNum(21);
 	KeyNameArray[0] = "E";
 	//KeyNameArray.Init(("Key"), 21);
+
+	VideoOptionArray.SetNum(5);
+
+	VideoOption = EVideoOption::OPTION1;
 }
