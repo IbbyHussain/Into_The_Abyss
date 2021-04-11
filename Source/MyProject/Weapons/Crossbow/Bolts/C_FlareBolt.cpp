@@ -46,13 +46,8 @@ void AC_FlareBolt::SpawnHitEffect()
 
 	GetWorldTimerManager().SetTimer(SpawnFlareBoltsHandle, this, &AC_FlareBolt::Fire, 3.0f, false);
 
-	AC_PlayerCharacter* PlayerCharacter = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-
-	if(PlayerCharacter->FlareBoltIndicator->IsHidden() == false)
-	{
-		FActorSpawnParameters SpawnParams;
-		FlareBoltAfterIndicator = GetWorld()->SpawnActor<AC_StaticMeshActor>(FlareBoltAfterIndicatorClass, FVector(GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z - 4.0f), FRotator::ZeroRotator, SpawnParams);
-	}
+	FActorSpawnParameters SpawnParams;
+	FlareBoltAfterIndicator = GetWorld()->SpawnActor<AC_StaticMeshActor>(FlareBoltAfterIndicatorClass, FVector(GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z - 4.0f), FRotator::ZeroRotator, SpawnParams);
 }
 
 // This is a non-uniform method(Points are more concentrated in the centre)

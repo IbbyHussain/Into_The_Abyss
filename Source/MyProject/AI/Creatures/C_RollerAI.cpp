@@ -108,7 +108,7 @@ void AC_RollerAI::SelfDestruct()
 
 			UE_LOG(LogTemp, Error, TEXT("Roller AI Hit: %s"), *Hit.GetActor()->GetName());
 
-			if (Hit.GetActor() == PlayerCharacter && !bAttackedPlayer)
+			if (Hit.GetActor() == PlayerCharacter && !bAttackedPlayer && !PlayerCharacter->bDead)
 			{
 				bAttackedPlayer = true;
 				PlayerCharacter->ApplyDamageToPlayer(5.0f);

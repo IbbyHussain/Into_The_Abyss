@@ -205,6 +205,13 @@ void AC_BaseAI::Tick(float DeltaTime)
 	bIsRagdollTimerActive = GetWorldTimerManager().IsTimerActive(RagdollCooldownHandle);
 
 	UpdateCapsule();
+
+	if(PlayerCharacter->bDead)
+	{
+		auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
+		UBrainComponent* LocalComp = AIController->GetBrainComponent();
+		LocalComp->StopLogic(FString("Player Death"));
+	}
 }
 
 void AC_BaseAI::UpdateHealth(UC_HealthComponent* HealthComponent, float Health, float HealthDelta, const class UDamageType* DamageType, 

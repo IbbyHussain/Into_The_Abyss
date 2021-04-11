@@ -2313,7 +2313,7 @@ void AC_PlayerCharacter::ShouldSpawnFlareBoltIndicator()
 {
 	if(Crossbow.CurrentBolt == Crossbow.CrossbowObject->BoltsArray[3] && CombatState == ECombatState::RANGED)
 	{
-		SpawnCircleIndicator(GetActorLocation());
+		//SpawnCircleIndicator(GetActorLocation());
 		UE_LOG(LogTemp, Log, TEXT("CurrentBolt is flare Bolt"));
 	}
 
@@ -2995,6 +2995,7 @@ void AC_PlayerCharacter::CheckForPlayerDeath()
 	if(Health <= 0.0f)
 	{
 		PlayerDeath();
+		bDead = true;
 	}
 }
 

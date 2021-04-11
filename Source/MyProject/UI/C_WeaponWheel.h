@@ -133,6 +133,20 @@ public:
 	UPROPERTY(EditAnywhere)
 	UTexture2D* BLHovered;
 
+	// Disabled
+
+	UPROPERTY(EditAnywhere)
+	UTexture2D* TRDisabled;
+
+	UPROPERTY(EditAnywhere)
+	UTexture2D* TLDisabled;
+
+	UPROPERTY(EditAnywhere)
+	UTexture2D* BRDisabled;
+
+	UPROPERTY(EditAnywhere)
+	UTexture2D* BLDisabled;
+
 	void UpdateTextures();
 
 	// Unlocking Option Slots

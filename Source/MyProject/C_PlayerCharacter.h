@@ -677,6 +677,8 @@ public:
 	void SetSoundVolume();
 
 	void DestroyTempSoundWidget();
+
+	bool bDead;
 private:
 
 	//Idle

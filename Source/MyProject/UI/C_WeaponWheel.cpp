@@ -59,7 +59,7 @@ void UC_WeaponWheel::NativeTick(const FGeometry& MyGeometry, float DeltaTime)
 	if (OverlayTL->IsHovered())
 	{
 		SelectedOption = ESelectedOption::TopLeft;
-		ItemName = FString("UnArmed");
+		ItemName = FString("Unarmed");
 	}
 
 	else if (OverlayTR->IsHovered())
@@ -144,13 +144,25 @@ void UC_WeaponWheel::ResetGlobalTimeDialation()
 void UC_WeaponWheel::UpdateTextures()
 {
 	// Sets the textures to hovered state if the mouse hovers over them
-	BL->SetBrushFromTexture(SelectedOption == ESelectedOption::BottomLeft ? BLHovered : BLDefault, false);
+	if(OverlayBL->bIsEnabled)
+	{
+		BL->SetBrushFromTexture(SelectedOption == ESelectedOption::BottomLeft ? BLHovered : BLDefault, false);
+	}
+	
+	if (OverlayBR->bIsEnabled)
+	{
+		BR->SetBrushFromTexture(SelectedOption == ESelectedOption::BottomRight ? BRHovered : BRDefault, false);
+	}
 
-	BR->SetBrushFromTexture(SelectedOption == ESelectedOption::BottomRight ? BRHovered : BRDefault, false);
+	if (OverlayTR->bIsEnabled)
+	{
+		TR->SetBrushFromTexture(SelectedOption == ESelectedOption::TopRight ? TRHovered : TRDefault, false);
+	}
 
-	TL->SetBrushFromTexture(SelectedOption == ESelectedOption::TopLeft ? TLHovered : TLDefault, false);
-
-	TR->SetBrushFromTexture(SelectedOption == ESelectedOption::TopRight ? TRHovered : TRDefault, false);
+	if (OverlayTL->bIsEnabled)
+	{
+		TL->SetBrushFromTexture(SelectedOption == ESelectedOption::TopLeft ? TLHovered : TLDefault, false);
+	}
 }
 
 // Play functions for widget animations
@@ -181,6 +193,11 @@ void UC_WeaponWheel::DisableCurrentCombatState()
 		OverlayTR->SetIsEnabled(true);
 		OverlayBL->SetIsEnabled(true);
 		OverlayBR->SetIsEnabled(true);
+
+		TL->SetBrushFromTexture(TLDisabled);
+		TR->SetBrushFromTexture(TRDefault);
+		BL->SetBrushFromTexture(BLDefault);
+		BR->SetBrushFromTexture(BRDefault);
 	}
 
 	else if (Player->CombatState == ECombatState::MELEE)
@@ -189,6 +206,11 @@ void UC_WeaponWheel::DisableCurrentCombatState()
 		OverlayTR->SetIsEnabled(false);
 		OverlayBL->SetIsEnabled(true);
 		OverlayBR->SetIsEnabled(true);
+
+		TR->SetBrushFromTexture(TRDisabled);
+		TL->SetBrushFromTexture(TLDefault);
+		BL->SetBrushFromTexture(BLDefault);
+		BR->SetBrushFromTexture(BRDefault);
 	}
 
 	else if (Player->CombatState == ECombatState::MAGIC)
@@ -197,6 +219,11 @@ void UC_WeaponWheel::DisableCurrentCombatState()
 		OverlayTR->SetIsEnabled(true);
 		OverlayBL->SetIsEnabled(false);
 		OverlayBR->SetIsEnabled(true);
+
+		BL->SetBrushFromTexture(BLDisabled);
+		TR->SetBrushFromTexture(TRDefault);
+		TL->SetBrushFromTexture(TLDefault);
+		BR->SetBrushFromTexture(BRDefault);
 	}
 
 	else
@@ -205,6 +232,11 @@ void UC_WeaponWheel::DisableCurrentCombatState()
 		OverlayTR->SetIsEnabled(true);
 		OverlayBL->SetIsEnabled(true);
 		OverlayBR->SetIsEnabled(false);
+
+		BR->SetBrushFromTexture(BRDisabled);
+		TR->SetBrushFromTexture(TRDefault);
+		TL->SetBrushFromTexture(TLDefault);
+		BL->SetBrushFromTexture(BLDefault);
 	}
 }
 

@@ -87,16 +87,19 @@ EBTNodeResult::Type UC_BTTask_TeleportToLocation::ExecuteTask(UBehaviorTreeCompo
 		return EBTNodeResult::Succeeded;
 	}
 
-	else
+	/*else
 	{
 		// Debug 
 		DrawDebugSphere(GetWorld(), Point, MyColSphere.GetSphereRadius(), 40, FColor::Red, true);
 
 		FinishLatentTask(Owner, EBTNodeResult::Failed);
 		return EBTNodeResult::Failed;
-	}
+	}*/
 
 	FinishLatentTask(Owner, EBTNodeResult::Failed);
 	return EBTNodeResult::Failed;
+
+	//FinishLatentTask(Owner, EBTNodeResult::InProgress);
+	//return EBTNodeResult::InProgress;
 	
 }
