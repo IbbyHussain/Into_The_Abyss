@@ -334,6 +334,7 @@ void AC_PlayerCharacter::Tick(float DeltaTime)
 		bCanCrouch = false;
 	}
 
+
 	CheckSwimmingMeshHeight();
 
 	CheckSprint();
@@ -356,6 +357,18 @@ void AC_PlayerCharacter::Tick(float DeltaTime)
 	CheckBlock();
 
 	//UE_LOG(LogTemp, Error, TEXT("Status: %s "), (bCanAttack ? TEXT("CAN ATTACK") : TEXT("CANT ATTACK")));
+
+	if (bLockCamera)
+	{
+		GetMesh()->SetVisibility(false);
+		GetMesh()->bCastDynamicShadow = false;
+	}
+
+	else
+	{
+		GetMesh()->SetVisibility(true);
+		GetMesh()->bCastDynamicShadow = true;
+	}
 }
 
 // PLAYER MOVEMENT
