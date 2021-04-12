@@ -32,7 +32,7 @@ public:
 	UBoxComponent* Collision;
 
 	//Pulled Sound
-	UPROPERTY(EditInstanceOnly, Category = "Lever")
+	UPROPERTY(EditDefaultsOnly, Category = "Lever")
 	USoundBase* LeverPulledSound;
 
 	//The spike door that will be opened

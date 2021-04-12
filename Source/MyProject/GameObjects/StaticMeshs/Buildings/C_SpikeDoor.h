@@ -35,11 +35,14 @@ protected:
 
 	float SwimMeshHeight;
 
-	UPROPERTY(EditAnywhere, Category = "Sound")
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
 	USoundBase* DoorOpenSound;
 
 	UPROPERTY(EditAnywhere, Category = "Sound")
 	FVector TargetLocation;
+
+	UPROPERTY(EditInstanceOnly, Category = "Sound")
+	bool bPlaySound;
 private:
 
 };

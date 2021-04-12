@@ -90,6 +90,7 @@ void AC_TheLabLevel_ManagerClass::Update()
 void AC_TheLabLevel_ManagerClass::ActivateFirstBeam()
 {
 	CoreBeamArray[0]->BecomeVisible();
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), LightningSound, GetActorLocation());
 	PlayCameraShake();
 	GetWorldTimerManager().SetTimer(ActivateBeamHandle, this, &AC_TheLabLevel_ManagerClass::ActivateSecondBeam, 3.0f, true);
 }
@@ -102,6 +103,7 @@ void AC_TheLabLevel_ManagerClass::ActivateSecondBeam()
 		BeamCounter++;
 		PlayCameraShake();
 		CoreBeamArray[1]->BecomeVisible();
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), LightningSound, GetActorLocation());
 		//UE_LOG(LogTemp, Warning, TEXT("first time"));
 		break;
 
@@ -109,6 +111,7 @@ void AC_TheLabLevel_ManagerClass::ActivateSecondBeam()
 		BeamCounter++;
 		PlayCameraShake();
 		CoreBeamArray[2]->BecomeVisible();
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), LightningSound, GetActorLocation());
 		//UE_LOG(LogTemp, Warning, TEXT("second time"));
 		break;
 

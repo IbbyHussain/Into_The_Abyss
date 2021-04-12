@@ -39,6 +39,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void PuzzlesAreComplete();
 
+	UPROPERTY(EditDefaultsOnly, Category = "Sounds")
+	USoundBase* LightningSound;
+
 protected:
 	virtual void BeginPlay() override;
 

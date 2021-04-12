@@ -62,6 +62,8 @@ void AC_LeverManager::CheckLever()
 		PlayerCharacter->UpdateMovement();
 		PlayerCharacter->bLockCamera = true;
 
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), PuzzleCompleteSound, GetActorLocation());
+
 		bIsComplete = true;
 	}
 }

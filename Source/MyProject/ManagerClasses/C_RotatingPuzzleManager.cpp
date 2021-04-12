@@ -68,6 +68,8 @@ void AC_RotatingPuzzleManager::PuzzleComplete()
 	PlayerCharacter->bLockCamera = true;
 	HUD->MakeEKeyHintInVisible();
 
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), PuzzleCompleteSound, GetActorLocation());
+
 	bIsComplete = true;
 
 	// Objective complete here

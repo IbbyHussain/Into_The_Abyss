@@ -11,6 +11,8 @@ AC_SpikeDoor::AC_SpikeDoor()
 
 	DefaultMeshHeight = MeshComp->GetRelativeLocation().Z;
 	SwimMeshHeight = DefaultMeshHeight / 0.1f;
+
+	bPlaySound = true;
 }
 
 void AC_SpikeDoor::BeginPlay()
@@ -39,5 +41,9 @@ void AC_SpikeDoor::SpikeTimelineFloatReturn(float Value)
 void AC_SpikeDoor::PlayOpenDoorAnimation()
 {
 	SpikeTimeline->PlayFromStart();
-	UGameplayStatics::PlaySoundAtLocation(GetWorld(), DoorOpenSound, GetActorLocation());
+
+	if(bPlaySound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), DoorOpenSound, GetActorLocation());
+	}
 }

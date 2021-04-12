@@ -48,6 +48,9 @@ public:
 
 	void PlaySpikeDoorAnimation();
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Sound")
+	USoundBase* PuzzleCompleteSound;
+
 private:
 	virtual void BeginPlay() override;
 

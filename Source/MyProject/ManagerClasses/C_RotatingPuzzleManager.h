@@ -58,6 +58,9 @@ protected:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Actor to choose")
 	class AC_BaseQuest* Quest;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Sound")
+	USoundBase* PuzzleCompleteSound;
+
 private:	
 	//Camera Pan
 	void ChangeCameraView();

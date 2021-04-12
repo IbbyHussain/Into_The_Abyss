@@ -67,6 +67,8 @@ void AC_PressurePlateManager::PuzzleComplete()
 	PlayerCharacterRef->UpdateMovement();
 	PlayerCharacterRef->bLockCamera = true;
 
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), PuzzleCompleteSound, GetActorLocation());
+
 	bIsComplete = true;
 
 	// Objective complete here

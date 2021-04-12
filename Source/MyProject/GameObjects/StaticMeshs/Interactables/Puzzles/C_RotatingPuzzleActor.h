@@ -45,7 +45,7 @@ protected:
 	EPuzzleFacingDirection CorrectDirection;
 
 	//Sound Played when the actor is rotated
-	UPROPERTY(EditInstanceOnly, Category = "Puzzle")
+	UPROPERTY(EditDefaultsOnly, Category = "Puzzle")
 	USoundBase* PuzzleSound;
 
 	//Checks if the Player is overlapping the Puzzles collision
