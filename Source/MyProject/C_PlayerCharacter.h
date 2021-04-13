@@ -679,6 +679,10 @@ public:
 	void DestroyTempSoundWidget();
 
 	bool bDead;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Magic")
+	AC_MudWall* MudWallActor;
+
 private:
 
 	//Idle
@@ -937,18 +941,24 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Sounds | Abilities")
 	USoundBase* FlamesLoopSound;
 
+	UPROPERTY()
 	UAudioComponent* FlamesStartSoundComp;
 
+	UPROPERTY()
 	UAudioComponent* FlamesLoopSoundComp;
 
+	UPROPERTY()
 	FTimerHandle StartFlamesLoopSoundHandle;
 
+	UFUNCTION()
 	void StartFlameLoopSound();
 
+	UFUNCTION()
 	void StopFlamesSounds();
 
 	// Particle Fade out
 
+	UFUNCTION()
 	void PlayFlamesMaterialFadeOut();
 
 	FTimerHandle FlamesFadeOutHandle;
@@ -964,6 +974,7 @@ private:
 	UFUNCTION()
 	void MaterialFadeTimelineFloatReturn(float Alpha);
 
+	UPROPERTY()
 	UMaterialInstanceDynamic* DynamicFlamesMaterial;
 
 	UTimelineComponent* MaterialFadeTimeline;
@@ -1045,8 +1056,6 @@ private:
 	TArray<int32> nums;
 
 	FName RootSocket;
-
-	AC_MudWall* MudWallActor;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Magic")
 	TSubclassOf<class AC_MudWall> MudWallClass;
