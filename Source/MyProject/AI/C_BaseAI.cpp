@@ -35,7 +35,7 @@
 #include "MyProject/AI/MeleeAI/C_MeleeAIBlackBoardKeys.h"
 
 #include "MyProject/Quest System/C_BaseQuest.h"
-
+#include "MyProject/Components/C_POIComponent.h"
 
 AC_BaseAI::AC_BaseAI()
 {
@@ -206,7 +206,7 @@ void AC_BaseAI::Tick(float DeltaTime)
 
 	UpdateCapsule();
 
-	if(PlayerCharacter->bDead)
+	if(PlayerCharacter && PlayerCharacter->bDead)
 	{
 		auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
 		UBrainComponent* LocalComp = AIController->GetBrainComponent();
