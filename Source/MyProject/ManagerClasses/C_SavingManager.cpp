@@ -16,7 +16,10 @@ void AC_SavingManager::BeginPlay()
 	Super::BeginPlay();
 	
 	PlayerCharacter = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-	PlayerCharacter->LockedAbilities(bIsDashLocked, bIsCrouchLocked, bIsSlideLocked, bIsWeaponWheelLocked);
+	if(PlayerCharacter)
+	{
+		PlayerCharacter->LockedAbilities(bIsDashLocked, bIsCrouchLocked, bIsSlideLocked, bIsWeaponWheelLocked);
+	}
 
 	FTimerHandle SpawnHandle;
 	GetWorldTimerManager().SetTimer(SpawnHandle, this, &AC_SavingManager::CheckForSave, 1.0f, false);
