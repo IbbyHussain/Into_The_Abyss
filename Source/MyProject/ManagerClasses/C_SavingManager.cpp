@@ -27,13 +27,13 @@ void AC_SavingManager::CheckForSave()
 {
 	AC_PlayerHUD2* HUD = Cast<AC_PlayerHUD2>(GetWorld()->GetFirstPlayerController()->GetHUD());
 
-	if(HUD)
+	if (HUD)
 	{
 		HUD->HideLockedWidgets(bDisableMagicBar, bDisableHealthBar, bDisableSouls);
 		HUD->UnlockWeaponWheelAbilities(bUnlockSword, bUnlockMagic, bUnlockCrossbow);
 	}
 
-	if(PlayerCharacter->GetCharacterMovement()->IsFalling())
+	if (PlayerCharacter->GetCharacterMovement()->IsFalling())
 	{
 		PlayerCharacter->SetActorLocation(DefaultPlayerLocation);
 		UGameplayStatics::GetPlayerController(this, 0)->SetControlRotation(DefaultPlayerRotation);
