@@ -678,7 +678,6 @@ public:
 
 	void DestroyTempSoundWidget();
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Health")
 	bool bDead;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Magic")
