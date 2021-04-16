@@ -3301,13 +3301,16 @@ void AC_PlayerCharacter::ResetBolts()
 
 void AC_PlayerCharacter::LockedAbilities(bool bIsDashLocked, bool bIsCrouchLocked, bool bIsSlideLocked, bool bIsWeaponWheelLocked)
 {
-	bIsDashLocked ? IsDashUnlocked = false : IsDashUnlocked = true;
+	if(this)
+	{
+		bIsDashLocked ? IsDashUnlocked = false : IsDashUnlocked = true;
 
-	bIsCrouchLocked ? bIsCrouchUnlocked = false : bIsCrouchUnlocked = true;
+		bIsCrouchLocked ? bIsCrouchUnlocked = false : bIsCrouchUnlocked = true;
 
-	bIsSlideLocked ? bIsSlideUnlocked = false : bIsSlideUnlocked = true;
+		bIsSlideLocked ? bIsSlideUnlocked = false : bIsSlideUnlocked = true;
 
-	bIsWeaponWheelLocked ? bDisableWeaponWheel = true : bDisableWeaponWheel = false;
+		bIsWeaponWheelLocked ? bDisableWeaponWheel = true : bDisableWeaponWheel = false;
+	}
 }
 
 // Settings
