@@ -58,7 +58,7 @@ void AC_TheLabLevel_ManagerClass::Update()
 		
 	}*/
 
-	if(MainQuest && MainQuest->bIsCompleted)
+	if(this && MainQuest && MainQuest->bIsCompleted)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("MAIN QUEST COMPLETE"));
 

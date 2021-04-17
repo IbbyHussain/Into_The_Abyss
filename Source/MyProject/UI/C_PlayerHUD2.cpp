@@ -550,7 +550,10 @@ void AC_PlayerHUD2::CreateQuestTurnInWidget(AC_BaseQuest* QuestRef, class AC_Que
 		{
 			QuestTurnInWidget->Quest = QuestRef;
 			QuestTurnInWidget->QuestNPC = NPCRef;
-			QuestTurnInWidget->ManagerClass = ManagerClassRef;
+			if(ManagerClassRef != nullptr)
+			{
+				QuestTurnInWidget->ManagerClass = ManagerClassRef;
+			}
 			QuestTurnInWidget->AddToViewport();
 			QuestTurnInWidget->SetDesiredSizeInViewport(FVector2D(500.0f, 800.0f));
 		}
