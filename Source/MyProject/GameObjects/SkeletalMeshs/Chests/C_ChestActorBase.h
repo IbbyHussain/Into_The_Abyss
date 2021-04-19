@@ -65,7 +65,7 @@ protected:
 	class UPostProcessComponent* PostProcessVolume;
 
 	//The sund to be played when the chest is opened
-	UPROPERTY(EditInstanceOnly, Category = "Chest")
+	UPROPERTY(EditDefaultsOnly, Category = "Chest")
 	USoundBase* ChestOpenSound;
 
 	//Which pick up will be spawned for this instance
@@ -73,7 +73,7 @@ protected:
 	TSubclassOf<AActor> PickupClass;
 
 	// The material of the chest effect
-	UPROPERTY(EditInstanceOnly, Category = "Material Fade")
+	UPROPERTY(EditDefaultsOnly, Category = "Material Fade")
 	UMaterialInterface* ChestMaterialGlow;
 
 	// pointer to this, so that correct chest will play animation and open
