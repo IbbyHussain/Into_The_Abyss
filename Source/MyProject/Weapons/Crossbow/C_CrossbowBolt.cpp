@@ -132,8 +132,15 @@ void AC_Crossbowbolt::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor
 					bHasOverlapped = true;
 
 					StopBolt();
-
-					UGameplayStatics::ApplyDamage(AI, BoltDamage, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+					if (AI->bIsBoss)
+					{
+						UGameplayStatics::ApplyDamage(AI, BoltDamage * AI->BossDamageReduction, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+					}
+					else
+					{
+						UGameplayStatics::ApplyDamage(AI, BoltDamage, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+					}
+					
 
 					AI->CheckForAIDeath();
 

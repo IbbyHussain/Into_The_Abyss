@@ -1489,7 +1489,15 @@ TArray<FHitResult> AC_PlayerCharacter::Ability1Damage()
 		if (BaseAIHit && Hit.Component == BaseAIHit->BoxComp)
 		{
 			//Apply damage
-			UGameplayStatics::ApplyDamage(Hit.GetActor(), Ability1DamageAmount, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+			if(BaseAIHit->bIsBoss)
+			{
+				UGameplayStatics::ApplyDamage(Hit.GetActor(), Ability1DamageAmount * BaseAIHit->BossDamageReduction, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+			}
+			else
+			{
+				UGameplayStatics::ApplyDamage(Hit.GetActor(), Ability1DamageAmount, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+			}
+			
 			BaseAIHit->SpawnBurningEffects();
 			BaseAIHit->StopDamage();
 			BaseAIHit->bHasBeenHit = true;
@@ -1922,7 +1930,16 @@ void AC_PlayerCharacter::MeleeAttackDamage(USkeletalMeshComponent* SKMesh, float
 	{
 		SS.AI->bCanBeAttacked = false;
 
-		UGameplayStatics::ApplyDamage(HitResult.GetActor(), Damage, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+		if(SS.AI->bIsBoss)
+		{
+			UGameplayStatics::ApplyDamage(HitResult.GetActor(), Damage * SS.AI->BossDamageReduction, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+		}
+		else
+		{
+			UGameplayStatics::ApplyDamage(HitResult.GetActor(), Damage, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+		}
+		
+
 		SS.AI->PlayHitGrunt();
 		SS.AI->PlayMeleeHitAnim();
 		SS.AI->CheckForAIDeath();
@@ -1957,7 +1974,14 @@ void AC_PlayerCharacter::Rag(USkeletalMeshComponent* SKMesh)
 	{
 		SS.AI->bCanBeAttacked = false;
 
-		UGameplayStatics::ApplyDamage(Hit.GetActor(), 0.35f, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+		if (SS.AI->bIsBoss)
+		{
+			UGameplayStatics::ApplyDamage(HitResult.GetActor(), 0.35f * SS.AI->BossDamageReduction, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+		}
+		else
+		{
+			UGameplayStatics::ApplyDamage(HitResult.GetActor(), 0.35f, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+		}
 
 		if (SS.AI && Hit.GetActor() == SS.AI)
 		{

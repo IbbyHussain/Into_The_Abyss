@@ -129,6 +129,8 @@ AC_BaseAI::AC_BaseAI()
 	TimeUntilDestroyed = 15.0f;
 
 	bTakeAbility2Damage = true;
+
+	BossDamageReduction = 0.1;
 }
 
 void AC_BaseAI::BeginPlay()
@@ -506,7 +508,14 @@ void AC_BaseAI::EnableMovement()
 
 void AC_BaseAI::ApplyDamage2()
 {
-	UGameplayStatics::ApplyDamage(this, Ability2DamageAmount, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+	if(bIsBoss)
+	{
+		UGameplayStatics::ApplyDamage(this, Ability2DamageAmount * BossDamageReduction, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+	}
+	else
+	{
+		UGameplayStatics::ApplyDamage(this, Ability2DamageAmount, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+	}
 
 	CheckForAIDeath();
 

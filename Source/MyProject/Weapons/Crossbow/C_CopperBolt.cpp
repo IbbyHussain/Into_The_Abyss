@@ -77,7 +77,15 @@ void AC_CopperBolt::SpawnHitEffect()
 
 			if(Hit.GetActor() == AI)
 			{
-				UGameplayStatics::ApplyDamage(AI, 0.35f, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+				if (AI->bIsBoss)
+				{
+					UGameplayStatics::ApplyDamage(AI, 0.35f * AI->BossDamageReduction, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+				}
+				else
+				{
+					UGameplayStatics::ApplyDamage(AI, 0.35f, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+				}
+				
 				AI->CheckForAIDeath();
 			}
 		}

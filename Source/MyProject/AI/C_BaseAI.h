@@ -47,6 +47,11 @@ class MYPROJECT_API AC_BaseAI : public ACharacter
 
 public:
 
+	UPROPERTY(EditInstanceOnly, Category = "BOSS")
+	bool bIsBoss;
+
+	float BossDamageReduction;
+
 	UPROPERTY(EditAnywhere, Category = "Melee State")
 	FMeleeState MeleeState;
 

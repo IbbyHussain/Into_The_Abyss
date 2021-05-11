@@ -64,7 +64,15 @@ void AC_IceSpike::OnHit(const FHitResult& Hit)
 	{
 		//UE_LOG(LogTemp, Log, TEXT("Hit BaseAI / Ability 4 death"));
 		BaseAI->BecomeFrozen();
-		UGameplayStatics::ApplyDamage(Hit.GetActor(), 0.1f, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+		if(BaseAI->bIsBoss)
+		{
+			UGameplayStatics::ApplyDamage(Hit.GetActor(), 0.1f * BaseAI->BossDamageReduction, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+		}
+		else
+		{
+			UGameplayStatics::ApplyDamage(Hit.GetActor(), 0.1f, UGameplayStatics::GetPlayerController(this, 0), this, NULL);
+		}
+	
 		BaseAI->CheckForAIDeath();
 
 		//UE_LOG(LogTemp, Log, TEXT("Ability 2 Death"));
