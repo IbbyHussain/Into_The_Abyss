@@ -26,13 +26,15 @@ void UC_PointOfIntrest::NativeTick(const FGeometry& MyGeometry, float DeltaTime)
 
 TTuple<float, float> UC_PointOfIntrest::ActorLocation()
 {
-	if(UGameplayStatics::GetPlayerCharacter(this, 0))
+	if(UGameplayStatics::GetPlayerCharacter(this, 0) && Owner)
 	{
 		float PlayerX = UGameplayStatics::GetPlayerCharacter(this, 0)->GetActorLocation().X;
 		float PlayerY = UGameplayStatics::GetPlayerCharacter(this, 0)->GetActorLocation().Y;
 
+		
 		float OwnerX = Owner->GetActorLocation().X;
 		float OwnerY = Owner->GetActorLocation().Y;
+		
 
 		float Totalx = PlayerX - OwnerX;
 		float Totaly = (PlayerY - OwnerY) * -1.0f;
@@ -101,7 +103,8 @@ FVector2D UC_PointOfIntrest::GetPOILocation(UC_MiniMap* MiniMap)
 
 	SetRenderTranslation(Cord);
 
-	ReturnVector2D.Size() >= 130.0f ? IconImage->SetVisibility(ESlateVisibility::Hidden) : IconImage->SetVisibility(ESlateVisibility::Visible);
+	// When icon is no longer on the minimap, make it hidden. mapsize = 300, 130 || mapsize = 200, 100
+	ReturnVector2D.Size() >= 100.0f ? IconImage->SetVisibility(ESlateVisibility::Hidden) : IconImage->SetVisibility(ESlateVisibility::Visible); // Default was 130.0f
 		
 	return ReturnVector2D;
 }

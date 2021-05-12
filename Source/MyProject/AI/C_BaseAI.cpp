@@ -211,9 +211,9 @@ void AC_BaseAI::Tick(float DeltaTime)
 	if(PlayerCharacter && PlayerCharacter->bDead)
 	{
 		auto const AIController = Cast<AAIController>(UAIBlueprintHelperLibrary::GetAIController(this));
-		if(AIController)
+		UBrainComponent* LocalComp = AIController->GetBrainComponent();
+		if(AIController && LocalComp)
 		{
-			UBrainComponent* LocalComp = AIController->GetBrainComponent();
 			LocalComp->StopLogic(FString("Player Death"));
 		}
 	}

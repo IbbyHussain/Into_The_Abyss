@@ -35,7 +35,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Size")
 	float Dimensions;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Size")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Size")
 	float Zoom;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Size")

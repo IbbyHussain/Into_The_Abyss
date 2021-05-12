@@ -78,5 +78,5 @@ UC_PointOfIntrest* UC_MiniMap::AddPOI(AActor* Actor)
 
 float UC_MiniMap::CalculateZoom()
 {
-	return Zoom * (Dimensions / 300.0f);
+	return Zoom * (Dimensions / 200.0f); // Default was 300
 }
