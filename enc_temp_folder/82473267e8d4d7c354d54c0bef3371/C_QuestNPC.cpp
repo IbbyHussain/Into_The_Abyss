@@ -21,6 +21,8 @@ AC_QuestNPC::AC_QuestNPC()
 
 	FrontQuestWidget->SetupAttachment(GetMesh());
 	BackQuestWidget->SetupAttachment(GetMesh());
+
+	//bFinalMessage = false;
 }
 
 void AC_QuestNPC::BeginPlay()

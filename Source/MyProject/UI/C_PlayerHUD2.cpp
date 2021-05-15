@@ -577,7 +577,7 @@ void AC_PlayerHUD2::CreateQuestObjectiveItems(AC_BaseQuest* QuestRef, class UScr
 
 // NPC Talk Window
 
-void AC_PlayerHUD2::CreateTalkWindow(TArray<FText> SpeechArray)
+void AC_PlayerHUD2::CreateTalkWindow(TArray<FText> SpeechArray, bool bClose)
 {
 	if (TalkWindowWidgetClass)
 	{
@@ -589,6 +589,8 @@ void AC_PlayerHUD2::CreateTalkWindow(TArray<FText> SpeechArray)
 			{
 				TalkWindow->AISpeechArray.Add(SpeechArray[i]);
 			}
+
+			TalkWindow->bClose = bClose;
 
 			TalkWindow->AddToViewport();
 		}

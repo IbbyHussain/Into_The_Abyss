@@ -238,7 +238,7 @@ public:
 
 	// NPC - Talk Window
 
-	void CreateTalkWindow(TArray<FText> SpeechArray);
+	void CreateTalkWindow(TArray<FText> SpeechArray, bool bClose);
 
 	void DestroyTalkWindow();
 

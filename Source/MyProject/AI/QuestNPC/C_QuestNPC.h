@@ -93,4 +93,7 @@ public:
 
 	UPROPERTY(EditInstanceOnly, Category = "Manager")
 	class AC_TheLabLevel_ManagerClass* LevelManager;
+
+	UPROPERTY(EditInstanceOnly, Category = "NPC")
+	bool bFinalMessage;
 };

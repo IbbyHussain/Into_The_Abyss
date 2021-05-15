@@ -45,6 +45,11 @@ void UC_AITalkWindow::OnClickedNextButton()
 
 	else
 	{
+		if (bClose)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Start fade out")); // for final message
+		}
+
 		RemoveFromParent();
 
 		APlayerController* PlayerController = Cast<APlayerController>(GEngine->GetFirstLocalPlayerController(GetWorld()));

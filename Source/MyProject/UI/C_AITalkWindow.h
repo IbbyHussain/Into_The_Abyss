@@ -32,4 +32,6 @@ public:
 	int32 AISpeechArrayIndex;
 
 	bool bFinished;
+
+	bool bClose;
 };
