@@ -3358,3 +3358,4 @@ void AC_PlayerCharacter::DestroyTempSoundWidget()
 	HUD->DestroySoundSettingsWidget();
 	HUD->DestroyVideoSettingsWidget();
 }
+

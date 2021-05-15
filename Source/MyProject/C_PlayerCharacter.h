@@ -684,6 +684,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Magic")
 	AC_MudWall* MudWallActor;
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void EndGame();
+
 private:
 
 	//Idle

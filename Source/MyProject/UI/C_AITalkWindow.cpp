@@ -45,9 +45,12 @@ void UC_AITalkWindow::OnClickedNextButton()
 
 	else
 	{
+		AC_PlayerCharacter* PlayerCharacter = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
+
 		if (bClose)
 		{
 			UE_LOG(LogTemp, Error, TEXT("Start fade out")); // for final message
+			PlayerCharacter->EndGame();
 		}
 
 		RemoveFromParent();
@@ -56,7 +59,6 @@ void UC_AITalkWindow::OnClickedNextButton()
 		PlayerController->SetInputMode(FInputModeGameOnly());
 		PlayerController->bShowMouseCursor = false;
 
-		AC_PlayerCharacter* PlayerCharacter = Cast<AC_PlayerCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
 		PlayerCharacter->BroadcastCanTrade();
 	}
 }
