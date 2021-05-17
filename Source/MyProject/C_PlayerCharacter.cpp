@@ -3150,7 +3150,7 @@ void AC_PlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &AC_PlayerCharacter::Interact);
 
 	// Swap Time Mechanic
-	PlayerInputComponent->BindAction("SwapTime", IE_Pressed, this, &AC_PlayerCharacter::SwapTime);
+	//PlayerInputComponent->BindAction("SwapTime", IE_Pressed, this, &AC_PlayerCharacter::SwapTime);
 
 	// Show Weapon Wheel
 	PlayerInputComponent->BindAction("WeaponWheel", IE_Pressed, this, &AC_PlayerCharacter::ShowWeaponWheel);

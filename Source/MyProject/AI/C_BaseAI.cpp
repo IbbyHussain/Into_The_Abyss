@@ -130,7 +130,7 @@ AC_BaseAI::AC_BaseAI()
 
 	bTakeAbility2Damage = true;
 
-	BossDamageReduction = 0.1;
+	BossDamageReduction = 0.5;
 }
 
 void AC_BaseAI::BeginPlay()

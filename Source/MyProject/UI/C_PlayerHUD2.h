@@ -37,7 +37,7 @@ public:
 
 	//class UC_MiniMap* MiniMapWidget;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite,  Category = "Widgets")
 	TSubclassOf<UUserWidget> WidgetClass;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
