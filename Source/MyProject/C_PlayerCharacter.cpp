@@ -111,7 +111,7 @@ AC_PlayerCharacter::AC_PlayerCharacter()
 	DoubleJumpCounter = 0;
 	bIsJumping = false;
 	bCanJump = true;
-	JumpHeight = FVector(0.0f, 0.0f, 600.0f);
+	JumpHeight = FVector(0.0f, 0.0f, 650.0f);
 
 	// Dash
 	bCanDash = true;
@@ -432,11 +432,11 @@ void AC_PlayerCharacter::PlayerJump()
 	if (bCanJump && DoubleJumpCounter <= 1)
 	{
 		DoubleJumpCounter++;
-		bCanJump = false;
+		//bCanJump = false;
 		AC_PlayerCharacter::LaunchCharacter(JumpHeight, false, true);
 
 		//Jump Timer so jump cannot be spammed.
-		GetWorldTimerManager().SetTimer(JumpDelayHandle, this, &AC_PlayerCharacter::CanJump, 0.65f, false);
+		//GetWorldTimerManager().SetTimer(JumpDelayHandle, this, &AC_PlayerCharacter::CanJump, 0.65f, false);
 	}
 }
 
